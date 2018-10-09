@@ -24,7 +24,7 @@ import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
-    private lateinit var loginBinding: ActivityLoginBinding;
+    private lateinit var loginBinding: ActivityLoginBinding
     private val TAG: String? = "LoginActivity"
     private var OAUTH_CLIENT_ID: String? = "aaQJOdhzRUarseiLP5A9"
     private var OAUTH_CLIENT_SECRET: String? = "MR0tI738Hz"
@@ -36,12 +36,15 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
         mContext = this
+
         loginBinding.kakaoButton.setOnClickListener {
             sessionCallback = SessionCallback()
+            // Session 에 콜백 추가
             Session.getCurrentSession().addCallback(sessionCallback)
             Session.getCurrentSession().checkAndImplicitOpen()
             Session.getCurrentSession().open(AuthType.KAKAO_LOGIN_ALL, this)
         }
+
         loginBinding.buttonOAuthLoginImg.setOAuthLoginHandler(mOAuthLoginHandler)
         loginBinding.buttonOAuthLoginImg.setOnClickListener {
             initNaverData()
@@ -60,9 +63,7 @@ class LoginActivity : AppCompatActivity() {
                     , OAUTH_CLIENT_ID
                     , OAUTH_CLIENT_SECRET
                     , OAUTH_CLIENT_NAME
-                    //,OAUTH_CALLBACK_INTENT
-                    // SDK 4.1.4 버전부터는 OAUTH_CALLBACK_INTENT변수를 사용하지 않습니다.
-            );
+            )
         }
 
     }
@@ -81,9 +82,9 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun redirectSignupActivity() {
-        val signUpIntent = Intent(this, KakaoSignUpActivity::class.java)
-        signUpIntent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION)
-        startActivity(signUpIntent)
+        val intent = Intent(this, KakaoSignUpActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
+        startActivity(intent)
         finish()
     }
 
@@ -102,7 +103,7 @@ class LoginActivity : AppCompatActivity() {
             if (exception != null) {
                 Log.d(TAG, exception.toString())
             }
-            setContentView(R.layout.activity_login)
+            //setContentView(R.layout.activity_login)
         }
     }
 
@@ -116,10 +117,6 @@ class LoginActivity : AppCompatActivity() {
     object : OAuthLoginHandler() {
         override fun run(success: Boolean) {
             if (success) {
-                val accessToken = mOAuthLoginModule!!.getAccessToken(mContext)
-                val refreshToken = mOAuthLoginModule!!.getRefreshToken(mContext)
-                val expiresAt = mOAuthLoginModule!!.getExpiresAt(mContext)
-                val tokenType = mOAuthLoginModule!!.getTokenType(mContext)
                 val requstApi = RequestApiTask()
                 requstApi.execute()
             } else {
@@ -133,17 +130,17 @@ class LoginActivity : AppCompatActivity() {
 
     @SuppressLint("StaticFieldLeak")
     private inner class RequestApiTask : AsyncTask<Void, Void, String>() {
-        protected override fun onPreExecute() {//작업이 실행되기 전에 먼저 실행.
+        override fun onPreExecute() {//작업이 실행되기 전에 먼저 실행.
 
         }
 
-        protected override fun doInBackground(vararg params: Void): String {//네트워크에 연결하는 과정이 있으므로 다른 스레드에서 실행되어야 한다.
+        override fun doInBackground(vararg params: Void): String {//네트워크에 연결하는 과정이 있으므로 다른 스레드에서 실행되어야 한다.
             val url = "https://openapi.naver.com/v1/nid/me"
             val accessToken = mOAuthLoginModule!!.getAccessToken(mContext)
             return mOAuthLoginModule!!.requestApi(mContext, accessToken, url)
         }
 
-        protected override fun onPostExecute(content: String) =//doInBackground 에서 리턴된 값이 여기로 들어온다.
+        override fun onPostExecute(content: String) =//doInBackground 에서 리턴된 값이 여기로 들어온다.
                 try {
                     val jsonObject = JSONObject(content)
                     val response = jsonObject.getJSONObject("response")
@@ -168,5 +165,4 @@ class LoginActivity : AppCompatActivity() {
                     e.printStackTrace()
                 }
     }
-
 }

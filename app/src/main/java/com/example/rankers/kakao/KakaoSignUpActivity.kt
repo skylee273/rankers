@@ -2,9 +2,7 @@ package com.example.rankers.kakao
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.util.Log
 import com.example.rankers.model.User
 import com.example.rankers.views.LoginActivity
@@ -13,9 +11,6 @@ import com.kakao.network.ErrorResult
 import com.kakao.usermgmt.UserManagement
 import com.kakao.usermgmt.callback.MeV2ResponseCallback
 import com.kakao.usermgmt.response.MeV2Response
-import com.kakao.usermgmt.response.model.AgeRange
-import com.kakao.usermgmt.response.model.Gender
-import com.kakao.util.helper.log.Logger
 import java.util.*
 
 class KakaoSignUpActivity : Activity() {
@@ -23,12 +18,13 @@ class KakaoSignUpActivity : Activity() {
      * Main으로 넘길지 가입 페이지를 그릴지 판단하기 위해 me를 호출한다.
      * @param savedInstanceState 기존 session 정보가 저장된 객체
      */
-    private val TAG = javaClass.getSimpleName()
+    private val TAG = javaClass.simpleName
     internal lateinit var user: User
 
 
     protected override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d(TAG, "연결 성공");
         requestMe()
     }
 
@@ -37,8 +33,9 @@ class KakaoSignUpActivity : Activity() {
      */
     protected fun requestMe() { //유저의 정보를 받아오는 함수
         val keys = ArrayList<String>()
-        keys.add("properties.id")
         keys.add("properties.nickname")
+        keys.add("properties.profile_image")
+        keys.add("properties.thumbnail_image")
         keys.add("kakao_account.email")
         keys.add("kakao_account.age_range")
         keys.add("kakao_account.birthday")
@@ -50,16 +47,11 @@ class KakaoSignUpActivity : Activity() {
              * 사용자 정보 요청이 성공한 경우로 사용자 정보 객체를 받는다.
              * @param result
              */
-            @RequiresApi(Build.VERSION_CODES.KITKAT)
             override fun onSuccess(result: MeV2Response) {
                 user = User()
                 Log.d("NickName : ", result.nickname)
-                // Log.d("ProfileImagePath : ", result.profileImagePath)
-                // Log.d("ThumbnailImagePath : ", result.thumbnailImagePath)
                 Log.d("Email : ", result.kakaoAccount.email)
-                Log.d("ageRange : ", Objects.requireNonNull<AgeRange>(result.kakaoAccount.ageRange).toString())
                 Log.d("birthday : ", result.kakaoAccount.birthday)
-                Log.d("gender : ", Objects.requireNonNull<Gender>(result.kakaoAccount.gender).toString())
                 Log.d("id : ", result.id.toString())
                 val user: User? = null
                 if (user != null) {

@@ -6,21 +6,24 @@ import android.os.Bundle
 import android.util.Log
 import java.security.MessageDigest
 import android.content.pm.PackageManager
+import android.databinding.DataBindingUtil
 import android.os.Build
 import android.support.annotation.RequiresApi
 import com.example.rankers.R
+import com.example.rankers.databinding.ActivityMainBinding
 import com.kakao.util.helper.Utility.getPackageInfo
 import java.security.NoSuchAlgorithmException
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var mainBinding: ActivityMainBinding
     var mContext : Context? = null;
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        mainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         mContext = this
-        Log.d("MAIN", getKeyHash(mContext as MainActivity))
+        //Log.d("MAIN", getKeyHash(mContext as MainActivity))
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

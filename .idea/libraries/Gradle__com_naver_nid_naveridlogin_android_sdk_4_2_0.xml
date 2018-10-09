@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.naver.nid:naveridlogin-android-sdk-4.2.0">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/naveridlogin-android-sdk-4.2.0.aar/d5db421f41d1931f72cace49b454c373/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/naveridlogin-android-sdk-4.2.0.aar/d5db421f41d1931f72cace49b454c373/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.naver.nid/naveridlogin-android-sdk/4.2.0/ee897e06c05cde2a7292a7f2469a720ae60ae471/naveridlogin-android-sdk-4.2.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

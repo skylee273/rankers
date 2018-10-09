@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">rankers</string>
-    <string name="kakao_app_key">c701966a9eb47ff936a290f7656e2242</string>
+    <string name="kakao_app_key">72d1902fd6b1b70f7fc337039de59cd4</string>
+    <string name="todo">TODO</string>
 
 </resources>

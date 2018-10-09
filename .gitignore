@@ -1,0 +1,19 @@
+# Created by .ignore support plugin (hsz.mobi)
+.gitignore
+.gradle/
+.idea/caches/
+.idea/gradle.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/runConfigurations.xml
+.idea/vcs.xml
+.idea/workspace.xml
+app/app.iml
+build/
+gradle/wrapper/gradle-wrapper.jar
+gradlew
+gradlew.bat
+local.properties
+naveridlogin_android_sdk_4.2.0/naveridlogin_android_sdk_4.2.0.iml
+rankers-master.iml
+rankers.iml

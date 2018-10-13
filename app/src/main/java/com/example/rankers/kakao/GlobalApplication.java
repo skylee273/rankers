@@ -15,7 +15,7 @@ import com.kakao.auth.KakaoSDK;
 public class GlobalApplication extends Application {
 
     private static GlobalApplication instance;
-
+    // 깃 충돌 테스트 마스터
     public static GlobalApplication getGlobalApplicationContext() {
         if (instance == null) {
             throw new IllegalStateException("This Application does not inherit com.kakao.GlobalApplication");

@@ -16,12 +16,6 @@ public class GlobalApplication extends Application {
 
     private static GlobalApplication instance;
 
-    // 깃 테스트 중입니다.
-    // 깃 테스트 ㅇㅇ
-    // 깃 허브 테스트 중이에영
-    // 이해가 안되네..
-    // 노트북에서 수정함
-    // 데스크탑에서 수정함
     public static GlobalApplication getGlobalApplicationContext() {
         if (instance == null) {
             throw new IllegalStateException("This Application does not inherit com.kakao.GlobalApplication");

@@ -1,5 +1,8 @@
 package com.example.rankers.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class User {
 
     // Test

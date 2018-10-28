@@ -22,9 +22,6 @@ import com.roughike.bottombar.OnTabReselectListener
 import com.example.rankers.R.id.bottomBar
 
 
-
-
-
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mainBinding: ActivityMainBinding

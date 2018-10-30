@@ -32,6 +32,7 @@ class LoginActivity : AppCompatActivity() {
     var mOAuthLoginModule: OAuthLogin? = null
     lateinit var mContext: Context
     private var sessionCallback: SessionCallback? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
@@ -44,8 +45,10 @@ class LoginActivity : AppCompatActivity() {
             Session.getCurrentSession().checkAndImplicitOpen()
             Session.getCurrentSession().open(AuthType.KAKAO_LOGIN_ALL, this)
         }
-
         loginBinding.buttonOAuthLoginImg.setOAuthLoginHandler(mOAuthLoginHandler)
+        loginBinding.naverButton.setOnClickListener {
+            loginBinding.buttonOAuthLoginImg.performClick()
+        }
         loginBinding.buttonOAuthLoginImg.setOnClickListener {
             initNaverData()
             if (mOAuthLoginModule != null) {

@@ -3,4 +3,10 @@
     <string name="kakao_app_key">72d1902fd6b1b70f7fc337039de59cd4</string>
     <string name="todo">TODO</string>
 
+
+    <!-- 로그인 -->
+    <string name="google_login">구글아이디로 로그인</string>
+    <string name="naver_login">네이버아이디로 로그인</string>
+    <string name="kakao_login">카카오계정으로 로그인</string>
+    <string name="login_logo">경기 기록을 기록하고,\n나의 전적을 확인해보세요.</string>
 </resources>

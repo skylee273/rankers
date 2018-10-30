@@ -7,6 +7,9 @@
         <variable
             name="rm"
             type="com.example.rankers.viewmodels.ContestRegisterViewModel"/>
+        <variable
+            name="contest"
+            type="com.example.rankers.views.ContestRegisterActivity"/>
     </data>
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"
@@ -29,6 +32,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginRight="32dp"
+        android:onClick="@{() -> contest.fileClick()}"
         android:text="첨부파일"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_location" />

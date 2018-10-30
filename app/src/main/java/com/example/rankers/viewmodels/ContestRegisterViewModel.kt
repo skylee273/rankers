@@ -1,25 +1,20 @@
 package com.example.rankers.viewmodels
 
-import android.arch.lifecycle.ViewModel
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.databinding.BaseObservable
-import android.databinding.Bindable
 import android.databinding.ObservableField
-import android.util.Log
 import android.view.View
-import com.android.databinding.library.baseAdapters.BR
 import com.example.rankers.dialog.LocationDialog
 import com.example.rankers.views.ContestRegisterActivity
-import android.widget.Toast
-import android.widget.DatePicker
 import android.app.DatePickerDialog
+import android.support.v4.app.ActivityCompat.startActivityForResult
 import java.util.*
 import kotlin.collections.HashMap
 
 
 class ContestRegisterViewModel : BaseObservable() {
+
 
     val location = ObservableField("")
     val type = ObservableField("")
@@ -28,7 +23,7 @@ class ContestRegisterViewModel : BaseObservable() {
     val file = ObservableField("")
     val cal : Calendar? = Calendar.getInstance()
     val mutableMap : HashMap<String ,String?> = hashMapOf()
-
+    
     private var locationDialog: LocationDialog? = null
 
     init {
@@ -53,7 +48,6 @@ class ContestRegisterViewModel : BaseObservable() {
     fun dateClick(view : View?){
         dateRequest(view!!.context)
     }
-
 
     fun dateRequest(context: Context){
         val dialog = DatePickerDialog(context, DatePickerDialog.OnDateSetListener { datePicker, year, month, date ->
@@ -86,4 +80,5 @@ class ContestRegisterViewModel : BaseObservable() {
         }
         return checkFlag
     }
+
 }

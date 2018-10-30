@@ -4,7 +4,7 @@
     package="com.example.rankers">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:name=".kakao.GlobalApplication"
@@ -20,13 +20,14 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key"/>
 
-        <activity android:name=".views.LoginActivity">
+        <activity android:name=".views.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name=".views.LoginActivity"/>
         <activity android:name=".views.MainActivity"/>
         <activity android:name=".kakao.KakaoSignUpActivity"/>
         <activity android:name=".views.ContestRegisterActivity"/>

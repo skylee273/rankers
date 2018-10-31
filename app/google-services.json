@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "290099043763",
+    "firebase_url": "https://rankers-de5d4.firebaseio.com",
+    "project_id": "rankers-de5d4",
+    "storage_bucket": "rankers-de5d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290099043763:android:e9dced77e860b370",
+        "android_client_info": {
+          "package_name": "com.project.rankers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290099043763-7q57l34472ivplm9oc3hbnk139h0dfvu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.rankers",
+            "certificate_hash": "35a33004bff7cd27c846c65503d520b13233d690"
+          }
+        },
+        {
+          "client_id": "290099043763-a8fc102vhs706r61i5rio8gdk1ormqc5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjHnBdbM_sHA0p4ntfGtG9e_fa26bC0DE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290099043763-a8fc102vhs706r61i5rio8gdk1ormqc5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

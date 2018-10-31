@@ -6,10 +6,10 @@
     <data>
         <variable
             name="rm"
-            type="com.example.rankers.viewmodels.ContestRegisterViewModel"/>
+            type="com.project.rankers.viewmodels.ContestRegisterViewModel"/>
         <variable
             name="contest"
-            type="com.example.rankers.views.ContestRegisterActivity"/>
+            type="com.project.rankers.views.ContestRegisterActivity"/>
     </data>
 <android.support.constraint.ConstraintLayout
     android:layout_width="match_parent"

@@ -1,20 +1,19 @@
 package com.project.rankers.views
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.os.Bundle
 import android.support.annotation.NonNull
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
 import com.project.rankers.R
 import com.project.rankers.databinding.ActivityLoginBinding
 import com.project.rankers.kakao.KakaoSignUpActivity
-import com.project.rankers.model.User
 import com.kakao.auth.AuthType
 import com.kakao.util.exception.KakaoException
 import com.kakao.auth.ISessionCallback
@@ -22,7 +21,6 @@ import com.kakao.auth.Session
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import org.json.JSONObject
-import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -31,6 +29,12 @@ import com.google.android.gms.common.api.GoogleApiClient
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
+import com.project.rankers.retrofit.`interface`.RankersUser
+import com.project.rankers.retrofit.crater.RankersPostCreator
+import com.project.rankers.retrofit.models.RankersServerRepo
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class LoginActivity : AppCompatActivity() {
@@ -48,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
     var mOAuthLoginModule: OAuthLogin? = null
     lateinit var mContext: Context
     private var sessionCallback: SessionCallback? = null
-
+    var rankersServerRepo: RankersServerRepo? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginBinding = DataBindingUtil.setContentView(this, R.layout.activity_login)
@@ -100,16 +104,22 @@ class LoginActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (resultCode == Activity.RESULT_OK) {
+            if (requestCode == 3000)
+                if (data != null) {
+                    findUser(data.getStringExtra("email"), data.getStringExtra("nickName"))
+                }
+        }
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
             return
         }
         if (requestCode == RC_SIGN_IN) {
-            val task : Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try{
+            val task: Task<GoogleSignInAccount> = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
                 // 구글 로그인 성공
-                val account : GoogleSignInAccount = task.getResult(ApiException::class.java)!!
+                val account: GoogleSignInAccount = task.getResult(ApiException::class.java)!!
                 firebaseAuthWithGoogle(account)
-            }catch (e : ApiException){
+            } catch (e: ApiException) {
 
             }
         }
@@ -125,8 +135,7 @@ class LoginActivity : AppCompatActivity() {
     fun redirectSignupActivity() {
         val intent = Intent(this, KakaoSignUpActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-        startActivity(intent)
-        finish()
+        startActivityForResult(intent, 3000)
     }
 
     private inner class SessionCallback : ISessionCallback {
@@ -187,21 +196,7 @@ class LoginActivity : AppCompatActivity() {
                     val response = jsonObject.getJSONObject("response")
                     val email = response.getString("email")
                     val name = response.getString("nickname")
-                    val age = response.getString("age")
-                    val gender = response.getString("gender")
-                    val birthday = response.getString("birthday")
-                    val id = response.getString("id");
-
-                    val user: User? = null
-                    if (user != null) {
-                        user.id = id
-                        user.name = name
-                        user.gender = gender
-                        user.age = age
-                        user.birthday = birthday
-                        user.seteMail(email)
-                    }
-                    redirectMainActivity();
+                    findUser(email, name)
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
@@ -215,12 +210,8 @@ class LoginActivity : AppCompatActivity() {
                     override fun onComplete(@NonNull task: Task<AuthResult>) {
                         if (task.isSuccessful) {
                             // 로그인 성공
-                            var user : FirebaseUser = mAuth!!.currentUser!!
-                            Log.d(TAG, "USER NAME = " + user.displayName)
-                            Log.d(TAG, "USER EMAIL = " + user.email)
-                            Log.d(TAG, "USER PHONE NUMBER = " + user.phoneNumber)
-                            redirectMainActivity()
-
+                            val user: FirebaseUser = mAuth!!.currentUser!!
+                            findUser(user.email, user.displayName)
                         } else {
                             Log.d(TAG, "GOOGLE LOGIN FAILED")
                         }
@@ -228,4 +219,46 @@ class LoginActivity : AppCompatActivity() {
                 })
     }
 
+    fun findUser(email: String?, nickName: String?){
+        val server = RankersPostCreator.create(RankersUser::class.java)
+        server.getID(email).enqueue(object : Callback<RankersServerRepo>{
+            override fun onFailure(call: Call<RankersServerRepo>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+            override fun onResponse(call: Call<RankersServerRepo>, response: Response<RankersServerRepo>) {
+                rankersServerRepo = response.body()
+                if (rankersServerRepo != null) {
+                    if (rankersServerRepo!!.getSuccess()) {
+                        Log.d("LoginActivity", "Exist User")
+                        redirectMainActivity()
+                    } else {
+                        uploadUser(email, nickName)
+                    }
+                }
+            }
+        })
+    }
+    fun uploadUser(email: String?, nickName: String?) {
+        val server = RankersPostCreator.create(RankersUser::class.java)
+        server.postUserCreator(email, nickName).enqueue(object : Callback<RankersServerRepo> {
+            override fun onFailure(call: Call<RankersServerRepo>, t: Throwable) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+            override fun onResponse(call: Call<RankersServerRepo>, response: Response<RankersServerRepo>) {
+                rankersServerRepo = response.body()
+                if (rankersServerRepo != null) {
+                    if (rankersServerRepo!!.getSuccess()) {
+                        Log.d("LoginActivity", "Success")
+                        redirectMainActivity()
+                    } else {
+                        Log.d("LoginActivity", "False")
+                    }
+                }
+            }
+        })
+    }
+
+
 }
+
+

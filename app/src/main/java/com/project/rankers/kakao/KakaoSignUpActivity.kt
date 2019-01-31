@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.project.rankers.model.User
 import com.project.rankers.views.LoginActivity
 import com.project.rankers.views.MainActivity
 import com.kakao.network.ErrorResult
@@ -13,33 +12,26 @@ import com.kakao.usermgmt.callback.MeV2ResponseCallback
 import com.kakao.usermgmt.response.MeV2Response
 import java.util.*
 
-class KakaoSignUpActivity : Activity() {
+open class KakaoSignUpActivity : Activity() {
     /**
      * Main으로 넘길지 가입 페이지를 그릴지 판단하기 위해 me를 호출한다.
      * @param savedInstanceState 기존 session 정보가 저장된 객체
      */
     private val TAG = javaClass.simpleName
-    internal lateinit var user: User
+    var flag : Boolean = true
 
-
-    protected override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d(TAG, "연결 성공");
         requestMe()
     }
 
     /**
      * 사용자의 상태를 알아 보기 위해 me API 호출을 한다.
      */
-    protected fun requestMe() { //유저의 정보를 받아오는 함수
+    private fun requestMe() { //유저의 정보를 받아오는 함수
         val keys = ArrayList<String>()
         keys.add("properties.nickname")
-        keys.add("properties.profile_image")
-        keys.add("properties.thumbnail_image")
         keys.add("kakao_account.email")
-        keys.add("kakao_account.age_range")
-        keys.add("kakao_account.birthday")
-        keys.add("kakao_account.gender")
 
         // 사용자정보 요청 결과에 대한 Callback
         UserManagement.getInstance().me(keys, object : MeV2ResponseCallback() {
@@ -48,21 +40,11 @@ class KakaoSignUpActivity : Activity() {
              * @param result
              */
             override fun onSuccess(result: MeV2Response) {
-                user = User()
-                Log.d("NickName : ", result.nickname)
-                Log.d("Email : ", result.kakaoAccount.email)
-                Log.d("birthday : ", result.kakaoAccount.birthday)
-                Log.d("id : ", result.id.toString())
-                val user: User? = null
-                if (user != null) {
-                    user.id = result.id.toString()
-                    user.name = result.nickname
-                    user.gender = result.kakaoAccount.gender.toString()
-                    user.age = result.kakaoAccount.ageRange.toString()
-                    user.birthday = result.kakaoAccount.birthday
-                    user.seteMail(result.kakaoAccount.email)
-                }
-                redirectMainActivity() // 로그인 성공시 MainActivity로
+                val intent = Intent()
+                intent.putExtra("email", result.kakaoAccount.email)
+                intent.putExtra("nickName", result.nickname)
+                setResult(RESULT_OK, intent)
+                finish()
             }
 
             /**

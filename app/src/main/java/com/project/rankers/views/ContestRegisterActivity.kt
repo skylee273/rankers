@@ -13,24 +13,29 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Build
 import android.support.annotation.RequiresApi
+import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
+import com.project.rankers.retrofit.`interface`.RankersUser
+import com.project.rankers.retrofit.crater.RankersPostCreator
+import com.project.rankers.retrofit.models.RankersServerRepo
 import com.project.rankers.util.FilePath
 import net.gotev.uploadservice.UploadNotificationConfig
 import net.gotev.uploadservice.MultipartUploadRequest
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 
 
 class ContestRegisterActivity : AppCompatActivity() {
 
-    val UPLOAD_URL = "http://internetfaqs.net/AndroidPdfUpload/upload.php"
-    val PDF_FETCH_URL = "http://internetfaqs.net/AndroidPdfUpload/getPdfs.php"
     private lateinit var contestRegisterBinding: ActivityContestRegisterBinding
     private val PICK_PDF_REQUEST = 1
     private var filePath : Uri? = null
-
     lateinit var mContext: Context
-    val viewModel = ContestRegisterViewModel()
+    private val viewModel = ContestRegisterViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +43,9 @@ class ContestRegisterActivity : AppCompatActivity() {
         contestRegisterBinding = DataBindingUtil.setContentView(this, R.layout.activity_contest_register)
         contestRegisterBinding.setVariable(BR.rm, viewModel)
         contestRegisterBinding.setVariable(BR.contest, this)
+
     }
+
 
     fun fileClick() {
         showFileChooser()
@@ -61,40 +68,5 @@ class ContestRegisterActivity : AppCompatActivity() {
         }
     }
 
-    /*
-    * This is the method responsible for pdf upload
-    * We need the full pdf path and the name for the pdf in this method
-    * */
-
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
-    fun uploadMultipart() {
-         val name = "test"
-
-        //getting the actual path of the image
-
-        val path = FilePath.getPath(this, filePath)
-
-        if (path == null) {
-
-            Toast.makeText(this, "Please move your .pdf file to internal storage and retry", Toast.LENGTH_LONG).show()
-        } else {
-            //Uploading code
-            try {
-                val uploadId = UUID.randomUUID().toString()
-
-                //Creating a multi part request
-                MultipartUploadRequest(this, uploadId, UPLOAD_URL)
-                        .addFileToUpload(path, "pdf") //Adding file
-                        .addParameter("name", name) //Adding text parameter to the request
-                        .setNotificationConfig(UploadNotificationConfig())
-                        .setMaxRetries(2)
-                        .startUpload() //Starting the upload
-
-            } catch (exc: Exception) {
-                Toast.makeText(this, exc.message, Toast.LENGTH_SHORT).show()
-            }
-
-        }
-    }
 }
 

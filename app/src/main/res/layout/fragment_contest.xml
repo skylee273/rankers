@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.project.rankers.viewmodels.ContestViewModel"/>
+        <variable
+            name="main"
+            type="com.project.rankers.views.ContestFragement"/>
+    </data>
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_background"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2"
+                app:layout_constraintVertical_bias="0.0">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_contest2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_info_title2" />
+
+                <TextView
+                    android:id="@+id/text_wide_add2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/context_addinfo"
+                    android:textColor="@color/color_info_add"
+                    android:textSize="12sp"
+                    app:fontFamily="@font/notosanscjkkrmedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_info_title2" />
+
+                <TextView
+                    android:id="@+id/text_info_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/contest_information2"
+                    android:textColor="@color/color_information"
+                    android:textSize="14sp"
+                    app:fontFamily="@font/notosanscjkkrmedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rv_contest" />
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/rv_contest"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:scrollbars="none"
+                    app:layout_constraintTop_toBottomOf="@+id/text_wide_add" />
+
+                <TextView
+                    android:id="@+id/text_wide_add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/context_addinfo"
+                    android:textColor="@color/color_info_add"
+                    android:textSize="12sp"
+                    app:fontFamily="@font/notosanscjkkrmedium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/text_info_title" />
+
+                <TextView
+                    android:id="@+id/text_info_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="@string/contest_information"
+                    android:textColor="@color/color_information"
+                    android:textSize="14sp"
+                    app:fontFamily="@font/notosanscjkkrmedium"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </android.support.constraint.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:layout_marginTop="6dp"
+        android:background="@color/color_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_setting" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="9dp"
+        android:background="@color/color_divider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_setting"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:text="@string/contest_setting"
+        android:textColor="@color/color_contest_icon_title"
+        android:textSize="8sp"
+        app:fontFamily="@font/notosanscjkkrmedium"
+        app:layout_constraintStart_toEndOf="@+id/text_result"
+        app:layout_constraintTop_toBottomOf="@+id/btn_setting" />
+
+    <TextView
+        android:id="@+id/text_result"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:text="@string/contest_result"
+        android:textColor="@color/color_contest_icon_title"
+        android:textSize="8sp"
+        app:fontFamily="@font/notosanscjkkrmedium"
+        app:layout_constraintStart_toEndOf="@+id/text_application"
+        app:layout_constraintTop_toBottomOf="@+id/btn_result" />
+
+    <TextView
+        android:id="@+id/text_application"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:text="@string/contest_application"
+        android:textColor="@color/color_contest_icon_title"
+        android:textSize="8sp"
+        app:fontFamily="@font/notosanscjkkrmedium"
+        app:layout_constraintStart_toEndOf="@+id/text_register"
+        app:layout_constraintTop_toBottomOf="@+id/btn_application" />
+
+    <TextView
+        android:id="@+id/text_register"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:text="@string/contest_register"
+        android:textColor="@color/color_contest_icon_title"
+        android:textSize="8sp"
+        app:fontFamily="@font/notosanscjkkrmedium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_resgister" />
+
+    <ImageView
+        android:id="@+id/btn_setting"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_result"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:srcCompat="@drawable/ic_setting" />
+
+    <ImageView
+        android:id="@+id/btn_result"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_application"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:srcCompat="@drawable/ic_graph" />
+
+    <ImageView
+        android:id="@+id/btn_application"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginLeft="18dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toEndOf="@+id/btn_resgister"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:srcCompat="@drawable/ic_application" />
+
+    <ImageView
+        android:id="@+id/btn_resgister"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:onClick="@{() -> main.registerContest()}"
+        android:layout_marginStart="17dp"
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="8dp"
+        android:padding="2dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:srcCompat="@drawable/ic_register" />
+
+</android.support.constraint.ConstraintLayout>
+
+</layout>
+

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimary">#C2185B</color>
     <color name="colorPrimaryDark">#285193</color>
     <color name="colorAccent">#FF4081</color>
 
@@ -8,4 +8,20 @@
     <color name="color_bg">#285193</color>
     <color name="color_login_text">#FFFFFF</color>
     <color name="color_login_logo">#FFFFF2</color>
+
+    <!-- 메인액티비티 -->
+    <color name="bottombar_bg">#FFFFFF</color>
+    <color name="color_background">#FBFBFB</color>
+    <color name="color_contest_icon_title">#585858</color>
+    <color name="color_divider">#E0E0E0</color>
+    <color name="color_information">#2A2929</color>
+    <color name="color_info_add">#396AB8</color>
+
+    <color name="color_contest_title">#396AB8</color>
+    <color name="color_card_background">#FFFFFF</color>
+    <color name="color_card_line">#DEDEDE</color>
+    <color name="color_card_title">#363636</color>
+    <color name="color_card_address">#8D8D8D</color>
+
+    <color name="color_black">#000000</color>
 </resources>

@@ -9,4 +9,34 @@
     <string name="naver_login">네이버아이디로 로그인</string>
     <string name="kakao_login">카카오계정으로 로그인</string>
     <string name="login_logo">경기 기록을 기록하고,\n나의 전적을 확인해보세요.</string>
+
+    <!-- 하단바 아이템 -->
+    <string name="selection_contest">대회</string>
+    <string name="selection_club">클럽</string>
+    <string name="selection_messsage">소식</string>
+    <string name="selection_my">마이페이지</string>
+
+    <!-- 매인 엑티비티 -->
+    <string name="contest_register">대회등록</string>
+    <string name="contest_application">대회신청</string>
+    <string name="contest_result">대회결과</string>
+    <string name="contest_setting">대회운영</string>
+    <string name="contest_information">전국 대회 정보</string>
+    <string name="contest_information2">지역 대회 정보</string>
+    <string name="contest_local_title">LOCAL</string>
+    <string name="contest_kta_title">KTA</string>
+    <string name="context_addinfo">+더보기</string>
+
+
+    <!-- 대회 등록 -->
+    <string name="register_hint_title">대회이름</string>
+    <string name="register_hint_date">대회일시</string>
+    <string name="register_hint_type">대회종류</string>
+    <string name="register_hint_host">주관기관</string>
+    <string name="register_hint_location">대회장소</string>
+    <string name="register_hint_file">첨부파일</string>
+
+    <string name="register_hint_name">부서이름</string>
+
+
 </resources>

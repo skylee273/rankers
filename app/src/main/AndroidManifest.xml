@@ -20,17 +20,19 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key"/>
 
-        <activity android:name="com.project.rankers.views.IntroActivity">
+        <activity android:name="com.project.rankers.views.activity.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.project.rankers.views.LoginActivity"/>
-        <activity android:name="com.project.rankers.views.MainActivity"/>
+        <activity android:name="com.project.rankers.views.activity.LoginActivity"/>
+        <activity android:name="com.project.rankers.views.activity.MainActivity"/>
         <activity android:name="com.project.rankers.kakao.KakaoSignUpActivity"/>
-        <activity android:name="com.project.rankers.views.ContestRegisterActivity"/>
+        <activity android:name="com.project.rankers.views.activity.ContestRegisterActivity" />
+        <activity android:name=".views.activity.RecordActivity"/>
+        <activity android:name=".views.activity.ResultActivity"/>
 
     </application>
 

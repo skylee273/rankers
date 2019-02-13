@@ -1,8 +1,5 @@
 package com.project.rankers.viewmodels
 
-import android.databinding.BaseObservable
+import androidx.databinding.BaseObservable
 
-class ContestViewModel : BaseObservable() {
-
-
-}
+class ContestViewModel : BaseObservable()

@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="multiViewModel"
+            type="com.project.rankers.viewmodels.MultiViewModel"/>
+        <variable
+            name="multiActivity"
+            type="com.project.rankers.views.fragment.MultiFragment"/>
+    </data>
+
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/edit_otherpartner"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/multi_other_partner"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_other" />
+
+        <EditText
+            android:id="@+id/edit_partner"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/multi_partner"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_date" />
+
+        <Button
+            android:id="@+id/btn_regit"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="32dp"
+            android:background="@color/color_bg"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:text="@string/multi_btn_name"
+            android:onClick="@{() -> multiActivity.regitClick()}"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_lose"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/multi_lose"
+            android:inputType="number"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/view3"
+            app:layout_constraintTop_toBottomOf="@+id/edit_result" />
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="3dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_result" />
+
+        <EditText
+            android:id="@+id/edit_win"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_horizontal|center_vertical"
+            android:hint="@string/multi_win"
+            android:inputType="number"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toStartOf="@+id/view3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_result" />
+
+        <EditText
+            android:id="@+id/edit_result"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/multi_result"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            android:focusable="false"
+            android:onClick="@{(view) -> multiViewModel.resultClick(view)}"
+            android:text="@{multiViewModel.result}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_location" />
+
+        <EditText
+            android:id="@+id/edit_location"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/multi_location"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            android:focusable="false"
+            android:onClick="@{(view) -> multiViewModel.locationClick(view)}"
+            android:text="@{multiViewModel.location}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_otherpartner" />
+
+        <EditText
+            android:id="@+id/edit_date"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/multi_date"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            android:focusable="false"
+            android:onClick="@{(view) -> multiViewModel.dateClick(view)}"
+            android:text="@{multiViewModel.dateTime}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_other"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/multi_other"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_partner" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
+</layout>

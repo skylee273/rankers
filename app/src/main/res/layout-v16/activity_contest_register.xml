@@ -11,14 +11,38 @@
 
         <variable
             name="contest"
-            type="com.project.rankers.views.ContestRegisterActivity" />
+            type="com.project.rankers.views.activity.ContestRegisterActivity" />
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-
         android:layout_height="match_parent">
 
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_color_bg"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ToolbarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanscjkkrmedium"
+                android:text="@string/toolbar_title_register"
+                android:textColor="@color/color_toolbar_title"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="169dp"
+                tools:layout_editor_absoluteY="14dp" />
+
+        </androidx.appcompat.widget.Toolbar>
 
         <ScrollView
             android:id="@+id/scrollView2"
@@ -34,9 +58,40 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <android.support.constraint.ConstraintLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycler"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_depart"
+                        tools:layout_editor_absoluteX="0dp" />
+
+                    <EditText
+                        android:id="@+id/edit_end"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="50dp"
+                        android:layout_marginEnd="50dp"
+                        android:background="@drawable/costom_edit_text_bg"
+                        android:ems="10"
+                        android:focusable="false"
+                        android:fontFamily="@font/notosanscjkkrmedium"
+                        android:hint="@string/register_hint_end"
+                        android:inputType="date"
+                        android:onClick="@{(view) -> rm.endClick(view)}"
+                        android:paddingLeft="30dp"
+                        android:text="@{rm.endTime}"
+                        android:textColor="@color/color_black"
+                        android:textSize="13sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_date" />
 
                     <Button
                         android:id="@+id/btn_register"
@@ -46,16 +101,16 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="50dp"
                         android:layout_marginBottom="32dp"
+                        android:onClick="@{() -> contest.regitClick()}"
                         android:background="@drawable/btn_register"
-                        android:onClick="@{(view) -> rm.registerClick(view)}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/edit_depart_1" />
+                        app:layout_constraintTop_toBottomOf="@+id/recycler" />
 
                     <EditText
-                        android:id="@+id/edit_depart_1"
+                        android:id="@+id/edit_depart"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="50dp"
@@ -63,10 +118,11 @@
                         android:layout_marginEnd="50dp"
                         android:background="@drawable/costom_edit_text_bg"
                         android:ems="10"
-                        android:hint="부서이름"
+                        android:focusable="false"
+                        android:hint="부서등록"
                         android:inputType="textPersonName"
+                        android:onClick="@{() -> contest.addDepart()}"
                         android:paddingLeft="30dp"
-                        android:text="@{rm.depart}"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -144,30 +200,28 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="50dp"
-                        android:layout_marginLeft="50dp"
                         android:layout_marginEnd="50dp"
-                        android:layout_marginRight="50dp"
                         android:background="@drawable/costom_edit_text_bg"
                         android:ems="10"
                         android:fontFamily="@font/notosanscjkkrmedium"
                         android:hint="@string/register_hint_type"
                         android:inputType="textPersonName"
                         android:paddingLeft="30dp"
+                        android:focusable="false"
+                        android:onClick="@{(view) -> rm.typeClick(view)}"
                         android:text="@{rm.type}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/edit_date" />
+                        app:layout_constraintTop_toBottomOf="@+id/edit_end" />
 
                     <EditText
                         android:id="@+id/edit_date"
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="50dp"
-                        android:layout_marginLeft="50dp"
                         android:layout_marginEnd="50dp"
-                        android:layout_marginRight="50dp"
                         android:background="@drawable/costom_edit_text_bg"
                         android:ems="10"
                         android:focusable="false"
@@ -188,10 +242,8 @@
                         android:layout_width="0dp"
                         android:layout_height="50dp"
                         android:layout_marginStart="50dp"
-                        android:layout_marginLeft="50dp"
                         android:layout_marginTop="42dp"
                         android:layout_marginEnd="50dp"
-                        android:layout_marginRight="50dp"
                         android:background="@drawable/costom_edit_text_bg"
                         android:ems="10"
                         android:fontFamily="@font/notosanscjkkrmedium"
@@ -202,12 +254,12 @@
                         android:text="@{rm.name}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
-                        app:layout_constraintBottom_toTopOf="@+id/edit_date"
                         app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-                </android.support.constraint.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>
 
@@ -215,37 +267,12 @@
             android:id="@+id/view_line"
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginTop="16dp"
             android:background="@color/color_divider"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_title" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-        <ImageView
-            android:id="@+id/iv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="23dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_register_title" />
-
-        <Button
-            android:id="@+id/btn_back"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_marginStart="17dp"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/ic_back"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

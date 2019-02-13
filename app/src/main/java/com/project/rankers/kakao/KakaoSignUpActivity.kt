@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import com.project.rankers.views.LoginActivity
-import com.project.rankers.views.MainActivity
+import com.project.rankers.views.activity.LoginActivity
+import com.project.rankers.views.activity.MainActivity
 import com.kakao.network.ErrorResult
 import com.kakao.usermgmt.UserManagement
 import com.kakao.usermgmt.callback.MeV2ResponseCallback

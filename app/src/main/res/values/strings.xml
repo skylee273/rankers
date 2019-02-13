@@ -31,12 +31,64 @@
     <!-- 대회 등록 -->
     <string name="register_hint_title">대회이름</string>
     <string name="register_hint_date">대회일시</string>
+    <string name="register_hint_end">대회종료</string>
     <string name="register_hint_type">대회종류</string>
     <string name="register_hint_host">주관기관</string>
     <string name="register_hint_location">대회장소</string>
     <string name="register_hint_file">첨부파일</string>
-
+    <string name="register_hint_depart">부서이름</string>
     <string name="register_hint_name">부서이름</string>
 
+    <!-- 다이얼로그 -->
+    <string name="title">부서추가</string>
+    <string name="agree">확인</string>
+    <string name="disagree">취소</string>
+    <string name="regit_title">대회등록</string>
+    <string name="regit_context">대회등록을 하시겠습니까?</string>
+    <string name="success_title">대회등록</string>
+    <string name="success_context">대회등록이 완료되었습니다.</string>
+    <string name="type_title">대회종류</string>
+    <string name="result_title">경기결과</string>
+
+    <!-- 툴바 -->
+    <string name="toolbar_title_register">대회등록</string>
+    <string name="toolbar_title_record">개인기록</string>
+    <string name="toolbar_title_result">경기결과</string>
+
+    <!-- 탭 -->
+    <string name="tab_singles_title">단식</string>
+    <string name="tab_multi_title">복식</string>
+
+    <!-- 개인단식경기 -->
+    <string name="single_btn_name">경기등록</string>
+    <string name="single_lose">0</string>
+    <string name="single_win">0</string>
+    <string name="single_result">경기결과</string>
+    <string name="single_location">경기장소</string>
+    <string name="single_date">경기일자</string>
+    <string name="single_other">상대이름</string>
+
+    <!--개인복식경기 -->
+    <string name="multi_btn_name">경기등록</string>
+    <string name="multi_lose">0</string>
+    <string name="multi_win">0</string>
+    <string name="multi_result">경기결과</string>
+    <string name="multi_location">경기장소</string>
+    <string name="multi_date">경기일자</string>
+    <string name="multi_partner">파트너이름</string>
+    <string name="multi_other">상대이름</string>
+    <string name="multi_other_partner">상대파트너이름</string>
+
+    <!-- Custom view example -->
+    <string name="signalStrength">Signal strength</string>
+    <string name="excellent">Excellent</string>
+    <string name="security">Security</string>
+    <string name="securityType">802.1x EAP</string>
+    <string name="password">Password</string>
+    <string name="ssid">SSID</string>
+    <string name="ssidLit">Material Dialogs</string>
+    <string name="showPassword">Show password</string>
+    <string name="googleWifi">Google Wifi</string>
+    <string name="connect">Connect</string>
 
 </resources>

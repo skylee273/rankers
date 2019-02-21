@@ -1,4 +1,4 @@
-package com.project.rankers.adprer
+package com.project.rankers.adapter
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView
@@ -7,21 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.project.rankers.R
-import com.project.rankers.model.KTA
+import com.project.rankers.model.LOCAL
 
-class ContestAdapter(context: Context, items: List<KTA>) :
-        RecyclerView.Adapter<CustomViewHolder>(){
+class ContestLocalAdapter(context: Context, items: List<LOCAL>) :
+        RecyclerView.Adapter<CustomLocalViewHolder>(){
 
     private var context : Context
-    private var items : List<KTA>
+    private var items : List<LOCAL>
 
     init {
         this.context = context
         this.items = items
     }
 
-    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
-        val item : KTA =  items.get(position)
+    override fun onBindViewHolder(holder: CustomLocalViewHolder, position: Int) {
+        val item : LOCAL = items[position]
 
         holder.type.text = item.type
         holder.date.text = item.date
@@ -29,16 +29,16 @@ class ContestAdapter(context: Context, items: List<KTA>) :
         holder.address.text = item.address
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_contest, parent, false)
-        val customViewHolder = CustomViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomLocalViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_local, parent, false)
+        val customViewHolder = CustomLocalViewHolder(view)
         return customViewHolder
     }
 
     override fun getItemCount(): Int = this.items.size
 }
 
-class CustomViewHolder constructor(itemView: View?)
+class CustomLocalViewHolder constructor(itemView: View?)
     : RecyclerView.ViewHolder(itemView!!){
     var type = itemView!!.findViewById<TextView>(R.id.text_type)!!
     var date = itemView!!.findViewById<TextView>(R.id.text_date)!!

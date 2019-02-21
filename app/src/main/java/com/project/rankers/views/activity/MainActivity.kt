@@ -1,8 +1,6 @@
 package com.project.rankers.views.activity
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -11,21 +9,15 @@ import android.content.pm.PackageManager
 import androidx.databinding.DataBindingUtil
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.google.android.material.tabs.TabLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import android.view.MenuItem
 import com.project.rankers.R
 import com.project.rankers.databinding.ActivityMainBinding
 import com.kakao.util.helper.Utility.getPackageInfo
-import com.project.rankers.adprer.SectionsPagerAdapter
+import com.project.rankers.adapter.SectionsPagerAdapter
 import java.security.NoSuchAlgorithmException
-import com.project.rankers.R.id.viewPager
-import androidx.annotation.NonNull
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.project.rankers.adprer.model.SectionsPagerModel
+import com.project.rankers.adapter.model.SectionsPagerModel
 
 
 class MainActivity : AppCompatActivity() , ViewPager.OnPageChangeListener {
@@ -92,6 +84,7 @@ class MainActivity : AppCompatActivity() , ViewPager.OnPageChangeListener {
         prevBottomNavigation.isChecked = true
     }
 
+    /*
     @RequiresApi(Build.VERSION_CODES.O)
     fun getKeyHash(context: Context) : String? {
         val packageInfo = getPackageInfo(context, PackageManager.GET_SIGNATURES) ?: return null
@@ -106,6 +99,7 @@ class MainActivity : AppCompatActivity() , ViewPager.OnPageChangeListener {
         }
         return null
     }
+    */
     private fun updatePager(){
         mSectionsPagerAdapter!!.notifyDataSetChanged()
     }

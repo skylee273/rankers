@@ -1,6 +1,6 @@
 package com.project.rankers.model;
 
-public class User {
+public class USER {
 
     // Test
     public String getName() {
@@ -8,7 +8,7 @@ public class User {
     }
 
     public void setName(String name) {
-        User.name = name;
+        USER.name = name;
     }
 
     public String geteMail() {
@@ -16,7 +16,7 @@ public class User {
     }
 
     public void seteMail(String eMail) {
-        User.eMail = eMail;
+        USER.eMail = eMail;
     }
 
     public String getAge() {
@@ -24,7 +24,7 @@ public class User {
     }
 
     public void setAge(String age) {
-        User.age = age;
+        USER.age = age;
     }
 
     public String getGender() {
@@ -40,7 +40,7 @@ public class User {
     }
 
     public void setBirthday(String birthday) {
-        User.birthday = birthday;
+        USER.birthday = birthday;
     }
 
     private static String name = null;
@@ -54,7 +54,7 @@ public class User {
     }
 
     public  void setId(String id) {
-        User.id = id;
+        USER.id = id;
     }
 
     private static String id = null;

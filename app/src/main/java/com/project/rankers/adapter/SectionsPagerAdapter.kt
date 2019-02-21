@@ -1,8 +1,8 @@
-package com.project.rankers.adprer
+package com.project.rankers.adapter
 
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.project.rankers.adprer.model.SectionsPagerModel
+import com.project.rankers.adapter.model.SectionsPagerModel
 import com.project.rankers.views.fragment.ClubFragment
 import com.project.rankers.views.fragment.ContestFragement
 import com.project.rankers.views.fragment.MessageFragment

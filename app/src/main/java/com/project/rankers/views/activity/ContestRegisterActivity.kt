@@ -10,29 +10,20 @@ import com.project.rankers.databinding.ActivityContestRegisterBinding
 import com.project.rankers.viewmodels.ContestRegisterViewModel
 import android.content.Intent
 import android.net.Uri
-import android.text.InputType
 
 import androidx.recyclerview.widget.LinearLayoutManager
 import android.util.Log
 import android.view.MenuItem
-import android.widget.CheckBox
-import android.widget.EditText
 import androidx.databinding.library.baseAdapters.BR
 import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.customview.customView
-import com.afollestad.materialdialogs.customview.getCustomView
 import com.afollestad.materialdialogs.input.input
-import com.afollestad.materialdialogs.list.listItemsSingleChoice
 
-import com.project.rankers.adprer.DepartAdapter
+import com.project.rankers.adapter.DepartAdapter
 import com.project.rankers.model.DEPART
-import com.project.rankers.model.User
-import com.project.rankers.retrofit.`interface`.Contest
-import com.project.rankers.retrofit.crater.RankersPostCreator
-import com.project.rankers.retrofit.models.RankersServerRepo
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.project.rankers.model.USER
+import com.project.rankers.retrofit.api.Api
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -43,16 +34,16 @@ class ContestRegisterActivity : AppCompatActivity() {
     private val PICK_PDF_REQUEST = 1
     private var filePath: Uri? = null
     private val viewModel = ContestRegisterViewModel()
-    private var Depart = ArrayList<DEPART>()
-    private var LinearLayoutManager = LinearLayoutManager(this)
-    var rankersServerRepo: RankersServerRepo? = null
-    var user: User? = null
-    val myItems = listOf(" 단식 ", " 복식 ")
-    var sType : String = ""
+    private var arrayDepart = ArrayList<DEPART>()
+    private var linearLayoutManager = LinearLayoutManager(this)
+    var USER: USER? = null
+
+    lateinit var compositeDisposable: CompositeDisposable
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
-        user = User()
+        USER = USER()
 
         contestRegisterBinding = DataBindingUtil.setContentView(this, R.layout.activity_contest_register)
         contestRegisterBinding.setVariable(BR.rm, viewModel)
@@ -60,13 +51,15 @@ class ContestRegisterActivity : AppCompatActivity() {
 
 
         contestRegisterBinding.recycler.setHasFixedSize(true)
-        contestRegisterBinding.recycler.layoutManager = LinearLayoutManager
-        contestRegisterBinding.recycler.adapter = DepartAdapter(this, Depart)
+        contestRegisterBinding.recycler.layoutManager = linearLayoutManager
+        contestRegisterBinding.recycler.adapter = DepartAdapter(this, arrayDepart)
 
         val mToolbar = contestRegisterBinding.toolbar
         setSupportActionBar(mToolbar)
         Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
+
+        compositeDisposable = CompositeDisposable()
 
     }
 
@@ -82,48 +75,28 @@ class ContestRegisterActivity : AppCompatActivity() {
 
 
     fun addDepart() {
+
         this.setTheme(R.style.DialogTeme)
-        val dialog = MaterialDialog(this).show {
+       MaterialDialog(this).show {
             title(R.string.title)
-            customView(R.layout.dialog_depart, scrollable = true)
-            positiveButton (R.string.agree){ dialog ->
-                val departInput : EditText = dialog.getCustomView().findViewById(R.id.edit_depart)
-                //Depart.add(DEPART(departInput.text.toString()))
+            input (
+                    hint = "부서를 입력해주세요"
+            ){
+                _, text ->
+                arrayDepart.add(DEPART("$text"))
             }
+            positiveButton { R.string.agree }
             negativeButton(R.string.disagree)
-        }
-        //Setup Custom View Content
-        val customView = dialog.getCustomView()
-        val departInput : EditText = customView.findViewById(R.id.edit_depart)
-        val singleCheck : CheckBox = customView.findViewById(R.id.check_single)
-        val multiCheck : CheckBox = customView.findViewById(R.id.check_multi)
-        val manCheck : CheckBox = customView.findViewById(R.id.check_man)
-        val womenCheck : CheckBox = customView.findViewById(R.id.check_woman)
-        singleCheck.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked) { }
-            if (!isChecked) { }
-        }
-        multiCheck.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked) { }
-            if (!isChecked) { }
-        }
-        manCheck.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked) { }
-            if (!isChecked) { }
-        }
-        womenCheck.setOnCheckedChangeListener { _, isChecked ->
-            if (!isChecked) { }
-            if (!isChecked) { }
         }
 
     }
 
     fun regitClick() {
         var depart = ""
-        for (s in Depart) {
-            depart += (s.depart + "/")
+        for (s in arrayDepart) {
+            depart += (s.depart + ",")
         }
-        createContest(user!!.geteMail(), contestRegisterBinding.editTitle.text.toString(), contestRegisterBinding.editDate.text.toString(),
+        createContest(USER!!.geteMail(), contestRegisterBinding.editTitle.text.toString(), contestRegisterBinding.editDate.text.toString(),
                 contestRegisterBinding.editEnd.text.toString(), contestRegisterBinding.editType.text.toString(), contestRegisterBinding.editHost.text.toString(),
                 contestRegisterBinding.editLocation.text.toString(), depart)
     }
@@ -133,30 +106,17 @@ class ContestRegisterActivity : AppCompatActivity() {
     }
 
     private fun createContest(id: String?, name: String?, start: String?, end: String?, type: String?, host: String?, location: String?, depart: String?) {
-        val server = RankersPostCreator.create(Contest::class.java)
-        server.postContestCreator(id, name, start, end, type, host, location, depart).enqueue(object : Callback<RankersServerRepo> {
-            override fun onFailure(call: Call<RankersServerRepo>, t: Throwable) {
-                Log.d("CONTEST", t.message.toString())
-            }
-
-            override fun onResponse(call: Call<RankersServerRepo>, response: Response<RankersServerRepo>) {
-                rankersServerRepo = response.body()
-                if (rankersServerRepo != null) {
-                    if (rankersServerRepo!!.getSuccess()) {
-                        mContext.setTheme(R.style.DialogTeme)
-                        MaterialDialog(mContext).show {
-                            title(R.string.success_title)
-                            message(R.string.success_context)
-                            positiveButton(R.string.agree) {
-                                finish()
-                            }
-                        }
-                    } else {
-
+        compositeDisposable.add(Api.postContestCreator(id, name, start, end, type, host, location, depart)
+                .subscribeOn(Schedulers.newThread())
+                .take(4)
+                .subscribe({
+                    if(it.getSuccess()){
+                        finish()
                     }
-                }
-            }
-        })
+                }) {
+                    // 에러블록
+                    Log.e("MyTag", "${it.message}")
+                })
     }
 
     private fun showFileChooser() {
@@ -175,6 +135,12 @@ class ContestRegisterActivity : AppCompatActivity() {
             Log.d("File Path", filePath.toString())
         }
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.dispose()
+    }
+
 
 }
 

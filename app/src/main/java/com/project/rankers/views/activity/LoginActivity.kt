@@ -7,7 +7,6 @@ import android.content.Intent
 import androidx.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.os.Bundle
-import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
@@ -26,16 +25,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.common.api.GoogleApiClient
-import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
-import com.project.rankers.model.User
-import com.project.rankers.retrofit.`interface`.RankersUser
-import com.project.rankers.retrofit.crater.RankersPostCreator
-import com.project.rankers.retrofit.models.RankersServerRepo
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.project.rankers.model.USER
+import com.project.rankers.retrofit.api.Api
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
 
 
 class LoginActivity : AppCompatActivity() {
@@ -47,15 +42,14 @@ class LoginActivity : AppCompatActivity() {
     private var OAUTH_CLIENT_NAME: String? = "shrinehaneal"
     private val RC_SIGN_IN = 10
     private var mGoogleApiClient: GoogleApiClient? = null
-
+    lateinit var compositeDisposable: CompositeDisposable
     private var mAuth: FirebaseAuth? = null
 
     var mOAuthLoginModule: OAuthLogin? = null
     lateinit var mContext: Context
     private var sessionCallback: SessionCallback? = null
-    var rankersServerRepo: RankersServerRepo? = null
 
-    var user : User? = null
+    var USER: USER? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,10 +58,10 @@ class LoginActivity : AppCompatActivity() {
         //싱글톤 패턴
         mAuth = FirebaseAuth.getInstance()
 
-        user = User()
+        USER = USER()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestIdToken("290099043763-7q57l34472ivplm9oc3hbnk139h0dfvu.apps.googleusercontent.com")
                 .requestEmail()
                 .build()
 
@@ -94,9 +88,11 @@ class LoginActivity : AppCompatActivity() {
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
 
+        compositeDisposable = CompositeDisposable()
+
     }
 
-    fun initNaverData() {
+    private fun initNaverData() {
         mOAuthLoginModule = OAuthLogin.getInstance()
         if (mOAuthLoginModule != null) {
             mOAuthLoginModule!!.init(
@@ -135,7 +131,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         Session.getCurrentSession().removeCallback(sessionCallback)
-
+        compositeDisposable.dispose()
     }
 
     fun redirectSignupActivity() {
@@ -163,7 +159,7 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    fun redirectMainActivity() {
+    private fun redirectMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
@@ -173,8 +169,8 @@ class LoginActivity : AppCompatActivity() {
     object : OAuthLoginHandler() {
         override fun run(success: Boolean) {
             if (success) {
-                val requstApi = RequestApiTask()
-                requstApi.execute()
+                val request = RequestApiTask()
+                request.execute()
             } else {
                 val errorCode = mOAuthLoginModule!!.getLastErrorCode(mContext).getCode()
                 val errorDesc = mOAuthLoginModule!!.getLastErrorDesc(mContext)
@@ -212,59 +208,51 @@ class LoginActivity : AppCompatActivity() {
 
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         mAuth!!.signInWithCredential(credential)
-                .addOnCompleteListener(this, object : OnCompleteListener<AuthResult> {
-                    override fun onComplete(@NonNull task: Task<AuthResult>) {
-                        if (task.isSuccessful) {
-                            // 로그인 성공
-                            val user: FirebaseUser = mAuth!!.currentUser!!
-                            findUser(user.email, user.displayName)
-                        } else {
-                            Log.d(TAG, "GOOGLE LOGIN FAILED")
-                        }
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // 로그인 성공
+                        val user: FirebaseUser = mAuth!!.currentUser!!
+                        findUser(user.email, user.displayName)
+                    } else {
+                        Log.d(TAG, "GOOGLE LOGIN FAILED")
                     }
-                })
+                }
     }
 
-    fun findUser(email: String?, nickName: String?){
-        val server = RankersPostCreator.create(RankersUser::class.java)
-        server.getID(email).enqueue(object : Callback<RankersServerRepo>{
-            override fun onFailure(call: Call<RankersServerRepo>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-            override fun onResponse(call: Call<RankersServerRepo>, response: Response<RankersServerRepo>) {
-                rankersServerRepo = response.body()
-                if (rankersServerRepo != null) {
-                    if (rankersServerRepo!!.getSuccess()) {
-                        Log.d("LoginActivity", "Exist User")
-
-                        user!!.seteMail(email)
+    fun findUser(email: String?, nickName: String?) {
+        compositeDisposable.add(Api.getID(email)
+                .subscribeOn(Schedulers.newThread())
+                .take(4)
+                .subscribe({
+                    if (it.getSuccess()) {
+                        USER!!.seteMail(email)
                         redirectMainActivity()
+                        Log.d("LoginActivity", "Success")
                     } else {
                         uploadUser(email, nickName)
                     }
-                }
-            }
-        })
+                }) {
+                    // 에러블록
+                    Log.e("MyTag", "${it.message}")
+                })
     }
+
     fun uploadUser(email: String?, nickName: String?) {
-        val server = RankersPostCreator.create(RankersUser::class.java)
-        server.postUserCreator(email, nickName).enqueue(object : Callback<RankersServerRepo> {
-            override fun onFailure(call: Call<RankersServerRepo>, t: Throwable) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-            override fun onResponse(call: Call<RankersServerRepo>, response: Response<RankersServerRepo>) {
-                rankersServerRepo = response.body()
-                if (rankersServerRepo != null) {
-                    if (rankersServerRepo!!.getSuccess()) {
-                        Log.d("LoginActivity", "Success")
-                        user!!.seteMail(email)
+        compositeDisposable.add(Api.postUserCreator(email, nickName)
+                .subscribeOn(Schedulers.newThread())
+                .take(4)
+                .subscribe({
+                    if (it.getSuccess()) {
+                        USER!!.seteMail(email)
                         redirectMainActivity()
+                        Log.d("LoginActivity", "Success")
                     } else {
                         Log.d("LoginActivity", "False")
                     }
-                }
-            }
-        })
+                }) {
+                    // 에러블록
+                    Log.e("MyTag", "${it.message}")
+                })
     }
 
 

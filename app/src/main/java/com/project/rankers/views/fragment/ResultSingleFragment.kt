@@ -6,22 +6,17 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.rankers.R
-import com.project.rankers.adprer.ContestAdapter
-import com.project.rankers.adprer.ContestLocalAdapter
-import com.project.rankers.adprer.SingleAdapter
+import com.project.rankers.adapter.SingleAdapter
 import com.project.rankers.databinding.FragmentResultSingleBinding
 import com.project.rankers.model.SINGLE
-import com.project.rankers.model.User
-import com.project.rankers.retrofit.api.RankersApi
-import com.project.rankers.retrofit.models.RankersResponseModel
-import com.project.rankers.retrofit.models.RankersServerRepo
-import com.project.rankers.retrofit.models.SingleResponseModel
+import com.project.rankers.model.USER
+import com.project.rankers.retrofit.api.Api
+import com.project.rankers.retrofit.models.SingleRepo
 import com.project.rankers.viewmodels.ResultSingleViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -33,25 +28,27 @@ class ResultSingleFragment : Fragment(){
     lateinit var mContext : Context
     lateinit var compositeDisposable: CompositeDisposable
     private var LinearLayoutManager = LinearLayoutManager(activity)
-    var user: User? = null
+    var USER: USER? = null
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContext = this.activity!!
-        user = User()
+        USER = USER()
         resultSingleBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_single, container, false)
         resultSingleBinding.setVariable(BR.singleViewModel,viewModel)
         resultSingleBinding.setVariable(BR.singleFragment,this)
 
         compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(RankersApi.getSingleRepoList(user!!.geteMail())
+        compositeDisposable.add(Api.getSingleRepoList(USER!!.geteMail())
                 .subscribeOn(Schedulers.newThread())
-                .subscribe({ response: SingleResponseModel ->
+                .doOnTerminate {
+                    (resultSingleBinding.recycler.adapter as SingleAdapter).notifyDataSetChanged()
+                }
+                .subscribe({ response: SingleRepo ->
                     for (item in response.items) {
-                        Single.add(SINGLE(item.other, item.date, item.location, item.result, item.win, item.lose))
+                        Single.add(SINGLE(item.other, item.date, item.result, item.win, item.lose))
                         Log.d("Single", item.toString())
                     }
-                    (resultSingleBinding.recycler.adapter as SingleAdapter).notifyDataSetChanged()
                 }, { error: Throwable ->
                     Log.d("Single", error.localizedMessage)
 //                    Toast.makeText(activity, "Error ${error.localizedMessage}", Toast.LENGTH_SHORT).show()

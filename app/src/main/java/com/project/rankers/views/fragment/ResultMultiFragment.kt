@@ -10,16 +10,12 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import com.project.rankers.R
-import com.project.rankers.adprer.MutilAdapter
-import com.project.rankers.adprer.SingleAdapter
+import com.project.rankers.adapter.MutilAdapter
 import com.project.rankers.databinding.FragmentResultMultiBinding
 import com.project.rankers.model.MULTI
-import com.project.rankers.model.SINGLE
-import com.project.rankers.model.User
-import com.project.rankers.retrofit.api.RankersApi
-import com.project.rankers.retrofit.models.MultiRepoModel
-import com.project.rankers.retrofit.models.MultiResponseModel
-import com.project.rankers.retrofit.models.SingleResponseModel
+import com.project.rankers.model.USER
+import com.project.rankers.retrofit.api.Api
+import com.project.rankers.retrofit.models.MultiRepo
 import com.project.rankers.viewmodels.ResultMultiViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -31,28 +27,32 @@ class ResultMultiFragment : Fragment() {
     lateinit var mContext : Context
     lateinit var compositeDisposable: CompositeDisposable
     private var LinearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
-    var user: User? = null
+    var USER: USER? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContext = this.activity!!
-        user = User()
+        USER = USER()
         resultMultiBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_multi, container, false)
         resultMultiBinding.setVariable(BR.multiViewModel,viewModel)
         resultMultiBinding.setVariable(BR.multiFragment,this)
 
         compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(RankersApi.getMultiRepoList(user!!.geteMail())
+        compositeDisposable.add(Api.getMultiRepoList(USER!!.geteMail())
                 .subscribeOn(Schedulers.newThread())
-                .subscribe({ response: MultiResponseModel ->
+                .doOnTerminate {
+                    (resultMultiBinding.recycler.adapter as MutilAdapter).notifyDataSetChanged()
+                }
+                .subscribe({ response: MultiRepo ->
                     for (item in response.items) {
-                        arrayMulti.add(MULTI(item.partner, item.other, item.otherpartner, item.date, item.location, item.result, item.win, item.lose))
+                        arrayMulti.add(MULTI(item.partner, item.other, item.otherpartner, item.date,item.result, item.win, item.lose))
                         Log.d("Multi", item.toString())
                     }
-                    (resultMultiBinding.recycler.adapter as MutilAdapter).notifyDataSetChanged()
                 }, { error: Throwable ->
                     Log.d("Multi", error.localizedMessage)
 //                    Toast.makeText(activity, "Error ${error.localizedMessage}", Toast.LENGTH_SHORT).show()
-                }))
+                })
+
+        )
 
         resultMultiBinding.recycler.setHasFixedSize(true)
         resultMultiBinding.recycler.layoutManager = LinearLayoutManager

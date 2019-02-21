@@ -85,9 +85,9 @@
                     android:id="@+id/rv_contest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:scrollbars="none"
-                    app:layout_constraintTop_toBottomOf="@+id/text_wide_add" />
+                    app:layout_constraintTop_toBottomOf="@+id/text_wide_add"
+                    tools:layout_editor_absoluteX="0dp" />
 
                 <TextView
                     android:id="@+id/text_wide_add"
@@ -108,7 +108,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/contest_information"
                     android:textColor="@color/color_information"

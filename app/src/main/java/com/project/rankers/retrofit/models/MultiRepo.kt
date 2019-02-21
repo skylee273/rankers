@@ -1,8 +1,9 @@
 package com.project.rankers.retrofit.models
 
 import com.google.gson.annotations.SerializedName
+import com.project.rankers.retrofit.items.MultiItem
 
-class MultiResponseModel {
+class MultiRepo {
     @SerializedName("MULTI")
-    val items : List<MultiRepoModel> = listOf()
+    val items : List<MultiItem> = listOf()
 }

@@ -1,4 +1,4 @@
-package com.project.rankers.adprer
+package com.project.rankers.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -8,14 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.rankers.R
-import com.project.rankers.model.MULTI
 import com.project.rankers.model.SINGLE
 
-class MutilAdapter(context: Context, items: List<MULTI>) :
-        RecyclerView.Adapter<MutilCustomViewHolder>(){
+class SingleAdapter(context: Context, items: List<SINGLE>) :
+        RecyclerView.Adapter<SingleCustomViewHolder>(){
 
     private var context : Context
-    private var items : List<MULTI>
+    private var items : List<SINGLE>
 
     init {
         this.context = context
@@ -23,30 +22,28 @@ class MutilAdapter(context: Context, items: List<MULTI>) :
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onBindViewHolder(holder: MutilCustomViewHolder, position: Int) {
-        val item : MULTI = items[position]
+    override fun onBindViewHolder(holder: SingleCustomViewHolder, position: Int) {
+        val item : SINGLE = items[position]
 
         holder.date.text = item.date
         holder.result.text = item.result
-        holder.location.text = item.location
-        holder.user.text = item.partner + "," + item.other + "," + item.otherpartner
+        holder.user.text = item.other
         holder.score.text = item.win + " : " + item.lose
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MutilCustomViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_multi, parent, false)
-        val customViewHolder = MutilCustomViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SingleCustomViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_single, parent, false)
+        val customViewHolder = SingleCustomViewHolder(view)
         return customViewHolder
     }
 
     override fun getItemCount(): Int = this.items.size
 }
 
-class MutilCustomViewHolder constructor(itemView: View?)
+class SingleCustomViewHolder constructor(itemView: View?)
     : RecyclerView.ViewHolder(itemView!!){
     var date = itemView!!.findViewById<TextView>(R.id.text_date)!!
     var result = itemView!!.findViewById<TextView>(R.id.text_result)!!
-    var location = itemView!!.findViewById<TextView>(R.id.text_location)!!
     var user = itemView!!.findViewById<TextView>(R.id.text_user)!!
     var score = itemView!!.findViewById<TextView>(R.id.text_score)!!
 }

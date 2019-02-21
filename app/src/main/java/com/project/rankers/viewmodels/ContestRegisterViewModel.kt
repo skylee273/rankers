@@ -6,18 +6,10 @@ import androidx.databinding.ObservableField
 import android.view.View
 import com.project.rankers.dialog.LocationDialog
 import android.app.DatePickerDialog
-import android.util.Log
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.callbacks.onDismiss
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
-import com.kakao.usermgmt.StringSet.email
 import com.project.rankers.R
-import com.project.rankers.retrofit.`interface`.Contest
-import com.project.rankers.retrofit.crater.RankersPostCreator
-import com.project.rankers.retrofit.models.RankersServerRepo
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -33,9 +25,9 @@ class ContestRegisterViewModel : BaseObservable() {
     val endTime = ObservableField("")
     val file = ObservableField("")
     val host = ObservableField("")
-    val cal : Calendar? = Calendar.getInstance()
-    val mutableMap : HashMap<String ,String?> = hashMapOf()
-    val myItems = listOf(" LOCAL ", " KTA ", " ETC ")
+    private val cal : Calendar? = Calendar.getInstance()
+    private val mutableMap : HashMap<String ,String?> = hashMapOf()
+    private val myItems = listOf(" LOCAL ", " KTA ", " ETC ")
     var sType : String = ""
     private var locationDialog: LocationDialog? = null
 
@@ -59,7 +51,7 @@ class ContestRegisterViewModel : BaseObservable() {
         context.setTheme(R.style.DialogTeme)
         MaterialDialog(context).show {
             title(R.string.type_title)
-            listItemsSingleChoice(items = myItems) { dialog, index, text ->
+            listItemsSingleChoice(items = myItems) { _, _, text ->
                 sType = text
             }
             onDismiss {
@@ -69,15 +61,15 @@ class ContestRegisterViewModel : BaseObservable() {
         }
     }
 
-    fun endRequest(context: Context){
+    private fun endRequest(context: Context){
         val dialog = DatePickerDialog(context, DatePickerDialog.OnDateSetListener { _, year, month, date ->
-            val time = String.format("%4d.%2d.%2d", year, month + 1, date)
+            val time = String.format("%04d.%02d.%02d", year, month + 1, date)
             endTime.set(time)
         }, cal!!.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE))
         dialog.show()
     }
 
-    fun dateRequest(context: Context){
+    private fun dateRequest(context: Context){
         val dialog = DatePickerDialog(context, DatePickerDialog.OnDateSetListener { _, year, month, date ->
             val time = String.format("%4d.%2d.%2d", year, month + 1, date)
             dateTime.set(time)
@@ -86,7 +78,7 @@ class ContestRegisterViewModel : BaseObservable() {
         dialog.show()
     }
 
-    fun locationRequest(context: Context){
+    private fun locationRequest(context: Context){
         locationDialog = LocationDialog(context)
         locationDialog!!.setCancelable(true)
         locationDialog!!.setTitle("주소검색")

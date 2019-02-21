@@ -1,4 +1,4 @@
-package com.project.rankers.adprer.model
+package com.project.rankers.adapter.model
 
 interface SectionsPagerModel {
     fun setListItem(position: Int)

@@ -1,4 +1,4 @@
-package com.project.rankers.adprer
+package com.project.rankers.adapter
 
 import android.content.Context
 import androidx.recyclerview.widget.RecyclerView

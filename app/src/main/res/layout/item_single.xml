@@ -88,14 +88,6 @@
                         android:paddingLeft="8dp"
                         android:paddingRight="8dp">
 
-                        <TextView
-                            android:id="@+id/text_location"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="한국기술교육대학교"
-                            android:textColor="@color/color_card_title"
-                            android:textSize="16sp" />
-
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

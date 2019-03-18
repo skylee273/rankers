@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.rankers.R
-import com.project.rankers.model.SINGLE
+import com.project.rankers.retrofit.items.SingleItem
 
-class SingleAdapter(context: Context, items: List<SINGLE>) :
+class SingleAdapter(context: Context, items: List<SingleItem>) :
         RecyclerView.Adapter<SingleCustomViewHolder>(){
 
     private var context : Context
-    private var items : List<SINGLE>
+    private var items : List<SingleItem>
 
     init {
         this.context = context
@@ -23,7 +23,7 @@ class SingleAdapter(context: Context, items: List<SINGLE>) :
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: SingleCustomViewHolder, position: Int) {
-        val item : SINGLE = items[position]
+        val item : SingleItem = items[position]
 
         holder.date.text = item.date
         holder.result.text = item.result

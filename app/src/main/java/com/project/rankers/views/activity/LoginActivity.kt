@@ -4,9 +4,11 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.databinding.DataBindingUtil
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Base64
 import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.widget.Toast
@@ -31,25 +33,32 @@ import com.project.rankers.model.USER
 import com.project.rankers.retrofit.api.Api
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
 
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var loginBinding: ActivityLoginBinding
     private val TAG: String? = "LoginActivity"
-    private var OAUTH_CLIENT_ID: String? = "aaQJOdhzRUarseiLP5A9"
-    private var OAUTH_CLIENT_SECRET: String? = "MR0tI738Hz"
+    // Naver Login Info
+    private var OAUTH_CLIENT_ID: String? = "Ap10LMIr_R6my9DWFJtk"
+    private var OAUTH_CLIENT_SECRET: String? = "n9TZAfGAVc"
     private var OAUTH_CLIENT_NAME: String? = "shrinehaneal"
+    var mOAuthLoginModule: OAuthLogin? = null
+
+    // Google Login Info
     private val RC_SIGN_IN = 10
     private var mGoogleApiClient: GoogleApiClient? = null
-    lateinit var compositeDisposable: CompositeDisposable
     private var mAuth: FirebaseAuth? = null
 
-    var mOAuthLoginModule: OAuthLogin? = null
+    // Retrofit Server
+    lateinit var compositeDisposable: CompositeDisposable
+
     lateinit var mContext: Context
     private var sessionCallback: SessionCallback? = null
 
-    var USER: USER? = null
+    var user: USER? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -57,8 +66,8 @@ class LoginActivity : AppCompatActivity() {
         mContext = this
         //싱글톤 패턴
         mAuth = FirebaseAuth.getInstance()
-
-        USER = USER()
+        getHashKey()
+        user = USER()
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken("290099043763-7q57l34472ivplm9oc3hbnk139h0dfvu.apps.googleusercontent.com")
@@ -89,6 +98,23 @@ class LoginActivity : AppCompatActivity() {
         }
 
         compositeDisposable = CompositeDisposable()
+
+    }
+
+    @SuppressLint("PackageManagerGetSignatures")
+    private fun getHashKey() {
+        try {                                                        // 패키지이름을 입력해줍니다.
+            val info = packageManager.getPackageInfo("com.project.rankers", PackageManager.GET_SIGNATURES)
+            for (signature in info.signatures) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                Log.d(TAG, "key_hash=" + Base64.encodeToString(md.digest(), Base64.DEFAULT))
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
+        }
 
     }
 
@@ -172,7 +198,7 @@ class LoginActivity : AppCompatActivity() {
                 val request = RequestApiTask()
                 request.execute()
             } else {
-                val errorCode = mOAuthLoginModule!!.getLastErrorCode(mContext).getCode()
+                val errorCode = mOAuthLoginModule!!.getLastErrorCode(mContext).code
                 val errorDesc = mOAuthLoginModule!!.getLastErrorDesc(mContext)
                 Toast.makeText(mContext, "errorCode:" + errorCode
                         + ", errorDesc:" + errorDesc, Toast.LENGTH_SHORT).show()
@@ -225,7 +251,7 @@ class LoginActivity : AppCompatActivity() {
                 .take(4)
                 .subscribe({
                     if (it.getSuccess()) {
-                        USER!!.seteMail(email)
+                        user!!.seteMail(email)
                         redirectMainActivity()
                         Log.d("LoginActivity", "Success")
                     } else {
@@ -243,7 +269,7 @@ class LoginActivity : AppCompatActivity() {
                 .take(4)
                 .subscribe({
                     if (it.getSuccess()) {
-                        USER!!.seteMail(email)
+                        user!!.seteMail(email)
                         redirectMainActivity()
                         Log.d("LoginActivity", "Success")
                     } else {

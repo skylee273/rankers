@@ -13,52 +13,44 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.rankers.R
 import com.project.rankers.adapter.SingleAdapter
 import com.project.rankers.databinding.FragmentResultSingleBinding
-import com.project.rankers.model.SINGLE
 import com.project.rankers.model.USER
 import com.project.rankers.retrofit.api.Api
 import com.project.rankers.retrofit.models.SingleRepo
 import com.project.rankers.viewmodels.ResultSingleViewModel
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class ResultSingleFragment : Fragment(){
-    private var Single = ArrayList<SINGLE>()
     private lateinit var resultSingleBinding: FragmentResultSingleBinding
     private val viewModel= ResultSingleViewModel()
     lateinit var mContext : Context
     lateinit var compositeDisposable: CompositeDisposable
-    private var LinearLayoutManager = LinearLayoutManager(activity)
-    var USER: USER? = null
+    private var linearLayoutManager = LinearLayoutManager(activity)
+    var user: USER? = null
+    lateinit var singleAdapter : SingleAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContext = this.activity!!
-        USER = USER()
+        user = USER()
         resultSingleBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_single, container, false)
         resultSingleBinding.setVariable(BR.singleViewModel,viewModel)
         resultSingleBinding.setVariable(BR.singleFragment,this)
 
+        resultSingleBinding.recycler.setHasFixedSize(true)
+        resultSingleBinding.recycler.layoutManager = linearLayoutManager
+
         compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(Api.getSingleRepoList(USER!!.geteMail())
-                .subscribeOn(Schedulers.newThread())
-                .doOnTerminate {
-                    (resultSingleBinding.recycler.adapter as SingleAdapter).notifyDataSetChanged()
-                }
+        compositeDisposable.add(Api.getSingleRepoList(user!!.geteMail())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: SingleRepo ->
-                    for (item in response.items) {
-                        Single.add(SINGLE(item.other, item.date, item.result, item.win, item.lose))
-                        Log.d("Single", item.toString())
-                    }
+                    singleAdapter = SingleAdapter(this.activity!!, response.items)
+                    resultSingleBinding.recycler.adapter = singleAdapter
                 }, { error: Throwable ->
                     Log.d("Single", error.localizedMessage)
-//                    Toast.makeText(activity, "Error ${error.localizedMessage}", Toast.LENGTH_SHORT).show()
                 }))
-
-        resultSingleBinding.recycler.setHasFixedSize(true)
-        resultSingleBinding.recycler.layoutManager = LinearLayoutManager
-        resultSingleBinding.recycler.adapter = SingleAdapter(this.activity!!, Single)
-
-
 
         return resultSingleBinding.root
     }

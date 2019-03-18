@@ -4,7 +4,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.project.rankers.adapter.model.SectionsPagerModel
 import com.project.rankers.views.fragment.ClubFragment
-import com.project.rankers.views.fragment.ContestFragement
+import com.project.rankers.views.fragment.ContestFragment
 import com.project.rankers.views.fragment.MessageFragment
 import com.project.rankers.views.fragment.MyFragment
 
@@ -13,11 +13,11 @@ class SectionsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdap
     private val itemList = ArrayList<Int>()
 
     override fun getItem(position: Int) = when (position) {
-        0 -> ContestFragement()
+        0 -> ContestFragment()
         1 -> ClubFragment()
         2 -> MessageFragment()
         3 -> MyFragment()
-        else -> ContestFragement()
+        else -> ContestFragment()
     }
 
     // itemList size

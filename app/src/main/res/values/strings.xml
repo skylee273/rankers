@@ -52,13 +52,18 @@
 
     <!-- 툴바 -->
     <string name="toolbar_title_register">대회등록</string>
+    <string name="toolbar_title_operation">대회운영</string>
     <string name="toolbar_title_record">개인기록</string>
     <string name="toolbar_title_result">경기결과</string>
     <string name="toolbar_title_contest_list">대회신청</string>
+    <string name="toolbar_title_apply">대회신청</string>
 
     <!-- 탭 -->
     <string name="tab_singles_title">단식</string>
     <string name="tab_multi_title">복식</string>
+    <string name="tab_operation_tournament">대진표작성</string>
+    <string name="tab_operation_result">대회결과표</string>
+    <string name="tab_operation_manager">매니저등록</string>
 
     <!-- 개인단식경기 -->
     <string name="single_btn_name">경기등록</string>
@@ -82,5 +87,16 @@
 
     <!-- 대회신청 -->
     <string name="contest_info">대회정보</string>
+    <string name="context_depart">부서</string>
+    <string name="context_my">본인</string>
+    <string name="contest_partner">파트너</string>
 
+    <string name="contest_hint_name">이름</string>
+    <string name="context_hint_phone">휴대폰</string>
+
+    <!-- 대회운영 -->
+    <string name="operation_title">진행중인 대회 정보</string>
+
+    <!-- 대진표 -->
+    <string name="tounament_title">부서정보</string>
 </resources>

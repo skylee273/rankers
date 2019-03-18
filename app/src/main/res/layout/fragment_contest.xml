@@ -10,7 +10,7 @@
             type="com.project.rankers.viewmodels.ContestViewModel"/>
         <variable
             name="main"
-            type="com.project.rankers.views.fragment.ContestFragement"/>
+            type="com.project.rankers.views.fragment.ContestFragment"/>
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
@@ -43,51 +43,15 @@
                 app:layout_constraintVertical_bias="0.0">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_contest2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/text_info_title2" />
-
-                <TextView
-                    android:id="@+id/text_wide_add2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:text="@string/context_addinfo"
-                    android:textColor="@color/color_info_add"
-                    android:textSize="12sp"
-                    app:fontFamily="@font/notosanscjkkrmedium"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/text_info_title2" />
-
-                <TextView
-                    android:id="@+id/text_info_title2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/contest_information2"
-                    android:textColor="@color/color_information"
-                    android:textSize="14sp"
-                    app:fontFamily="@font/notosanscjkkrmedium"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rv_contest" />
-
-                <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rv_contest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
                     android:scrollbars="none"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/text_wide_add"
-                    tools:layout_editor_absoluteX="0dp" />
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:listitem="@layout/item_contest" />
 
                 <TextView
                     android:id="@+id/text_wide_add"
@@ -96,6 +60,7 @@
                     android:layout_marginTop="2dp"
                     android:layout_marginEnd="16dp"
                     android:layout_marginRight="16dp"
+                    android:onClick="@{() -> main.nextApply()}"
                     android:text="@string/context_addinfo"
                     android:textColor="@color/color_info_add"
                     android:textSize="12sp"
@@ -199,6 +164,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="8dp"
+        android:onClick="@{() -> main.nextOperation()}"
         app:layout_constraintStart_toEndOf="@+id/btn_result"
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:srcCompat="@drawable/ic_setting" />
@@ -221,6 +187,7 @@
         android:layout_marginStart="18dp"
         android:layout_marginLeft="18dp"
         android:layout_marginTop="8dp"
+        android:onClick="@{() -> main.nextApply()}"
         app:layout_constraintStart_toEndOf="@+id/btn_resgister"
         app:layout_constraintTop_toBottomOf="@+id/view"
         app:srcCompat="@drawable/ic_application" />

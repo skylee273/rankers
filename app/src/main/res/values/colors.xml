@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#396AB8</color>
     <color name="colorPrimaryDark">#285193</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#396AB8</color>
 
     <!-- 로그인 컬러 -->
     <color name="color_bg">#285193</color>

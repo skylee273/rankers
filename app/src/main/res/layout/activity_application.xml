@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="activity"
+            type="com.project.rankers.views.activity.ApplicationActivity"/>
+        <variable
+            name="viewModel"
+            type="com.project.rankers.viewmodels.ApplicationViewModel"/>
+    </data>
+
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/btn_register"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="32dp"
+            android:onClick="@{() -> activity.regitClick()}"
+            android:background="@color/colorPrimaryDark"
+            android:text="신청하기"
+            android:textColor="#ffffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:text="단식인 경우에는 본인 파트만 작성"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_partner_phone" />
+
+        <EditText
+            android:id="@+id/edit_partner_phone"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/context_hint_phone"
+            android:inputType="phone"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_partner_name" />
+
+        <EditText
+            android:id="@+id/edit_partner_name"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/contest_hint_name"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_partner" />
+
+        <TextView
+            android:id="@+id/text_partner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:text="@string/contest_partner"
+            android:textColor="@color/color_information"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_phone" />
+
+        <EditText
+            android:id="@+id/edit_phone"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/context_hint_phone"
+            android:inputType="phone"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_name" />
+
+        <EditText
+            android:id="@+id/edit_name"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="50dp"
+            android:background="@drawable/costom_edit_text_bg"
+            android:ems="10"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:gravity="center_vertical"
+            android:hint="@string/contest_hint_name"
+            android:inputType="textPersonName"
+            android:paddingLeft="30dp"
+            android:textColor="@color/color_black"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_my" />
+
+        <TextView
+            android:id="@+id/text_my"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/notosanscjkkrmedium"
+            android:text="@string/context_my"
+            android:textColor="@color/color_information"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar_color_bg"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="@style/ToolbarTheme"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/notosanscjkkrmedium"
+                android:text="@string/toolbar_title_apply"
+                android:textColor="@color/color_toolbar_title"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="169dp"
+                tools:layout_editor_absoluteY="14dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+
+</layout>
+
+

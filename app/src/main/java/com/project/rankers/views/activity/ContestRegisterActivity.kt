@@ -36,14 +36,30 @@ class ContestRegisterActivity : AppCompatActivity() {
     private val viewModel = ContestRegisterViewModel()
     private var arrayDepart = ArrayList<DEPART>()
     private var linearLayoutManager = LinearLayoutManager(this)
-    var USER: USER? = null
+
+    val email: String
+        get() = user!!.geteMail()
+    val title: String
+        get() = contestRegisterBinding.editTitle.text.toString()
+    val date: String
+        get() = contestRegisterBinding.editDate.text.toString()
+    val end: String
+        get() = contestRegisterBinding.editEnd.text.toString()
+    val type: String
+        get() = contestRegisterBinding.editType.text.toString()
+    val host: String
+        get() = contestRegisterBinding.editHost.text.toString()
+    val location: String
+        get() = contestRegisterBinding.editLocation.text.toString()
+
+    var user: USER? = null
 
     lateinit var compositeDisposable: CompositeDisposable
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mContext = this
-        USER = USER()
+        user = USER()
 
         contestRegisterBinding = DataBindingUtil.setContentView(this, R.layout.activity_contest_register)
         contestRegisterBinding.setVariable(BR.rm, viewModel)
@@ -93,30 +109,63 @@ class ContestRegisterActivity : AppCompatActivity() {
 
     fun regitClick() {
         var depart = ""
-        for (s in arrayDepart) {
-            depart += (s.depart + ",")
+        for ((index, s) in arrayDepart.withIndex()) {
+            depart += if(index > 0)
+                ("," + s.depart)
+            else
+                (s.depart)
         }
-        createContest(USER!!.geteMail(), contestRegisterBinding.editTitle.text.toString(), contestRegisterBinding.editDate.text.toString(),
-                contestRegisterBinding.editEnd.text.toString(), contestRegisterBinding.editType.text.toString(), contestRegisterBinding.editHost.text.toString(),
-                contestRegisterBinding.editLocation.text.toString(), depart)
+        if(checkContest()){
+            compositeDisposable.add(Api.postContestCreator(email, title, date, end, type, host, location, depart)
+                    .subscribeOn(Schedulers.newThread())
+                    .take(4)
+                    .subscribe({
+                        if(it.getSuccess()){
+                            (this).runOnUiThread {
+                                successDialog()
+                            }
+                        }
+                    }) {
+                        (this).runOnUiThread {
+                            failDialog()
+                        }
+                        Log.e("MyTag", "${it.message}")
+                    })
+        }else{
+            reTry()
+        }
+    }
+    private fun failDialog(){
+        MaterialDialog(this).show {
+            title(text = "대회등록 오류")
+            message(text = "대회 등록에 실패하였습니다.")
+            positiveButton (text = "확인")
+        }
+    }
+    private fun successDialog(){
+        MaterialDialog(this).show {
+            title(text = "대회등록")
+            message(text = "대회 등록이 완료 되었습니다.")
+            positiveButton (text = "확인"){
+                finish()
+            }
+        }
+    }
+    private fun reTry(){
+        MaterialDialog(this).show {
+            title(text = "대회등록 오류")
+            message(text = "정보를 정확히 입력해주세요")
+            positiveButton (text = "확인")
+        }
+    }
+
+
+    private fun checkContest() : Boolean{
+        return email.isNotEmpty() && title.isNotEmpty() &&  date.isNotEmpty() && end.isNotEmpty() && type.isNotEmpty() && host.isNotEmpty() && location.isNotEmpty() && !arrayDepart.isEmpty()
     }
 
     fun fileClick() {
         showFileChooser()
-    }
-
-    private fun createContest(id: String?, name: String?, start: String?, end: String?, type: String?, host: String?, location: String?, depart: String?) {
-        compositeDisposable.add(Api.postContestCreator(id, name, start, end, type, host, location, depart)
-                .subscribeOn(Schedulers.newThread())
-                .take(4)
-                .subscribe({
-                    if(it.getSuccess()){
-                        finish()
-                    }
-                }) {
-                    // 에러블록
-                    Log.e("MyTag", "${it.message}")
-                })
     }
 
     private fun showFileChooser() {

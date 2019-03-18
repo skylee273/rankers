@@ -43,12 +43,6 @@ public class USER {
         USER.birthday = birthday;
     }
 
-    private static String name = null;
-    private static String eMail = null;
-    private static String age = null;
-    private static String Gender = null;
-    private static String birthday = null;
-
     public  String getId() {
         return id;
     }
@@ -57,7 +51,16 @@ public class USER {
         USER.id = id;
     }
 
+
     private static String id = null;
+    private static String name = null;
+    private static String eMail = null;
+    private static String age = null;
+    private static String Gender = null;
+    private static String birthday = null;
+
+
+
 
 
 }

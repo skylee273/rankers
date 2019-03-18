@@ -21,4 +21,5 @@ class ContestItem {
     val location : String = ""
     @SerializedName("DEPART")
     val depart : String = ""
+
 }

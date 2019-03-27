@@ -8,7 +8,7 @@
             type="com.project.rankers.viewmodels.ResultMultiViewModel"/>
         <variable
             name="multiFragment"
-            type="com.project.rankers.views.fragment.ResultMultiFragment"/>
+            type="com.project.rankers.ui.fragment.ResultMultiFragment"/>
     </data>
 
 <LinearLayout

@@ -3,7 +3,6 @@ package com.project.rankers.retrofit.api
 import com.project.rankers.retrofit.crater.RetrofitCreator
 import com.project.rankers.retrofit.models.*
 import io.reactivex.Observable
-import retrofit2.Call
 import retrofit2.http.*
 
 class Api {
@@ -31,11 +30,25 @@ class Api {
         fun getOperationList(
                 @Query("email") email: String?
         ): Observable<ContestRepo>
+
         @GET("contest/applyList.php")
-        fun getApplayList(
+        fun getApplyList(
                 @Query("id") id: String?,
                 @Query("depart") depart: String?
         ): Observable<ApplyRepo>
+
+        @GET("contest/leagueList.php")
+        fun getLeagueList(
+                @Query("id") id: String?,
+                @Query("depart") depart: String?
+        ): Observable<LeagueRepo>
+
+        @GET("contest/groupList.php")
+        fun getGroupList(
+                @Query("id") id: String?,
+                @Query("depart") depart: String?
+        ): Observable<GroupRepo>
+
         @FormUrlEncoded
         @POST("record/creator/single.php")
         fun postSingleCreator(
@@ -59,6 +72,17 @@ class Api {
                 @Field("win") win: String?,
                 @Field("lose") lose: String?
         ): Observable<ServerRepo>
+
+        @FormUrlEncoded
+        @POST("contest/uploadLeague.php")
+        fun postGroupCreator(
+                @Field("id") id: String?,
+                @Field("email") email: String?,
+                @Field("depart") depart: String?,
+                @Field("groupCount") groupCount: Int?,
+                @Field("groupMember") groupMember: String?
+        ): Observable<ServerRepo>
+
 
         @FormUrlEncoded
         @POST("contest/creator.php")
@@ -97,12 +121,20 @@ class Api {
 
 
     companion object {
-        fun getApplayList(id: String?, depart: String?) : Observable<ApplyRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).getApplayList(id, depart)
+        fun getGroupList(id: String?, depart: String?) : Observable<GroupRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getGroupList(id, depart)
         }
+        fun getLeagueList(id: String?, depart: String?) : Observable<LeagueRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getLeagueList(id, depart)
+        }
+        fun getApplyList(id: String?, depart: String?): Observable<ApplyRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getApplyList(id, depart)
+        }
+
         fun getOperationList(email: String?): Observable<ContestRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getOperationList(email)
         }
+
         fun getID(email: String?): Observable<ServerRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getID(email)
         }
@@ -117,6 +149,10 @@ class Api {
 
         fun getContestList(): Observable<ContestRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getContestList()
+        }
+
+        fun postGroupCreator(id: String?, email: String?, depart: String?, groupCount: Int?, groupMember: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postGroupCreator(id, email,depart, groupCount, groupMember)
         }
 
         fun postUserCreator(email: String?, nickName: String?): Observable<ServerRepo> {
@@ -135,8 +171,8 @@ class Api {
             return RetrofitCreator.create(ApiImpl::class.java).postContestCreator(id, name, date, end, type, host, location, depart)
         }
 
-        fun postApplicationCreator(id: String?, email: String?, depart : String?, type: Int?, name: String?, phone: String?, partner: String?, partnerPhone: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postApplicationCreator(id, email,depart, type, name, phone, partner, partnerPhone)
+        fun postApplicationCreator(id: String?, email: String?, depart: String?, type: Int?, name: String?, phone: String?, partner: String?, partnerPhone: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postApplicationCreator(id, email, depart, type, name, phone, partner, partnerPhone)
         }
     }
 }

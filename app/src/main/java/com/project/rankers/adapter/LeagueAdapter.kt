@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.rankers.R
 import com.project.rankers.model.LEAGUE
+import com.project.rankers.retrofit.items.ContestItem
 
 class LeagueAdapter (context: Context, items: ArrayList<LEAGUE>) :
         RecyclerView.Adapter<LeagueCustomViewHolder>() {
@@ -53,6 +54,14 @@ class LeagueAdapter (context: Context, items: ArrayList<LEAGUE>) :
     }
 
     override fun getItemCount(): Int = this.items.size
+
+
+    fun getItem() : ArrayList<LEAGUE>{
+        return items
+    }
+    fun itemClick(position: Int): LEAGUE{
+        return items[position]
+    }
 
 }
 

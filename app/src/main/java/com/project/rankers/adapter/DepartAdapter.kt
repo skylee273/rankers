@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.project.rankers.R
-import com.project.rankers.model.DEPART
+import com.project.rankers.model.DepartItem
 
-class DepartAdapter(context: Context, items: List<DEPART>) :
+class DepartAdapter(context: Context, items: List<DepartItem>) :
         RecyclerView.Adapter<DepartCustomViewHolder>(){
 
     private var context : Context
-    private var items : List<DEPART>
+    private var items : List<DepartItem>
 
     init {
         this.context = context
@@ -21,7 +21,7 @@ class DepartAdapter(context: Context, items: List<DEPART>) :
     }
 
     override fun onBindViewHolder(holder: DepartCustomViewHolder, position: Int) {
-        val item : DEPART =  items.get(position)
+        val item : DepartItem = items[position]
 
         holder.depart.text = item.depart
     }

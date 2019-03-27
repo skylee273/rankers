@@ -3,8 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.project.rankers">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
         android:name="com.project.rankers.kakao.GlobalApplication"
@@ -20,26 +22,29 @@
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key"/>
 
-        <activity android:name="com.project.rankers.views.activity.IntroActivity">
+        <activity android:name="com.project.rankers.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <activity android:name="com.project.rankers.views.activity.LoginActivity"/>
-        <activity android:name="com.project.rankers.views.activity.MainActivity"/>
+        <activity android:name="com.project.rankers.ui.login.LoginActivity"
+            android:launchMode="singleTop"
+            />
+        <activity android:name="com.project.rankers.ui.main.MainActivity"/>
         <activity android:name="com.project.rankers.kakao.KakaoSignUpActivity"/>
-        <activity android:name="com.project.rankers.views.activity.ContestRegisterActivity" />
-        <activity android:name=".views.activity.RecordActivity"/>
-        <activity android:name=".views.activity.ResultActivity"/>
-        <activity android:name=".views.activity.ContestListActivity"/>
-        <activity android:name=".views.activity.ApplyActivity"/>
-        <activity android:name=".views.activity.ApplicationActivity"/>
-        <activity android:name=".views.activity.OperationActivity"/>
-        <activity android:name=".views.activity.RoundActivity"/>
-        <activity android:name=".views.activity.TournamentActivity"/>
-        <activity android:name=".views.activity.LeagueActivity"/>
+        <activity android:name="com.project.rankers.ui.register.ContestRegisterActivity" />
+        <activity android:name=".ui.personal.writing.WritingPersonalRecordActivity"/>
+        <activity android:name=".ui.activity.ResultActivity"/>
+        <activity android:name=".ui.competition.CompetitionInfoActivity"/>
+        <activity android:name=".ui.activity.ApplyActivity"/>
+        <activity android:name=".ui.form.ApplicationFormActivity"/>
+        <activity android:name=".ui.activity.OperationActivity"/>
+        <activity android:name=".ui.operation.ContestOperationActivity"/>
+        <activity android:name=".ui.activity.TournamentActivity"/>
+        <activity android:name=".ui.activity.LeagueActivity"/>
+        <activity android:name=".ui.activity.ResultContestLeagueActivity"/>
 
     </application>
 

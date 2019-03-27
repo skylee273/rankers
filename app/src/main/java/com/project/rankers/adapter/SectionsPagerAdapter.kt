@@ -3,10 +3,10 @@ package com.project.rankers.adapter
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.project.rankers.adapter.model.SectionsPagerModel
-import com.project.rankers.views.fragment.ClubFragment
-import com.project.rankers.views.fragment.ContestFragment
-import com.project.rankers.views.fragment.MessageFragment
-import com.project.rankers.views.fragment.MyFragment
+import com.project.rankers.ui.fragment.ClubFragment
+import com.project.rankers.ui.fragment.ContestFragment
+import com.project.rankers.ui.fragment.MessageFragment
+import com.project.rankers.ui.fragment.MyFragment
 
 class SectionsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager), SectionsPagerModel {
 

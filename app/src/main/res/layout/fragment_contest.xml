@@ -10,7 +10,7 @@
             type="com.project.rankers.viewmodels.ContestViewModel"/>
         <variable
             name="main"
-            type="com.project.rankers.views.fragment.ContestFragment"/>
+            type="com.project.rankers.ui.fragment.ContestFragment"/>
     </data>
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"

@@ -9,7 +9,7 @@
             type="com.project.rankers.viewmodels.SingleViewModel"/>
         <variable
             name="singleActivity"
-            type="com.project.rankers.views.fragment.SingleFragment"/>
+            type="com.project.rankers.ui.fragment.SingleFragment"/>
     </data>
 
     <LinearLayout

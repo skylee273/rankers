@@ -5,18 +5,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="android.view.View"/>
         <variable
-            name="view"
-            type="com.project.rankers.views.activity.MainActivity"
-            />
-        
+            name="viewModel"
+            type="com.project.rankers.ui.main.MainViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#FFFFFF"
-        tools:context=".views.activity.MainActivity">
+        tools:context=".ui.main.MainActivity">
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewPager"

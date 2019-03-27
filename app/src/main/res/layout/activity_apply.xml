@@ -7,7 +7,7 @@
 
         <variable
             name="activity"
-            type="com.project.rankers.views.activity.ApplyActivity" />
+            type="com.project.rankers.ui.activity.ApplyActivity" />
 
         <variable
             name="viewModel"

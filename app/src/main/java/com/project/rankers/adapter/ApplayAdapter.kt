@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.rankers.R
-import com.project.rankers.model.DEPART
-import com.project.rankers.retrofit.items.ContestItem
 
 class ApplayAdapter(context: Context, items: List<String>) :
         RecyclerView.Adapter<ApplyCustomViewHolder>() {

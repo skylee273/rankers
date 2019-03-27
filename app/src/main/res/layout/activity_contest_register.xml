@@ -5,13 +5,11 @@
 
     <data>
 
-        <variable
-            name="rm"
-            type="com.project.rankers.viewmodels.ContestRegisterViewModel" />
+        <import type="android.view.View"/>
 
         <variable
-            name="contest"
-            type="com.project.rankers.views.activity.ContestRegisterActivity" />
+            name="viewModel"
+            type="com.project.rankers.ui.register.ContestRegisterViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,7 +68,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         app:layout_constraintTop_toBottomOf="@+id/edit_depart"
-                        tools:listitem="@layout/item_depart" />
+                        tools:listitem="@layout/item_contest_register_view" />
 
                     <EditText
                         android:id="@+id/edit_end"
@@ -84,9 +82,9 @@
                         android:fontFamily="@font/notosanscjkkrmedium"
                         android:hint="@string/register_hint_end"
                         android:inputType="date"
-                        android:onClick="@{(view) -> rm.endClick(view)}"
+                        android:onClick="@{() -> viewModel.onEndDateClick()}"
                         android:paddingLeft="30dp"
-                        android:text="@{rm.endTime}"
+                        android:text="@={viewModel.endDate}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -101,7 +99,7 @@
                         android:layout_marginTop="32dp"
                         android:layout_marginEnd="50dp"
                         android:layout_marginBottom="32dp"
-                        android:onClick="@{() -> contest.regitClick()}"
+                        android:onClick="@{() -> viewModel.onRegisterClick()}"
                         android:background="@drawable/btn_register"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -121,7 +119,7 @@
                         android:focusable="false"
                         android:hint="부서등록"
                         android:inputType="textPersonName"
-                        android:onClick="@{() -> contest.addDepart()}"
+                        android:onClick="@{() -> viewModel.onAddClick()}"
                         android:paddingLeft="30dp"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -142,9 +140,9 @@
                         android:fontFamily="@font/notosanscjkkrmedium"
                         android:hint="@string/register_hint_file"
                         android:inputType="textPersonName"
-                        android:onClick="@{() -> contest.fileClick()}"
+                        android:onClick="@{() -> viewModel.onFileClick()}"
                         android:paddingLeft="30dp"
-                        android:text="@{rm.file}"
+                        android:text="@={viewModel.file}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -165,9 +163,9 @@
                         android:fontFamily="@font/notosanscjkkrmedium"
                         android:hint="@string/register_hint_location"
                         android:inputType="textPersonName"
-                        android:onClick="@{(view) -> rm.locationClick(view)}"
+                        android:onClick="@{() -> viewModel.onLocationClick()}"
                         android:paddingLeft="30dp"
-                        android:text="@{rm.location}"
+                        android:text="@={viewModel.location}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -188,7 +186,7 @@
                         android:hint="@string/register_hint_host"
                         android:inputType="textPersonName"
                         android:paddingLeft="30dp"
-                        android:text="@{rm.host}"
+                        android:text="@={viewModel.host}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -208,8 +206,8 @@
                         android:inputType="textPersonName"
                         android:paddingLeft="30dp"
                         android:focusable="false"
-                        android:onClick="@{(view) -> rm.typeClick(view)}"
-                        android:text="@{rm.type}"
+                        android:onClick="@{() -> viewModel.onTypeClick()}"
+                        android:text="@={viewModel.type}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -228,9 +226,9 @@
                         android:fontFamily="@font/notosanscjkkrmedium"
                         android:hint="@string/register_hint_date"
                         android:inputType="date"
-                        android:onClick="@{(view) -> rm.dateClick(view)}"
+                        android:onClick="@{() -> viewModel.onDateClick()}"
                         android:paddingLeft="30dp"
-                        android:text="@{rm.dateTime}"
+                        android:text="@={viewModel.date}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -251,7 +249,7 @@
                         android:hint="@string/register_hint_title"
                         android:inputType="textPersonName"
                         android:paddingLeft="30dp"
-                        android:text="@{rm.name}"
+                        android:text="@={viewModel.title}"
                         android:textColor="@color/color_black"
                         android:textSize="13sp"
                         app:layout_constraintEnd_toEndOf="parent"

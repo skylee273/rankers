@@ -49,6 +49,7 @@
     <string name="success_context">대회등록이 완료되었습니다.</string>
     <string name="type_title">대회종류</string>
     <string name="result_title">경기결과</string>
+    <string name="new_folder">New Folder</string>
 
     <!-- 툴바 -->
     <string name="toolbar_title_register">대회등록</string>
@@ -99,4 +100,13 @@
 
     <!-- 대진표 -->
     <string name="tounament_title">부서정보</string>
+
+    <!-- 대회결과표 -->
+    <string name="contest_result_title">부서정보</string>
+
+    <!--play store-->
+    <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
+    <string name="app_market_link">"market://details?id="</string>
+
+
 </resources>

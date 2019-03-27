@@ -4,6 +4,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.project.rankers.ui.login.LoginViewModel"/>
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -94,6 +100,7 @@
             android:text="@string/google_login"
             android:textColor="@color/color_login_text"
             android:textSize="16sp"
+            android:onClick="@{() -> viewModel.onGoogleLoginClick()}"
             app:layout_constraintBottom_toTopOf="@+id/kakaoButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

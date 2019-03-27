@@ -46,6 +46,7 @@ RecyclerView.Adapter<CustomViewHolder>(){
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
+
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_contest, parent, false)
         return CustomViewHolder(view)
     }
@@ -55,6 +56,7 @@ RecyclerView.Adapter<CustomViewHolder>(){
     fun itemClick(position: Int): ContestItem {
         return items[position]
     }
+
 }
 
 class CustomViewHolder constructor(itemView: View?)

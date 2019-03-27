@@ -10,7 +10,7 @@
             type="com.project.rankers.viewmodels.ResultSingleViewModel"/>
         <variable
             name="singleFragment"
-            type="com.project.rankers.views.fragment.ResultSingleFragment"/>
+            type="com.project.rankers.ui.fragment.ResultSingleFragment"/>
     </data>
 
 

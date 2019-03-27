@@ -19,7 +19,7 @@ class ContestItem {
     val host : String = ""
     @SerializedName("LOCATION")
     val location : String = ""
-    @SerializedName("DEPART")
+    @SerializedName("DepartItem")
     val depart : String = ""
 
 }

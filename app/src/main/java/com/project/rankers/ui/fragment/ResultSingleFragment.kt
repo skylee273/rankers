@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.rankers.R
 import com.project.rankers.adapter.SingleAdapter
 import com.project.rankers.databinding.FragmentResultSingleBinding
-import com.project.rankers.model.USER
-import com.project.rankers.retrofit.api.Api
-import com.project.rankers.retrofit.models.SingleRepo
+import com.project.rankers.data.model.db.USER
+import com.project.rankers.data.remote.api.Api
+import com.project.rankers.data.remote.response.SingleRepo
 import com.project.rankers.viewmodels.ResultSingleViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -11,8 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.rankers.R
 import com.project.rankers.databinding.FragmentMangerBinding
-import com.project.rankers.model.USER
-import com.project.rankers.ui.operation.result.ResultContestFragment
+import com.project.rankers.data.model.db.USER
 import io.reactivex.disposables.CompositeDisposable
 
 class ManagerFragment  : Fragment(){

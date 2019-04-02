@@ -1,9 +1,6 @@
 package com.project.rankers.ui.main
 
-import android.content.Context
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.viewpager.widget.ViewPager
@@ -16,7 +13,7 @@ import com.project.rankers.adapter.SectionsPagerAdapter
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.adapter.model.SectionsPagerModel
-import com.project.rankers.base.BaseActivity
+import com.project.rankers.ui.base.BaseActivity
 import javax.inject.Inject
 
 

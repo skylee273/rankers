@@ -1,18 +1,12 @@
 package com.project.rankers.ui.splash
 
 import android.content.Context
-import android.content.Intent
-import android.os.Build
-import android.os.Build.VERSION_CODES.JELLY_BEAN
-import android.os.Handler
-import androidx.annotation.RequiresApi
 import com.gun0912.tedpermission.PermissionListener
 import com.gun0912.tedpermission.TedPermission
-import com.project.rankers.base.BaseViewModel
-import com.project.rankers.ui.login.LoginActivity
+import com.project.rankers.ui.base.BaseViewModel
 import java.util.ArrayList
 
-class SplashViewModel : BaseViewModel<SplashNavigator>() {
+class SplashViewModel: BaseViewModel<SplashNavigator>() {
 
     private var permissionlistener: PermissionListener = object : PermissionListener {
         override fun onPermissionGranted() {

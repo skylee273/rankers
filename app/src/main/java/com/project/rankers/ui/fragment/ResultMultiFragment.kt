@@ -12,9 +12,9 @@ import androidx.fragment.app.Fragment
 import com.project.rankers.R
 import com.project.rankers.adapter.MultiAdapter
 import com.project.rankers.databinding.FragmentResultMultiBinding
-import com.project.rankers.model.USER
-import com.project.rankers.retrofit.api.Api
-import com.project.rankers.retrofit.models.MultiRepo
+import com.project.rankers.data.model.db.USER
+import com.project.rankers.data.remote.api.Api
+import com.project.rankers.data.remote.response.MultiRepo
 import com.project.rankers.viewmodels.ResultMultiViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

@@ -16,10 +16,10 @@ import com.afollestad.materialdialogs.list.listItemsMultiChoice
 import com.project.rankers.R
 import com.project.rankers.adapter.LeagueAdapter
 import com.project.rankers.databinding.ActivityLeagueBinding
-import com.project.rankers.model.LEAGUE
-import com.project.rankers.model.USER
-import com.project.rankers.retrofit.api.Api
-import com.project.rankers.retrofit.models.ApplyRepo
+import com.project.rankers.data.model.db.LEAGUE
+import com.project.rankers.data.model.db.USER
+import com.project.rankers.data.remote.api.Api
+import com.project.rankers.data.remote.response.ApplyRepo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -155,28 +155,25 @@ class LeagueActivity : AppCompatActivity() {
 
     fun uploadLeagueDB() {
         user = USER()
+        compositeDisposable = CompositeDisposable()
+
         val arrayLeagueList: ArrayList<LEAGUE> = leagueAdapter.getItem()
         var player: String? = null
         for ((index, item) in arrayLeagueList.withIndex()) {
-            when (index) {
-                0 -> player = item.one + "," + item.two + "," + item.three + "," + item.four + "/"
-                (arrayLeagueList.size - 1) -> player += item.one + "," + item.two + "," + item.three + "," + item.four
-                else -> player += item.one + "," + item.two + "," + item.three + "," + item.four + "/"
-            }
-
+            player = item.one + "," + item.two + "," + item.three + "," + item.four
+            compositeDisposable.add(Api.postGroupCreator(id, user!!.geteMail(), depart, (index+1) , player)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        if (it.getSuccess()) {
+                            runOnUiThread{
+                                successDialog()
+                            }
+                        }
+                    }) {
+                        Log.e("MyTag", "${it.message}")
+                    })
         }
-        compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(Api.postGroupCreator(id, user!!.geteMail(), depart, arrayLeagueList.size, player)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    if (it.getSuccess()) {
-                        successDialog()
-                    }
-                }) {
-                    Log.e("MyTag", "${it.message}")
-                })
-
     }
 
     private fun successDialog() {

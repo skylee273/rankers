@@ -1,10 +1,10 @@
 package com.project.rankers.ui.register
 
 import androidx.databinding.ObservableField
-import com.project.rankers.base.BaseViewModel
-import com.project.rankers.model.DepartItem
-import com.project.rankers.model.USER
-import com.project.rankers.retrofit.api.Api
+import com.project.rankers.ui.base.BaseViewModel
+import com.project.rankers.data.model.db.DepartItem
+import com.project.rankers.data.model.db.USER
+import com.project.rankers.data.remote.api.Api
 import com.project.rankers.utils.CommonUtils
 import io.reactivex.schedulers.Schedulers
 

@@ -1,12 +1,9 @@
 package com.project.rankers.ui.personal.writing
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.view.MenuItem
 
-import androidx.appcompat.app.AppCompatActivity
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
@@ -15,11 +12,10 @@ import androidx.lifecycle.ViewModelProviders
 import com.google.android.material.tabs.TabLayout
 import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
-import com.project.rankers.base.BaseActivity
+import com.project.rankers.ui.base.BaseActivity
 import com.project.rankers.databinding.ActivityWritingPersonalRecordBinding
 import com.project.rankers.ui.fragment.MultiFragment
 import com.project.rankers.ui.fragment.SingleFragment
-import com.project.rankers.ui.splash.SplashViewModel
 import java.util.*
 import javax.inject.Inject
 

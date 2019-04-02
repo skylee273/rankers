@@ -12,8 +12,8 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import com.project.rankers.R
 import com.project.rankers.databinding.FragmentSingleBinding
-import com.project.rankers.model.USER
-import com.project.rankers.retrofit.api.Api
+import com.project.rankers.data.model.db.USER
+import com.project.rankers.data.remote.api.Api
 import com.project.rankers.viewmodels.SingleViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers

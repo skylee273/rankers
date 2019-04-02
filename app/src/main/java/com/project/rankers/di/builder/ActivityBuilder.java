@@ -17,11 +17,15 @@
 package com.project.rankers.di.builder;
 
 
-
+import com.project.rankers.ui.competition.CompetitionActivityModule;
+import com.project.rankers.ui.competition.CompetitionInfoActivity;
+import com.project.rankers.ui.competition.CompetitionActivityProvider;
+import com.project.rankers.ui.leagueResult.LeagueResultActivity;
 import com.project.rankers.ui.login.LoginActivity;
 import com.project.rankers.ui.main.MainActivity;
 import com.project.rankers.ui.operation.ContestOperationActivity;
 import com.project.rankers.ui.operation.ContestOperationActivityModule;
+import com.project.rankers.ui.operator.OperatorActivity;
 import com.project.rankers.ui.splash.SplashActivity;
 
 import dagger.Module;
@@ -32,6 +36,17 @@ import dagger.android.ContributesAndroidInjector;
  */
 @Module
 public abstract class ActivityBuilder {
+
+    @ContributesAndroidInjector(modules = {
+            CompetitionActivityModule.class,
+            CompetitionActivityProvider.class
+    })
+    abstract CompetitionInfoActivity bindCompetitionInfoActivity();
+
+    @ContributesAndroidInjector
+    abstract LeagueResultActivity bindLeagueResultActivity();
+    @ContributesAndroidInjector
+    abstract OperatorActivity bindOperatorActivityActivity();
 
     @ContributesAndroidInjector(modules = {
             ContestOperationActivityModule.class})

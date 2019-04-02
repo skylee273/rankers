@@ -16,9 +16,8 @@ import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
 import com.project.rankers.adapter.DashBoardAdapter
 import com.project.rankers.databinding.FragmentResultContestBinding
-import com.project.rankers.model.USER
-import com.project.rankers.ui.activity.ResultContestLeagueActivity
-import com.project.rankers.ui.operation.dashboard.DashBoardFragment
+import com.project.rankers.data.model.db.USER
+import com.project.rankers.ui.leagueResult.LeagueResultActivity
 import io.reactivex.disposables.CompositeDisposable
 
 class ResultContestFragment : Fragment() {
@@ -67,7 +66,7 @@ class ResultContestFragment : Fragment() {
                         when (type) {
                             0 -> {
                                 Log.d("대진표 번호", "예선")
-                                val intent = Intent(mContext, ResultContestLeagueActivity::class.java)
+                                val intent = Intent(mContext, LeagueResultActivity::class.java)
                                 intent.putExtra("CONTEST_DEPART", value)
                                 intent.putExtra("CONTEST_ID", param1)
                                 startActivity(intent)

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.rankers.R
-import com.project.rankers.retrofit.items.SingleItem
+import com.project.rankers.data.remote.domain.SingleItem
 
 class SingleAdapter(context: Context, items: List<SingleItem>) :
         RecyclerView.Adapter<SingleCustomViewHolder>(){

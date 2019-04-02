@@ -16,10 +16,8 @@
 
 package com.project.rankers.utils;
 
-import android.content.Context;
-import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
+import com.project.rankers.data.remote.response.ContestResponse;
+import com.project.rankers.ui.competition.CompetitionAdapter;
 
 
 import java.util.List;
@@ -37,9 +35,12 @@ public final class BindingUtils {
         // This class is not publicly instantiable
     }
 
-    @BindingAdapter("imageUrl")
-    public static void setImageUrl(ImageView imageView, String url) {
-        Context context = imageView.getContext();
-        Glide.with(context).load(url).into(imageView);
+    @BindingAdapter({"adapter"})
+    public static void addCompetitionItems(RecyclerView recyclerView, List<ContestResponse.Repo> repos) {
+        CompetitionAdapter adapter = (CompetitionAdapter) recyclerView.getAdapter();
+        if (adapter != null) {
+            adapter.clearItems();
+            adapter.addItems(repos);
+        }
     }
 }

@@ -1,9 +1,9 @@
 package com.project.rankers.ui.competition
 
 import androidx.databinding.ObservableField
-import com.project.rankers.retrofit.items.ContestItem
+import com.project.rankers.data.remote.response.ContestResponse
 
-class CompetitionItemViewModel(contestItem: ContestItem, val mListener: CompetitionItemViewModelListner) {
+class CompetitionItemViewModel(items: ContestResponse.Repo, private val mListener: CompetitionItemViewModelListener) {
 
     val title : ObservableField<String>
     val type : ObservableField<String>
@@ -11,17 +11,17 @@ class CompetitionItemViewModel(contestItem: ContestItem, val mListener: Competit
     val location : ObservableField<String>
 
     init {
-        title = ObservableField(contestItem.title)
-        type = ObservableField(contestItem.type)
-        date = ObservableField(contestItem.start + " ~ " + contestItem.end)
-        location = ObservableField(contestItem.location)
+        title = ObservableField(items.title!!)
+        type = ObservableField(items.type!!)
+        date = ObservableField(items.start!! + " ~ " + items.end)
+        location = ObservableField(items.location!!)
     }
 
     fun onItemClick() {
         mListener.onItemClick()
     }
 
-    interface  CompetitionItemViewModelListner{
+    interface  CompetitionItemViewModelListener{
         fun onItemClick()
     }
 }

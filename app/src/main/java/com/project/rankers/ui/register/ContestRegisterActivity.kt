@@ -18,11 +18,9 @@ import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.ViewModelProviderFactory
 
-import com.project.rankers.adapter.DepartAdapter
-import com.project.rankers.base.BaseActivity
+import com.project.rankers.ui.base.BaseActivity
 import com.project.rankers.dialog.LocationDialog
-import com.project.rankers.model.DepartItem
-import com.project.rankers.ui.competition.CompetitionAdapter
+import com.project.rankers.data.model.db.DepartItem
 import java.util.*
 import javax.inject.Inject
 

@@ -9,7 +9,7 @@
             type="com.project.rankers.viewmodels.MyViewModel"/>
         <variable
             name="myActivity"
-            type="com.project.rankers.ui.fragment.MyFragment"/>
+            type="com.project.rankers.ui.main.my.MyFragment"/>
     </data>
 
 

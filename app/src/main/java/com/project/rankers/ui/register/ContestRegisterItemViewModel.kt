@@ -1,7 +1,7 @@
 package com.project.rankers.ui.register
 
 import androidx.databinding.ObservableField
-import com.project.rankers.model.DepartItem
+import com.project.rankers.data.model.db.DepartItem
 
 class ContestRegisterItemViewModel(departItem: DepartItem, val mListener: ContestRegisterItemViewModelListner) {
     val name : ObservableField<String>

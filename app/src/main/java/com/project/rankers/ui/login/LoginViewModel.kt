@@ -1,19 +1,13 @@
 package com.project.rankers.ui.login
 
 
-import com.google.android.gms.tasks.Task
-import com.project.rankers.base.BaseViewModel
-import com.project.rankers.model.USER
-import com.project.rankers.retrofit.api.Api
+import com.project.rankers.ui.base.BaseViewModel
+import com.project.rankers.data.model.db.USER
+import com.project.rankers.data.remote.api.Api
 import io.reactivex.schedulers.Schedulers
 
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.net.HttpURLConnection
-import java.net.URL
 
-
-class LoginViewModel : BaseViewModel<LoginNavigator>() {
+class LoginViewModel: BaseViewModel<LoginNavigator>() {
     var user: USER? = null
 
 

@@ -5,21 +5,15 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import android.widget.ImageView
 import androidx.databinding.library.baseAdapters.BR
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
 import com.project.rankers.R
-import com.gun0912.tedpermission.PermissionListener
-import com.gun0912.tedpermission.TedPermission
 import com.project.rankers.ViewModelProviderFactory
-import com.project.rankers.base.BaseActivity
+import com.project.rankers.ui.base.BaseActivity
 import com.project.rankers.databinding.ActivitySplashBinding
 import com.project.rankers.ui.login.LoginActivity
-import com.project.rankers.ui.main.MainViewModel
-import java.util.ArrayList
 import javax.inject.Inject
 
 class SplashActivity : BaseActivity<ActivitySplashBinding, SplashViewModel>(), SplashNavigator {

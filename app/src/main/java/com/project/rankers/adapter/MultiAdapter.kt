@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.project.rankers.R
-import com.project.rankers.retrofit.items.MultiItem
+import com.project.rankers.data.remote.domain.MultiItem
 
 class MultiAdapter(context: Context, items: List<MultiItem>) :
         RecyclerView.Adapter<MutilCustomViewHolder>(){

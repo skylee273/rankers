@@ -28,7 +28,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.*
 import com.project.rankers.ViewModelProviderFactory
-import com.project.rankers.base.BaseActivity
+import com.project.rankers.ui.base.BaseActivity
 import com.project.rankers.ui.main.MainActivity
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException

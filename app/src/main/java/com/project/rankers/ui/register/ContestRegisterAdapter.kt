@@ -1,19 +1,12 @@
 package com.project.rankers.ui.register
 
-import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.project.rankers.base.BaseViewHolder
-import com.project.rankers.databinding.ItemCompetiotionEmptyViewBinding
-import com.project.rankers.databinding.ItemCompetitionViewBinding
+import com.project.rankers.ui.base.BaseViewHolder
 import com.project.rankers.databinding.ItemContestRegisterViewBinding
-import com.project.rankers.model.DepartItem
-import com.project.rankers.retrofit.items.ContestItem
-import com.project.rankers.ui.activity.ApplyActivity
+import com.project.rankers.data.model.db.DepartItem
 import com.project.rankers.ui.competition.CompetitionAdapter
-import com.project.rankers.ui.competition.CompetitionItemViewModel
 
 class ContestRegisterAdapter(private val mContestRegisterList: MutableList<DepartItem>?) : RecyclerView.Adapter<BaseViewHolder>()  {
 

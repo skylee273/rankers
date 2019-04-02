@@ -4,18 +4,14 @@ import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.project.rankers.adapter.ContestAdapter
-import com.project.rankers.base.BaseViewHolder
+import com.project.rankers.ui.base.BaseViewHolder
+import com.project.rankers.data.remote.response.ContestResponse
 import com.project.rankers.databinding.ItemCompetiotionEmptyViewBinding
 import com.project.rankers.databinding.ItemCompetitionViewBinding
-import com.project.rankers.retrofit.items.ContestItem
 import com.project.rankers.ui.activity.ApplyActivity
-import com.project.rankers.ui.operation.ContestOperationActivity
 
-class CompetitionAdapter(private val mCompetitionResponseList: MutableList<ContestItem>?) : RecyclerView.Adapter<BaseViewHolder>() {
+class CompetitionAdapter(val mCompetitionResponseList: MutableList<ContestResponse.Repo>?) : RecyclerView.Adapter<BaseViewHolder>() {
 
     private var mListener: CompetitionAdapterListener? = null
 
@@ -59,7 +55,7 @@ class CompetitionAdapter(private val mCompetitionResponseList: MutableList<Conte
 
     }
 
-    inner class CompetitionViewHolder(private val mBinding: ItemCompetitionViewBinding) : BaseViewHolder(mBinding.root), CompetitionItemViewModel.CompetitionItemViewModelListner {
+    inner class CompetitionViewHolder(private val mBinding: ItemCompetitionViewBinding) : BaseViewHolder(mBinding.root), CompetitionItemViewModel.CompetitionItemViewModelListener {
 
         private var competitionItemViewModel: CompetitionItemViewModel? = null
 
@@ -93,7 +89,7 @@ class CompetitionAdapter(private val mCompetitionResponseList: MutableList<Conte
     }
 
 
-    fun addItems(contestItem: List<ContestItem>) {
+    fun addItems(contestItem: List<ContestResponse.Repo>) {
         mCompetitionResponseList!!.addAll(contestItem)
         notifyDataSetChanged()
     }

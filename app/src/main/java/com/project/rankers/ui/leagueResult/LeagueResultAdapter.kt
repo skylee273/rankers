@@ -66,6 +66,29 @@ class LeagueResultAdapter(val mGroupResponseList: MutableList<GroupResponse.Grou
         override fun onItemClick() {
 
         }
+
+        override fun onScore1Click() {
+            mListener!!.onScore(mBinding,1)
+        }
+
+        override fun onScore2Click() {
+            mListener!!.onScore(mBinding,2)
+        }
+        override fun onScore3Click() {
+            mListener!!.onScore(mBinding,3)
+        }
+
+        override fun onScore5Click() {
+            mListener!!.onScore(mBinding,5)
+        }
+
+        override fun onScore6Click() {
+            mListener!!.onScore(mBinding,6)
+        }
+
+        override fun onScore9Click() {
+            mListener!!.onScore(mBinding,9)
+        }
     }
 
     inner class EmptyViewHolder(private val mBinding: ItemLeagueResultEmptyViewBinding) : BaseViewHolder(mBinding.root), LeagueResultEmptyItemViewModel.LeagueResultEmptyItemViewModelListener {
@@ -90,12 +113,14 @@ class LeagueResultAdapter(val mGroupResponseList: MutableList<GroupResponse.Grou
         mGroupResponseList!!.clear()
     }
 
+
     fun setListener(listener: GroupAdapterListener) {
         this.mListener = listener
     }
 
     interface GroupAdapterListener {
 
+        fun onScore(mBinding: ItemLeagueResultViewBinding, type : Int)
         fun onRetryClick()
     }
 

@@ -3,9 +3,9 @@ package com.project.rankers.ui.register
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.project.rankers.ui.base.BaseViewHolder
-import com.project.rankers.databinding.ItemContestRegisterViewBinding
 import com.project.rankers.data.model.db.DepartItem
+import com.project.rankers.databinding.ItemContestRegisterViewBinding
+import com.project.rankers.ui.base.BaseViewHolder
 import com.project.rankers.ui.competition.CompetitionAdapter
 
 class ContestRegisterAdapter(private val mContestRegisterList: MutableList<DepartItem>?) : RecyclerView.Adapter<BaseViewHolder>()  {
@@ -64,6 +64,7 @@ class ContestRegisterAdapter(private val mContestRegisterList: MutableList<Depar
         mContestRegisterList!!.addAll(departItem)
         notifyDataSetChanged()
     }
+
 
     fun clearItems() {
         mContestRegisterList!!.clear()

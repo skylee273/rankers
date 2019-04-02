@@ -1,14 +1,10 @@
 package com.project.rankers.ui.leagueResult
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.project.rankers.data.remote.api.Api
-import com.project.rankers.data.remote.response.ContestResponse
 import com.project.rankers.data.remote.response.GroupResponse
 import com.project.rankers.ui.base.BaseViewModel
-import com.project.rankers.ui.competition.CompetitionInfoNavigator
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class LeagueResultViewModel : BaseViewModel<LeagueResultNavigator>(){
@@ -18,12 +14,10 @@ class LeagueResultViewModel : BaseViewModel<LeagueResultNavigator>(){
     var contestDepartName : String? = null
     init {
         mutableLiveData = MutableLiveData()
-        fetchGroups()
     }
 
     fun fetchGroups(){
         setIsLoading(true)
-
         compositeDisposable.add(Api.getGroupList(contestID, contestDepartName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -37,9 +31,12 @@ class LeagueResultViewModel : BaseViewModel<LeagueResultNavigator>(){
                 })
     }
 
+
+
     fun setContestInfo(contestID : String, contestDepartName : String){
         this.contestID = contestID
         this.contestDepartName = contestDepartName
+        fetchGroups()
     }
     fun getListLiveData(): MutableLiveData<List<GroupResponse.Group>> {
         return mutableLiveData

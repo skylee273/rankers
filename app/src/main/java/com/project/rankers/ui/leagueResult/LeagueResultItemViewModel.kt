@@ -14,6 +14,13 @@ class LeagueResultItemViewModel(group: GroupResponse.Group, private val mListene
     val player6: ObservableField<String>
     val player7: ObservableField<String>
     val player8: ObservableField<String>
+    var score1: ObservableField<String>
+    var score2: ObservableField<String>
+    var score3: ObservableField<String>
+    var score5: ObservableField<String>
+    var score6: ObservableField<String>
+    var score9: ObservableField<String>
+
     val number: ObservableField<String>
 
     init {
@@ -26,9 +33,38 @@ class LeagueResultItemViewModel(group: GroupResponse.Group, private val mListene
         player6 = ObservableField(groupMember[1])
         player7 = ObservableField(groupMember[2])
         player8 = ObservableField(groupMember[3])
+        score1 = ObservableField("입력")
+        score2 = ObservableField("입력")
+        score3 = ObservableField("입력")
+        score5 = ObservableField("입력")
+        score6 = ObservableField("입력")
+        score9 = ObservableField("입력")
+
         number = ObservableField(group.groupNumber!!)
     }
 
+
+    fun onScore1Click() {
+        mListener.onScore1Click()
+    }
+
+    fun onScore2Click() {
+        mListener.onScore2Click()
+    }
+    fun onScore3Click() {
+        mListener.onScore3Click()
+    }
+
+    fun onScore5Click() {
+        mListener.onScore5Click()
+    }
+    fun onScore6Click() {
+        mListener.onScore6Click()
+    }
+
+    fun onScore9Click() {
+        mListener.onScore9Click()
+    }
 
     fun onItemClick() {
         mListener.onItemClick()
@@ -36,5 +72,11 @@ class LeagueResultItemViewModel(group: GroupResponse.Group, private val mListene
 
     interface LeagueResultItemViewModelListener {
         fun onItemClick()
+        fun onScore1Click()
+        fun onScore2Click()
+        fun onScore3Click()
+        fun onScore5Click()
+        fun onScore6Click()
+        fun onScore9Click()
     }
 }

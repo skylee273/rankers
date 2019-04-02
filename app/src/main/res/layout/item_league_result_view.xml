@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -64,7 +63,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
+            android:background="@drawable/costom_x_box"
             android:gravity="center_horizontal|center_vertical" />
 
     </LinearLayout>
@@ -109,7 +108,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
+            android:background="@drawable/costom_x_box"
             android:gravity="center_horizontal|center_vertical" />
 
         <TextView
@@ -117,6 +116,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="@{() -> viewModel.onScore9Click()}"
+            android:text="@{viewModel.score9}"
             android:background="@drawable/costom_edit_text_bg"
             android:gravity="center_horizontal|center_vertical" />
 
@@ -154,7 +155,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
+            android:background="@drawable/costom_x_box"
             android:gravity="center_horizontal|center_vertical" />
 
         <TextView
@@ -162,6 +163,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="@{() -> viewModel.onScore5Click()}"
+            android:text="@{viewModel.score5}"
             android:background="@drawable/costom_edit_text_bg"
             android:gravity="center_horizontal|center_vertical" />
 
@@ -170,6 +173,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="@{() -> viewModel.onScore6Click()}"
+            android:text="@{viewModel.score6}"
             android:background="@drawable/costom_edit_text_bg"
             android:gravity="center_horizontal|center_vertical" />
 
@@ -199,7 +204,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
+            android:background="@drawable/costom_x_box"
             android:gravity="center_horizontal|center_vertical" />
 
         <TextView
@@ -208,7 +213,9 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="@{() -> viewModel.onScore1Click()}"
+            android:text="@{viewModel.score1}" />
 
         <TextView
             android:id="@+id/text_score2"
@@ -216,13 +223,17 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            android:gravity="center_horizontal|center_vertical"
+            android:onClick="@{() -> viewModel.onScore2Click()}"
+            android:text="@{viewModel.score2}" />
 
         <TextView
             android:id="@+id/text_score3"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:onClick="@{() -> viewModel.onScore3Click()}"
+            android:text="@{viewModel.score3}"
             android:background="@drawable/costom_edit_text_bg"
             android:gravity="center_horizontal|center_vertical" />
 

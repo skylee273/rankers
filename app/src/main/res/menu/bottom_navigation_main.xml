@@ -7,23 +7,23 @@
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_contest"
-        android:title="@string/selection_contest" />
+        android:title="" />
     <item
         android:id="@+id/tab_club"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_club"
-        android:title="@string/selection_club" />
+        android:title="" />
     <item
         android:id="@+id/tab_message"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_message"
-        android:title="@string/selection_messsage" />
+        android:title="" />
 
     <item
         android:id="@+id/tab_profile"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_profile"
-        android:title="@string/selection_my" />
+        android:title="" />
 </menu>

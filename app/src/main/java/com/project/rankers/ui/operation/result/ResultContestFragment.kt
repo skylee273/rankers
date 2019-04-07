@@ -34,8 +34,8 @@ class ResultContestFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (arguments != null) {
-            param1 = arguments!!.getString("param1") // 전달한 key 값
-            param2 = arguments!!.getString("param2") // 전달한 key 값
+            param1 = arguments!!.getString("CONTEST_ID") // 전달한 key 값
+            param2 = arguments!!.getString("CONTEST_DEPART") // 전달한 key 값
         }
         mContext = this.activity!!
         user = USER()

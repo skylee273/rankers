@@ -48,4 +48,8 @@
 
     <color name="color_black">#000000</color>
 
+    
+    <color name="tab_background_selected">#396ab8</color>
+    <color name="tab_background_unselected">#ffffff</color>
+
 </resources>

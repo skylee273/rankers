@@ -69,7 +69,6 @@ class LeagueResultActivity : BaseActivity<ActivityLeagueResultBinding, LeagueRes
         }
     }
     override fun onRetryClick() {
-
         leagueResultViewModel!!.fetchGroups()
     }
 

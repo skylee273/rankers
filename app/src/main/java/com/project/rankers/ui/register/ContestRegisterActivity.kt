@@ -152,7 +152,7 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
         Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
-        contestRegisterAdapter = ContestRegisterAdapter(ArrayList())
+        contestRegisterAdapter = ContestRegisterAdapter(ArrayList<DepartItem>())
         mLayoutManager.orientation = LinearLayoutManager.VERTICAL
         contestRegisterBinding.recycler.layoutManager = mLayoutManager
         contestRegisterBinding.recycler.itemAnimator = DefaultItemAnimator()

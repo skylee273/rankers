@@ -1,5 +1,6 @@
 package com.project.rankers.ui.activity
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.util.Log
@@ -130,6 +131,7 @@ class LeagueActivity : AppCompatActivity() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setUI() {
         compositeDisposable = CompositeDisposable()
         compositeDisposable.add(Api.getApplyList(id, depart)
@@ -137,7 +139,7 @@ class LeagueActivity : AppCompatActivity() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: ApplyRepo ->
                     Log.d("Leage", response.toString())
-                    leagueBinding.textCount.text = response.totalCount.toString()
+                    leagueBinding.textCount.text = "참여인원  총  " + response.totalCount.toString() +  "명"
                     for (people in response.items) {
                         when (people.applyType.toInt()) {
                             0 -> {
@@ -158,10 +160,8 @@ class LeagueActivity : AppCompatActivity() {
         compositeDisposable = CompositeDisposable()
 
         val arrayLeagueList: ArrayList<LEAGUE> = leagueAdapter.getItem()
-        var player: String? = null
         for ((index, item) in arrayLeagueList.withIndex()) {
-            player = item.one + "," + item.two + "," + item.three + "," + item.four
-            compositeDisposable.add(Api.postGroupCreator(id, user!!.geteMail(), depart, (index+1) , player)
+            compositeDisposable.add(Api.postGroupCreator(id, user!!.geteMail(), depart, (index+1) , item.one, item.two, item.three, item.four, "","", "", "", "","")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({

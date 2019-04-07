@@ -40,7 +40,7 @@ class Api {
         @GET("contest/leagueList.php")
         fun getLeagueList(
                 @Query("id") id: String?,
-                @Query("depart") depart: String?
+                @Query("departName") depart: String?
         ): Observable<LeagueRepo>
 
         @GET("contest/groupList.php")
@@ -78,9 +78,18 @@ class Api {
         fun postGroupCreator(
                 @Field("id") id: String?,
                 @Field("email") email: String?,
-                @Field("depart") depart: String?,
+                @Field("departName") depart: String?,
                 @Field("number") number: Int?,
-                @Field("groupMember") groupMember: String?
+                @Field("player1") player1: String?,
+                @Field("player2") player2: String?,
+                @Field("player3") player3: String?,
+                @Field("player4") player4: String?,
+                @Field("score1") score1: String?,
+                @Field("score2") score2: String?,
+                @Field("score3") score3: String?,
+                @Field("score4") score4: String?,
+                @Field("score5") score5: String?,
+                @Field("score6") score6: String?
         ): Observable<ServerRepo>
 
 
@@ -94,7 +103,7 @@ class Api {
                 @Field("type") type: String?,
                 @Field("host") host: String?,
                 @Field("location") location: String?,
-                @Field("depart") depart: String?
+                @Field("departName") depart: String?
         ): Observable<ServerRepo>
 
         @FormUrlEncoded
@@ -102,7 +111,7 @@ class Api {
         fun postApplicationCreator(
                 @Field("id") id: String?,
                 @Field("email") email: String?,
-                @Field("depart") depart: String?,
+                @Field("departName") depart: String?,
                 @Field("type") type: Int?,
                 @Field("name") name: String?,
                 @Field("phone") phone: String?,
@@ -151,8 +160,8 @@ class Api {
             return RetrofitCreator.create(ApiImpl::class.java).getContestList()
         }
 
-        fun postGroupCreator(id: String?, email: String?, depart: String?, number: Int?, groupMember: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postGroupCreator(id, email,depart, number, groupMember)
+        fun postGroupCreator(id: String?, email: String?, depart: String?, number: Int?, player1: String?, player2: String?, player3: String?, player4: String?, score1: String?, score2: String?, score3: String?, score4: String?, score5: String?, score6: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postGroupCreator(id, email,depart, number, player1, player2, player3, player4, score1, score2, score3, score4, score5, score6)
         }
 
         fun postUserCreator(email: String?, nickName: String?): Observable<ServerRepo> {

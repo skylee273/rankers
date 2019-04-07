@@ -9,7 +9,7 @@ import com.project.rankers.ui.base.BaseViewHolder
 import com.project.rankers.data.remote.response.ContestResponse
 import com.project.rankers.databinding.ItemCompetiotionEmptyViewBinding
 import com.project.rankers.databinding.ItemCompetitionViewBinding
-import com.project.rankers.ui.activity.ApplyActivity
+import com.project.rankers.ui.apply.ApplyActivity
 
 class CompetitionAdapter(val mCompetitionResponseList: MutableList<ContestResponse.Repo>?) : RecyclerView.Adapter<BaseViewHolder>() {
 

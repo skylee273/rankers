@@ -71,14 +71,9 @@ class OperatorAdapter(val mOperatorResponseList: MutableList<ContestResponse.Rep
             val intent = Intent(itemView.context, ContestOperationActivity::class.java)
             val id = mOperatorResponseList!![pos].id
             val depart =  mOperatorResponseList!![pos].depart
-            intent.putExtra("id",id)
-            intent.putExtra("depart",depart)
+            intent.putExtra("CONTEST_ID",id)
+            intent.putExtra("CONTEST_DEPART",depart)
             itemView.context.startActivity(intent)
-
-            Log.d("ItemClick", mOperatorResponseList.toString())
-            val array = arrayOf(mOperatorResponseList!![pos].title, mOperatorResponseList[pos].start + " ~ " + mOperatorResponseList[pos].end, mOperatorResponseList[pos].location, mOperatorResponseList[pos].host, mOperatorResponseList[pos].depart, mOperatorResponseList[pos].id)
-            intent.putExtra("contest", array)
-
         }
     }
 

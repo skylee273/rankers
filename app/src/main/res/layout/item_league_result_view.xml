@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -8,295 +9,586 @@
             type="com.project.rankers.ui.leagueResult.LeagueResultItemViewModel"/>
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:layout_marginBottom="16dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/linearLayout5"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
-
-        <TextView
-            android:id="@+id/text_player8"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@{viewModel.player8}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            android:weightSum="313"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout15">
 
-        <TextView
-            android:id="@+id/text_score10"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/text_rank"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="69"
+                android:background="@drawable/custom_league_result_out_left_bottom_box"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="순위"
+                android:textColor="#464646"
+                android:textSize="13.8sp" />
 
-        <TextView
-            android:id="@+id/text_score11"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/text_rank1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="1" />
 
-        <TextView
-            android:id="@+id/text_score12"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/text_rank2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="2" />
 
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_x_box"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/text_rank3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="3" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_rank4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="4" />
+        </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout4"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
+        <LinearLayout
+            android:id="@+id/linearLayout15"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            android:weightSum="313"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-        <TextView
-            android:id="@+id/text_player7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@{viewModel.player7}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="69"
+                android:background="@drawable/custom_league_result_vertical_box"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="총점"
+                android:textColor="#464646"
+                android:textSize="13.8sp" />
 
-        <TextView
-            android:id="@+id/text_score7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/text_total1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="4" />
 
-        <TextView
-            android:id="@+id/text_score8"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/text_total2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="4" />
 
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_x_box"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/text_total3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="4" />
 
-        <TextView
-            android:id="@+id/text_score9"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="@{() -> viewModel.onScore9Click()}"
-            android:text="@{viewModel.score9}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            <TextView
+                android:id="@+id/text_total4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="4" />
+        </LinearLayout>
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout3"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
-
-        <TextView
-            android:id="@+id/text_player6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@{viewModel.player6}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
-
-        <TextView
-            android:id="@+id/text_score4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
-
-        <TextView
-            android:id="@+id/textView7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_x_box"
-            android:gravity="center_horizontal|center_vertical" />
-
-        <TextView
-            android:id="@+id/text_score5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="@{() -> viewModel.onScore5Click()}"
-            android:text="@{viewModel.score5}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
-
-        <TextView
-            android:id="@+id/text_score6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="@{() -> viewModel.onScore6Click()}"
-            android:text="@{viewModel.score6}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
-
-        <TextView
-            android:id="@+id/text_player5"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@{viewModel.player5}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
-
-        <TextView
-            android:id="@+id/textView8"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_x_box"
-            android:gravity="center_horizontal|center_vertical" />
-
-        <TextView
-            android:id="@+id/text_score1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical"
-            android:onClick="@{() -> viewModel.onScore1Click()}"
-            android:text="@{viewModel.score1}" />
-
-        <TextView
-            android:id="@+id/text_score2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical"
-            android:onClick="@{() -> viewModel.onScore2Click()}"
-            android:text="@{viewModel.score2}" />
-
-        <TextView
-            android:id="@+id/text_score3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:onClick="@{() -> viewModel.onScore3Click()}"
-            android:text="@{viewModel.score3}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
+        <Button
             android:id="@+id/text_group_number"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical"
+            android:layout_width="0dp"
+            android:layout_height="26dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="245dp"
+            android:background="@drawable/round_button"
+            android:drawableLeft="@drawable/ic_ball"
+            android:gravity="center"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="11.8sp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:text="@{viewModel.number}"
-            android:textColor="@color/color_contest_title" />
+            android:textColor="#ffffff"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="1조 매치" />
 
-        <TextView
-            android:id="@+id/text_player1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@{viewModel.player1}"
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            android:weightSum="313"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
+
+            <TextView
+                android:id="@+id/text_player8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="69"
+                android:background="@drawable/custom_league_result_vertical_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="@{viewModel.player8}"
+                android:textColor="#464646"
+                android:textSize="13.8sp"
+                tools:text="나지연" />
+
+            <TextView
+                android:id="@+id/text_score10"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="10:8" />
+
+            <TextView
+                android:id="@+id/text_score11"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="10:8" />
+
+            <TextView
+                android:id="@+id/text_score12"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="10:8" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="-" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout4"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            android:orientation="horizontal"
+            android:weightSum="313"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
-        <TextView
-            android:id="@+id/text_player2"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@{viewModel.player2}"
+            <TextView
+                android:id="@+id/text_player7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="69"
+                android:background="@drawable/custom_league_result_vertical_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="@{viewModel.player7}"
+                android:textColor="#464646"
+                android:textSize="13.8sp"
+                tools:text="나지연" />
+
+            <TextView
+                android:id="@+id/text_score7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="10:8" />
+
+            <TextView
+                android:id="@+id/text_score8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="10:8" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/text_score9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:onClick="@{() -> viewModel.onScore9Click()}"
+                android:text="@{viewModel.score9}"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="10:8" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            android:orientation="horizontal"
+            android:weightSum="313"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <TextView
-            android:id="@+id/text_player3"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@{viewModel.player3}"
+            <TextView
+                android:id="@+id/text_player6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="69"
+                android:background="@drawable/custom_league_result_vertical_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="@{viewModel.player6}"
+                android:textColor="#464646"
+                android:textSize="13.8sp"
+                tools:text="나지연" />
+
+            <TextView
+                android:id="@+id/text_score4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="1:3" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/text_score5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:onClick="@{() -> viewModel.onScore5Click()}"
+                android:text="@{viewModel.score5}"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="1:3" />
+
+            <TextView
+                android:id="@+id/text_score6"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:onClick="@{() -> viewModel.onScore6Click()}"
+                android:text="@{viewModel.score6}"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="1:3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
             android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
+            android:orientation="horizontal"
+            android:weightSum="313"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <TextView
-            android:id="@+id/text_player4"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:text="@{viewModel.player4}"
-            android:background="@drawable/costom_edit_text_bg"
-            android:gravity="center_horizontal|center_vertical" />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/text_player5"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="69"
+                android:background="@drawable/custom_league_result_vertical_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="@{viewModel.player5}"
+                android:textColor="#464646"
+                android:textSize="13.8sp"
+                tools:text="나지연" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:text="-" />
+
+            <TextView
+                android:id="@+id/text_score1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:onClick="@{() -> viewModel.onScore1Click()}"
+                android:text="@{viewModel.score1}"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="1:3" />
+
+            <TextView
+                android:id="@+id/text_score2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:onClick="@{() -> viewModel.onScore2Click()}"
+                android:text="@{viewModel.score2}"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="1:3" />
+
+            <TextView
+                android:id="@+id/text_score3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:onClick="@{() -> viewModel.onScore3Click()}"
+                android:text="@{viewModel.score3}"
+                android:textColor="#39b896"
+                android:textSize="16.3sp"
+                tools:text="1:3" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            android:weightSum="313"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_group_number">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="69"
+                android:background="@drawable/custom_league_result_out_left_top_box"
+                tools:text=" " />
+
+            <TextView
+                android:id="@+id/text_player1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="@{viewModel.player1}"
+                android:textColor="#464646"
+                android:textSize="13.8sp"
+                tools:text="이하늘" />
+
+            <TextView
+                android:id="@+id/text_player2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="@{viewModel.player2}"
+                android:textColor="#464646"
+                android:textSize="13.8sp"
+                tools:text="이하늘" />
+
+            <TextView
+                android:id="@+id/text_player3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="@{viewModel.player3}"
+                android:textColor="#464646"
+                android:textSize="13.8sp"
+                tools:text="이하늘" />
+
+            <TextView
+                android:id="@+id/text_player4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_out_right_top_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="@{viewModel.player4}"
+                android:textColor="#464646"
+                android:textSize="13.8sp"
+                tools:text="이하늘" />
+        </LinearLayout>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

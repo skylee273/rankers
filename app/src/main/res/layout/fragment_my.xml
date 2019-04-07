@@ -18,27 +18,277 @@
     android:layout_height="match_parent">
 
 
-    <Button
-        android:id="@+id/btn_result"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="경기결과"
-        android:onClick="@{() -> myActivity.resultClick()}"
+    <View
+        android:id="@+id/view13"
+        android:layout_width="0dp"
+        android:layout_height="0.3dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="30dp"
+        android:background="#898989"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_record" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
 
-    <Button
-        android:id="@+id/btn_record"
+    <LinearLayout
+        android:id="@+id/linearLayout10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view6">
+
+        <Button
+            android:id="@+id/btn_call"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_call"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:text="문의하기"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/button17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null" />
+
+        <Button
+            android:id="@+id/button16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null" />
+
+        <Button
+            android:id="@+id/button15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="0dp"
+        android:layout_height="0.3dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="30dp"
+        android:background="#898989"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout7"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5">
+
+        <Button
+            android:id="@+id/btn_club"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_my_club"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:text="클럽등록"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_manager"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_my_manage"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:text="매니저"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_version"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_my_version"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:text="버전정보"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_my_notice"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:text="공지사항"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="0dp"
+        android:layout_height="0.3dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="17dp"
+        android:layout_marginEnd="30dp"
+        android:background="#898989"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:orientation="horizontal"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile_line">
+
+        <Button
+            android:id="@+id/btn_quetsion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_question"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:text="도움말"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_record"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:onClick="@{() -> myActivity.recordClick()}"
+            android:text="개인기록"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_level"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_level"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:text="등업신청"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+
+        <Button
+            android:id="@+id/btn_regit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@null"
+            android:drawableTop="@drawable/ic_regit"
+            android:drawablePadding="20dp"
+            android:gravity="center_horizontal"
+            android:onClick="@{() -> myActivity.resultClick()}"
+            android:text="결과등록"
+            android:textColor="#898989"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/iv_profile_line"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="31dp"
+        android:layout_marginEnd="29dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile"
+        app:srcCompat="@drawable/ic_profile_line" />
+
+    <TextView
+        android:id="@+id/text_email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="경기기록"
-        android:onClick="@{() -> myActivity.recordClick()}"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="39dp"
+        android:layout_marginBottom="15dp"
+        android:fontFamily="@font/notosanscjkkrregular"
+        android:text="mind02@naver.com"
+        android:textColor="#707070"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="118dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginBottom="38dp"
+        android:fontFamily="@font/notosanscjkkrregular"
+        android:text="민들레"
+        android:textColor="#454545"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_profile"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_profile" />
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="26dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_my_profile" />
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

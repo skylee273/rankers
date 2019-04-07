@@ -64,18 +64,71 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
+                        <LinearLayout
+                            android:id="@+id/linearLayout13"
+                            android:layout_width="203dp"
+                            android:layout_height="34dp"
+                            android:layout_marginStart="42dp"
+                            android:layout_marginTop="15dp"
+                            android:layout_marginEnd="7dp"
+                            android:background="#f3f3f3"
+                            android:orientation="horizontal"
+                            android:weightSum="203.5"
+                            app:layout_constraintEnd_toStartOf="@+id/btn_create"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_count">
+
+                            <Button
+                                android:id="@+id/btn_sub"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="47.5"
+                                android:background="@drawable/ic_minus"
+                                android:onClick="@{()->activity.sub()}"
+                                tools:layout_editor_absoluteX="42dp"
+                                tools:layout_editor_absoluteY="55dp" />
+
+                            <TextView
+                                android:id="@+id/text_number"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="108.5"
+                                android:gravity="center_horizontal|center_vertical"
+                                android:letterSpacing="-0.04"
+                                android:lineSpacingExtra="0.3sp"
+                                android:text="1"
+                                android:textColor="#707070"
+                                android:textSize="18.8sp"
+                                tools:layout_editor_absoluteX="162dp"
+                                tools:layout_editor_absoluteY="175dp" />
+
+                            <Button
+                                android:id="@+id/btn_plus"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="47.5"
+                                android:background="@drawable/ic_plus"
+                                android:onClick="@{()->activity.plus()}"
+                                tools:layout_editor_absoluteX="250dp"
+                                tools:layout_editor_absoluteY="175dp" />
+
+                        </LinearLayout>
+
                         <Button
                             android:id="@+id/btn_register"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="50dp"
+                            android:layout_height="40dp"
+                            android:layout_marginStart="24dp"
                             android:layout_marginTop="32dp"
-                            android:layout_marginEnd="50dp"
+                            android:layout_marginEnd="24dp"
                             android:layout_marginBottom="32dp"
+                            android:background="#396ab8"
+                            android:letterSpacing="-0.06"
+                            android:lineSpacingExtra="22.3sp"
                             android:onClick="@{() -> activity.uploadLeagueDB()}"
-                            android:background="@color/colorPrimaryDark"
-                            android:text="등록하기"
+                            android:text="등록완료"
                             android:textColor="#ffffff"
+                            android:textSize="15sp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.0"
@@ -86,77 +139,45 @@
                             android:id="@+id/recycler"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/btn_sub"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
                             tools:listitem="@layout/item_league" />
-
-                        <TextView
-                            android:id="@+id/text_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="8dp"
-                            android:text="1"
-                            android:textSize="24sp"
-                            app:layout_constraintStart_toEndOf="@+id/btn_sub"
-                            app:layout_constraintTop_toTopOf="@+id/btn_sub" />
 
                         <Button
                             android:id="@+id/btn_create"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginEnd="16dp"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="7dp"
+                            android:layout_marginEnd="42dp"
+                            android:background="#396ab8"
+                            android:letterSpacing="-0.06"
+                            android:lineSpacingExtra="23.5sp"
                             android:onClick="@{()->activity.create()}"
                             android:text="생성"
+                            android:textColor="#ffffff"
+                            android:textSize="13.8sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/linearLayout13"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-                        <Button
-                            android:id="@+id/btn_plus"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:onClick="@{()->activity.plus()}"
-                            android:text="+"
-                            app:layout_constraintStart_toEndOf="@+id/text_number"
-                            app:layout_constraintTop_toBottomOf="@+id/textView4" />
-
-                        <TextView
-                            android:id="@+id/textView4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:text="참여인원"
-                            android:textColor="@color/color_information"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintStart_toEndOf="@+id/linearLayout13"
+                            app:layout_constraintTop_toTopOf="@+id/linearLayout13" />
 
                         <TextView
                             android:id="@+id/text_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:layout_marginTop="16dp"
-                            android:text="3"
-                            android:textColor="@color/color_toolbar_title"
-                            app:layout_constraintStart_toEndOf="@+id/textView4"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <Button
-                            android:id="@+id/btn_sub"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_marginTop="16dp"
-                            android:onClick="@{()->activity.sub()}"
-                            android:text="-"
+                            android:layout_marginStart="19dp"
+                            android:layout_marginTop="17dp"
+                            android:fontFamily="@font/notosanscjkkrregular"
+                            android:letterSpacing="-0.04"
+                            android:lineSpacingExtra="5.3sp"
+                            android:textColor="#4d4d67"
+                            android:textSize="13.8sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/text_count" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:text="참여인원  총  3  명" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
             </ScrollView>

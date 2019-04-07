@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@android:id/text1"
+    style="?android:attr/dropDownItemStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:drawableRight="@drawable/ic_dropdown_arrow"
+    android:drawablePadding="16dp"
+    android:ellipsize="marquee"
+    android:fontFamily="@font/notosanscjkkrregular"
+    android:gravity="center_horizontal"
+    android:letterSpacing="-0.02"
+    android:lineSpacingExtra="-3sp"
+    android:singleLine="true"
+    android:text="민들레"
+    android:textColor="#707070"
+    android:textSize="15sp" />

@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.adapter.model.SectionsPagerModel
 import com.project.rankers.ui.base.BaseActivity
+import java.util.*
 import javax.inject.Inject
 
 
@@ -49,6 +50,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPa
         super.onCreate(savedInstanceState)
         mainBinding = getViewDataBinding()
         mMainViewModel!!.navigator = this
+
+        val mToolbar = mainBinding.toolbar
+        setSupportActionBar(mToolbar)
+        Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(false)
+        supportActionBar!!.setDisplayShowTitleEnabled(false)
+
 
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         mainBinding.viewPager.adapter = mSectionsPagerAdapter

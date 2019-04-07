@@ -35,15 +35,30 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/text_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
+                    <LinearLayout
+                        android:id="@+id/linearLayout11"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:background="#eeeef4"
+                        android:gravity="center_vertical"
+                        android:orientation="vertical"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_title" />
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/text_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="16dp"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.04"
+                            android:lineSpacingExtra="6.5sp"
+                            android:text="진행중인 대회 정보"
+                            android:textColor="#4d4d67"
+                            android:textSize="12.5sp" />
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycler"
@@ -53,21 +68,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_title"
-                        tools:listitem="@layout/item_contest" />
+                        app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+                        tools:listitem="@layout/item_operator_view" />
 
-                    <TextView
-                        android:id="@+id/text_title"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="16dp"
-                        android:text="@string/operation_title"
-                        android:textColor="@color/color_information"
-                        android:textSize="14sp"
-                        app:fontFamily="@font/notosanscjkkrmedium"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>
         </ScrollView>

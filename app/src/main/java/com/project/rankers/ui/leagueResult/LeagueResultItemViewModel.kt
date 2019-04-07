@@ -24,26 +24,30 @@ class LeagueResultItemViewModel(group: GroupResponse.Group, private val mListene
     val number: ObservableField<String>
 
     init {
-        val groupMember = group.groupMember!!.split(",")
-        player1 = ObservableField(groupMember[0])
-        player2 = ObservableField(groupMember[1])
-        player3 = ObservableField(groupMember[2])
-        player4 = ObservableField(groupMember[3])
-        player5 = ObservableField(groupMember[0])
-        player6 = ObservableField(groupMember[1])
-        player7 = ObservableField(groupMember[2])
-        player8 = ObservableField(groupMember[3])
-        score1 = ObservableField("입력")
-        score2 = ObservableField("입력")
-        score3 = ObservableField("입력")
-        score5 = ObservableField("입력")
-        score6 = ObservableField("입력")
-        score9 = ObservableField("입력")
-
-        number = ObservableField(group.groupNumber!!)
+        player1 = ObservableField(group.groupPlayer1!!)
+        player2 = ObservableField(group.groupPlayer2!!)
+        player3 = ObservableField(group.groupPlayer3!!)
+        player4 = ObservableField(group.groupPlayer4!!)
+        player5 = ObservableField(group.groupPlayer1!!)
+        player6 = ObservableField(group.groupPlayer2!!)
+        player7 = ObservableField(group.groupPlayer3!!)
+        player8 = ObservableField(group.groupPlayer4!!)
+        score1 = ObservableField(set(group.groupScore1!!) )
+        score2 = ObservableField(set(group.groupScore2!!))
+        score3 = ObservableField(set(group.groupScore3!!))
+        score5 = ObservableField(set(group.groupScore4!!))
+        score6 = ObservableField(set(group.groupScore5!!))
+        score9 = ObservableField(set(group.groupScore6!!))
+        number = ObservableField(group.groupNumber!! + "조 매치")
     }
 
-
+    fun set(str : String) : String {
+        return if (str == ""){
+            "입력"
+        }else{
+            str
+        }
+    }
     fun onScore1Click() {
         mListener.onScore1Click()
     }

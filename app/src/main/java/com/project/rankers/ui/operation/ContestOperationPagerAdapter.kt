@@ -52,13 +52,13 @@ class ContestOperationPagerAdapter (fragmentManager: FragmentManager) : Fragment
     }
 
     fun setBundle(intent: Intent){
-        contestId = intent.extras!!.getString("id")
-        contestDepart = intent.extras!!.getString("depart")
+        contestId = intent.extras!!.getString("CONTEST_ID")
+        contestDepart = intent.extras!!.getString("CONTEST_DEPART")
     }
     private fun getBundle() : Bundle{
         val bundle  =  Bundle()
-        bundle.putString("param1",contestId)
-        bundle.putString("param2",contestDepart)
+        bundle.putString("CONTEST_ID",contestId)
+        bundle.putString("CONTEST_DEPART",contestDepart)
         return bundle
     }
 

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.project.rankers.ui.form.ApplicationFormViewModel"/>
+    </data>
+
+<LinearLayout
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:background="#ffffff"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/view11"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="#d7d7d7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_partner_phone" />
+
+                <View
+                    android:id="@+id/view10"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="#d7d7d7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_partner_name" />
+
+                <View
+                    android:id="@+id/view9"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="#d7d7d7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_phone" />
+
+                <View
+                    android:id="@+id/view8"
+                    android:layout_width="0dp"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="#d7d7d7"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_name" />
+
+                <Button
+                    android:id="@+id/btn_register"
+                    android:layout_width="0dp"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="32dp"
+                    android:background="#396ab8"
+                    android:fontFamily="@font/notosanscjkkrmedium"
+                    android:gravity="center"
+                    android:letterSpacing="-0.06"
+                    android:lineSpacingExtra="22.3sp"
+                    android:onClick="@{() -> viewModel.onFormClick()}"
+                    android:text="등록완료"
+                    android:textColor="#ffffff"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+                <TextView
+                    android:id="@+id/textView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:lineSpacingExtra="0.3sp"
+                    android:text="파트너 휴대폰"
+                    android:textColor="#464646"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view10" />
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:lineSpacingExtra="0.3sp"
+                    android:text="휴대폰"
+                    android:textColor="#464646"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/notosanscjkkrmedium"
+                    android:lineSpacingExtra="0.3sp"
+                    android:text="단식인 경우에는 본인 파트만 작성"
+                    android:textColor="#396ab8"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edit_partner_phone" />
+
+                <EditText
+                    android:id="@+id/edit_partner_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:fontFamily="@font/notosanscjkkrregular"
+                    android:gravity="center_vertical"
+                    android:hint="파트너 휴대폰을 입력하세요"
+                    android:inputType="phone"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-3.8sp"
+                    android:text="@={viewModel.partnerPhone}"
+                    android:textColorHint="#d7d7d7"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+                <EditText
+                    android:id="@+id/edit_partner_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:fontFamily="@font/notosanscjkkrregular"
+                    android:gravity="center_vertical"
+                    android:hint="파트너 이름을 입력해주세요"
+                    android:inputType="textPersonName"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-3.8sp"
+                    android:text="@={viewModel.partnerName}"
+                    android:textColorHint="#d7d7d7"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_partner" />
+
+                <TextView
+                    android:id="@+id/text_partner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/notosanscjkkrregular"
+                    android:lineSpacingExtra="0.3sp"
+                    android:text="파트너 이름"
+                    android:textColor="#464646"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view9" />
+
+                <EditText
+                    android:id="@+id/edit_phone"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:fontFamily="@font/notosanscjkkrregular"
+                    android:gravity="center_vertical"
+                    android:hint="본인 휴대폰을 입력하세요"
+                    android:inputType="phone"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-3.8sp"
+                    android:text="@={viewModel.userPhone}"
+                    android:textColorHint="#d7d7d7"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView10" />
+
+                <EditText
+                    android:id="@+id/edit_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:fontFamily="@font/notosanscjkkrregular"
+                    android:gravity="center_vertical"
+                    android:hint="본인 이름을 입력해주세요"
+                    android:inputType="textPersonName"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-3.8sp"
+                    android:singleLine="true"
+                    android:text="@={viewModel.userName}"
+                    android:textColorHint="#d7d7d7"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_my" />
+
+                <TextView
+                    android:id="@+id/text_my"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginTop="28dp"
+                    android:fontFamily="@font/notosanscjkkrmedium"
+                    android:lineSpacingExtra="0.3sp"
+                    android:text="이름"
+                    android:textColor="#464646"
+                    android:textSize="11.8sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/toolbar_color_bg"
+                    android:minHeight="?attr/actionBarSize"
+                    android:theme="@style/ToolbarTheme"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/toolbar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/notosanscjkkrmedium"
+                        android:text="@string/toolbar_title_apply"
+                        android:textColor="@color/color_toolbar_title"
+                        android:textSize="14sp"
+                        tools:layout_editor_absoluteX="169dp"
+                        tools:layout_editor_absoluteY="14dp" />
+
+                </androidx.appcompat.widget.Toolbar>
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
+
+</layout>
+
+

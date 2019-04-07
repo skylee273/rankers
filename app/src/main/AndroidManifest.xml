@@ -38,7 +38,7 @@
         <activity android:name=".ui.personal.writing.WritingPersonalRecordActivity"/>
         <activity android:name=".ui.activity.ResultActivity"/>
         <activity android:name=".ui.competition.CompetitionInfoActivity"/>
-        <activity android:name=".ui.activity.ApplyActivity"/>
+        <activity android:name=".ui.apply.ApplyActivity"/>
         <activity android:name=".ui.form.ApplicationFormActivity"/>
         <activity android:name=".ui.operator.OperatorActivity"/>
         <activity android:name=".ui.operation.ContestOperationActivity"/>

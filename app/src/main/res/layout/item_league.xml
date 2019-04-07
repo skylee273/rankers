@@ -3,102 +3,222 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:layout_marginBottom="16dp"
-    android:background="@drawable/costom_edit_text_bg">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/text_four"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:hint="조의 참여 선수를 입력해주세요"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="2.8sp"
+        android:textColorHint="#d7d7d7"
+        android:textSize="16.3sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view20"
+        app:layout_constraintStart_toEndOf="@+id/view20"
+        app:layout_constraintTop_toTopOf="@+id/view20" />
+
+    <View
+        android:id="@+id/view20"
+        android:layout_width="0.3dp"
+        android:layout_height="14.3dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="14dp"
+        android:background="#a1a1a1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view19" />
+
+    <TextView
+        android:id="@+id/four"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="16dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:fontFamily="@font/notosanscjkkrmedium"
-        android:gravity="center_vertical"
-        android:paddingLeft="30dp"
-        android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="2dp"
+        android:text="4"
+        app:layout_constraintBottom_toBottomOf="@+id/view20"
+        app:layout_constraintEnd_toStartOf="@+id/view20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view20" />
+
+    <View
+        android:id="@+id/view19"
+        android:layout_width="0dp"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="14dp"
+        android:background="#a1a1a1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_three" />
 
     <TextView
         android:id="@+id/text_three"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:hint="조의 참여 선수를 입력해주세요"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="2.8sp"
+        android:textColorHint="#d7d7d7"
+        android:textSize="16.3sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view18"
+        app:layout_constraintStart_toEndOf="@+id/view18"
+        app:layout_constraintTop_toTopOf="@+id/view18" />
+
+    <View
+        android:id="@+id/view18"
+        android:layout_width="0.3dp"
+        android:layout_height="14.3dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="14dp"
+        android:background="#a1a1a1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view17" />
+
+    <TextView
+        android:id="@+id/three"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:fontFamily="@font/notosanscjkkrmedium"
-        android:gravity="center_vertical"
-        android:paddingLeft="30dp"
-        android:textSize="13sp"
+        android:layout_marginBottom="2dp"
+        android:text="3"
+        app:layout_constraintBottom_toBottomOf="@+id/view18"
+        app:layout_constraintEnd_toStartOf="@+id/view18"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view18" />
+
+    <View
+        android:id="@+id/view17"
+        android:layout_width="0dp"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="14dp"
+        android:background="#a1a1a1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_two" />
 
     <TextView
-        android:id="@+id/text_number"
+        android:id="@+id/text_two"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:hint="조의 참여 선수를 입력해주세요"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="2.8sp"
+        android:textColorHint="#d7d7d7"
+        android:textSize="16.3sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view16"
+        app:layout_constraintStart_toEndOf="@+id/view16"
+        app:layout_constraintTop_toTopOf="@+id/view16" />
+
+    <View
+        android:id="@+id/view16"
+        android:layout_width="0.3dp"
+        android:layout_height="14.3dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="14dp"
+        android:background="#a1a1a1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view15" />
+
+    <TextView
+        android:id="@+id/two"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:text="1조"
-        android:textColor="@color/color_contest_title"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="2dp"
+        android:letterSpacing="-0.04"
+        android:text="2"
+        android:textColor="#707070"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view16"
+        app:layout_constraintEnd_toStartOf="@+id/view16"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/view16" />
 
-    <RelativeLayout
-        android:id="@+id/rl_image"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        app:layout_constraintTop_toBottomOf="@+id/text_number"
-        tools:layout_editor_absoluteX="0dp">
-
-        <View
-            android:id="@+id/view4"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/color_card_line" />
-    </RelativeLayout>
+    <View
+        android:id="@+id/view15"
+        android:layout_width="0dp"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="14dp"
+        android:background="#a1a1a1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_one" />
 
     <TextView
         android:id="@+id/text_one"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:fontFamily="@font/notosanscjkkrmedium"
-        android:gravity="center_vertical"
-        android:paddingLeft="30dp"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="19dp"
+        android:hint="조의 참여 선수를 입력해주세요"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="2.8sp"
+        android:textColor="#707070"
+        android:textColorHint="#d7d7d7"
+        android:textSize="16.3sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view14"
+        app:layout_constraintStart_toEndOf="@+id/view14"
+        app:layout_constraintTop_toTopOf="@+id/view14"
+        tools:text="김수박" />
+
+    <View
+        android:id="@+id/view14"
+        android:layout_width="0.3dp"
+        android:layout_height="14.3dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="14dp"
+        android:background="#a1a1a1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/rl_image" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout14" />
 
     <TextView
-        android:id="@+id/text_two"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
+        android:id="@+id/one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="1dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/costom_edit_text_bg"
-        android:fontFamily="@font/notosanscjkkrmedium"
-        android:gravity="center_vertical"
-        android:paddingLeft="30dp"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginBottom="2dp"
+        android:letterSpacing="-0.04"
+        android:text="1"
+        android:textColor="#707070"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/view14"
+        app:layout_constraintEnd_toStartOf="@+id/view14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_one" />
+        app:layout_constraintTop_toTopOf="@+id/view14" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout14"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="14dp"
+        android:background="#eeeef4"
+        android:gravity="center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/text_number"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:gravity="center_vertical"
+            android:letterSpacing="-0.04"
+            android:lineSpacingExtra="6.5sp"
+            android:text="1조"
+            android:textColor="#4d4d67"
+            android:textSize="12.5sp" />
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

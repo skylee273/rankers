@@ -55,22 +55,46 @@ class GroupResponse {
         val groupPlayer4 : String? = null
         @Expose
         @SerializedName("GROUP_SCORE1")
-        val groupScore1 : String? = null
+        var groupScore1 : String? = null
         @Expose
         @SerializedName("GROUP_SCORE2")
-        val groupScore2 : String? = null
+        var groupScore2 : String? = null
         @Expose
         @SerializedName("GROUP_SCORE3")
-        val groupScore3 : String? = null
+        var groupScore3 : String? = null
         @Expose
         @SerializedName("GROUP_SCORE4")
-        val groupScore4 : String? = null
+        var groupScore4 : String? = null
         @Expose
         @SerializedName("GROUP_SCORE5")
-        val groupScore5 : String? = null
+        var groupScore5 : String? = null
         @Expose
         @SerializedName("GROUP_SCORE6")
-        val groupScore6 : String? = null
+        var groupScore6 : String? = null
+        @Expose
+        @SerializedName("GROUP_TOTAL1")
+        var groupTotal1 : String? = null
+        @Expose
+        @SerializedName("GROUP_TOTAL2")
+        var groupTotal2 : String? = null
+        @Expose
+        @SerializedName("GROUP_TOTAL3")
+        var groupTotal3 : String? = null
+        @Expose
+        @SerializedName("GROUP_TOTAL4")
+        var groupTotal4 : String? = null
+        @Expose
+        @SerializedName("GROUP_RANK1")
+        var groupRank1 : String? = null
+        @Expose
+        @SerializedName("GROUP_RANK2")
+        var groupRank2 : String? = null
+        @Expose
+        @SerializedName("GROUP_RANK3")
+        var groupRank3 : String? = null
+        @Expose
+        @SerializedName("GROUP_RANK4")
+        var groupRank4 : String? = null
 
         override fun hashCode(): Int {
             var result = groupID!!.hashCode()
@@ -87,6 +111,14 @@ class GroupResponse {
             result = 31 * result + groupScore4!!.hashCode()
             result = 31 * result + groupScore5!!.hashCode()
             result = 31 * result + groupScore6!!.hashCode()
+            result = 31 * result + groupTotal1!!.hashCode()
+            result = 31 * result + groupTotal2!!.hashCode()
+            result = 31 * result + groupTotal3!!.hashCode()
+            result = 31 * result + groupTotal4!!.hashCode()
+            result = 31 * result + groupRank1!!.hashCode()
+            result = 31 * result + groupRank2!!.hashCode()
+            result = 31 * result + groupRank3!!.hashCode()
+            result = 31 * result + groupRank4!!.hashCode()
 
             return result
         }

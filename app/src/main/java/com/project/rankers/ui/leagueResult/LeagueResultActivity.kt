@@ -21,7 +21,6 @@ import javax.inject.Inject
 
 class LeagueResultActivity : BaseActivity<ActivityLeagueResultBinding, LeagueResultViewModel>() , LeagueResultNavigator, LeagueResultAdapter.GroupAdapterListener{
 
-
     @Inject
     internal var leagueResultAdapter: LeagueResultAdapter? = null
     @Inject
@@ -29,45 +28,23 @@ class LeagueResultActivity : BaseActivity<ActivityLeagueResultBinding, LeagueRes
     private var mLayoutManager = LinearLayoutManager(this)
     private lateinit var activityLeagueResultBinding : ActivityLeagueResultBinding
     private var leagueResultViewModel: LeagueResultViewModel? = null
-
-    @SuppressLint("SetTextI18n")
-    override fun onScore(mBinding: ItemLeagueResultViewBinding, type: Int) {
+    override fun onScore(type: Int, position: Int) {
         MaterialDialog(this).show {
             title(text = "점수입력")
             customView(R.layout.dialog_league, scrollable = true)
             positiveButton(text = "확인") { dialog ->
                 val winScore : EditText = dialog.getCustomView().findViewById(R.id.win_score)
                 val loseScore : EditText = dialog.getCustomView().findViewById(R.id.lose_score)
-                when(type){
-                    1 -> {
-                        mBinding.textScore1.text = winScore.text.toString() + " : " + loseScore.text.toString()
-                        mBinding.textScore4.text = loseScore.text.toString() + " : " + winScore.text.toString()
-                    }
-                    2 -> {
-                        mBinding.textScore2.text = winScore.text.toString() + " : " + loseScore.text.toString()
-                        mBinding.textScore7.text = loseScore.text.toString() + " : " + winScore.text.toString()
-                    }
-                    3 -> {
-                        mBinding.textScore3.text = winScore.text.toString() + " : " + loseScore.text.toString()
-                        mBinding.textScore10.text = loseScore.text.toString() + " : " + winScore.text.toString()
-                    }
-                    5 -> {
-                        mBinding.textScore5.text = winScore.text.toString() + " : " + loseScore.text.toString()
-                        mBinding.textScore8.text = loseScore.text.toString() + " : " + winScore.text.toString()
-                    }
-                    6 -> {
-                        mBinding.textScore6.text = winScore.text.toString() + " : " + loseScore.text.toString()
-                        mBinding.textScore11.text = loseScore.text.toString() + " : " + winScore.text.toString()
-                    }
-                    9 -> {
-                        mBinding.textScore9.text = winScore.text.toString() + " : " + loseScore.text.toString()
-                        mBinding.textScore12.text = loseScore.text.toString() + " : " + winScore.text.toString()
-                    }
-                }
+                leagueResultAdapter!!.modifyPlayer(position, type, winScore.text.toString(), loseScore.text.toString())
             }
             negativeButton(text = "취소")
         }
     }
+    override fun uploadGroup() {
+        leagueResultViewModel!!.updateGroup(leagueResultAdapter!!.getItems())
+    }
+
+
     override fun onRetryClick() {
         leagueResultViewModel!!.fetchGroups()
     }

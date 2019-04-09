@@ -14,8 +14,8 @@ import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.ui.base.BaseActivity
 import com.project.rankers.databinding.ActivityWritingPersonalRecordBinding
-import com.project.rankers.ui.fragment.MultiFragment
-import com.project.rankers.ui.fragment.SingleFragment
+import com.project.rankers.ui.privateResult.fragment.MultiFragment
+import com.project.rankers.ui.privateResult.fragment.SingleFragment
 import java.util.*
 import javax.inject.Inject
 

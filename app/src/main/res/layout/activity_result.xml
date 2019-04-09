@@ -9,7 +9,7 @@
             type="com.project.rankers.viewmodels.ResultViewModel"/>
         <variable
             name="resultActivity"
-            type="com.project.rankers.ui.activity.ResultActivity"/>
+            type="com.project.rankers.ui.privateResult.ResultActivity"/>
     </data>
 
 

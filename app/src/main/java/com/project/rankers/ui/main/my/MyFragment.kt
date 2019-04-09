@@ -12,7 +12,7 @@ import com.project.rankers.R
 import com.project.rankers.databinding.FragmentMyBinding
 import com.project.rankers.viewmodels.MyViewModel
 import com.project.rankers.ui.personal.writing.WritingPersonalRecordActivity
-import com.project.rankers.ui.activity.ResultActivity
+import com.project.rankers.ui.privateResult.ResultActivity
 
 class MyFragment : Fragment() {
 

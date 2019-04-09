@@ -93,8 +93,7 @@ dependencies {
     implementation 'com.afollestad.material-dialogs:core:2.6.0'
     implementation 'com.afollestad.material-dialogs:input:2.6.0'
     implementation 'com.afollestad.material-dialogs:files:2.6.0'
-    // pdf
-    implementation 'net.gotev:uploadservice:2.1'
+
     // google
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.google.firebase:firebase-auth:16.1.0'

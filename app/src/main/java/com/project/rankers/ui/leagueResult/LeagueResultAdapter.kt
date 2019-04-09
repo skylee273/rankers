@@ -156,26 +156,21 @@ class LeagueResultAdapter(val mGroupResponseList: MutableList<GroupResponse.Grou
 
 
     private fun setRank(score1: Int, score2: Int, score3: Int, score4: Int, position: Int) {
-        val rankList: MutableList<Int> = mutableListOf(score1, score2, score3, score4)
-        rankList.sortedDescending()
+        val scoreList: MutableList<Int> = mutableListOf(score1, score2, score3, score4)
+        val rankList : MutableList<Int> = mutableListOf(1,1,1,1)
 
-
-        for ((index, value) in rankList.withIndex()) {
-            if(value == score1)
-                this.mGroupResponseList!![position].groupRank1 = (index + 1).toString()
-            if(value == score2)
-                this.mGroupResponseList!![position].groupRank1 = (index + 1).toString()
-            if(value == score3)
-                this.mGroupResponseList!![position].groupRank1 = (index + 1).toString()
-            if(value == score4)
-                this.mGroupResponseList!![position].groupRank1 = (index + 1).toString()
-            when (value) {
-                score1 -> this.mGroupResponseList!![position].groupRank1 = (index + 1).toString()
-                score2 -> this.mGroupResponseList!![position].groupRank2 = (index + 1).toString()
-                score3 -> this.mGroupResponseList!![position].groupRank3 = (index + 1).toString()
-                score4 -> this.mGroupResponseList!![position].groupRank4 = (index + 1).toString()
+        for ((index, value) in scoreList.withIndex()) {
+            rankList[index] = 1
+            for (j in 0 until scoreList.size) {
+                if (value < scoreList[j]) {
+                    rankList[index]++
+                }
             }
         }
+        this.mGroupResponseList!![position].groupRank1 = rankList[0].toString()
+        this.mGroupResponseList[position].groupRank2 = rankList[1].toString()
+        this.mGroupResponseList[position].groupRank3 = rankList[2].toString()
+        this.mGroupResponseList[position].groupRank4= rankList[3].toString()
     }
 
     private fun getTotalScore(winScore: Int, loseScore: Int, currentScore: Int): Int {

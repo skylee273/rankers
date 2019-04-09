@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <application
         android:allowBackup="true"
-        android:name="com.project.rankers.kakao.GlobalApplication"
+        android:name=".MvvmApp"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
@@ -17,11 +17,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
 
-
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="@string/kakao_app_key"/>
-
         <activity android:name="com.project.rankers.ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -36,14 +34,15 @@
         <activity android:name="com.project.rankers.kakao.KakaoSignUpActivity"/>
         <activity android:name="com.project.rankers.ui.register.ContestRegisterActivity" />
         <activity android:name=".ui.personal.writing.WritingPersonalRecordActivity"/>
-        <activity android:name=".ui.activity.ResultActivity"/>
+        <activity android:name=".ui.privateResult.ResultActivity"/>
         <activity android:name=".ui.competition.CompetitionInfoActivity"/>
         <activity android:name=".ui.apply.ApplyActivity"/>
         <activity android:name=".ui.form.ApplicationFormActivity"/>
         <activity android:name=".ui.operator.OperatorActivity"/>
         <activity android:name=".ui.operation.ContestOperationActivity"/>
-        <activity android:name=".ui.activity.TournamentActivity"/>
-        <activity android:name=".ui.activity.LeagueActivity"/>
+
+        <activity android:name=".ui.tournament.TournamentActivity"/>
+        <activity android:name=".ui.league.LeagueActivity"/>
         <activity android:name=".ui.leagueResult.LeagueResultActivity"/>
 
     </application>

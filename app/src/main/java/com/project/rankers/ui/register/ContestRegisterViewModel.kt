@@ -21,13 +21,10 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
     private val myItems = listOf(" LOCAL ", " KTA ", " ETC ")
     var arrayDepart = ArrayList<DepartItem>()
 
-
     fun getEndDate(): String? {
         return endDate.get()
     }
-    fun getDepart() : ArrayList<DepartItem>{
-        return arrayDepart
-    }
+
     fun getFile(): String? {
         return file.get()
     }
@@ -63,20 +60,19 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
             else
                 (s.depart)
         }
-        if (isEmptyText()) {
-            compositeDisposable.add(Api.postContestCreator(user!!.geteMail(), getTitle(), getDate(), getEndDate(), getType(), getHost(), getLocation(), depart)
-                    .subscribeOn(Schedulers.newThread())
-                    .take(4)
-                    .subscribe({
+
+        compositeDisposable.add(Api.postContestCreator(user!!.geteMail(), getTitle(), getDate(), getEndDate(), getType(), getHost(), getLocation(), depart)
+                .subscribeOn(Schedulers.newThread())
+                .take(4)
+                .subscribe({
+                    if (it.getSuccess())
                         navigator.showDialog("등록성공", "대회등록이 완료되었습니다")
-                        setIsLoading(false)
-                    }) {
-                        navigator.handleError(it)
-                        setIsLoading(false)
-                    })
-        } else {
-            navigator.showDialog("등록실패","입력정보를 다시 확인하세요")
-        }
+                    setIsLoading(false)
+                }) {
+                    navigator.handleError(it)
+                    setIsLoading(false)
+                })
+
     }
 
     fun onAddClick() {
@@ -104,9 +100,8 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
     }
 
     private fun isEmptyText(): Boolean {
-        CommonUtils.isEmpty(user!!.geteMail())
-        return CommonUtils.isEmpty(user!!.geteMail()) && CommonUtils.isEmpty(getTitle()) && CommonUtils.isEmpty(getType()) && CommonUtils.isEmpty(getDate()) && CommonUtils.isEmpty(getEndDate()) && CommonUtils.isEmpty(getFile()) && CommonUtils.isEmpty(getHost())
-                && CommonUtils.isEmpty(getLocation())
+        return !CommonUtils.isEmpty(user!!.geteMail()) && !CommonUtils.isEmpty(getTitle()) && !CommonUtils.isEmpty(getType()) && !CommonUtils.isEmpty(getDate()) && !CommonUtils.isEmpty(getEndDate()) && !CommonUtils.isEmpty(getFile()) && !CommonUtils.isEmpty(getHost())
+                && !CommonUtils.isEmpty(getLocation())
     }
 
 }

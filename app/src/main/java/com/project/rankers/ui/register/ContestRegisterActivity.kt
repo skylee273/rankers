@@ -3,6 +3,7 @@ package com.project.rankers.ui.register
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.util.Log
 import com.project.rankers.R
 import com.project.rankers.databinding.ActivityContestRegisterBinding
 
@@ -44,8 +45,7 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
                     hint = "부서를 입력해주세요"
             ) { _, text ->
                 mContestRegisterViewModel!!.arrayDepart.add(DepartItem("$text"))
-                contestRegisterAdapter!!.clearItems()
-                contestRegisterAdapter!!.addItems(mContestRegisterViewModel!!.getDepart())
+                contestRegisterAdapter!!.addItems(DepartItem("$text"))
             }
             positiveButton { R.string.agree }
             negativeButton(R.string.disagree)
@@ -129,7 +129,9 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
             MaterialDialog(this).show {
                 title(text = title)
                 message(text = message)
-                positiveButton(text = "확인")
+                positiveButton(text = "확인"){
+                    finish()
+                }
             }
         }
     }
@@ -152,7 +154,7 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
         Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(true)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
-        contestRegisterAdapter = ContestRegisterAdapter(ArrayList<DepartItem>())
+        contestRegisterAdapter = ContestRegisterAdapter(ArrayList())
         mLayoutManager.orientation = LinearLayoutManager.VERTICAL
         contestRegisterBinding.recycler.layoutManager = mLayoutManager
         contestRegisterBinding.recycler.itemAnimator = DefaultItemAnimator()

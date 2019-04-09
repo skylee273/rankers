@@ -7,4 +7,5 @@ interface LeagueResultNavigator {
     fun handleError(throwable: Throwable)
     fun updateGroup(groupItem: List<GroupResponse.Group>)
     fun uploadGroup()
+    fun showDialog(title : String, message : String)
 }

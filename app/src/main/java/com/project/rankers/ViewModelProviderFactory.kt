@@ -16,6 +16,7 @@ import javax.inject.Singleton
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.project.rankers.ui.apply.ApplyViewModel
+import com.project.rankers.ui.league.LeagueViewModel
 import com.project.rankers.ui.leagueResult.LeagueResultViewModel
 import com.project.rankers.ui.main.contest.ContestViewModel
 import com.project.rankers.ui.operator.OperatorViewModel
@@ -51,6 +52,8 @@ class ViewModelProviderFactory : ViewModelProvider.NewInstanceFactory() {
             return LeagueResultViewModel() as T
         } else if (modelClass.isAssignableFrom(ApplyViewModel::class.java)) {
             return ApplyViewModel() as T
+        } else if (modelClass.isAssignableFrom(LeagueViewModel::class.java)) {
+            return LeagueViewModel() as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

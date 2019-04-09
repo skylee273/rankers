@@ -10,8 +10,6 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LeagueResultViewModel : BaseViewModel<LeagueResultNavigator>(){
-    @Inject
-    internal var leagueResultAdapter: LeagueResultAdapter? = null
 
     var mutableLiveData : MutableLiveData<List<GroupResponse.Group>>
     var contestID : String? = null
@@ -37,10 +35,21 @@ class LeagueResultViewModel : BaseViewModel<LeagueResultNavigator>(){
     }
 
     fun updateGroup(items : MutableList<GroupResponse.Group>?){
-        setIsLoading(true)
         for(item in items!!){
-
+            setIsLoading(true)
+            compositeDisposable.add(Api.postUpdateGroup(contestID, contestDepartName, item.groupNumber, item.groupScore1, item.groupScore2, item.groupScore3, item.groupScore4,
+                    item.groupScore5, item.groupScore6, item.groupTotal1, item.groupTotal2, item.groupTotal3, item.groupTotal4, item.groupRank1, item.groupRank2,
+                    item.groupRank3, item.groupRank4)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        setIsLoading(false)
+                    }) {
+                        setIsLoading(false)
+                        navigator.handleError(it)
+                    })
         }
+        navigator.showDialog("예선전 대진표", "대진표 작성이 완료되었습니다")
     }
     fun onUploadClick(){
         navigator.uploadGroup()

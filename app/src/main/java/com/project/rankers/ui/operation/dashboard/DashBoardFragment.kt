@@ -16,7 +16,8 @@ import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
 import com.project.rankers.adapter.DashBoardAdapter
 import com.project.rankers.databinding.FragmentDashboardBinding
-import com.project.rankers.ui.activity.LeagueActivity
+import com.project.rankers.ui.league.LeagueActivity
+import com.project.rankers.ui.tournament.TournamentActivity
 
 class DashBoardFragment : Fragment() {
     private lateinit var dashboardBinding: FragmentDashboardBinding
@@ -51,14 +52,10 @@ class DashBoardFragment : Fragment() {
         dashboardAdapter!!.itemClick = object : DashBoardAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 val deart = dashboardAdapter!!.getDeaprt(position)
-                var type = 0
                 MaterialDialog(activity!!).show {
                     title(text = "대진표작성")
                     listItemsSingleChoice(items = myItems) { dialog, index, text ->
-                        type = index
-                    }
-                    positiveButton(R.string.agree){
-                        when (type) {
+                        when (index) {
                             0 -> {
                                 Log.d("대진표 번호", "예선")
                                 val intent = Intent(mContext, LeagueActivity::class.java)
@@ -68,6 +65,10 @@ class DashBoardFragment : Fragment() {
                             }
                             1 -> {
                                 Log.d("대진표 번호", "본선")
+                                val intent = Intent(mContext, TournamentActivity::class.java)
+                                intent.putExtra("CONTEST_DEPART", deart)
+                                intent.putExtra("CONTEST_ID", param1)
+                                startActivity(intent)
                             }
                         }
                     }

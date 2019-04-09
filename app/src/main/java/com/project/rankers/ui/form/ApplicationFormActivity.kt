@@ -35,7 +35,9 @@ class ApplicationFormActivity : BaseActivity<ActivityApplicationFormBinding, App
             MaterialDialog(this).show {
                 title(text = title)
                 message(text =  message)
-                positiveButton(text = "확인")
+                positiveButton(text = "확인"){
+                    finish()
+                }
             }
         }
     }

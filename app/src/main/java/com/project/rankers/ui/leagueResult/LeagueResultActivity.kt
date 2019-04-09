@@ -21,6 +21,7 @@ import javax.inject.Inject
 
 class LeagueResultActivity : BaseActivity<ActivityLeagueResultBinding, LeagueResultViewModel>() , LeagueResultNavigator, LeagueResultAdapter.GroupAdapterListener{
 
+
     @Inject
     internal var leagueResultAdapter: LeagueResultAdapter? = null
     @Inject
@@ -28,6 +29,7 @@ class LeagueResultActivity : BaseActivity<ActivityLeagueResultBinding, LeagueRes
     private var mLayoutManager = LinearLayoutManager(this)
     private lateinit var activityLeagueResultBinding : ActivityLeagueResultBinding
     private var leagueResultViewModel: LeagueResultViewModel? = null
+
     override fun onScore(type: Int, position: Int) {
         MaterialDialog(this).show {
             title(text = "점수입력")
@@ -43,8 +45,17 @@ class LeagueResultActivity : BaseActivity<ActivityLeagueResultBinding, LeagueRes
     override fun uploadGroup() {
         leagueResultViewModel!!.updateGroup(leagueResultAdapter!!.getItems())
     }
-
-
+    override fun showDialog(title: String, message: String) {
+        runOnUiThread {
+            MaterialDialog(this).show {
+                title(text = title)
+                message(text =  message)
+                positiveButton(text = "확인"){
+                    finish()
+                }
+            }
+        }
+    }
     override fun onRetryClick() {
         leagueResultViewModel!!.fetchGroups()
     }

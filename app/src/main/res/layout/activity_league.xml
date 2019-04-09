@@ -6,10 +6,10 @@
     android:id="@+id/layout">
 
     <data>
-
+        <import type="android.view.View"/>
         <variable
-            name="activity"
-            type="com.project.rankers.ui.activity.LeagueActivity" />
+            name="viewModel"
+            type="com.project.rankers.ui.league.LeagueViewModel"/>
     </data>
 
     <LinearLayout
@@ -84,7 +84,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="47.5"
                                 android:background="@drawable/ic_minus"
-                                android:onClick="@{()->activity.sub()}"
+                                android:onClick="@{()->viewModel.subCountClick()}"
                                 tools:layout_editor_absoluteX="42dp"
                                 tools:layout_editor_absoluteY="55dp" />
 
@@ -108,7 +108,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_weight="47.5"
                                 android:background="@drawable/ic_plus"
-                                android:onClick="@{()->activity.plus()}"
+                                android:onClick="@{()->viewModel.plusCountClick()}"
                                 tools:layout_editor_absoluteX="250dp"
                                 tools:layout_editor_absoluteY="175dp" />
 
@@ -125,7 +125,7 @@
                             android:background="#396ab8"
                             android:letterSpacing="-0.06"
                             android:lineSpacingExtra="22.3sp"
-                            android:onClick="@{() -> activity.uploadLeagueDB()}"
+                            android:onClick="@{() -> viewModel.registerClick()}"
                             android:text="등록완료"
                             android:textColor="#ffffff"
                             android:textSize="15sp"
@@ -143,7 +143,7 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
-                            tools:listitem="@layout/item_league" />
+                            tools:listitem="@layout/item_league_view" />
 
                         <Button
                             android:id="@+id/btn_create"
@@ -154,7 +154,7 @@
                             android:background="#396ab8"
                             android:letterSpacing="-0.06"
                             android:lineSpacingExtra="23.5sp"
-                            android:onClick="@{()->activity.create()}"
+                            android:onClick="@{()->viewModel.createOnClick()}"
                             android:text="생성"
                             android:textColor="#ffffff"
                             android:textSize="13.8sp"

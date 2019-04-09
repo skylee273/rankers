@@ -194,7 +194,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
 
     override fun onDestroy() {
         super.onDestroy()
-        Session.getCurrentSession().removeCallback(sessionCallback)
+//        Session.getCurrentSession().removeCallback(sessionCallback)
     }
 
     fun redirectSignupActivity() {

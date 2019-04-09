@@ -60,8 +60,8 @@ class ContestRegisterAdapter(private val mContestRegisterList: MutableList<Depar
         }
     }
 
-    fun addItems(departItem: List<DepartItem>) {
-        mContestRegisterList!!.addAll(departItem)
+    fun addItems(departItem: DepartItem) {
+        mContestRegisterList!!.add(departItem)
         notifyDataSetChanged()
     }
 

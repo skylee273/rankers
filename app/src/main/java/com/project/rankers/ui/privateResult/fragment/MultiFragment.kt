@@ -12,8 +12,8 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import com.project.rankers.R
 import com.project.rankers.databinding.FragmentMultiBinding
-import com.project.rankers.data.model.db.USER
 import com.project.rankers.data.remote.api.Api
+import com.project.rankers.data.remote.response.UserRepo
 
 import com.project.rankers.viewmodels.MultiViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -23,7 +23,6 @@ class MultiFragment : Fragment() {
 
     private lateinit var multiBinding: FragmentMultiBinding
     private val viewModel = MultiViewModel()
-    var USER: USER? = null
     lateinit var mContext : Context
     lateinit var compositeDisposable: CompositeDisposable
 
@@ -32,18 +31,17 @@ class MultiFragment : Fragment() {
         multiBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_multi, container, false)
         multiBinding.setVariable(BR.multiViewModel,viewModel)
         multiBinding.setVariable(BR.multiActivity,this)
-        USER = USER()
         compositeDisposable = CompositeDisposable()
         return multiBinding.root
     }
 
     fun regitClick(){
-        createSingleRecord(USER!!.geteMail(), multiBinding.editPartner.text.toString(), multiBinding.editOther.text.toString(), multiBinding.editOtherpartner.text.toString(),
+        createMultiRecord(UserRepo().items.userID, multiBinding.editPartner.text.toString(), multiBinding.editOther.text.toString(), multiBinding.editOtherpartner.text.toString(),
                 multiBinding.editDate.text.toString(),  multiBinding.editResult.text.toString(),
                 multiBinding.editWin.text.toString(), multiBinding.editLose.text.toString())
     }
-    private fun createSingleRecord(email : String? , partner : String?, other : String?, otherPartner : String?, date : String? ,
-                                    result : String?, win : String?, lose : String?){
+    private fun createMultiRecord(email : String?, partner : String?, other : String?, otherPartner : String?, date : String?,
+                                  result : String?, win : String?, lose : String?){
         compositeDisposable.add(Api.postMultiCreator(email, partner, other, otherPartner, date, result, win, lose)
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({

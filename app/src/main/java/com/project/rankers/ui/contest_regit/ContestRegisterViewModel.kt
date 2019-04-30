@@ -1,10 +1,10 @@
-package com.project.rankers.ui.register
+package com.project.rankers.ui.contest_regit
 
 import androidx.databinding.ObservableField
 import com.project.rankers.ui.base.BaseViewModel
 import com.project.rankers.data.model.db.DepartItem
-import com.project.rankers.data.model.db.USER
 import com.project.rankers.data.remote.api.Api
+import com.project.rankers.data.remote.response.UserRepo
 import com.project.rankers.utils.CommonUtils
 import io.reactivex.schedulers.Schedulers
 
@@ -17,7 +17,6 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
     var type = ObservableField<String>()
     var date = ObservableField<String>()
     var title = ObservableField<String>()
-    var user: USER? = null
     private val myItems = listOf(" LOCAL ", " KTA ", " ETC ")
     var arrayDepart = ArrayList<DepartItem>()
 
@@ -52,7 +51,6 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
     // 조금 마음에 안드는 코드들 많음
     fun onRegisterClick() {
         setIsLoading(true)
-        user = USER()
         var depart = ""
         for ((index, s) in arrayDepart.withIndex()) {
             depart += if (index > 0)
@@ -61,7 +59,7 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
                 (s.depart)
         }
 
-        compositeDisposable.add(Api.postContestCreator(user!!.geteMail(), getTitle(), getDate(), getEndDate(), getType(), getHost(), getLocation(), depart)
+        compositeDisposable.add(Api.postContestCreator(userRepo.items.userID, getTitle(), getDate(), getEndDate(), getType(), getHost(), getLocation(), depart)
                 .subscribeOn(Schedulers.newThread())
                 .take(4)
                 .subscribe({
@@ -100,7 +98,7 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
     }
 
     private fun isEmptyText(): Boolean {
-        return !CommonUtils.isEmpty(user!!.geteMail()) && !CommonUtils.isEmpty(getTitle()) && !CommonUtils.isEmpty(getType()) && !CommonUtils.isEmpty(getDate()) && !CommonUtils.isEmpty(getEndDate()) && !CommonUtils.isEmpty(getFile()) && !CommonUtils.isEmpty(getHost())
+        return !CommonUtils.isEmpty(UserRepo().items.userID) && !CommonUtils.isEmpty(getTitle()) && !CommonUtils.isEmpty(getType()) && !CommonUtils.isEmpty(getDate()) && !CommonUtils.isEmpty(getEndDate()) && !CommonUtils.isEmpty(getFile()) && !CommonUtils.isEmpty(getHost())
                 && !CommonUtils.isEmpty(getLocation())
     }
 

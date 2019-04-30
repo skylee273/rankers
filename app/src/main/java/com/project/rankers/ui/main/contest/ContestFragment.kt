@@ -2,14 +2,9 @@ package com.project.rankers.ui.main.contest
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import androidx.databinding.DataBindingUtil
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -20,7 +15,7 @@ import com.project.rankers.databinding.FragmentContestBinding
 import com.project.rankers.ui.base.BaseFragment
 import com.project.rankers.ui.competition.CompetitionAdapter
 import com.project.rankers.ui.competition.CompetitionInfoActivity
-import com.project.rankers.ui.register.ContestRegisterActivity
+import com.project.rankers.ui.contest_regit.ContestRegisterActivity
 import com.project.rankers.ui.operator.OperatorActivity
 import javax.inject.Inject
 

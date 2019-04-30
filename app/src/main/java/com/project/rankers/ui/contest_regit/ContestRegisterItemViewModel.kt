@@ -1,4 +1,4 @@
-package com.project.rankers.ui.register
+package com.project.rankers.ui.contest_regit
 
 import androidx.databinding.ObservableField
 import com.project.rankers.data.model.db.DepartItem

@@ -13,9 +13,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.rankers.R
 import com.project.rankers.adapter.SingleAdapter
 import com.project.rankers.databinding.FragmentResultSingleBinding
-import com.project.rankers.data.model.db.USER
 import com.project.rankers.data.remote.api.Api
 import com.project.rankers.data.remote.response.SingleRepo
+import com.project.rankers.data.remote.response.UserRepo
 import com.project.rankers.viewmodels.ResultSingleViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -27,13 +27,11 @@ class ResultSingleFragment : Fragment(){
     lateinit var mContext : Context
     lateinit var compositeDisposable: CompositeDisposable
     private var linearLayoutManager = LinearLayoutManager(activity)
-    var user: USER? = null
     lateinit var singleAdapter : SingleAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContext = this.activity!!
-        user = USER()
         resultSingleBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_single, container, false)
         resultSingleBinding.setVariable(BR.singleViewModel,viewModel)
         resultSingleBinding.setVariable(BR.singleFragment,this)
@@ -42,7 +40,7 @@ class ResultSingleFragment : Fragment(){
         resultSingleBinding.recycler.layoutManager = linearLayoutManager
 
         compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(Api.getSingleRepoList(user!!.geteMail())
+        compositeDisposable.add(Api.getSingleRepoList(UserRepo().items.userID!!)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: SingleRepo ->

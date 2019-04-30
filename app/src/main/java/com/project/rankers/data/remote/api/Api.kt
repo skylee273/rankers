@@ -13,14 +13,19 @@ class Api {
                 @Query("email") email: String
         ): Observable<TournamentRepo>
 
+        @GET("user/loadAllByIds.php")
+        fun getUserAllByIds(
+                @Query("email") email: String
+        ): Observable<UserRepo>
+
         @GET("record/get/single.php")
         fun getSingleRepoList(
-                @Query("email") email: String
+                @Query("id") id: String
         ): Observable<SingleRepo>
 
         @GET("record/get/multi.php")
         fun getMultiRepoList(
-                @Query("email") email: String
+                @Query("id") id: String
         ): Observable<MultiRepo>
 
         @GET("contest/contestList.php")
@@ -33,7 +38,7 @@ class Api {
 
         @GET("contest/contestMyList.php")
         fun getOperationList(
-                @Query("email") email: String?
+                @Query("uid") uid: String?
         ): Observable<ContestResponse>
 
         @GET("contest/applyList.php")
@@ -51,7 +56,7 @@ class Api {
         @FormUrlEncoded
         @POST("record/creator/single.php")
         fun postSingleCreator(
-                @Field("email") email: String?,
+                @Field("id") id: String?,
                 @Field("other") other: String?,
                 @Field("date") date: String?,
                 @Field("result") result: String?,
@@ -62,7 +67,7 @@ class Api {
         @FormUrlEncoded
         @POST("record/creator/multi.php")
         fun postMultiCreator(
-                @Field("email") email: String?,
+                @Field("id") id: String?,
                 @Field("partner") partner: String?,
                 @Field("other") other: String?,
                 @Field("otherPartner") otherPartner: String?,
@@ -76,7 +81,7 @@ class Api {
         @POST("contest/groupCreator.php")
         fun postGroupCreator(
                 @Field("id") id: String?,
-                @Field("email") email: String?,
+                @Field("uid") uid: String?,
                 @Field("depart") depart: String?,
                 @Field("number") number: Int?,
                 @Field("player1") player1: String?,
@@ -103,7 +108,7 @@ class Api {
         @POST("contest/application.php")
         fun postApplicationCreator(
                 @Field("id") id: String?,
-                @Field("email") email: String?,
+                @Field("uid") uid: String?,
                 @Field("depart") depart: String?,
                 @Field("type") type: Int?,
                 @Field("name") name: String?,
@@ -116,7 +121,10 @@ class Api {
         @POST("user/creator.php")
         fun postUserCreator(
                 @Field("email") email: String?,
-                @Field("nickName") nickName: String?
+                @Field("nickName") nickName: String?,
+                @Field("phone") phone: String?,
+                @Field("birthday") birthday: String?
+
         ): Observable<ServerRepo>
 
         @FormUrlEncoded
@@ -144,59 +152,66 @@ class Api {
 
 
     companion object {
-        fun getGroupList(id: String?, depart: String?) : Observable<GroupResponse> {
+
+        fun getUserAllByIds(email: String?): Observable<UserRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getUserAllByIds(email!!)
+        }
+
+        fun getGroupList(id: String?, depart: String?): Observable<GroupResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getGroupList(id, depart)
         }
+
         fun getApplyList(id: String?, depart: String?): Observable<ApplyRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getApplyList(id, depart)
         }
 
-        fun getOperationList(email: String?): Observable<ContestResponse> {
-            return RetrofitCreator.create(ApiImpl::class.java).getOperationList(email)
+        fun getOperationList(uid: String?): Observable<ContestResponse> {
+            return RetrofitCreator.create(ApiImpl::class.java).getOperationList(uid)
         }
 
         fun getID(email: String?): Observable<ServerRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getID(email)
         }
 
-        fun getSingleRepoList(email: String): Observable<SingleRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).getSingleRepoList(email)
+        fun getSingleRepoList(id: String): Observable<SingleRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getSingleRepoList(id)
         }
 
-        fun getMultiRepoList(email: String): Observable<MultiRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).getMultiRepoList(email)
+        fun getMultiRepoList(id: String): Observable<MultiRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getMultiRepoList(id)
         }
 
         fun getContestList(): Observable<ContestResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getContestList()
         }
 
-        fun postGroupCreator(id: String?, email: String?, depart: String?, number: Int?, player1: String?, player2: String?, player3: String?, player4: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postGroupCreator(id, email,depart, number, player1, player2, player3, player4)
+        fun postGroupCreator(id: String?, uid: String?, depart: String?, number: Int?, player1: String?, player2: String?, player3: String?, player4: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postGroupCreator(id, uid, depart, number, player1, player2, player3, player4)
         }
 
-        fun postUserCreator(email: String?, nickName: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postUserCreator(email, nickName)
+        fun postUserCreator(email: String?, nickName: String?, phone: String?, birthday: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postUserCreator(email, nickName, phone, birthday)
         }
 
-        fun postSingleCreator(email: String?, other: String?, date: String?, result: String?, win: String?, lose: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postSingleCreator(email, other, date, result, win, lose)
+        fun postSingleCreator(id: String?, other: String?, date: String?, result: String?, win: String?, lose: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postSingleCreator(id, other, date, result, win, lose)
         }
 
-        fun postMultiCreator(email: String?, partner: String?, other: String?, otherPartner: String?, date: String?, result: String?, win: String?, lose: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postMultiCreator(email, partner, other, otherPartner, date, result, win, lose)
+        fun postMultiCreator(id: String?, partner: String?, other: String?, otherPartner: String?, date: String?, result: String?, win: String?, lose: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postMultiCreator(id, partner, other, otherPartner, date, result, win, lose)
         }
 
         fun postContestCreator(id: String?, name: String?, date: String?, end: String?, type: String?, host: String?, location: String?, depart: String?): Observable<ServerRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).postContestCreator(id, name, date, end, type, host, location, depart)
         }
 
-        fun postApplicationCreator(id: String?, email: String?, depart: String?, type: Int?, name: String?, phone: String?, partner: String?, partnerPhone: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postApplicationCreator(id, email, depart, type, name, phone, partner, partnerPhone)
+        fun postApplicationCreator(id: String?, uid: String?, depart: String?, type: Int?, name: String?, phone: String?, partner: String?, partnerPhone: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postApplicationCreator(id, uid, depart, type, name, phone, partner, partnerPhone)
         }
+
         fun postUpdateGroup(groupID: String?, groupDepart: String?, groupNumber: String?, groupScore1: String?, groupScore2: String?, groupScore3: String?, groupScore4: String?, groupScore5: String?, groupScore6: String?, groupTotal1: String?, groupTotal2: String?, groupTotal3: String?, groupTotal4: String?,
-                            groupRank1: String?, groupRank2: String?, groupRank3: String?, groupRank4: String?) : Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postUpdateGroup(groupID, groupDepart, groupNumber,groupScore1, groupScore2, groupScore3, groupScore4,
+                            groupRank1: String?, groupRank2: String?, groupRank3: String?, groupRank4: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postUpdateGroup(groupID, groupDepart, groupNumber, groupScore1, groupScore2, groupScore3, groupScore4,
                     groupScore5, groupScore6, groupTotal1, groupTotal2, groupTotal3, groupTotal4, groupRank1, groupRank2, groupRank3, groupRank4)
         }
     }

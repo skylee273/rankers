@@ -12,8 +12,8 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import com.project.rankers.R
 import com.project.rankers.databinding.FragmentSingleBinding
-import com.project.rankers.data.model.db.USER
 import com.project.rankers.data.remote.api.Api
+import com.project.rankers.data.remote.response.UserRepo
 import com.project.rankers.viewmodels.SingleViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -22,22 +22,19 @@ class SingleFragment : Fragment() {
 
     private lateinit var singleBinding: FragmentSingleBinding
     private val viewModel = SingleViewModel()
-    var USER: USER? = null
     lateinit var mContext: Context
     lateinit var compositeDisposable: CompositeDisposable
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContext = this.activity!!
         singleBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_single, container, false)
         singleBinding.setVariable(BR.singleViewModel, viewModel)
         singleBinding.setVariable(BR.singleActivity, this)
-        USER = USER()
         compositeDisposable = CompositeDisposable()
         return singleBinding.root
     }
 
     fun regitClick() {
-        createSingleRecord(USER!!.geteMail(), singleBinding.editOther.text.toString(), singleBinding.editDate.text.toString(),
+        createSingleRecord(UserRepo().items.userID, singleBinding.editOther.text.toString(), singleBinding.editDate.text.toString(),
                 singleBinding.editResult.text.toString(), singleBinding.editWin.text.toString(), singleBinding.editLose.text.toString())
     }
 

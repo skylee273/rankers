@@ -1,9 +1,8 @@
-package com.project.rankers.ui.register
+package com.project.rankers.ui.contest_regit
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.util.Log
 import com.project.rankers.R
 import com.project.rankers.databinding.ActivityContestRegisterBinding
 

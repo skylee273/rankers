@@ -8,7 +8,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.annotation.LayoutRes
 import android.view.inputmethod.InputMethodManager
-import com.project.rankers.data.model.db.USER
+import com.project.rankers.data.remote.response.UserRepo
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 
@@ -18,7 +18,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>>:  AppComp
     lateinit var mViewDataBinding: T
     private var mViewModel: V? = null
     lateinit var mContext: Context
-    var user: USER? = null
+    lateinit var userRepo : UserRepo
     @LayoutRes
     abstract fun getLayoutId(): Int
     abstract fun getBindingVariable(): Int
@@ -53,11 +53,11 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>>:  AppComp
     fun getViewDataBinding(): T {
         return mViewDataBinding
     }
-    fun geUser() : USER? {
-        return user
+    fun geUser() : UserRepo? {
+        return userRepo
     }
     private fun setUser(){
-        user = USER()
+        userRepo = userRepo
     }
     override fun onFragmentAttached() {
 

@@ -31,8 +31,8 @@ class ContestResponse {
         @SerializedName("ID")
         val id: String? = null
         @Expose
-        @SerializedName("EMAIL")
-        val email: String? = null
+        @SerializedName("UID")
+        val uid: String? = null
         @Expose
         @SerializedName("TITLE")
         val title: String? = null
@@ -57,7 +57,7 @@ class ContestResponse {
 
         override fun hashCode(): Int {
             var result = id!!.hashCode()
-            result = 31 * result + email!!.hashCode()
+            result = 31 * result + uid!!.hashCode()
             result = 31 * result + title!!.hashCode()
             result = 31 * result + start!!.hashCode()
             result = 31 * result + end!!.hashCode()

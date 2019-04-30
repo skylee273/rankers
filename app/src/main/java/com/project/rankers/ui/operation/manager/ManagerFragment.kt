@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.rankers.R
 import com.project.rankers.databinding.FragmentMangerBinding
-import com.project.rankers.data.model.db.USER
 import io.reactivex.disposables.CompositeDisposable
 
 class ManagerFragment  : Fragment(){
@@ -19,11 +18,9 @@ class ManagerFragment  : Fragment(){
     lateinit var mContext : Context
     lateinit var compositeDisposable: CompositeDisposable
     private var linearLayoutManager = LinearLayoutManager(activity)
-    var user: USER? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mContext = this.activity!!
-        user = USER()
         mangerBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_manger, container, false)
         mangerBinding.setVariable(BR.fragment,this)
 

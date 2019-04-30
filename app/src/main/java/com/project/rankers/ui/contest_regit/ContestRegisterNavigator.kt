@@ -1,4 +1,4 @@
-package com.project.rankers.ui.register
+package com.project.rankers.ui.contest_regit
 
 interface ContestRegisterNavigator {
     fun showDialog(title : String, message : String)

@@ -10,5 +10,7 @@ interface LoginNavigator {
 
     fun openMainActivity()
 
+    fun openRegisterActivity(email : String)
+
     fun googleLogin()
 }

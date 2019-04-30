@@ -32,7 +32,7 @@
             />
         <activity android:name="com.project.rankers.ui.main.MainActivity"/>
         <activity android:name="com.project.rankers.kakao.KakaoSignUpActivity"/>
-        <activity android:name="com.project.rankers.ui.register.ContestRegisterActivity" />
+        <activity android:name="com.project.rankers.ui.contest_regit.ContestRegisterActivity" />
         <activity android:name=".ui.personal.writing.WritingPersonalRecordActivity"/>
         <activity android:name=".ui.privateResult.ResultActivity"/>
         <activity android:name=".ui.competition.CompetitionInfoActivity"/>

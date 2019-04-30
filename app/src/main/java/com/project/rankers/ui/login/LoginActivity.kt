@@ -30,12 +30,14 @@ import com.google.firebase.auth.*
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.ui.base.BaseActivity
 import com.project.rankers.ui.main.MainActivity
+import com.project.rankers.ui.register.RegisterActivity
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import javax.inject.Inject
 
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , LoginNavigator{
+
 
     @Inject
     internal var factory: ViewModelProviderFactory? = null
@@ -75,6 +77,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
         startActivity(intent)
         finish()
     }
+
+    override fun openRegisterActivity(email: String) {
+        val intent = Intent(applicationContext, RegisterActivity::class.java)
+        intent.putExtra("userEmail",email)
+        startActivity(intent)
+    }
+
 
     override fun getBindingVariable(): Int {
        return BR.viewModel

@@ -16,7 +16,6 @@ import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
 import com.project.rankers.adapter.DashBoardAdapter
 import com.project.rankers.databinding.FragmentResultContestBinding
-import com.project.rankers.data.model.db.USER
 import com.project.rankers.ui.leagueResult.LeagueResultActivity
 import io.reactivex.disposables.CompositeDisposable
 
@@ -30,7 +29,6 @@ class ResultContestFragment : Fragment() {
     private val myItems = listOf("예선전", "토너먼트")
     private var dashboardAdapter: DashBoardAdapter? = null
 
-    var user: USER? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         if (arguments != null) {
@@ -38,7 +36,6 @@ class ResultContestFragment : Fragment() {
             param2 = arguments!!.getString("CONTEST_DEPART") // 전달한 key 값
         }
         mContext = this.activity!!
-        user = USER()
         resultContestBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_contest, container, false)
         resultContestBinding.setVariable(BR.fragment, this)
 

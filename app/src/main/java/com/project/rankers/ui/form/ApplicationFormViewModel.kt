@@ -2,14 +2,12 @@ package com.project.rankers.ui.form
 
 import androidx.databinding.ObservableField
 import com.project.rankers.ui.base.BaseViewModel
-import com.project.rankers.data.model.db.USER
 import com.project.rankers.data.remote.api.Api
 import com.project.rankers.utils.CommonUtils
 import io.reactivex.schedulers.Schedulers
 
 class ApplicationFormViewModel : BaseViewModel<ApplicationFormNavigator>() {
 
-    private var user: USER? = null
     val userName = ObservableField<String>()
     val userPhone = ObservableField<String>()
     val partnerName = ObservableField<String>()
@@ -17,8 +15,6 @@ class ApplicationFormViewModel : BaseViewModel<ApplicationFormNavigator>() {
     var contestID: String? = null
     var contestDepart: String? = null
     var contestType: Int? = null
-    val userEmail: String
-        get() = user!!.geteMail()
 
     fun getUserName(): String? {
         return userName.get()
@@ -66,8 +62,7 @@ class ApplicationFormViewModel : BaseViewModel<ApplicationFormNavigator>() {
     }
 
     private fun createForm() {
-        user = USER()
-        compositeDisposable.add(Api.postApplicationCreator(contestID, userEmail, contestDepart, contestType, getUserName(), getUserPhone(), getPartnerName(), getPartnerPhone())
+        compositeDisposable.add(Api.postApplicationCreator(contestID, userRepo.items.userID, contestDepart, contestType, getUserName(), getUserPhone(), getPartnerName(), getPartnerPhone())
                 .subscribeOn(Schedulers.newThread())
                 .take(4)
                 .subscribe({

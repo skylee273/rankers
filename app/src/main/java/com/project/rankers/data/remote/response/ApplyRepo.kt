@@ -33,8 +33,8 @@ class ApplyRepo {
         @SerializedName("APPLY_ID")
         val applyID : String? = null
         @Expose
-        @SerializedName("APPLY_EA")
-        val applyEmail : String? = null
+        @SerializedName("APPLY_UID")
+        val applyUID : String? = null
         @Expose
         @SerializedName("APPLY_DEPART")
         val applyDepart : String? = null
@@ -56,7 +56,7 @@ class ApplyRepo {
 
         override fun hashCode(): Int {
             var result = applyID!!.hashCode()
-            result = 31 * result + applyEmail!!.hashCode()
+            result = 31 * result + applyUID!!.hashCode()
             result = 31 * result + applyDepart!!.hashCode()
             result = 31 * result + applyType!!.hashCode()
             result = 31 * result + applyName!!.hashCode()

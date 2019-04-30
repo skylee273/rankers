@@ -33,8 +33,8 @@ class GroupResponse {
         @SerializedName("GROUP_ID")
         val groupID : String? = null
         @Expose
-        @SerializedName("GROUP_EA")
-        val groupEA : String? = null
+        @SerializedName("GROUP_UID")
+        val groupUID : String? = null
         @Expose
         @SerializedName("GROUP_DEPART")
         val groupDepart : String? = null
@@ -98,7 +98,7 @@ class GroupResponse {
 
         override fun hashCode(): Int {
             var result = groupID!!.hashCode()
-            result = 31 * result + groupEA!!.hashCode()
+            result = 31 * result + groupUID!!.hashCode()
             result = 31 * result + groupDepart!!.hashCode()
             result = 31 * result + groupNumber!!.hashCode()
             result = 31 * result + groupPlayer1!!.hashCode()

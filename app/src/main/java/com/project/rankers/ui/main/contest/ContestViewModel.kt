@@ -1,17 +1,10 @@
 package com.project.rankers.ui.main.contest
 
-import android.content.Intent
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.project.rankers.data.remote.api.Api
 import com.project.rankers.data.remote.response.ContestResponse
 import com.project.rankers.ui.base.BaseViewModel
-import com.project.rankers.ui.competition.CompetitionInfoActivity
-import com.project.rankers.ui.competition.CompetitionInfoNavigator
-import com.project.rankers.ui.operator.OperatorActivity
-import com.project.rankers.ui.register.ContestRegisterActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 
 class ContestViewModel : BaseViewModel<ContestNavigator>(){

@@ -7,10 +7,9 @@ import com.project.rankers.ui.login.LoginViewModel
 import com.project.rankers.ui.main.MainViewModel
 import com.project.rankers.ui.operation.ContestOperationViewModel
 import com.project.rankers.ui.personal.writing.WritingPersonalRecordViewModel
-import com.project.rankers.ui.register.ContestRegisterViewModel
+import com.project.rankers.ui.contest_regit.ContestRegisterViewModel
 import com.project.rankers.ui.splash.SplashViewModel
 
-import javax.inject.Inject
 import javax.inject.Singleton
 
 import androidx.lifecycle.ViewModel
@@ -20,7 +19,7 @@ import com.project.rankers.ui.league.LeagueViewModel
 import com.project.rankers.ui.leagueResult.LeagueResultViewModel
 import com.project.rankers.ui.main.contest.ContestViewModel
 import com.project.rankers.ui.operator.OperatorViewModel
-import com.project.rankers.utils.rx.SchedulerProvider
+import com.project.rankers.ui.register.RegisterViewModel
 
 
 @Singleton
@@ -54,6 +53,8 @@ class ViewModelProviderFactory : ViewModelProvider.NewInstanceFactory() {
             return ApplyViewModel() as T
         } else if (modelClass.isAssignableFrom(LeagueViewModel::class.java)) {
             return LeagueViewModel() as T
+        } else if (modelClass.isAssignableFrom(RegisterViewModel::class.java)) {
+            return RegisterViewModel() as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

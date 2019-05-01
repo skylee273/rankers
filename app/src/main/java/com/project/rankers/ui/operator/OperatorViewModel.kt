@@ -1,6 +1,7 @@
 package com.project.rankers.ui.operator
 
 import androidx.lifecycle.MutableLiveData
+import com.project.rankers.data.model.db.User
 import com.project.rankers.ui.base.BaseViewModel
 import com.project.rankers.data.remote.api.Api
 import com.project.rankers.data.remote.response.ContestResponse
@@ -16,7 +17,7 @@ class OperatorViewModel : BaseViewModel<OperatorNavigator>() {
     }
     fun fetchCompetitions(){
         setIsLoading(true)
-        compositeDisposable.add(Api.getOperationList(userRepo.items.userID)
+        compositeDisposable.add(Api.getOperationList(User().userID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->

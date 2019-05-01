@@ -2,11 +2,12 @@ package com.project.rankers.data.remote.response
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import com.project.rankers.data.remote.domain.SingleItem
 
 class UserRepo {
     @Expose
     @SerializedName("USER")
-    val items: UserRepo.User = User()
+    val items : List<User> = listOf()
 
     class User{
         @Expose

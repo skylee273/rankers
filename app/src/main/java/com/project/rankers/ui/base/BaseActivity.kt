@@ -18,7 +18,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>>:  AppComp
     lateinit var mViewDataBinding: T
     private var mViewModel: V? = null
     lateinit var mContext: Context
-    lateinit var userRepo : UserRepo
     @LayoutRes
     abstract fun getLayoutId(): Int
     abstract fun getBindingVariable(): Int
@@ -27,7 +26,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>>:  AppComp
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         performDataBinding()
-        setUser()
         mContext = this
     }
 
@@ -53,12 +51,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>>:  AppComp
     fun getViewDataBinding(): T {
         return mViewDataBinding
     }
-    fun geUser() : UserRepo? {
-        return userRepo
-    }
-    private fun setUser(){
-        userRepo = userRepo
-    }
+
     override fun onFragmentAttached() {
 
     }

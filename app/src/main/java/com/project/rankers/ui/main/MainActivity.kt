@@ -14,6 +14,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.adapter.model.SectionsPagerModel
 import com.project.rankers.ui.base.BaseActivity
+import com.project.rankers.ui.main.contest.ContestFragment
 import java.util.*
 import javax.inject.Inject
 
@@ -56,7 +57,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPa
         Objects.requireNonNull(supportActionBar)!!.setDisplayHomeAsUpEnabled(false)
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
-
         mSectionsPagerAdapter = SectionsPagerAdapter(supportFragmentManager)
         mainBinding.viewPager.adapter = mSectionsPagerAdapter
         mainBinding.viewPager.addOnPageChangeListener(this)
@@ -68,6 +68,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPa
             when (item.itemId) {
                 R.id.tab_contest -> {
                     mainBinding.viewPager.currentItem = 0
+                    ContestFragment().refreshView()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.tab_club -> {

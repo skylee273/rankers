@@ -15,6 +15,88 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/linearLayout16"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:orientation="horizontal"
+            android:weightSum="313"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="69"
+                android:background="@drawable/custom_league_result_vertical_box"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-1.8sp"
+                android:text="득실"
+                android:textColor="#464646"
+                android:textSize="13.8sp" />
+
+            <TextView
+                android:id="@+id/text_gain1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:text="@{viewModel.gain1}"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="10" />
+
+            <TextView
+                android:id="@+id/text_gain2"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:text="@{viewModel.gain2}"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="4" />
+
+            <TextView
+                android:id="@+id/text_gain3"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:text="@{viewModel.gain3}"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="4" />
+
+            <TextView
+                android:id="@+id/text_gain4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="61"
+                android:background="@drawable/custom_league_result_empty_box"
+                android:gravity="center_horizontal|center_vertical"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="-4.3sp"
+                android:text="@{viewModel.gain4}"
+                android:textColor="#464646"
+                android:textSize="16.3sp"
+                tools:text="4" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginStart="24dp"
@@ -105,7 +187,7 @@
             android:weightSum="313"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
 
             <TextView
                 android:id="@+id/textView15"

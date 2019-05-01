@@ -1,5 +1,5 @@
 package com.project.rankers.ui.tournament
 
-interface TournamentNavigator {
+interface TournamentResultNavigator {
     fun handleError(throwable: Throwable)
 }

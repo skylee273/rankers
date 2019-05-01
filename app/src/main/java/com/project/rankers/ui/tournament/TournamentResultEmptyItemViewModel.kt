@@ -1,4 +1,4 @@
 package com.project.rankers.ui.tournament
 
-class TournamentAdapter {
+class TournamentResultEmptyItemViewModel {
 }

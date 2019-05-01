@@ -40,8 +40,8 @@
         <activity android:name=".ui.form.ApplicationFormActivity"/>
         <activity android:name=".ui.operator.OperatorActivity"/>
         <activity android:name=".ui.operation.ContestOperationActivity"/>
-
-        <activity android:name=".ui.tournament.TournamentActivity"/>
+        <activity android:name=".ui.register.RegisterActivity"/>
+        <activity android:name=".ui.tournament.TournamentResultActivity"/>
         <activity android:name=".ui.league.LeagueActivity"/>
         <activity android:name=".ui.leagueResult.LeagueResultActivity"/>
 

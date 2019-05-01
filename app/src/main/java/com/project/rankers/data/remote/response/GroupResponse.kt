@@ -72,6 +72,19 @@ class GroupResponse {
         @SerializedName("GROUP_SCORE6")
         var groupScore6 : String? = null
         @Expose
+        @SerializedName("GROUP_GAIN1")
+        var groupGain1 : String? = null
+        @Expose
+        @SerializedName("GROUP_GAIN2")
+        var groupGain2 : String? = null
+        @Expose
+        @SerializedName("GROUP_GAIN3")
+        var groupGain3 : String? = null
+        @Expose
+        @SerializedName("GROUP_GAIN4")
+        var groupGain4 : String? = null
+
+        @Expose
         @SerializedName("GROUP_TOTAL1")
         var groupTotal1 : String? = null
         @Expose
@@ -111,6 +124,10 @@ class GroupResponse {
             result = 31 * result + groupScore4!!.hashCode()
             result = 31 * result + groupScore5!!.hashCode()
             result = 31 * result + groupScore6!!.hashCode()
+            result = 31 * result + groupGain1!!.hashCode()
+            result = 31 * result + groupGain2!!.hashCode()
+            result = 31 * result + groupGain3!!.hashCode()
+            result = 31 * result + groupGain4!!.hashCode()
             result = 31 * result + groupTotal1!!.hashCode()
             result = 31 * result + groupTotal2!!.hashCode()
             result = 31 * result + groupTotal3!!.hashCode()

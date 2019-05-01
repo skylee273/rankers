@@ -1,10 +1,11 @@
 package com.project.rankers.ui.contest_regit
 
+import android.util.Log
 import androidx.databinding.ObservableField
 import com.project.rankers.ui.base.BaseViewModel
 import com.project.rankers.data.model.db.DepartItem
+import com.project.rankers.data.model.db.User
 import com.project.rankers.data.remote.api.Api
-import com.project.rankers.data.remote.response.UserRepo
 import com.project.rankers.utils.CommonUtils
 import io.reactivex.schedulers.Schedulers
 
@@ -59,7 +60,17 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
                 (s.depart)
         }
 
-        compositeDisposable.add(Api.postContestCreator(userRepo.items.userID, getTitle(), getDate(), getEndDate(), getType(), getHost(), getLocation(), depart)
+        if(isEmptyText()){
+            fetchContest(depart)
+        }else{
+            navigator.showFaildDialog()
+        }
+
+
+    }
+
+    private fun fetchContest(depart : String){
+        compositeDisposable.add(Api.postContestCreator(User().userID, getTitle(), getDate(), getEndDate(), getType(), getHost(), getLocation(), depart)
                 .subscribeOn(Schedulers.newThread())
                 .take(4)
                 .subscribe({
@@ -70,9 +81,7 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
                     navigator.handleError(it)
                     setIsLoading(false)
                 })
-
     }
-
     fun onAddClick() {
         navigator.showDepartDialog("부서입력")
     }
@@ -98,8 +107,10 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
     }
 
     private fun isEmptyText(): Boolean {
-        return !CommonUtils.isEmpty(UserRepo().items.userID) && !CommonUtils.isEmpty(getTitle()) && !CommonUtils.isEmpty(getType()) && !CommonUtils.isEmpty(getDate()) && !CommonUtils.isEmpty(getEndDate()) && !CommonUtils.isEmpty(getFile()) && !CommonUtils.isEmpty(getHost())
-                && !CommonUtils.isEmpty(getLocation())
+
+        Log.d("EmptyTest", "ID = " + User().userID + " Title = " + getTitle() + " Type = " + getType() + " Date = " + getDate() + " EndDate = " + getEndDate() + " Host = " + getHost() + " Location = " + getLocation())
+        return (!CommonUtils.isEmpty(User().userID) && !CommonUtils.isEmpty(getTitle()) && !CommonUtils.isEmpty(getType())
+                && !CommonUtils.isEmpty(getDate()) && !CommonUtils.isEmpty(getEndDate()) && !CommonUtils.isEmpty(getHost()) && !CommonUtils.isEmpty(getLocation()))
     }
 
 }

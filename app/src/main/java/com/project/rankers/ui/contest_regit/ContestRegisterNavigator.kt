@@ -7,5 +7,6 @@ interface ContestRegisterNavigator {
     fun showDateDialog(type : Int)
     fun showFileDialog()
     fun showDepartDialog(hint : String)
+    fun showFaildDialog()
     fun handleError(throwable: Throwable)
 }

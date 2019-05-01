@@ -12,10 +12,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.project.rankers.R
 import com.project.rankers.adapter.SingleAdapter
+import com.project.rankers.data.model.db.User
 import com.project.rankers.databinding.FragmentResultSingleBinding
 import com.project.rankers.data.remote.api.Api
 import com.project.rankers.data.remote.response.SingleRepo
-import com.project.rankers.data.remote.response.UserRepo
 import com.project.rankers.viewmodels.ResultSingleViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -40,7 +40,7 @@ class ResultSingleFragment : Fragment(){
         resultSingleBinding.recycler.layoutManager = linearLayoutManager
 
         compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(Api.getSingleRepoList(UserRepo().items.userID!!)
+        compositeDisposable.add(Api.getSingleRepoList(User().userID!!)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: SingleRepo ->

@@ -12,12 +12,10 @@ class ContestViewModel : BaseViewModel<ContestNavigator>(){
 
     init {
         mutableLiveData = MutableLiveData()
-        fetchCompetitions()
     }
 
     fun fetchCompetitions(){
         setIsLoading(true)
-
         compositeDisposable.add(Api.getContestList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

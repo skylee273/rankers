@@ -11,9 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import com.project.rankers.R
+import com.project.rankers.data.model.db.User
 import com.project.rankers.databinding.FragmentSingleBinding
 import com.project.rankers.data.remote.api.Api
-import com.project.rankers.data.remote.response.UserRepo
 import com.project.rankers.viewmodels.SingleViewModel
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -34,7 +34,7 @@ class SingleFragment : Fragment() {
     }
 
     fun regitClick() {
-        createSingleRecord(UserRepo().items.userID, singleBinding.editOther.text.toString(), singleBinding.editDate.text.toString(),
+        createSingleRecord(User().userID, singleBinding.editOther.text.toString(), singleBinding.editDate.text.toString(),
                 singleBinding.editResult.text.toString(), singleBinding.editWin.text.toString(), singleBinding.editLose.text.toString())
     }
 

@@ -21,7 +21,6 @@ import java.lang.ref.WeakReference
 
 import androidx.databinding.ObservableBoolean
 import androidx.lifecycle.ViewModel
-import com.project.rankers.data.remote.response.UserRepo
 import io.reactivex.disposables.CompositeDisposable
 
 /**
@@ -35,9 +34,6 @@ abstract class BaseViewModel<N> : ViewModel() {
     val compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     private var mNavigator: WeakReference<N>? = null
-
-    var userRepo : UserRepo = UserRepo()
-
 
     var navigator: N
         get() = mNavigator!!.get()!!

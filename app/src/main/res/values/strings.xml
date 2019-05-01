@@ -44,6 +44,8 @@
     <string name="agree">확인</string>
     <string name="disagree">취소</string>
     <string name="regit_title">대회등록</string>
+    <string name="register_title">대회등록 실패</string>
+    <string name="register_fail_message">정보를 정확히 기입하세요</string>
     <string name="regit_context">대회등록을 하시겠습니까?</string>
     <string name="success_title">대회등록</string>
     <string name="success_context">대회등록이 완료되었습니다.</string>

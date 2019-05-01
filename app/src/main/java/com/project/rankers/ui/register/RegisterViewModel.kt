@@ -1,9 +1,9 @@
 package com.project.rankers.ui.register
 
 import androidx.databinding.ObservableField
+import com.kakao.usermgmt.response.model.User
 import com.project.rankers.data.remote.api.Api
 import com.project.rankers.ui.base.BaseViewModel
-import com.project.rankers.utils.AppConstants
 import com.project.rankers.utils.CommonUtils
 import io.reactivex.schedulers.Schedulers
 
@@ -32,11 +32,11 @@ class RegisterViewModel : BaseViewModel<RegisterNavigator>() {
         return userEmail
     }
 
-    private fun checkVaild() : Boolean?{
+    private fun checkEmpty() : Boolean?{
         return !(CommonUtils.isEmpty(getUserEmail()) || CommonUtils.isEmpty(getUserName()) || CommonUtils.isEmpty(getUserPhone()) || CommonUtils.isEmpty(getUserBirthday()))
     }
     fun onFormClick() {
-        if (checkVaild()!!) {
+        if (checkEmpty()!!) {
             createUser(getUserEmail(), getUserName(), getUserPhone(), getUserBirthday())
         }else{
             navigator.showRetryDialog()
@@ -59,11 +59,23 @@ class RegisterViewModel : BaseViewModel<RegisterNavigator>() {
     }
 
     private fun updateUserInfo(email: String?) {
+        val user =com.project.rankers.data.model.db.User()
         compositeDisposable.add(Api.getUserAllByIds(email)
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({
-                    if(it.items.userID!!.isNotEmpty())
+                    setIsLoading(true)
+                    val item = it.items[0]
+                    if(item.userID!!.isNotEmpty()){
+                        user.userID = item.userID
+                        user.userName = item.userName
+                        user.userEmail = item.userEmail
+                        user.userPhone = item.userPhone
+                        user.userBirthday = item.userBirthday
                         navigator.openMainActivity()
+                    }
+                    else
+                        navigator.showRetryDialog()
+
                 }) {
                     setIsLoading(false)
                     navigator.handleError(it)

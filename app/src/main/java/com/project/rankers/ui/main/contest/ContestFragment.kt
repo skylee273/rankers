@@ -22,9 +22,6 @@ import javax.inject.Inject
 
 class ContestFragment : BaseFragment<FragmentContestBinding, ContestViewModel>(), ContestNavigator, ContestAdapter.ContestAdapterListener {
 
-
-    @Inject
-    internal var competitionAdapter: CompetitionAdapter? = null
     @Inject
     internal var factory: ViewModelProviderFactory? = null
     private var mLayoutManager = LinearLayoutManager(activity)
@@ -50,6 +47,7 @@ class ContestFragment : BaseFragment<FragmentContestBinding, ContestViewModel>()
     }
 
     override fun updateContest(contest: List<ContestResponse.Repo>) {
+        contestAdapter!!.clearItems()
         contestAdapter!!.addItems(contest)
     }
 
@@ -77,12 +75,17 @@ class ContestFragment : BaseFragment<FragmentContestBinding, ContestViewModel>()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        if (arguments != null) {
+            refreshView()
+        }
         super.onViewCreated(view, savedInstanceState)
         contestBinding = this.viewDataBinding!!
         setUp()
     }
 
-
+    fun refreshView(){
+        contestViewModel!!.fetchCompetitions()
+    }
 
     @SuppressLint("WrongConstant")
     private fun setUp() {

@@ -172,11 +172,11 @@
                             android:fontFamily="@font/notosanscjkkrregular"
                             android:letterSpacing="-0.04"
                             android:lineSpacingExtra="5.3sp"
+                            android:text="참여인원  총  0  명"
                             android:textColor="#4d4d67"
                             android:textSize="13.8sp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            android:text="참여인원  총  3  명" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>

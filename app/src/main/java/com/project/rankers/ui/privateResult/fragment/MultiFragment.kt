@@ -11,9 +11,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import com.project.rankers.R
+import com.project.rankers.data.model.db.User
 import com.project.rankers.databinding.FragmentMultiBinding
 import com.project.rankers.data.remote.api.Api
-import com.project.rankers.data.remote.response.UserRepo
 
 import com.project.rankers.viewmodels.MultiViewModel
 import io.reactivex.disposables.CompositeDisposable
@@ -36,7 +36,7 @@ class MultiFragment : Fragment() {
     }
 
     fun regitClick(){
-        createMultiRecord(UserRepo().items.userID, multiBinding.editPartner.text.toString(), multiBinding.editOther.text.toString(), multiBinding.editOtherpartner.text.toString(),
+        createMultiRecord(User().userID, multiBinding.editPartner.text.toString(), multiBinding.editOther.text.toString(), multiBinding.editOtherpartner.text.toString(),
                 multiBinding.editDate.text.toString(),  multiBinding.editResult.text.toString(),
                 multiBinding.editWin.text.toString(), multiBinding.editLose.text.toString())
     }

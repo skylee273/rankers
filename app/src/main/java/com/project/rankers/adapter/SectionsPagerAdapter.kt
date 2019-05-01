@@ -1,5 +1,7 @@
 package com.project.rankers.adapter
 
+import android.os.Bundle
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import com.project.rankers.adapter.model.SectionsPagerModel
@@ -12,12 +14,22 @@ class SectionsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdap
 
     private val itemList = ArrayList<Int>()
 
-    override fun getItem(position: Int) = when (position) {
-        0 -> ContestFragment()
-        1 -> ClubFragment()
-        2 -> MessageFragment()
-        3 -> MyFragment()
-        else -> ContestFragment()
+
+    override fun getItem(position: Int): Fragment {
+        val bundle = Bundle()
+        bundle.putBoolean("refresh", true)
+        when (position) {
+            0 -> {
+                val frag =  ContestFragment()
+                frag.arguments = bundle
+                return frag
+            }
+            1 -> return ClubFragment()
+            2 -> return MessageFragment()
+            3 -> return MyFragment()
+            else -> ContestFragment()
+        }
+        return null!!
     }
 
     // itemList size

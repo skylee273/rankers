@@ -27,10 +27,17 @@ class LeagueResultItemViewModel(group: GroupResponse.Group, private val mListene
     var score11: ObservableField<String>
     var score12: ObservableField<String>
 
+
+    var gain1 : ObservableField<String>
+    var gain2 : ObservableField<String>
+    var gain3 : ObservableField<String>
+    var gain4 : ObservableField<String>
+
     var totalScore1: ObservableField<String>
     var totalScore2: ObservableField<String>
     var totalScore3: ObservableField<String>
     var totalScore4: ObservableField<String>
+
     var rank1: ObservableField<String>
     var rank2: ObservableField<String>
     var rank3: ObservableField<String>
@@ -47,18 +54,73 @@ class LeagueResultItemViewModel(group: GroupResponse.Group, private val mListene
         player6 = ObservableField(group.groupPlayer2)
         player7 = ObservableField(group.groupPlayer3)
         player8 = ObservableField(group.groupPlayer4)
-        score1 = ObservableField(set(group.groupScore1!!))
-        score2 = ObservableField(set(group.groupScore2!!))
-        score3 = ObservableField(set(group.groupScore3!!))
-        score4 = ObservableField(set(group.groupScore4!!))
-        score5 = ObservableField(set(group.groupScore5!!))
-        score6  = ObservableField(set(group.groupScore6!!))
-        score7  = ObservableField(group.groupScore1!!.reversed())
-        score8  = ObservableField(group.groupScore2!!.reversed())
-        score9  = ObservableField(group.groupScore3!!.reversed())
-        score10 = ObservableField(group.groupScore4!!.reversed())
-        score11 = ObservableField(group.groupScore5!!.reversed())
-        score12 = ObservableField(group.groupScore6!!.reversed())
+
+        score1 = if(group.groupScore1 == "0")
+            ObservableField("입력")
+        else{
+            ObservableField(set(group.groupScore1!!))
+        }
+
+        score2 = if(group.groupScore2 == "0")
+            ObservableField("입력")
+        else
+            ObservableField(set(group.groupScore2!!))
+
+        score3 = if(group.groupScore3 == "0")
+            ObservableField("입력")
+        else
+            ObservableField(set(group.groupScore3!!))
+
+        score4 = if(group.groupScore4 == "0")
+            ObservableField("입력")
+        else
+            ObservableField(set(group.groupScore4!!))
+
+        score5 = if(group.groupScore5 == "0")
+            ObservableField("입력")
+        else
+            ObservableField(set(group.groupScore5!!))
+
+        score6 = if(group.groupScore6 == "0")
+            ObservableField("입력")
+        else
+            ObservableField(set(group.groupScore6!!))
+
+        score7 = if(group.groupScore1 == "0")
+            ObservableField("")
+        else
+            ObservableField(group.groupScore1!!.reversed())
+
+        score8 = if(group.groupScore2 == "0")
+            ObservableField("")
+        else
+            ObservableField(group.groupScore2!!.reversed())
+
+        score9 = if(group.groupScore3 == "0")
+            ObservableField("")
+        else
+            ObservableField(group.groupScore3!!.reversed())
+
+        score10 = if(group.groupScore4 == "0")
+            ObservableField("")
+        else
+            ObservableField(group.groupScore4!!.reversed())
+
+        score11 = if(group.groupScore5 == "0")
+            ObservableField("")
+        else
+            ObservableField(group.groupScore5!!.reversed())
+
+        score12 = if(group.groupScore6 == "0")
+            ObservableField("")
+        else
+            ObservableField(group.groupScore6!!.reversed())
+
+        gain1 = ObservableField(set(group.groupGain1!!))
+        gain2 = ObservableField(set(group.groupGain2!!))
+        gain3 = ObservableField(set(group.groupGain3!!))
+        gain4 = ObservableField(set(group.groupGain4!!))
+
 
         totalScore1 = ObservableField(set(group.groupTotal1!!))
         totalScore2 = ObservableField(set(group.groupTotal2!!))

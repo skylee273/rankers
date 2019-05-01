@@ -11,10 +11,10 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import com.project.rankers.R
 import com.project.rankers.adapter.MultiAdapter
+import com.project.rankers.data.model.db.User
 import com.project.rankers.databinding.FragmentResultMultiBinding
 import com.project.rankers.data.remote.api.Api
 import com.project.rankers.data.remote.response.MultiRepo
-import com.project.rankers.data.remote.response.UserRepo
 import com.project.rankers.viewmodels.ResultMultiViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -38,7 +38,7 @@ class ResultMultiFragment : Fragment() {
 
 
         compositeDisposable = CompositeDisposable()
-        compositeDisposable.add(Api.getMultiRepoList(UserRepo().items.userID!!)
+        compositeDisposable.add(Api.getMultiRepoList(User().userID!!)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response: MultiRepo ->

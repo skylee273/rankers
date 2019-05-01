@@ -1,6 +1,5 @@
 package com.project.rankers.ui.tournament
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.DisplayMetrics
 
@@ -11,10 +10,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.project.rankers.MvvmApp
-import com.project.rankers.ui.operation.dashboard.DashBoardFragment
 import java.util.*
 
-class TournamentActivity : AppCompatActivity() {
+class TournamentResultActivity : AppCompatActivity() {
 
 
     private var bracketFragment: BracketsFragment? = null
@@ -23,7 +21,7 @@ class TournamentActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_tournament)
+        setContentView(R.layout.activity_tournament_result)
 
         contestId = intent.extras!!.getString("CONTEST_ID")
         contestDepart = intent.extras!!.getString("CONTEST_DEPART")

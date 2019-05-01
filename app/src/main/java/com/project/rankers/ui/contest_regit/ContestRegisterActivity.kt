@@ -27,6 +27,7 @@ import javax.inject.Inject
 
 class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, ContestRegisterViewModel>(), ContestRegisterNavigator, ContestRegisterAdapter.ContestRegisterAdapterListener{
 
+
     @Inject
     internal var contestRegisterAdapter : ContestRegisterAdapter? = null
     @Inject
@@ -35,6 +36,14 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
     private var mContestRegisterViewModel: ContestRegisterViewModel? = null
     private var locationDialog: LocationDialog? = null
     private var mLayoutManager = LinearLayoutManager(this)
+
+    override fun showFaildDialog() {
+        MaterialDialog(this).show {
+            title(R.string.register_title)
+            message(R.string.register_fail_message)
+            positiveButton { R.string.agree }
+        }
+    }
 
     override fun showDepartDialog(hint: String) {
         this.setTheme(R.style.DialogTeme)

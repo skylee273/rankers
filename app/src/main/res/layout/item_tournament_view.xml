@@ -6,12 +6,10 @@
     <data>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.leagueResult.LeagueResultItemViewModel"/>
+            type="com.project.rankers.ui.tournament.TournamentItemViewModel"/>
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layout_root"
 
         android:layout_width="match_parent"
@@ -22,9 +20,12 @@
         <RelativeLayout
             android:id="@+id/content_layout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="5dp"
-            android:background="@drawable/custom_tournament_box">
+            android:background="@drawable/custom_tournament_box"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <RelativeLayout
                 android:id="@+id/title_layout"
@@ -37,24 +38,12 @@
                     android:layout_height="40dp"
                     android:layout_alignParentLeft="true"
                     android:layout_marginLeft="8dp"
-                    android:layout_toLeftOf="@+id/play_date"
                     android:gravity="bottom"
                     android:paddingBottom="5dp"
-                    android:text="16강"
+                    android:text="@{viewModel.depart}"
                     android:textColor="#464646"
                     android:textSize="12sp" />
 
-                <TextView
-                    android:id="@+id/play_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="5dp"
-                    android:gravity="bottom"
-                    android:paddingBottom="5dp"
-                    android:textColor="#464646"
-                    android:textSize="12sp"
-                    tools:text="민들레" />
             </RelativeLayout>
 
             <RelativeLayout
@@ -79,17 +68,18 @@
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="5dp"
-                    android:layout_toLeftOf="@+id/team_one_score"
+                    android:layout_toLeftOf="@+id/team_one_rank"
                     android:layout_toRightOf="@+id/team_one_IV"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:singleLine="true"
-                    android:text="조코비치"
+                    android:text="@{viewModel.teamOneName}"
                     android:textColor="#464646"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="조코비치" />
 
                 <TextView
-                    android:id="@+id/team_one_score"
+                    android:id="@+id/team_one_rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -97,9 +87,10 @@
                     android:layout_marginRight="15dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    android:text="1조 1위"
+                    android:text="@{viewModel.teamOneRank}"
                     android:textColor="#396ab8"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="1조 1위" />
             </RelativeLayout>
 
             <View
@@ -129,17 +120,18 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="15dp"
-                    android:layout_toLeftOf="@+id/team_two_score"
+                    android:layout_toLeftOf="@+id/team_two_rank"
                     android:layout_toRightOf="@+id/team_two_IV"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
                     android:singleLine="true"
-                    android:text="샤포발로프"
+                    android:text="@{viewModel.teamTwoName}"
                     android:textColor="#464646"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="샤라포바" />
 
                 <TextView
-                    android:id="@+id/team_two_score"
+                    android:id="@+id/team_two_rank"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
@@ -147,11 +139,12 @@
                     android:layout_marginRight="15dp"
                     android:paddingTop="5dp"
                     android:paddingBottom="5dp"
-                    android:text="2조 3위"
+                    android:text="@{viewModel.teamTwoRank}"
                     android:textColor="#555555"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    tools:text="2조 2위" />
             </RelativeLayout>
         </RelativeLayout>
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

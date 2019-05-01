@@ -17,7 +17,8 @@ import com.project.rankers.R
 import com.project.rankers.adapter.DashBoardAdapter
 import com.project.rankers.databinding.FragmentDashboardBinding
 import com.project.rankers.ui.league.LeagueActivity
-import com.project.rankers.ui.tournament.TournamentResultActivity
+import com.project.rankers.ui.tournament.TournamentActivity
+import com.project.rankers.ui.tournamentResult.TournamentResultActivity
 
 class DashBoardFragment : Fragment() {
     private lateinit var dashboardBinding: FragmentDashboardBinding
@@ -65,7 +66,7 @@ class DashBoardFragment : Fragment() {
                             }
                             1 -> {
                                 Log.d("대진표 번호", "본선")
-                                val intent = Intent(mContext, TournamentResultActivity::class.java)
+                                val intent = Intent(mContext, TournamentActivity::class.java)
                                 intent.putExtra("CONTEST_DEPART", deart)
                                 intent.putExtra("CONTEST_ID", param1)
                                 startActivity(intent)

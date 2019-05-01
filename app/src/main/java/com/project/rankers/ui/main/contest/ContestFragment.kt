@@ -13,9 +13,8 @@ import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.data.remote.response.ContestResponse
 import com.project.rankers.databinding.FragmentContestBinding
 import com.project.rankers.ui.base.BaseFragment
-import com.project.rankers.ui.competition.CompetitionAdapter
 import com.project.rankers.ui.competition.CompetitionInfoActivity
-import com.project.rankers.ui.contest_regit.ContestRegisterActivity
+import com.project.rankers.ui.contestRegister.ContestRegisterActivity
 import com.project.rankers.ui.operator.OperatorActivity
 import javax.inject.Inject
 

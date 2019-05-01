@@ -90,6 +90,16 @@ class Api {
                 @Field("player4") player4: String?
         ): Observable<ServerRepo>
 
+        @FormUrlEncoded
+        @POST("contest/tournamentCreator.php")
+        fun postTournamentCreator(
+                @Field("id") id: String?,
+                @Field("uid") uid: String?,
+                @Field("depart") depart: String?,
+                @Field("player1") player1: String?,
+                @Field("player2") player2: String?
+        ): Observable<ServerRepo>
+
 
         @FormUrlEncoded
         @POST("contest/contestCreator.php")
@@ -185,6 +195,9 @@ class Api {
             return RetrofitCreator.create(ApiImpl::class.java).getContestList()
         }
 
+        fun postTournamentCreator(id: String?, uid: String?, depart: String?, player1: String?, player2: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postTournamentCreator(id, uid, depart, player1, player2)
+        }
         fun postGroupCreator(id: String?, uid: String?, depart: String?, number: Int?, player1: String?, player2: String?, player3: String?, player4: String?): Observable<ServerRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).postGroupCreator(id, uid, depart, number, player1, player2, player3, player4)
         }

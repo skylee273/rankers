@@ -7,7 +7,7 @@ import com.project.rankers.ui.login.LoginViewModel
 import com.project.rankers.ui.main.MainViewModel
 import com.project.rankers.ui.operation.ContestOperationViewModel
 import com.project.rankers.ui.personal.writing.WritingPersonalRecordViewModel
-import com.project.rankers.ui.contest_regit.ContestRegisterViewModel
+import com.project.rankers.ui.contestRegister.ContestRegisterViewModel
 import com.project.rankers.ui.splash.SplashViewModel
 
 import javax.inject.Singleton

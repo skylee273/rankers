@@ -22,7 +22,6 @@ import android.app.Application
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.interceptors.HttpLoggingInterceptor
 import com.project.rankers.kakao.GlobalApplication
-import com.project.rankers.ui.tournament.application.BracketsApplication
 import com.project.rankers.utils.AppLogger
 
 import javax.inject.Inject

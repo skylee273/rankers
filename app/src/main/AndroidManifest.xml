@@ -33,13 +33,13 @@
         <activity android:name="com.project.rankers.ui.main.MainActivity"/>
         <activity android:name="com.project.rankers.kakao.KakaoSignUpActivity"/>
         <activity android:name="com.project.rankers.ui.contestRegister.ContestRegisterActivity" />
-        <activity android:name=".ui.personal.writing.WritingPersonalRecordActivity"/>
-        <activity android:name=".ui.privateResult.ResultActivity"/>
         <activity android:name=".ui.competition.CompetitionInfoActivity"/>
         <activity android:name=".ui.apply.ApplyActivity"/>
         <activity android:name=".ui.form.ApplicationFormActivity"/>
         <activity android:name=".ui.operator.OperatorActivity"/>
         <activity android:name=".ui.operation.ContestOperationActivity"/>
+        <activity android:name=".ui.match.MatchActivity"/>
+        <activity android:name=".ui.record.RecordActivity"/>
         <activity android:name=".ui.register.RegisterActivity"/>
         <activity android:name=".ui.tournament.TournamentActivity"/>
         <activity android:name=".ui.tournamentResult.TournamentResultActivity"/>

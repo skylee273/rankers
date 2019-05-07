@@ -23,8 +23,6 @@ class TournamentItemViewModel(tournament: Tournament, private val mListener: Tou
     }
 
 
-
-
     fun onItemClick() {
         mListener.onItemClick()
     }

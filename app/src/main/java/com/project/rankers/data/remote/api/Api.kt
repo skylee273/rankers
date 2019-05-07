@@ -8,6 +8,12 @@ import retrofit2.http.*
 class Api {
     interface ApiImpl {
 
+
+        @GET("match/matchList.php")
+        fun getMatchList(
+                @Query("uid") uid: String
+        ): Observable<MatchRepo>
+
         @GET("record/get/single.php")
         fun getTournamentList(
                 @Query("email") email: String
@@ -52,6 +58,21 @@ class Api {
                 @Query("id") id: String?,
                 @Query("depart") depart: String?
         ): Observable<GroupResponse>
+
+        @FormUrlEncoded
+        @POST("match/matchCreator.php")
+        fun postMatchCreator(
+                @Field("uid") uid: String?,
+                @Field("type") type: String?,
+                @Field("my") my: String?,
+                @Field("partner") partner: String?,
+                @Field("other") other: String?,
+                @Field("otherPartner") otherPartner: String?,
+                @Field("date") date: String?,
+                @Field("result") result: String?,
+                @Field("win") win: String?,
+                @Field("lose") lose: String?
+        ): Observable<ServerRepo>
 
         @FormUrlEncoded
         @POST("record/creator/single.php")
@@ -163,6 +184,11 @@ class Api {
 
     companion object {
 
+        fun getMatchList(uid: String?): Observable<MatchRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getMatchList(uid!!)
+        }
+
+
         fun getUserAllByIds(email: String?): Observable<UserRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getUserAllByIds(email!!)
         }
@@ -193,6 +219,10 @@ class Api {
 
         fun getContestList(): Observable<ContestResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getContestList()
+        }
+
+        fun postMatchCreator(uid: String?, type: String?, my: String?, partner: String?, other: String?, otherPartner: String?, date: String?, result: String?, win: String?, lose: String?) : Observable<ServerRepo>{
+            return RetrofitCreator.create(ApiImpl::class.java).postMatchCreator(uid, type, my, partner, other, otherPartner, date, result, win, lose)
         }
 
         fun postTournamentCreator(id: String?, uid: String?, depart: String?, player1: String?, player2: String?): Observable<ServerRepo> {

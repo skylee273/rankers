@@ -4,145 +4,210 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View" />
+
         <variable
-            name="singleViewModel"
-            type="com.project.rankers.viewmodels.SingleViewModel"/>
-        <variable
-            name="singleActivity"
-            type="com.project.rankers.ui.privateResult.fragment.SingleFragment"/>
+            name="viewModel"
+            type="com.project.rankers.ui.record.single.SingleViewModel" />
     </data>
 
     <LinearLayout
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:focusable="true"
-            android:focusableInTouchMode="true"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btn_regit"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:layout_marginBottom="32dp"
-                android:background="@color/color_bg"
-                android:onClick="@{() -> singleActivity.regitClick()}"
-                android:fontFamily="@font/notosanscjkkrmedium"
-                android:text="@string/single_btn_name"
-                android:textColor="@android:color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
 
-            <EditText
-                android:id="@+id/edit_lose"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/costom_edit_text_bg"
-                android:ems="10"
-                android:fontFamily="@font/notosanscjkkrmedium"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/single_lose"
-                android:inputType="number"
-                android:textColor="@color/color_black"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/view3"
-                app:layout_constraintTop_toBottomOf="@+id/edit_result" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true">
 
-            <View
-                android:id="@+id/view3"
-                android:layout_width="3dp"
-                android:layout_height="50dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_result" />
+                    <androidx.core.widget.ContentLoadingProgressBar
+                        android:id="@+id/address_looking_up"
+                        style="?android:attr/progressBarStyleLarge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-            <EditText
-                android:id="@+id/edit_win"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="50dp"
-                android:background="@drawable/costom_edit_text_bg"
-                android:ems="10"
-                android:fontFamily="@font/notosanscjkkrmedium"
-                android:gravity="center_horizontal|center_vertical"
-                android:hint="@string/single_win"
-                android:inputType="number"
-                android:textColor="@color/color_black"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toStartOf="@+id/view3"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_result" />
+                    <Button
+                        android:id="@+id/btn_upload"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginTop="112dp"
+                        android:layout_marginEnd="24dp"
+                        android:layout_marginBottom="24dp"
+                        android:background="#396ab8"
+                        android:text="경기등록"
+                        android:onClick="@{() -> viewModel.onUploadClick()}"
+                        android:textSize="15sp"
+                        android:textColor="#ffffff"
+                        android:letterSpacing="-0.06"
+                        android:lineSpacingExtra="22.3sp"
+                        tools:text="경기등록"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_win" />
 
-            <EditText
-                android:id="@+id/edit_result"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/costom_edit_text_bg"
-                android:ems="10"
-                android:focusable="false"
-                android:fontFamily="@font/notosanscjkkrmedium"
-                android:gravity="center_vertical"
-                android:hint="@string/single_result"
-                android:inputType="textPersonName"
-                android:onClick="@{(view) -> singleViewModel.resultClick(view)}"
-                android:paddingLeft="30dp"
-                android:text="@{singleViewModel.result}"
-                android:textColor="@color/color_black"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_other" />
+                    <EditText
+                        android:id="@+id/edit_lose"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="32dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:hint="상대 점수"
+                        android:text="@={viewModel.otherScore}"
+                        android:inputType="number"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="-3.8sp"
+                        android:paddingBottom="20dp"
+                        android:textColorHint="#d7d7d7"
+                        android:textSize="15.8sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/textView18"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17"
+                        tools:text="상대 점수" />
 
-            <EditText
-                android:id="@+id/edit_date"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="50dp"
-                android:focusable="false"
-                android:layout_marginTop="32dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/costom_edit_text_bg"
-                android:ems="10"
-                android:fontFamily="@font/notosanscjkkrmedium"
-                android:gravity="center_vertical"
-                android:hint="@string/single_date"
-                android:onClick="@{(view) -> singleViewModel.dateClick(view)}"
-                android:text="@{singleViewModel.dateTime}"
-                android:inputType="textPersonName"
-                android:paddingLeft="30dp"
-                android:textColor="@color/color_black"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                    <EditText
+                        android:id="@+id/edit_win"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="8dp"
+                        android:ems="10"
+                        android:gravity="center"
+                        android:text="@={viewModel.myScore}"
+                        android:hint="내 점수"
+                        android:inputType="number"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="-3.8sp"
+                        android:paddingBottom="20dp"
+                        android:textColorHint="#d7d7d7"
+                        android:textSize="15.8sp"
+                        app:layout_constraintEnd_toStartOf="@+id/textView18"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView17"
+                        tools:text="내 점수" />
 
-            <EditText
-                android:id="@+id/edit_other"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="50dp"
-                android:layout_marginEnd="50dp"
-                android:background="@drawable/costom_edit_text_bg"
-                android:ems="10"
-                android:fontFamily="@font/notosanscjkkrmedium"
-                android:gravity="center_vertical"
-                android:hint="@string/single_other"
-                android:inputType="textPersonName"
-                android:paddingLeft="30dp"
-                android:textColor="@color/color_black"
-                android:textSize="13sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edit_date" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                    <TextView
+                        android:id="@+id/textView18"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginEnd="8dp"
+                        android:text=":"
+                        app:layout_constraintBottom_toBottomOf="@+id/edit_win"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/edit_win" />
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="21dp"
+                        android:lineSpacingExtra="0.3sp"
+                        android:text="점수"
+                        android:textColor="#464646"
+                        android:textSize="11.8sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_other"
+                        tools:text="점수" />
+
+                    <EditText
+                        android:id="@+id/edit_other"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="32dp"
+                        android:ems="10"
+                        android:inputType="textPersonName"
+                        android:text="@={viewModel.other}"
+                        android:hint="상대 이름을 입력해주세요"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="-3.8sp"
+                        android:paddingBottom="20dp"
+                        android:textColorHint="#d7d7d7"
+                        android:textSize="15.8sp"
+                        tools:text="상대 이름을 입력해주세요"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="21dp"
+                        android:lineSpacingExtra="0.3sp"
+                        android:text="상대 이름"
+                        android:textColor="#464646"
+                        android:textSize="11.8sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_date"
+                        tools:text="상대 이름" />
+
+                    <EditText
+                        android:id="@+id/edit_date"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="32dp"
+                        android:focusable="false"
+                        android:text="@={viewModel.date}"
+                        android:onClick="@{() -> viewModel.onDateClick()}"
+                        android:drawableRight="@drawable/ic_icon_calandar"
+                        android:ems="10"
+                        android:hint="경기일자를 입력해주세요"
+                        android:inputType="date"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="-3.8sp"
+                        android:paddingBottom="20dp"
+                        android:textColorHint="#d7d7d7"
+                        android:textSize="15.8sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text1"
+                        tools:text="경기일자를 입력해주세요" />
+
+                    <TextView
+                        android:id="@+id/text1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="30dp"
+                        android:lineSpacingExtra="0.3sp"
+                        android:text="경기일자"
+                        android:textColor="#464646"
+                        android:textSize="11.8sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="경기일자" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
 </layout>

@@ -74,10 +74,10 @@ class ContestFragment : BaseFragment<FragmentContestBinding, ContestViewModel>()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         if (arguments != null) {
             refreshView()
         }
-        super.onViewCreated(view, savedInstanceState)
         contestBinding = this.viewDataBinding!!
         setUp()
     }

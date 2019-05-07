@@ -4,23 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <import type="android.view.View"/>
         <variable
-            name="resultModel"
-            type="com.project.rankers.viewmodels.ResultViewModel"/>
-        <variable
-            name="resultActivity"
-            type="com.project.rankers.ui.privateResult.ResultActivity"/>
+            name="viewModel"
+            type="com.project.rankers.ui.record.RecordViewModel"/>
     </data>
 
-
 <LinearLayout
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/viewpager"
@@ -29,26 +26,15 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tabLayout2" />
+            app:layout_constraintTop_toBottomOf="@+id/tabLayout" />
 
         <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout2"
-            android:layout_width="match_parent"
+            android:id="@+id/tabLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbar">
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_singles_title" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tab_multi_title" />
-        </com.google.android.material.tabs.TabLayout>
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -67,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:fontFamily="@font/notosanscjkkrmedium"
-                android:text="@string/toolbar_title_result"
+                android:text="기록"
                 android:textColor="@color/color_toolbar_title"
                 android:textSize="14sp"
                 tools:layout_editor_absoluteX="169dp"

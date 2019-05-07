@@ -38,10 +38,12 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
     private var mLayoutManager = LinearLayoutManager(this)
 
     override fun showFaildDialog() {
-        MaterialDialog(this).show {
-            title(R.string.register_title)
-            message(R.string.register_fail_message)
-            positiveButton { R.string.agree }
+        runOnUiThread {
+            MaterialDialog(this).show {
+                title(R.string.register_title)
+                message(R.string.register_fail_message)
+                positiveButton { R.string.agree }
+            }
         }
     }
 
@@ -65,6 +67,7 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
     }
 
     override fun showFileDialog() {
+
         MaterialDialog(mContext).show {
             fileChooser(
                     allowFolderCreation = true,

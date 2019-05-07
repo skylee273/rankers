@@ -68,7 +68,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPa
             when (item.itemId) {
                 R.id.tab_contest -> {
                     mainBinding.viewPager.currentItem = 0
-                    ContestFragment().refreshView()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.tab_club -> {

@@ -2,6 +2,8 @@ package com.project.rankers.ui.match
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuItem
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
@@ -82,6 +84,22 @@ class MatchActivity : BaseActivity<ActivityMatchBinding, MatchViewModel>(), Matc
         matchBinding.recycler.setHasFixedSize(true)
         matchBinding.recycler.adapter = matchAdapter
         matchAdapter!!.setListener(this)
+
+        matchBinding.editSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+
+            }
+
+            override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
+
+            }
+
+            override fun afterTextChanged(editable: Editable) {
+                val text = matchBinding.editSearch.text.toString()
+                        .toLowerCase(Locale.getDefault())
+                matchAdapter!!.filter(text)
+            }
+        })
     }
 
 

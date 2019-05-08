@@ -7,10 +7,13 @@ import com.project.rankers.data.remote.response.MatchRepo
 import com.project.rankers.databinding.ItemMatchEmptyViewBinding
 import com.project.rankers.databinding.ItemMatchViewBinding
 import com.project.rankers.ui.base.BaseViewHolder
+import java.util.*
 
-class MatchAdapter(val mMatchReponseList: MutableList<MatchRepo.Match>?) : RecyclerView.Adapter<BaseViewHolder>() {
+class MatchAdapter(val mMatchResponseList: MutableList<MatchRepo.Match>?) : RecyclerView.Adapter<BaseViewHolder>() {
 
+    private var arrayList: ArrayList<MatchRepo.Match>? = null
     private var mListener: MatchAdapterListner? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         when (viewType) {
@@ -32,15 +35,15 @@ class MatchAdapter(val mMatchReponseList: MutableList<MatchRepo.Match>?) : Recyc
     }
 
     override fun getItemCount(): Int {
-        return if (mMatchReponseList != null && mMatchReponseList.size > 0) {
-            mMatchReponseList.size
+        return if (mMatchResponseList != null && mMatchResponseList.size > 0) {
+            mMatchResponseList.size
         } else {
             1
         }
     }
 
     override fun getItemViewType(position: Int): Int {
-        return if (mMatchReponseList != null && !mMatchReponseList.isEmpty()) {
+        return if (mMatchResponseList != null && !mMatchResponseList.isEmpty()) {
             VIEW_TYPE_NORMAL
         } else {
             VIEW_TYPE_EMPTY
@@ -57,7 +60,7 @@ class MatchAdapter(val mMatchReponseList: MutableList<MatchRepo.Match>?) : Recyc
         private var matchItemViewModel: MatchItemViewModel? = null
 
         override fun onBind(position: Int) {
-            val matchItem = mMatchReponseList!![position]
+            val matchItem = mMatchResponseList!![position]
             matchItemViewModel = MatchItemViewModel(matchItem, this)
             mBinding.viewModel = matchItemViewModel
             mBinding.executePendingBindings()
@@ -80,14 +83,33 @@ class MatchAdapter(val mMatchReponseList: MutableList<MatchRepo.Match>?) : Recyc
         }
     }
 
+    fun filter(charText: String) {
+        var charText = charText
+        charText = charText.toLowerCase(Locale.getDefault())
+        mMatchResponseList!!.clear()
+        if (charText.isEmpty()) {
+            mMatchResponseList.addAll(arrayList!!)
+        } else {
+            for (recent in arrayList!!) {
+                val name = recent.matchOther
+                if (name!!.toLowerCase().contains(charText)) {
+                    mMatchResponseList.add(recent)
+                }
+            }
+        }
+        notifyDataSetChanged()
+
+    }
 
     fun addItems(matchItem: List<MatchRepo.Match>) {
-        mMatchReponseList!!.addAll(matchItem)
+        mMatchResponseList!!.addAll(matchItem)
+        arrayList = ArrayList()
+        arrayList!!.addAll(this.mMatchResponseList!!)
         notifyDataSetChanged()
     }
 
     fun clearItems() {
-        mMatchReponseList!!.clear()
+        mMatchResponseList!!.clear()
     }
 
     fun setListener(listener: MatchAdapterListner) {

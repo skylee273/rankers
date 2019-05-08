@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.league.LeagueEmptyItemViewModel"/>
+            type="com.project.rankers.ui.contest.league.LeagueEmptyItemViewModel"/>
     </data>
 
     <LinearLayout

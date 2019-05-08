@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.tournament.TournamentItemViewModel"/>
+            type="com.project.rankers.ui.contest.tournament.TournamentItemViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,6 +50,7 @@
                 android:id="@+id/team_one_layout"
                 android:layout_width="match_parent"
                 android:layout_height="35dp"
+                android:onClick="@{() -> viewModel.onTeamOneClick()}"
                 android:layout_below="@+id/title_layout"
                 android:background="@drawable/custom_league_result_box"
                 android:gravity="center">
@@ -104,6 +105,7 @@
                 android:layout_height="35dp"
                 android:layout_below="@+id/view"
                 android:layout_marginTop="1dp"
+                android:onClick="@{() -> viewModel.onTeamTwoClick()}"
                 android:background="@drawable/custom_league_result_box"
                 android:gravity="center">
 

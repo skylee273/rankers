@@ -9,7 +9,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.league.LeagueViewModel"/>
+            type="com.project.rankers.ui.contest.league.LeagueViewModel"/>
     </data>
 
     <LinearLayout

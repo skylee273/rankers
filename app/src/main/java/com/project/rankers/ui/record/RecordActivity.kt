@@ -10,8 +10,6 @@ import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.databinding.ActivityRecordBinding
 import com.project.rankers.ui.base.BaseActivity
-import com.project.rankers.ui.operation.ContestOperationPagerAdapter
-import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.support.HasSupportFragmentInjector
 import java.util.*

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="fragment"
-            type="com.project.rankers.ui.operation.result.ResultContestFragment"/>
+            type="com.project.rankers.ui.contest.operation.result.ResultContestFragment"/>
     </data>
 
     <LinearLayout

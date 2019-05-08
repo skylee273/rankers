@@ -32,19 +32,20 @@
             />
         <activity android:name="com.project.rankers.ui.main.MainActivity"/>
         <activity android:name="com.project.rankers.kakao.KakaoSignUpActivity"/>
-        <activity android:name="com.project.rankers.ui.contestRegister.ContestRegisterActivity" />
-        <activity android:name=".ui.competition.CompetitionInfoActivity"/>
-        <activity android:name=".ui.apply.ApplyActivity"/>
-        <activity android:name=".ui.form.ApplicationFormActivity"/>
-        <activity android:name=".ui.operator.OperatorActivity"/>
-        <activity android:name=".ui.operation.ContestOperationActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.contestRegister.ContestRegisterActivity" />
+        <activity android:name="com.project.rankers.ui.contest.competition.CompetitionInfoActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.apply.ApplyActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.form.ApplicationFormActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.operator.OperatorActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.operation.ContestOperationActivity"/>
         <activity android:name=".ui.match.MatchActivity"/>
         <activity android:name=".ui.record.RecordActivity"/>
         <activity android:name=".ui.register.RegisterActivity"/>
-        <activity android:name=".ui.tournament.TournamentActivity"/>
-        <activity android:name=".ui.tournamentResult.TournamentResultActivity"/>
-        <activity android:name=".ui.league.LeagueActivity"/>
-        <activity android:name=".ui.leagueResult.LeagueResultActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.tournament.TournamentActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.tournamentResult.TournamentResultActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.league.LeagueActivity"/>
+        <activity android:name="com.project.rankers.ui.contest.leagueResult.LeagueResultActivity"/>
+        <activity android:name=".ui.contest.contestResult.ContestResultActivity"/>
 
     </application>
 

@@ -1,24 +1,25 @@
 package com.project.rankers
 
 
-import com.project.rankers.ui.competition.CompetitionInfoViewModel
-import com.project.rankers.ui.form.ApplicationFormViewModel
+import com.project.rankers.ui.contest.competition.CompetitionInfoViewModel
+import com.project.rankers.ui.contest.form.ApplicationFormViewModel
 import com.project.rankers.ui.login.LoginViewModel
 import com.project.rankers.ui.main.MainViewModel
-import com.project.rankers.ui.operation.ContestOperationViewModel
-import com.project.rankers.ui.contestRegister.ContestRegisterViewModel
+import com.project.rankers.ui.contest.operation.ContestOperationViewModel
+import com.project.rankers.ui.contest.contestRegister.ContestRegisterViewModel
 import com.project.rankers.ui.splash.SplashViewModel
 
 import javax.inject.Singleton
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.project.rankers.ui.apply.ApplyViewModel
-import com.project.rankers.ui.league.LeagueViewModel
-import com.project.rankers.ui.leagueResult.LeagueResultViewModel
+import com.project.rankers.ui.contest.apply.ApplyViewModel
+import com.project.rankers.ui.contest.contestResult.ContestResultViewModel
+import com.project.rankers.ui.contest.league.LeagueViewModel
+import com.project.rankers.ui.contest.leagueResult.LeagueResultViewModel
 import com.project.rankers.ui.main.contest.ContestViewModel
 import com.project.rankers.ui.match.MatchViewModel
-import com.project.rankers.ui.operator.OperatorViewModel
+import com.project.rankers.ui.contest.operator.OperatorViewModel
 import com.project.rankers.ui.record.RecordViewModel
 import com.project.rankers.ui.record.multi.MultiViewModel
 import com.project.rankers.ui.record.single.SingleViewModel
@@ -64,6 +65,8 @@ class ViewModelProviderFactory : ViewModelProvider.NewInstanceFactory() {
             return MultiViewModel() as T
         }else if (modelClass.isAssignableFrom(SingleViewModel::class.java)) {
             return SingleViewModel() as T
+        }else if (modelClass.isAssignableFrom(ContestResultViewModel::class.java)) {
+            return ContestResultViewModel() as T
         }
 
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)

@@ -17,7 +17,7 @@
 package com.project.rankers.utils;
 
 import com.project.rankers.data.remote.response.ContestResponse;
-import com.project.rankers.ui.competition.CompetitionAdapter;
+import com.project.rankers.ui.contest.competition.CompetitionAdapter;
 
 
 import java.util.List;

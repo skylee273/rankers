@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.operator.OperatorItemViewModel" />
+            type="com.project.rankers.ui.contest.operator.OperatorItemViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

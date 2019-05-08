@@ -1,0 +1,109 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout2">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.project.rankers.ui.contest.contestResult.ContestResultItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:onClick="@{() -> viewModel.onItemClick()}">
+
+        <View
+            android:id="@+id/view12"
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="22dp"
+            android:background="#a1a1a1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_date" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_address"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/text_address"
+            app:srcCompat="@drawable/ic_view_arrow" />
+
+        <TextView
+            android:id="@+id/text_address"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:ellipsize="end"
+            android:letterSpacing="-0.04"
+            android:lineSpacingExtra="6.5sp"
+            android:maxLines="1"
+            android:text="@{viewModel.location}"
+            android:textColor="#b7b7b7"
+            android:textSize="12.5sp"
+            app:layout_constraintEnd_toStartOf="@+id/imageView"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title"
+            tools:text="(31253) 충남 천안시 동남구 병천면 충절로 1600 한국기술교육대학교" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="2.8sp"
+            android:text="@{viewModel.title}"
+            android:textColor="#707070"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="생활체육  전국  테니스  대회" />
+
+        <TextView
+            android:id="@+id/text_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="7sp"
+            android:text="@{viewModel.date}"
+            android:textColor="#7d7d7d"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_address"
+            tools:text="19. 02. 03 ~ 19. 02. 31" />
+
+        <TextView
+            android:id="@+id/text_type"
+            android:layout_width="65dp"
+            android:layout_height="0dp"
+            android:layout_marginLeft="9dp"
+            android:background="#39b896"
+            android:gravity="center"
+            android:lineSpacingExtra="8.5sp"
+            android:text="@{viewModel.type}"
+            android:textColor="#ffffff"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_title"
+            app:layout_constraintLeft_toRightOf="@+id/text_title"
+            app:layout_constraintTop_toTopOf="@+id/text_title"
+            tools:text="NATIONAL" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

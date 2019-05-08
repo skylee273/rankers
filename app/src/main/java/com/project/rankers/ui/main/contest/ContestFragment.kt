@@ -13,13 +13,15 @@ import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.data.remote.response.ContestResponse
 import com.project.rankers.databinding.FragmentContestBinding
 import com.project.rankers.ui.base.BaseFragment
-import com.project.rankers.ui.competition.CompetitionInfoActivity
-import com.project.rankers.ui.contestRegister.ContestRegisterActivity
-import com.project.rankers.ui.operator.OperatorActivity
+import com.project.rankers.ui.contest.competition.CompetitionInfoActivity
+import com.project.rankers.ui.contest.contestRegister.ContestRegisterActivity
+import com.project.rankers.ui.contest.contestResult.ContestResultActivity
+import com.project.rankers.ui.contest.operator.OperatorActivity
 import javax.inject.Inject
 
 
 class ContestFragment : BaseFragment<FragmentContestBinding, ContestViewModel>(), ContestNavigator, ContestAdapter.ContestAdapterListener {
+
 
     @Inject
     internal var factory: ViewModelProviderFactory? = null
@@ -60,6 +62,11 @@ class ContestFragment : BaseFragment<FragmentContestBinding, ContestViewModel>()
 
     override fun openOperator() {
         val nextIntent = Intent(context, OperatorActivity::class.java)
+        startActivity(nextIntent)
+    }
+
+    override fun openContestResult() {
+        val nextIntent = Intent(context, ContestResultActivity::class.java)
         startActivity(nextIntent)
     }
 

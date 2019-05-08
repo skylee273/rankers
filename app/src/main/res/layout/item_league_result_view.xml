@@ -6,7 +6,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.leagueResult.LeagueResultItemViewModel"/>
+            type="com.project.rankers.ui.contest.leagueResult.LeagueResultItemViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

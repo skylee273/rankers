@@ -52,4 +52,10 @@
     <color name="tab_background_selected">#396ab8</color>
     <color name="tab_background_unselected">#ffffff</color>
 
+    <color name="win_bg">#f8efed</color>
+    <color name="lose_bg">#edf1f8</color>
+
+    <color name="win_text_bg">#f14932</color>
+    <color name="lose_text_bg">#396ab8</color>
+
 </resources>

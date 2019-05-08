@@ -5,7 +5,7 @@ import com.project.rankers.data.remote.response.MatchRepo
 
 interface MatchNavigator {
     fun handleError(throwable: Throwable)
-    fun showMatchList(matchItem : List<MatchRepo.Match>)
+    fun showMatchList(userItem : List<MatchRepo.Match>)
     fun isNextActivity()
     fun failDialog()
 }

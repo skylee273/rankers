@@ -17,15 +17,15 @@
 package com.project.rankers.di.builder;
 
 
-import com.project.rankers.ui.competition.CompetitionActivityModule;
-import com.project.rankers.ui.competition.CompetitionInfoActivity;
-import com.project.rankers.ui.competition.CompetitionActivityProvider;
-import com.project.rankers.ui.leagueResult.LeagueResultActivity;
+import com.project.rankers.ui.contest.competition.CompetitionActivityModule;
+import com.project.rankers.ui.contest.competition.CompetitionInfoActivity;
+import com.project.rankers.ui.contest.competition.CompetitionActivityProvider;
+import com.project.rankers.ui.contest.leagueResult.LeagueResultActivity;
 import com.project.rankers.ui.login.LoginActivity;
 import com.project.rankers.ui.main.MainActivity;
-import com.project.rankers.ui.operation.ContestOperationActivity;
-import com.project.rankers.ui.operation.ContestOperationActivityModule;
-import com.project.rankers.ui.operator.OperatorActivity;
+import com.project.rankers.ui.contest.operation.ContestOperationActivity;
+import com.project.rankers.ui.contest.operation.ContestOperationActivityModule;
+import com.project.rankers.ui.contest.operator.OperatorActivity;
 import com.project.rankers.ui.splash.SplashActivity;
 
 import dagger.Module;

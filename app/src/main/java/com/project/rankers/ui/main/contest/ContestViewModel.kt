@@ -40,6 +40,9 @@ class ContestViewModel : BaseViewModel<ContestNavigator>(){
     fun onOperatorClick(){
        navigator.openOperator()
     }
+    fun onContestReultClick(){
+        navigator.openContestResult()
+    }
 
 
     fun getListLiveData(): MutableLiveData<List<ContestResponse.Repo>> {

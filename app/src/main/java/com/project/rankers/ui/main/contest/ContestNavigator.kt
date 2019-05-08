@@ -6,7 +6,7 @@ interface ContestNavigator {
     fun handleError(throwable: Throwable)
     fun updateContest(contest: List<ContestResponse.Repo>)
     fun openContestRegister()
-
+    fun openContestResult()
     fun openCompetitionInfo()
 
     fun openOperator()

@@ -6,19 +6,64 @@
     <data>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.league.LeagueItemViewModel" />
+            type="com.project.rankers.ui.contest.league.LeagueItemViewModel" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <Button
+        android:id="@+id/btn_remove3"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/ic_icon_close"
+        android:onClick="@{() -> viewModel.onRemove3Click()}"
+        app:layout_constraintBottom_toBottomOf="@+id/text_four"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_four" />
+
+    <Button
+        android:id="@+id/btn_remove2"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="@{() -> viewModel.onRemove2Click()}"
+        android:background="@drawable/ic_icon_close"
+        app:layout_constraintBottom_toBottomOf="@+id/text_three"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_three" />
+
+    <Button
+        android:id="@+id/btn_remove1"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="@{() -> viewModel.onRemove1Click()}"
+        android:background="@drawable/ic_icon_close"
+        app:layout_constraintBottom_toBottomOf="@+id/text_two"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view15" />
+
+    <Button
+        android:id="@+id/btn_remove0"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="@{() -> viewModel.onRemove0Click()}"
+        android:background="@drawable/ic_icon_close"
+        app:layout_constraintBottom_toBottomOf="@+id/text_one"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_one" />
+
     <TextView
         android:id="@+id/text_four"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="조의 참여 선수를 입력해주세요"
         android:letterSpacing="-0.03"
         android:lineSpacingExtra="2.8sp"
@@ -27,7 +72,7 @@
         android:textColorHint="#d7d7d7"
         android:textSize="16.3sp"
         app:layout_constraintBottom_toBottomOf="@+id/view20"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_remove3"
         app:layout_constraintStart_toEndOf="@+id/view20"
         app:layout_constraintTop_toTopOf="@+id/view20" />
 
@@ -70,7 +115,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="조의 참여 선수를 입력해주세요"
         android:letterSpacing="-0.03"
         android:lineSpacingExtra="2.8sp"
@@ -79,7 +124,7 @@
         android:textColorHint="#d7d7d7"
         android:textSize="16.3sp"
         app:layout_constraintBottom_toBottomOf="@+id/view18"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_remove2"
         app:layout_constraintStart_toEndOf="@+id/view18"
         app:layout_constraintTop_toTopOf="@+id/view18" />
 
@@ -122,7 +167,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:gravity="left"
         android:hint="조의 참여 선수를 입력해주세요"
         android:letterSpacing="-0.03"
@@ -132,7 +177,7 @@
         android:textColorHint="#d7d7d7"
         android:textSize="16.3sp"
         app:layout_constraintBottom_toBottomOf="@+id/view16"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_remove1"
         app:layout_constraintStart_toEndOf="@+id/view16"
         app:layout_constraintTop_toTopOf="@+id/view16" />
 
@@ -178,7 +223,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="19dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="16dp"
         android:hint="조의 참여 선수를 입력해주세요"
         android:letterSpacing="-0.03"
         android:lineSpacingExtra="2.8sp"
@@ -188,7 +233,7 @@
         android:textColorHint="#d7d7d7"
         android:textSize="16.3sp"
         app:layout_constraintBottom_toBottomOf="@+id/view14"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_remove0"
         app:layout_constraintStart_toEndOf="@+id/view14"
         app:layout_constraintTop_toTopOf="@+id/view14" />
 

@@ -6,7 +6,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.operation.ContestOperationViewModel"/>
+            type="com.project.rankers.ui.contest.operation.ContestOperationViewModel"/>
     </data>
 
 <LinearLayout

@@ -8,7 +8,7 @@ import com.project.rankers.data.remote.response.ContestResponse
 import com.project.rankers.databinding.ItemContestEmptyViewBinding
 import com.project.rankers.databinding.ItemContestViewBinding
 import com.project.rankers.ui.base.BaseViewHolder
-import com.project.rankers.ui.contest.operation.ContestOperationActivity
+import com.project.rankers.ui.contest.contestResultSub.ContestResultSubActivity
 import com.project.rankers.ui.main.contest.ContestEmptyItemViewModel
 import com.project.rankers.ui.main.contest.ContestItemViewModel
 
@@ -55,7 +55,7 @@ class ContestResultAdapter(val mOperatorResponseList: MutableList<ContestRespons
         holder.onBind(position)
     }
 
-    inner class ContestResultViewHolder(private val mBinding: ItemContestViewBinding) : BaseViewHolder(mBinding.root), ContestItemViewModel.ContestItemViewListner {
+    inner class ContestResultViewHolder(private val mBinding: ItemContestViewBinding) : BaseViewHolder(mBinding.root), ContestItemViewModel.ContestItemViewListener {
 
         private var contestItemViewModel: ContestItemViewModel? = null
 
@@ -68,9 +68,9 @@ class ContestResultAdapter(val mOperatorResponseList: MutableList<ContestRespons
 
         override fun onItemClick() {
             val pos = adapterPosition
-            val intent = Intent(itemView.context, ContestOperationActivity::class.java)
+            val intent = Intent(itemView.context, ContestResultSubActivity::class.java)
             val id = mOperatorResponseList!![pos].id
-            val depart =  mOperatorResponseList!![pos].depart
+            val depart =  mOperatorResponseList[pos].depart
             intent.putExtra("CONTEST_ID",id)
             intent.putExtra("CONTEST_DEPART",depart)
             itemView.context.startActivity(intent)

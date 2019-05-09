@@ -1,12 +1,9 @@
 package com.project.rankers.ui.contest.contestResult
 
 import androidx.lifecycle.MutableLiveData
-import com.project.rankers.data.model.db.User
 import com.project.rankers.data.remote.api.Api
 import com.project.rankers.data.remote.response.ContestResponse
 import com.project.rankers.ui.base.BaseViewModel
-import com.project.rankers.ui.contest.operator.OperatorNavigator
-import com.project.rankers.ui.main.contest.ContestNavigator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
@@ -31,6 +28,7 @@ class ContestResultViewModel: BaseViewModel<ContestResultNavigator>() {
                     navigator.handleError(it)
                 })
     }
+
 
     fun getListLiveData(): MutableLiveData<List<ContestResponse.Repo>> {
         return mutableLiveData

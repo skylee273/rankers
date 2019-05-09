@@ -46,6 +46,7 @@
         <activity android:name="com.project.rankers.ui.contest.league.LeagueActivity"/>
         <activity android:name="com.project.rankers.ui.contest.leagueResult.LeagueResultActivity"/>
         <activity android:name=".ui.contest.contestResult.ContestResultActivity"/>
+        <activity android:name=".ui.contest.contestResultSub.ContestResultSubActivity"/>
 
     </application>
 

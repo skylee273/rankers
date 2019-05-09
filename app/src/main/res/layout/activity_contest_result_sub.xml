@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.contest.contestResult.ContestResultViewModel"/>
+            type="com.project.rankers.ui.contest.contestResultSub.ContestResultSubViewModel"/>
     </data>
 
     <LinearLayout
@@ -54,7 +54,7 @@
                                 android:gravity="center_vertical"
                                 android:letterSpacing="-0.04"
                                 android:lineSpacingExtra="6.5sp"
-                                android:text="전국 대회 정보"
+                                android:text="부서정보"
                                 android:textColor="#4d4d67"
                                 android:textSize="12.5sp" />
 
@@ -64,12 +64,11 @@
                             android:id="@+id/recycler"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            app:adapter="@{viewModel.mutableLiveData}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
-                            tools:listitem="@layout/item_operator_view" />
+                            tools:listitem="@layout/item_contest_result_sub_view" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>

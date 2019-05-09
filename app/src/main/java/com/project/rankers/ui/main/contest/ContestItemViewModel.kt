@@ -3,7 +3,7 @@ package com.project.rankers.ui.main.contest
 import androidx.databinding.ObservableField
 import com.project.rankers.data.remote.response.ContestResponse
 
-class ContestItemViewModel(items: ContestResponse.Repo, private val mListener: ContestItemViewListner) {
+class ContestItemViewModel(items: ContestResponse.Repo, private val mListener: ContestItemViewListener) {
 
     val title : ObservableField<String>
     val type : ObservableField<String>
@@ -21,7 +21,7 @@ class ContestItemViewModel(items: ContestResponse.Repo, private val mListener: C
         mListener.onItemClick()
     }
 
-    interface  ContestItemViewListner{
+    interface  ContestItemViewListener{
         fun onItemClick()
     }
 }

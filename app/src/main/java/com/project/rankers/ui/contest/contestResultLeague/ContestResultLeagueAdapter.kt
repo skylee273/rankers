@@ -1,0 +1,3 @@
+package com.project.rankers.ui.contest.contestResultLeague
+
+class ContestResultLeagueAdapter

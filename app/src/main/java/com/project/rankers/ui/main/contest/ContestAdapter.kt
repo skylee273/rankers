@@ -1,14 +1,14 @@
 package com.project.rankers.ui.main.contest
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.project.rankers.data.remote.response.ContestResponse
-import com.project.rankers.databinding.ItemCompetiotionEmptyViewBinding
-import com.project.rankers.databinding.ItemCompetitionViewBinding
 import com.project.rankers.databinding.ItemContestEmptyViewBinding
 import com.project.rankers.databinding.ItemContestViewBinding
 import com.project.rankers.ui.base.BaseViewHolder
+import com.project.rankers.ui.contest.apply.ApplyActivity
 
 class ContestAdapter(val mContestResponseList: MutableList<ContestResponse.Repo>?) : RecyclerView.Adapter<BaseViewHolder>() {
 
@@ -54,7 +54,7 @@ class ContestAdapter(val mContestResponseList: MutableList<ContestResponse.Repo>
 
     }
 
-    inner class ContestViewHolder(private val mBinding: ItemContestViewBinding) : BaseViewHolder(mBinding.root), ContestItemViewModel.ContestItemViewListner {
+    inner class ContestViewHolder(private val mBinding: ItemContestViewBinding) : BaseViewHolder(mBinding.root), ContestItemViewModel.ContestItemViewListener {
 
         private var contestItemViewModel: ContestItemViewModel? = null
 
@@ -66,7 +66,11 @@ class ContestAdapter(val mContestResponseList: MutableList<ContestResponse.Repo>
         }
 
         override fun onItemClick() {
-
+            val pos = adapterPosition
+            val intent = Intent(itemView.context, ApplyActivity::class.java)
+            val array = arrayOf(mContestResponseList!![pos].title, mContestResponseList[pos].start + " ~ " + mContestResponseList[pos].end, mContestResponseList[pos].location, mContestResponseList[pos].host, mContestResponseList[pos].depart, mContestResponseList[pos].id)
+            intent.putExtra("contest", array)
+            itemView.context.startActivity(intent)
         }
     }
 
@@ -97,7 +101,6 @@ class ContestAdapter(val mContestResponseList: MutableList<ContestResponse.Repo>
     }
 
     interface ContestAdapterListener {
-
         fun onRetryClick()
     }
 

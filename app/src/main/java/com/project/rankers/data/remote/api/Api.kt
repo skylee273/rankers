@@ -8,7 +8,6 @@ import retrofit2.http.*
 class Api {
     interface ApiImpl {
 
-
         @GET("match/matchList.php")
         fun getMatchList(
                 @Query("uid") uid: String
@@ -23,6 +22,13 @@ class Api {
                 @Query("email") email: String
         ): Observable<UserRepo>
 
+
+        @GET("contest/loadAllByIds.php")
+        fun getContestAllByIds(
+                @Query("id") id: String
+        ): Observable<ContestResponse>
+
+
         @GET("contest/contestList.php")
         fun getContestList(): Observable<ContestResponse>
 
@@ -35,6 +41,8 @@ class Api {
         fun getOperationList(
                 @Query("uid") uid: String?
         ): Observable<ContestResponse>
+
+
 
         @GET("contest/applyList.php")
         fun getApplyList(
@@ -49,7 +57,7 @@ class Api {
         ): Observable<GroupResponse>
 
         @GET("contest/tournamentList.php")
-        fun getTounamentList(
+        fun getTournamentList(
                 @Query("id") id: String?,
                 @Query("depart") depart: String?
         ): Observable<TournamentRepo>
@@ -156,7 +164,6 @@ class Api {
         ): Observable<ServerRepo>
     }
 
-
     companion object {
 
         fun getMatchList(uid: String?): Observable<MatchRepo> {
@@ -187,12 +194,14 @@ class Api {
         }
 
         fun getTournamentList(id: String?, depart: String?) : Observable<TournamentRepo>{
-            return RetrofitCreator.create(ApiImpl::class.java).getTounamentList(id, depart)
+            return RetrofitCreator.create(ApiImpl::class.java).getTournamentList(id, depart)
         }
         fun getContestList(): Observable<ContestResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getContestList()
         }
-
+        fun getContestAllByIds(id : String): Observable<ContestResponse> {
+            return RetrofitCreator.create(ApiImpl::class.java).getContestAllByIds(id)
+        }
         fun postMatchCreator(uid: String?, type: String?, my: String?, partner: String?, other: String?, otherPartner: String?, date: String?, result: String?, win: String?, lose: String?) : Observable<ServerRepo>{
             return RetrofitCreator.create(ApiImpl::class.java).postMatchCreator(uid, type, my, partner, other, otherPartner, date, result, win, lose)
         }

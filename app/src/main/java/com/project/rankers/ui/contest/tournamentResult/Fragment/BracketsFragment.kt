@@ -1,27 +1,25 @@
 package com.project.rankers.ui.contest.tournamentResult.Fragment
 
+
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-
-import com.project.rankers.ui.contest.tournamentResult.adapter.BracketsSectionAdapter
-import com.project.rankers.ui.contest.tournamentResult.customviews.WrapContentHeightViewPager
-import com.project.rankers.data.model.db.ColomnData
-import com.project.rankers.data.model.db.CompetitorData
-import com.project.rankers.data.model.db.MatchData
-import com.project.rankers.ui.contest.tournamentResult.utility.TournamentUtility
-
-import java.util.ArrayList
 import androidx.fragment.app.Fragment
 import androidx.viewpager.widget.ViewPager
 import com.project.rankers.R
+import com.project.rankers.data.model.db.ColomnData
+import com.project.rankers.data.model.db.CompetitorData
+import com.project.rankers.data.model.db.MatchData
 import com.project.rankers.data.remote.api.Api
+import com.project.rankers.ui.contest.tournamentResult.adapter.BracketsSectionAdapter
+import com.project.rankers.ui.contest.tournamentResult.customviews.WrapContentHeightViewPager
+import com.project.rankers.ui.contest.tournamentResult.utility.TournamentUtility
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import java.util.*
 
 
 /**
@@ -63,7 +61,7 @@ class BracketsFragment : Fragment(), ViewPager.OnPageChangeListener {
     }
     private fun setServer() {
         tournamentPeopleList = ArrayList()
-        compositeDisposable.add(Api.getTounamentList(contestID, contestDepartName)
+        compositeDisposable.add(Api.getTournamentList(contestID, contestDepartName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->

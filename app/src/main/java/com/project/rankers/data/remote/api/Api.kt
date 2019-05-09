@@ -1,7 +1,7 @@
 package com.project.rankers.data.remote.api
 
-import com.project.rankers.data.remote.response.*
 import com.project.rankers.data.remote.crater.RetrofitCreator
+import com.project.rankers.data.remote.response.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -14,11 +14,6 @@ class Api {
                 @Query("uid") uid: String
         ): Observable<MatchRepo>
 
-        @GET("record/get/single.php")
-        fun getTournamentList(
-                @Query("email") email: String
-        ): Observable<TournamentRepo>
-
         @GET("user/loadAllUser.php")
         fun getUserAll(
         ): Observable<UserRepo>
@@ -27,16 +22,6 @@ class Api {
         fun getUserAllByIds(
                 @Query("email") email: String
         ): Observable<UserRepo>
-
-        @GET("record/get/single.php")
-        fun getSingleRepoList(
-                @Query("id") id: String
-        ): Observable<SingleRepo>
-
-        @GET("record/get/multi.php")
-        fun getMultiRepoList(
-                @Query("id") id: String
-        ): Observable<MultiRepo>
 
         @GET("contest/contestList.php")
         fun getContestList(): Observable<ContestResponse>
@@ -84,29 +69,6 @@ class Api {
                 @Field("lose") lose: String?
         ): Observable<ServerRepo>
 
-        @FormUrlEncoded
-        @POST("record/creator/single.php")
-        fun postSingleCreator(
-                @Field("id") id: String?,
-                @Field("other") other: String?,
-                @Field("date") date: String?,
-                @Field("result") result: String?,
-                @Field("win") win: String?,
-                @Field("lose") lose: String?
-        ): Observable<ServerRepo>
-
-        @FormUrlEncoded
-        @POST("record/creator/multi.php")
-        fun postMultiCreator(
-                @Field("id") id: String?,
-                @Field("partner") partner: String?,
-                @Field("other") other: String?,
-                @Field("otherPartner") otherPartner: String?,
-                @Field("date") date: String?,
-                @Field("result") result: String?,
-                @Field("win") win: String?,
-                @Field("lose") lose: String?
-        ): Observable<ServerRepo>
 
         @FormUrlEncoded
         @POST("contest/groupCreator.php")
@@ -224,15 +186,7 @@ class Api {
             return RetrofitCreator.create(ApiImpl::class.java).getID(email)
         }
 
-        fun getSingleRepoList(id: String): Observable<SingleRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).getSingleRepoList(id)
-        }
-
-        fun getMultiRepoList(id: String): Observable<MultiRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).getMultiRepoList(id)
-        }
-
-        fun getTounamentList(id: String?, depart: String?) : Observable<TournamentRepo>{
+        fun getTournamentList(id: String?, depart: String?) : Observable<TournamentRepo>{
             return RetrofitCreator.create(ApiImpl::class.java).getTounamentList(id, depart)
         }
         fun getContestList(): Observable<ContestResponse> {
@@ -252,14 +206,6 @@ class Api {
 
         fun postUserCreator(email: String?, nickName: String?, phone: String?, birthday: String?): Observable<ServerRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).postUserCreator(email, nickName, phone, birthday)
-        }
-
-        fun postSingleCreator(id: String?, other: String?, date: String?, result: String?, win: String?, lose: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postSingleCreator(id, other, date, result, win, lose)
-        }
-
-        fun postMultiCreator(id: String?, partner: String?, other: String?, otherPartner: String?, date: String?, result: String?, win: String?, lose: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postMultiCreator(id, partner, other, otherPartner, date, result, win, lose)
         }
 
         fun postContestCreator(id: String?, name: String?, date: String?, end: String?, type: String?, host: String?, location: String?, depart: String?): Observable<ServerRepo> {

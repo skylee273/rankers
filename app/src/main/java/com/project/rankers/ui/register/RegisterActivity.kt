@@ -8,7 +8,6 @@ import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.databinding.ActivityRegisterBinding
 import com.project.rankers.ui.base.BaseActivity
-import com.project.rankers.ui.login.LoginViewModel
 import com.project.rankers.ui.main.MainActivity
 import javax.inject.Inject
 
@@ -19,6 +18,7 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
     internal var factory: ViewModelProviderFactory? = null
     private var mRegisterViewModel : RegisterViewModel? = null
     private lateinit var registerBinding: ActivityRegisterBinding
+
     override fun getLayoutId(): Int {
         return R.layout.activity_register
     }
@@ -50,7 +50,6 @@ class RegisterActivity : BaseActivity<ActivityRegisterBinding, RegisterViewModel
         super.onCreate(savedInstanceState)
         registerBinding =  getViewDataBinding()
         mRegisterViewModel!!.navigator = this
-
         val intent = intent
         val email = intent.extras.getString("userEmail")!!
         mRegisterViewModel!!.setUserEmail(email)

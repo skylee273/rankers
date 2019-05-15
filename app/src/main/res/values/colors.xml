@@ -58,4 +58,13 @@
     <color name="win_text_bg">#f14932</color>
     <color name="lose_text_bg">#396ab8</color>
 
+    <color name="win_view">#f8efed</color>
+    <color name="lose_view">#edf1f8</color>
+
+    <color name="view_line">#2a5291</color>
+
+    <color name="text_win">#2a5291</color>
+
+    <color name="text_up">#f14932</color>
+    <color name="text_down">#464646</color>
 </resources>

@@ -7,19 +7,20 @@ import com.project.rankers.data.remote.response.MatchRepo
 class MatchItemViewModel(items: MatchRepo.Match, private val mListener: MatchItemViewModelListener) {
 
     val my : ObservableField<String>
-    val partner : ObservableField<String>
     val other : ObservableField<String>
-    val otherPartner : ObservableField<String>
     val date : ObservableField<String>
     val score : ObservableField<String>
     val result : ObservableField<String>
     val isWin = ObservableBoolean()
 
     init {
-        my = ObservableField(items.matchMy!!)
-        partner = ObservableField(items.matchPartner!!)
-        other = ObservableField(items.matchOther!!)
-        otherPartner = ObservableField(items.matchOtherPartner!!)
+        if(items.matchPartner != "-"){
+            my = ObservableField(items.matchMy!! + "," + items.matchPartner)
+            other = ObservableField(items.matchOther!! + "," + items.matchOtherPartner)
+        }else{
+            my = ObservableField(items.matchMy!!)
+            other = ObservableField(items.matchOther!!)
+        }
         date = ObservableField(items.matchDate!!)
         score = ObservableField(items.matchWin!! +  " : " + items.matchLose)
         result = if(items.matchResult == "승"){
@@ -32,7 +33,7 @@ class MatchItemViewModel(items: MatchRepo.Match, private val mListener: MatchIte
 
     }
 
-    fun setIsState(isWin: Boolean) {
+    private fun setIsState(isWin: Boolean) {
         this.isWin.set(isWin)
     }
 

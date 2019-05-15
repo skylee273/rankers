@@ -12,9 +12,104 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:background="#ffffff"
         android:onClick="@{() -> viewModel.onItemClick()}">
+
+        <TextView
+            android:id="@+id/text_other"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:letterSpacing="-0.04"
+            android:lineSpacingExtra="5.3sp"
+            android:maxLines="1"
+            android:text="@{viewModel.other}"
+            android:textColor="#707070"
+            android:textSize="13.8sp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_my"
+            app:layout_constraintStart_toEndOf="@+id/view32"
+            app:layout_constraintTop_toBottomOf="@+id/textView26"
+            tools:text="이하늘, 박소연테스트 원투" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="9sp"
+            android:text="상대방"
+            android:textColor="#707070"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/view32"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+        <View
+            android:id="@+id/view32"
+            android:layout_width="4.5dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="45dp"
+            android:background="@{viewModel.isWin ? @color/lose_view : @color/win_view}"
+            app:layout_constraintBottom_toBottomOf="@+id/text_other"
+            app:layout_constraintStart_toEndOf="@+id/text_my"
+            app:layout_constraintTop_toTopOf="@+id/textView26" />
+
+        <TextView
+            android:id="@+id/text_my"
+            android:layout_width="80dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:letterSpacing="-0.04"
+            android:lineSpacingExtra="5.3sp"
+            android:maxLines="1"
+            android:text="@{viewModel.my}"
+            android:textColor="#707070"
+            android:textSize="13.8sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_state"
+            app:layout_constraintStart_toEndOf="@+id/view26"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            app:layout_constraintVertical_bias="1.0"
+            tools:text="김수루한, 구리기나언미ㅏ엄니ㅏ언마ㅣ" />
+
+        <View
+            android:id="@+id/view26"
+            android:layout_width="4.5dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="22dp"
+
+            android:background="@{viewModel.isWin ? @color/lose_view : @color/win_view}"
+            app:layout_constraintBottom_toBottomOf="@+id/text_my"
+            app:layout_constraintStart_toEndOf="@+id/btn_state"
+            app:layout_constraintTop_toTopOf="@+id/textView3" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="9sp"
+            android:text="팀원"
+            android:textColor="#707070"
+            android:textSize="10sp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_state"
+            app:layout_constraintStart_toEndOf="@+id/view26"
+            app:layout_constraintTop_toTopOf="@+id/btn_state" />
+
+        <View
+            android:id="@+id/view24"
+            android:layout_width="4.5dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="22dp"
+            android:background="@{viewModel.isWin ? @color/lose_view : @color/win_view}"
+            app:layout_constraintBottom_toBottomOf="@+id/text_date"
+            app:layout_constraintStart_toEndOf="@+id/btn_state"
+            app:layout_constraintTop_toTopOf="@+id/btn_state" />
 
         <View
             android:id="@+id/view22"
@@ -25,164 +120,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toStartOf="@+id/btn_score"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/btn_state"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout18">
-
-            <Button
-                android:id="@+id/my"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-
-                android:background="@null"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.04"
-                android:lineSpacingExtra="5.3sp"
-                android:text="@{viewModel.my}"
-                android:textColor="#707070"
-                android:textSize="13.8sp"
-                tools:text="이하늘" />
-
-            <Button
-                android:id="@+id/partner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.04"
-                android:lineSpacingExtra="5.3sp"
-                android:text="@{viewModel.partner}"
-                android:textColor="#707070"
-                android:textSize="13.8sp"
-                tools:text="이하늘" />
-
-            <Button
-                android:id="@+id/other"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.04"
-                android:lineSpacingExtra="5.3sp"
-                android:text="@{viewModel.other}"
-                android:textColor="#707070"
-                android:textSize="13.8sp"
-                tools:text="이하늘" />
-
-            <Button
-                android:id="@+id/other_partner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="@null"
-                android:gravity="center_horizontal"
-                android:letterSpacing="-0.04"
-                android:lineSpacingExtra="5.3sp"
-                android:text="@{viewModel.otherPartner}"
-                android:textColor="#707070"
-                android:textSize="13.8sp"
-                tools:text="이하늘" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout18"
-            android:layout_width="0dp"
-            android:layout_height="21dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/btn_state"
-            app:layout_constraintEnd_toStartOf="@+id/btn_score"
-            app:layout_constraintStart_toEndOf="@+id/btn_state"
-            app:layout_constraintTop_toTopOf="@+id/btn_state">
-
-            <Button
-                android:id="@+id/btn_my"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="#f3f3f3"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="9sp"
-                android:text="본인"
-                android:textColor="#707070"
-                android:textSize="10sp"
-                tools:text="본인" />
-
-            <Button
-                android:id="@+id/btn_partner"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="#f3f3f3"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="9sp"
-                android:text="파트너"
-                android:textColor="#707070"
-                android:textSize="10sp"
-                tools:text="파트너" />
-
-            <Button
-                android:id="@+id/btn_other"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="#f3f3f3"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="9sp"
-                android:text="상대방"
-                android:textColor="#707070"
-                android:textSize="10sp"
-                tools:text="상대방" />
-
-            <Button
-                android:id="@+id/btn_other_partner"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
-                android:background="#f3f3f3"
-                android:letterSpacing="-0.03"
-                android:lineSpacingExtra="9sp"
-                android:text="파트너"
-                android:textColor="#707070"
-                android:textSize="10sp"
-                tools:text="파트너" />
-        </LinearLayout>
-
         <Button
             android:id="@+id/btn_score"
             android:layout_width="60dp"
             android:layout_height="0dp"
+            android:background="@{viewModel.isWin ? @color/lose_bg : @color/win_bg}"
             android:letterSpacing="-0.08"
             android:lineSpacingExtra="2.8sp"
+            android:text="@{viewModel.score}"
             android:textColor="@{viewModel.isWin ? @color/lose_text_bg : @color/win_text_bg}"
             android:textSize="16.3sp"
-            android:background="@{viewModel.isWin ? @color/lose_bg : @color/win_bg}"
-            android:text="@{viewModel.score}"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/view22"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="3 : 2" />
@@ -190,27 +138,30 @@
         <TextView
             android:id="@+id/text_date"
             android:layout_width="wrap_content"
-            android:layout_height="19dp"
-            android:layout_marginStart="16dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:letterSpacing="-0.03"
+            android:lineSpacingExtra="9sp"
             android:text="@{viewModel.date}"
-            android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout18"
-            app:layout_constraintStart_toEndOf="@+id/btn_state"
+            android:textColor="#707070"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/view24"
+            app:layout_constraintTop_toTopOf="@+id/btn_state"
             tools:text="19.02.03 ~ 19.02.31" />
 
         <Button
             android:id="@+id/btn_state"
-            android:layout_width="65dp"
-            android:layout_height="65dp"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
             android:layout_marginStart="17dp"
-            android:layout_marginTop="23dp"
-            android:text="@{viewModel.result}"
+            android:layout_marginTop="9dp"
+            android:layout_marginBottom="6dp"
             android:background="@{viewModel.isWin ? @drawable/ic_lose : @drawable/ic_win}"
-            android:layout_marginBottom="23dp"
             android:gravity="center"
             android:letterSpacing="-0.06"
             android:lineSpacingExtra="21sp"
             android:paddingTop="19.8dp"
+            android:text="@{viewModel.result}"
             android:textColor="#ffffff"
             android:textSize="16.3sp"
             app:layout_constraintBottom_toTopOf="@+id/view22"

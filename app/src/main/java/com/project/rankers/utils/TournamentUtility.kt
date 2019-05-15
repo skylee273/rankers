@@ -1,4 +1,4 @@
-package com.project.rankers.ui.contest.tournamentResult.utility
+package com.project.rankers.utils
 
 import android.util.DisplayMetrics
 import com.project.rankers.MvvmApp

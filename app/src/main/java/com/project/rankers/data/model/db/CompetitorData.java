@@ -10,19 +10,31 @@ public class CompetitorData implements Serializable {
 
     private String name;
     private String score;
-    private String title;
-    private String date;
+    private String round;
+    private String number;
 
-    public CompetitorData(String name, String score, String title, String date){
+    public CompetitorData(String name, String score, String round, String number){
         this.name = name;
         this.score = score;
-        this.title = title;
-        this.date = date;
+        this.round = round;
+        this.number = number;
     }
-    public String getTitle() { return title; }
-    public void setTitle(String title) { this.title = title; }
-    public String getDate() { return date; }
-    public void setDate(String date) { this.date = date; }
+
+    public String getRound() {
+        return round;
+    }
+
+    public void setRound(String round) {
+        this.round = round;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
     public String getScore() {
         return score;
     }

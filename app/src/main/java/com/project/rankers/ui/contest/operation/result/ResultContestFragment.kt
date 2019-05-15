@@ -12,6 +12,8 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.WhichButton
+import com.afollestad.materialdialogs.actions.setActionButtonEnabled
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
 import com.project.rankers.adapter.DashBoardAdapter
@@ -51,13 +53,19 @@ class ResultContestFragment : Fragment() {
     }
 
     private fun setClickListner() {
+        var p0 = 0
         dashboardAdapter!!.itemClick = object : DashBoardAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 val depart = dashboardAdapter!!.getDeaprt(position)
                 MaterialDialog(activity!!).show {
                     title(text = "대진표작성")
-                    listItemsSingleChoice(items = myItems) { dialog, index, text ->
-                        when (index) {
+                    listItemsSingleChoice(items = myItems, waitForPositiveButton = false) { dialog, index, text ->
+                        dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
+                        p0 = index
+
+                    }
+                    positiveButton (text = "확인"){
+                        when (p0) {
                             0 -> {
                                 Log.d("대진표 번호", "예선")
                                 val intent = Intent(mContext, LeagueResultActivity::class.java)

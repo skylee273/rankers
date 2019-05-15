@@ -1,3 +1,7 @@
 package com.project.rankers.ui.contest.contestResultLeague
 
-class ContestResultLeagueEmptyItemViewModel
+class ContestResultLeagueEmptyItemViewModel(private val mListener: ContestResultLeagueEmptyItemViewModelListener) {
+
+
+    interface ContestResultLeagueEmptyItemViewModelListener
+}

@@ -1,29 +1,30 @@
 package com.project.rankers
 
 
-import com.project.rankers.ui.contest.competition.CompetitionInfoViewModel
-import com.project.rankers.ui.contest.form.ApplicationFormViewModel
-import com.project.rankers.ui.login.LoginViewModel
-import com.project.rankers.ui.main.MainViewModel
-import com.project.rankers.ui.contest.operation.ContestOperationViewModel
-import com.project.rankers.ui.contest.contestRegister.ContestRegisterViewModel
-import com.project.rankers.ui.splash.SplashViewModel
-
-import javax.inject.Singleton
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.project.rankers.ui.contest.apply.ApplyViewModel
+import com.project.rankers.ui.contest.competition.CompetitionInfoViewModel
+import com.project.rankers.ui.contest.contestRegister.ContestRegisterViewModel
 import com.project.rankers.ui.contest.contestResult.ContestResultViewModel
+import com.project.rankers.ui.contest.contestResultLeague.ContestResultLeagueViewModel
+import com.project.rankers.ui.contest.contestResultTournament.ContestResultTournamentViewModel
+import com.project.rankers.ui.contest.form.ApplicationFormViewModel
 import com.project.rankers.ui.contest.league.LeagueViewModel
 import com.project.rankers.ui.contest.leagueResult.LeagueResultViewModel
+import com.project.rankers.ui.contest.operation.ContestOperationViewModel
+import com.project.rankers.ui.contest.operation.dashboard.DashBoardViewModel
+import com.project.rankers.ui.contest.operator.OperatorViewModel
+import com.project.rankers.ui.login.LoginViewModel
+import com.project.rankers.ui.main.MainViewModel
 import com.project.rankers.ui.main.contest.ContestViewModel
 import com.project.rankers.ui.match.MatchViewModel
-import com.project.rankers.ui.contest.operator.OperatorViewModel
 import com.project.rankers.ui.record.RecordViewModel
 import com.project.rankers.ui.record.multi.MultiViewModel
 import com.project.rankers.ui.record.single.SingleViewModel
 import com.project.rankers.ui.register.RegisterViewModel
+import com.project.rankers.ui.splash.SplashViewModel
+import javax.inject.Singleton
 
 
 @Singleton
@@ -67,7 +68,15 @@ class ViewModelProviderFactory : ViewModelProvider.NewInstanceFactory() {
             return SingleViewModel() as T
         }else if (modelClass.isAssignableFrom(ContestResultViewModel::class.java)) {
             return ContestResultViewModel() as T
+        }else if (modelClass.isAssignableFrom(ContestResultLeagueViewModel::class.java)) {
+            return ContestResultLeagueViewModel() as T
+        }else if (modelClass.isAssignableFrom(ContestResultTournamentViewModel::class.java)) {
+            return ContestResultTournamentViewModel() as T
+        }else if (modelClass.isAssignableFrom(DashBoardViewModel::class.java)) {
+            return DashBoardViewModel() as T
         }
+
+
 
         throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }

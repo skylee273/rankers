@@ -18,7 +18,7 @@ class TournamentViewModel : BaseViewModel<TournamentNavigator>() {
     var departName: String? = null
     var tournamentUserList: ArrayList<TournamentUser>
     var tournamentList: ArrayList<Tournament>
-
+    var isSuccess  = true
     init {
         mutableLiveData = MutableLiveData()
         tournamentUserList = ArrayList()
@@ -67,26 +67,66 @@ class TournamentViewModel : BaseViewModel<TournamentNavigator>() {
     }
 
     fun uploadTournament(tournamentItem: List<Tournament>){
-        setIsLoading(true)
-        var isSuccess  = true
-        for(item in tournamentItem){
-            compositeDisposable.add(Api.postTournamentCreator(contestID, User().userID, "0", contestDepartName,item.teamOneName, item.teamTwoName, "0", "0")
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        if(!it.getSuccess())
-                            isSuccess = false
-                    }) {
-                        setIsLoading(false)
-                        navigator.handleError(it)
-                    })
+
+        val round = nextPowerOf2(tournamentItem.size*2)
+        val totalGame = logB(round.toDouble(), 2.0) // 5
+
+        var mod = 2
+        var index = 1
+        for(i in 0 until totalGame.toInt()){
+            for (j in 0 until (round / mod)) {     // 0 ~ 31
+                if(mod == 2){
+                    if(j < tournamentItem.size){
+                        uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!! ,tournamentItem[j].teamOneName, tournamentItem[j].teamTwoName, "0", "0")
+                    }else{
+                        uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!! ,"-", "-", "0", "0")
+                    }
+                }else{
+                    uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!! ,"경기전", "경기전", "0", "0")
+                }
+                index++
+            }
+            mod *= 2
         }
         if(isSuccess){
-            navigator.showDialog("토너먼트 등록", "토너먼드 대진표를 완성하였습니다.")
+            navigator.showDialog("토너먼트 등록", "토너먼트 대진표를 완성하였습니다.")
             setIsLoading(false)
         }
 
     }
+
+    private fun uploadTournament(contestID: String, userId : String, type : String, round : String, number : Int, deaprtName : String, playerOneName : String, playerTwoName : String, scoreOne : String, scoreTwo : String){
+        setIsLoading(true)
+        compositeDisposable.add(Api.postTournamentCreator(contestID, userId, type, round, number, deaprtName, playerOneName, playerTwoName, scoreOne, scoreTwo)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    if(!it.getSuccess())
+                        isSuccess = false
+                }) {
+                    isSuccess = false
+                    setIsLoading(false)
+                    navigator.handleError(it)
+                })
+    }
+    private fun logB(x: Double, base: Double): Double {
+        return Math.log(x) / Math.log(base)
+    }
+
+    private fun nextPowerOf2(number: Int): Int {
+        var count = 0
+        var n = number
+        if (n > 0 && n and n - 1 == 0)
+            return n
+
+        while (n != 0) {
+            n = n shr 1
+            count += 1
+        }
+
+        return 1 shl count
+    }
+
 
     fun onUploadClick() {
         navigator.uploadTournament()

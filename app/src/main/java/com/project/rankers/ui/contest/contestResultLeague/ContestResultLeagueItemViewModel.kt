@@ -1,9 +1,10 @@
 package com.project.rankers.ui.contest.contestResultLeague
 
+import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import com.project.rankers.data.remote.response.GroupResponse
 
-class ContestResultLeagueItemViewModel(group: GroupResponse.Group, private val mListener: LeagueResultItemViewModelListener) {
+class ContestResultLeagueItemViewModel(group: GroupResponse.Group, private val mListener: ContestResultLeagueItemViewModelListener) {
 
 
     val player1: ObservableField<String>
@@ -45,6 +46,11 @@ class ContestResultLeagueItemViewModel(group: GroupResponse.Group, private val m
 
     val number: ObservableField<String>
 
+    val isPlayerOneWin = ObservableBoolean()
+    val isPlayerTwoWin = ObservableBoolean()
+    val isPlayerThreeWin = ObservableBoolean()
+    val isPlayerFourWin = ObservableBoolean()
+
     init {
         player1 = ObservableField(group.groupPlayer1!!)
         player2 = ObservableField(group.groupPlayer2!!)
@@ -55,93 +61,85 @@ class ContestResultLeagueItemViewModel(group: GroupResponse.Group, private val m
         player7 = ObservableField(group.groupPlayer3)
         player8 = ObservableField(group.groupPlayer4)
 
-        score1 =  ObservableField(set(group.groupScore1!!))
+        score1 =ObservableField(isMatch(group.groupScore1!!))
+        score2 =ObservableField(isMatch(group.groupScore2!!))
+        score3 =ObservableField(isMatch(group.groupScore3!!))
+        score4 =ObservableField(isMatch(group.groupScore4!!))
+        score5 =ObservableField(isMatch(group.groupScore5!!))
+        score6 =ObservableField(isMatch(group.groupScore6!!))
 
-        score2 = ObservableField(set(group.groupScore2!!))
-
-        score3 = ObservableField(set(group.groupScore3!!))
-
-        score4 = ObservableField(set(group.groupScore4!!))
-
-        score5 = ObservableField(set(group.groupScore5!!))
-
-        score6 = ObservableField(set(group.groupScore6!!))
-
-        score7 = ObservableField(group.groupScore1!!.reversed())
-
-        score8 = ObservableField(group.groupScore2!!.reversed())
-
-        score9 = ObservableField(group.groupScore3!!.reversed())
-
-        score10 = ObservableField(group.groupScore4!!.reversed())
-
-        score11 = ObservableField(group.groupScore5!!.reversed())
-
-        score12 = ObservableField(group.groupScore6!!.reversed())
-
-        gain1 = ObservableField(set(group.groupGain1!!))
-        gain2 = ObservableField(set(group.groupGain2!!))
-        gain3 = ObservableField(set(group.groupGain3!!))
-        gain4 = ObservableField(set(group.groupGain4!!))
+        score7 =ObservableField (isMatch(group.groupScore1!!.reversed()))
+        score8 =ObservableField (isMatch(group.groupScore2!!.reversed()))
+        score9 =ObservableField (isMatch(group.groupScore3!!.reversed()))
+        score10 =ObservableField(isMatch(group.groupScore4!!.reversed()))
+        score11 =ObservableField(isMatch(group.groupScore5!!.reversed()))
+        score12 =ObservableField(isMatch(group.groupScore6!!.reversed()))
 
 
-        totalScore1 = ObservableField(set(group.groupTotal1!!))
-        totalScore2 = ObservableField(set(group.groupTotal2!!))
-        totalScore3 = ObservableField(set(group.groupTotal3!!))
-        totalScore4 = ObservableField(set(group.groupTotal4!!))
+        gain1 = ObservableField((group.groupGain1!!))
+        gain2 = ObservableField((group.groupGain2!!))
+        gain3 = ObservableField((group.groupGain3!!))
+        gain4 = ObservableField((group.groupGain4!!))
 
-        rank1 = ObservableField(set(group.groupRank1!!))
-        rank2 = ObservableField(set(group.groupRank2!!))
-        rank3 = ObservableField(set(group.groupRank3!!))
-        rank4 = ObservableField(set(group.groupRank4!!))
+
+        totalScore1 = ObservableField((group.groupTotal1!!))
+        totalScore2 = ObservableField((group.groupTotal2!!))
+        totalScore3 = ObservableField((group.groupTotal3!!))
+        totalScore4 = ObservableField((group.groupTotal4!!))
+
+        rank1 = ObservableField((group.groupRank1!!))
+        rank2 = ObservableField((group.groupRank2!!))
+        rank3 = ObservableField((group.groupRank3!!))
+        rank4 = ObservableField((group.groupRank4!!))
+
+        if(group.groupRank1 == "1" || group.groupRank1 == "2"){
+            setPlayerOne(true)
+        } else{
+            setPlayerOne(false)
+        }
+
+        if(group.groupRank2 == "1" || group.groupRank2 == "2"){
+            setPlayerTwo(true)
+        } else{
+            setPlayerTwo(false)
+        }
+
+        if(group.groupRank3 == "1" || group.groupRank3 == "2"){
+            setPlayerThree(true)
+        } else{
+            setPlayerThree(false)
+        }
+
+        if(group.groupRank4 == "1" || group.groupRank4 == "2"){
+            setPlayerFour(true)
+        } else{
+            setPlayerFour(false)
+        }
 
         number = ObservableField(group.groupNumber!! + "조 매치")
     }
 
-    fun set(str: String): String {
-        return if (str == "") {
-            "입력"
+    private fun setPlayerOne(isWin: Boolean) {
+        this.isPlayerOneWin.set(isWin)
+    }
+    private fun setPlayerTwo(isWin: Boolean) {
+        this.isPlayerTwoWin.set(isWin)
+    }
+    private fun setPlayerThree(isWin: Boolean) {
+        this.isPlayerThreeWin.set(isWin)
+    }
+    private fun setPlayerFour(isWin: Boolean) {
+        this.isPlayerFourWin.set(isWin)
+    }
+
+
+    private fun isMatch(str: String): String {
+        return if (str == "0") {
+            "경기전"
         } else {
             str
         }
     }
 
-    fun onScore1Click() {
-        mListener.onScore1Click()
-    }
-
-    fun onScore2Click() {
-        mListener.onScore2Click()
-    }
-
-    fun onScore3Click() {
-        mListener.onScore3Click()
-    }
-
-    fun onScore4Click() {
-        mListener.onScore4Click()
-    }
-
-    fun onScore5Click() {
-        mListener.onScore5Click()
-    }
-
-    fun onScore6Click() {
-        mListener.onScore6Click()
-    }
-
-    fun onItemClick() {
-        mListener.onItemClick()
-    }
-
-    interface LeagueResultItemViewModelListener {
-        fun onItemClick()
-        fun onScore1Click()
-        fun onScore2Click()
-        fun onScore3Click()
-        fun onScore4Click()
-        fun onScore5Click()
-        fun onScore6Click()
-
-    }
+    interface ContestResultLeagueItemViewModelListener
 }

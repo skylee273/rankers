@@ -41,7 +41,7 @@ class DashBoardAdapter(context: Context, items: List<String>) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DashBoardCustomViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_dashboard, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_dashboard_view, parent, false)
         return DashBoardCustomViewHolder(view)
     }
 

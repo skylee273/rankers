@@ -11,8 +11,8 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
-import com.project.rankers.databinding.ActivityLeagueBinding
 import com.project.rankers.data.model.db.LeagueItem
+import com.project.rankers.databinding.ActivityLeagueBinding
 import com.project.rankers.ui.base.BaseActivity
 import java.util.*
 import javax.inject.Inject
@@ -76,11 +76,13 @@ class LeagueActivity : BaseActivity<ActivityLeagueBinding, LeagueViewModel>(), L
     }
 
     override fun isNextActivity() {
-        MaterialDialog(this).show {
-            title(text = "예선 대진표")
-            message(text = "대진표 등록이 완료되었습니다.")
-            positiveButton(text = "확인") {
-                finish()
+        runOnUiThread {
+            MaterialDialog(this).show {
+                title(text = "예선 대진표")
+                message(text = "대진표 등록이 완료되었습니다.")
+                positiveButton(text = "확인") {
+                    finish()
+                }
             }
         }
     }

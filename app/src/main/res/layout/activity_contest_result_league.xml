@@ -7,7 +7,7 @@
         <import type="android.view.View"/>
         <variable
             name="viewModel"
-            type="com.project.rankers.ui.contest.leagueResult.LeagueResultViewModel"/>
+            type="com.project.rankers.ui.contest.contestResultLeague.ContestResultLeagueViewModel"/>
     </data>
 
     <LinearLayout
@@ -37,7 +37,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/view21"
-                tools:listitem="@layout/item_league_result_view" />
+                tools:listitem="@layout/item_contest_result_league_view" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"

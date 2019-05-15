@@ -8,6 +8,5 @@ interface ContestNavigator {
     fun openContestRegister()
     fun openContestResult()
     fun openCompetitionInfo()
-
     fun openOperator()
 }

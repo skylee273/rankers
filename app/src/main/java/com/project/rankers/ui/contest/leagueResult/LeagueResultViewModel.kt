@@ -36,8 +36,8 @@ class LeagueResultViewModel : BaseViewModel<LeagueResultNavigator>(){
         for(item in items!!){
             setIsLoading(true)
             compositeDisposable.add(Api.postUpdateGroup(contestID, contestDepartName, item.groupNumber, item.groupScore1, item.groupScore2, item.groupScore3, item.groupScore4,
-                    item.groupScore5, item.groupScore6, item.groupTotal1, item.groupTotal2, item.groupTotal3, item.groupTotal4, item.groupRank1, item.groupRank2,
-                    item.groupRank3, item.groupRank4)
+                    item.groupScore5, item.groupScore6, item.groupGain1, item.groupGain2, item.groupGain3, item.groupGain4, item.groupTotal1, item.groupTotal2, item.groupTotal3,
+                    item.groupTotal4, item.groupRank1, item.groupRank2, item.groupRank3, item.groupRank4)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe({
@@ -47,7 +47,7 @@ class LeagueResultViewModel : BaseViewModel<LeagueResultNavigator>(){
                         navigator.handleError(it)
                     })
         }
-        navigator.showDialog("예선전 대진표", "대진표 작성이 완료되었습니다")
+        navigator.showDialog("예선전 결과표", "예선결과 수정이 완료되었습니다")
     }
     fun onUploadClick(){
         navigator.uploadGroup()

@@ -2,14 +2,13 @@ package com.project.rankers.ui.contest.tournamentResult
 
 import android.os.Bundle
 import android.util.DisplayMetrics
-
-import com.project.rankers.R
-import com.project.rankers.ui.contest.tournamentResult.Fragment.BracketsFragment
-
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.project.rankers.MvvmApp
+import com.project.rankers.R
+import com.project.rankers.ui.contest.tournamentResult.Fragment.BracketsFragment
 import java.util.*
 
 class TournamentResultActivity : AppCompatActivity() {
@@ -30,7 +29,6 @@ class TournamentResultActivity : AppCompatActivity() {
         supportActionBar!!.setDisplayShowTitleEnabled(false)
 
         initialiseBracketsFragment()
-
     }
 
     private fun initialiseBracketsFragment() {
@@ -39,7 +37,7 @@ class TournamentResultActivity : AppCompatActivity() {
         fragment.arguments = getBundle()
         val manager = supportFragmentManager
         val transaction = manager.beginTransaction()
-        transaction.replace(R.id.container, fragment!!, "brackets_home_fragment")
+        transaction.replace(R.id.container, fragment, "brackets_home_fragment")
         transaction.commit()
         manager.executePendingTransactions()
     }
@@ -47,7 +45,6 @@ class TournamentResultActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         setScreenSize()
-
     }
 
     private fun setScreenSize() {
@@ -63,5 +60,13 @@ class TournamentResultActivity : AppCompatActivity() {
         bundle.putString("CONTEST_DEPART",contestDepart)
         return bundle
     }
-
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

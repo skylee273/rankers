@@ -1,21 +1,28 @@
 package com.project.rankers.ui.contest.contestResultSub
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.WhichButton
+import com.afollestad.materialdialogs.actions.setActionButtonEnabled
+import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.databinding.ActivityContestResultSubBinding
 import com.project.rankers.ui.base.BaseActivity
+import com.project.rankers.ui.contest.contestResultLeague.ContestResultLeagueActivity
+import com.project.rankers.ui.contest.contestResultTournament.ContestResultTournamentActivity
 import java.util.*
 import javax.inject.Inject
 
 class ContestResultSubActivity : BaseActivity<ActivityContestResultSubBinding, ContestResultSubViewModel>(), ContestResultSubNavigator, ContestResultSubAdapter.ContestResultSubAdapterListener{
-
 
     @Inject
     internal var contestResultAdapter: ContestResultSubAdapter? = null
@@ -24,6 +31,9 @@ class ContestResultSubActivity : BaseActivity<ActivityContestResultSubBinding, C
     private var mLayoutManager = LinearLayoutManager(this)
     lateinit var activityContestResultBinding: ActivityContestResultSubBinding
     private var contestViewModel : ContestResultSubViewModel? = null
+    var contestID : String? = null
+    var contestDepart : String? = null
+    private val myItems = listOf("예선전", "토너먼트")
 
     override fun getLayoutId(): Int {
         return R.layout.activity_contest_result_sub
@@ -55,6 +65,35 @@ class ContestResultSubActivity : BaseActivity<ActivityContestResultSubBinding, C
         setUp()
     }
 
+    override fun onItemClick(depart : String) {
+        var p0 = 0
+        MaterialDialog(this).show {
+            title(text = "대진표작성")
+            listItemsSingleChoice(items = myItems, waitForPositiveButton = false) { dialog, index, text ->
+                dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
+                p0 = index
+            }
+            positiveButton(text = "확인"){
+                when (p0) {
+                    0 -> {
+                        Log.d("대진표 번호", "예선")
+                        val intent = Intent(mContext, ContestResultLeagueActivity::class.java)
+                        intent.putExtra("CONTEST_DEPART", depart)
+                        intent.putExtra("CONTEST_ID", contestID)
+                        startActivity(intent)
+                    }
+                    1 -> {
+                        Log.d("대진표 번호", "본선")
+                        val intent = Intent(mContext, ContestResultTournamentActivity::class.java)
+                        intent.putExtra("CONTEST_DEPART", depart)
+                        intent.putExtra("CONTEST_ID", contestID)
+                        startActivity(intent)
+                    }
+                }
+            }
+        }
+    }
+
     @SuppressLint("WrongConstant")
     private fun setUp() {
 
@@ -65,9 +104,9 @@ class ContestResultSubActivity : BaseActivity<ActivityContestResultSubBinding, C
 
 
         val intent = intent
-        val contestID = intent.extras.getString("CONTEST_ID")
-        val contestDepart = intent.extras.getString("CONTEST_DEPART")
-        contestViewModel!!.setContestInfo(contestID, contestDepart)
+        contestID     = intent.extras.getString("CONTEST_ID")
+        contestDepart = intent.extras.getString("CONTEST_DEPART")
+        contestViewModel!!.setContestInfo(contestID!!, contestDepart!!)
 
         contestResultAdapter = ContestResultSubAdapter(ArrayList<String>())
         mLayoutManager.orientation = LinearLayoutManager.VERTICAL

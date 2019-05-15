@@ -101,8 +101,10 @@
             android:layout_height="30dp"
             android:layout_marginStart="24dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
             android:orientation="horizontal"
             android:weightSum="313"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout15">
@@ -127,9 +129,9 @@
                 android:layout_weight="61"
                 android:background="@drawable/custom_league_result_empty_box"
                 android:gravity="center"
-                android:text="@{viewModel.rank1}"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
+                android:text="@{viewModel.rank1}"
                 android:textColor="#464646"
                 android:textSize="16.3sp"
                 tools:text="1" />
@@ -143,9 +145,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
+                android:text="@{viewModel.rank2}"
                 android:textColor="#464646"
                 android:textSize="16.3sp"
-                android:text="@{viewModel.rank2}"
                 tools:text="2" />
 
             <TextView
@@ -157,9 +159,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
+                android:text="@{viewModel.rank3}"
                 android:textColor="#464646"
                 android:textSize="16.3sp"
-                android:text="@{viewModel.rank3}"
                 tools:text="3" />
 
             <TextView
@@ -171,9 +173,9 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
+                android:text="@{viewModel.rank4}"
                 android:textColor="#464646"
                 android:textSize="16.3sp"
-                android:text="@{viewModel.rank4}"
                 tools:text="4" />
         </LinearLayout>
 
@@ -433,7 +435,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
-                android:onClick="@{() -> viewModel.onScore6Click()}"
                 android:text="@{viewModel.score6}"
                 android:textColor="#39b896"
                 android:textSize="16.3sp"
@@ -500,7 +501,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
-                android:onClick="@{() -> viewModel.onScore4Click()}"
                 android:text="@{viewModel.score4}"
                 android:textColor="#39b896"
                 android:textSize="16.3sp"
@@ -515,7 +515,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
-                android:onClick="@{() -> viewModel.onScore5Click()}"
                 android:text="@{viewModel.score5}"
                 android:textColor="#39b896"
                 android:textSize="16.3sp"
@@ -568,7 +567,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
-                android:onClick="@{() -> viewModel.onScore1Click()}"
                 android:text="@{viewModel.score1}"
                 android:textColor="#39b896"
                 android:textSize="16.3sp"
@@ -583,7 +581,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
-                android:onClick="@{() -> viewModel.onScore2Click()}"
                 android:text="@{viewModel.score2}"
                 android:textColor="#39b896"
                 android:textSize="16.3sp"
@@ -598,7 +595,6 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-4.3sp"
-                android:onClick="@{() -> viewModel.onScore3Click()}"
                 android:text="@{viewModel.score3}"
                 android:textColor="#39b896"
                 android:textSize="16.3sp"
@@ -636,8 +632,8 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-1.8sp"
+                android:textColor="@{viewModel.isPlayerOneWin() ? @color/text_up : @color/text_down}"
                 android:text="@{viewModel.player1}"
-                android:textColor="#464646"
                 android:textSize="13.8sp"
                 tools:text="이하늘" />
 
@@ -650,8 +646,8 @@
                 android:gravity="center_horizontal|center_vertical"
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-1.8sp"
+                android:textColor="@{viewModel.isPlayerTwoWin() ? @color/text_up : @color/text_down}"
                 android:text="@{viewModel.player2}"
-                android:textColor="#464646"
                 android:textSize="13.8sp"
                 tools:text="이하늘" />
 
@@ -665,7 +661,7 @@
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-1.8sp"
                 android:text="@{viewModel.player3}"
-                android:textColor="#464646"
+                android:textColor="@{viewModel.isPlayerThreeWin() ? @color/text_up : @color/text_down}"
                 android:textSize="13.8sp"
                 tools:text="이하늘" />
 
@@ -679,7 +675,7 @@
                 android:letterSpacing="-0.02"
                 android:lineSpacingExtra="-1.8sp"
                 android:text="@{viewModel.player4}"
-                android:textColor="#464646"
+                android:textColor="@{viewModel.isPlayerFourWin() ? @color/text_up : @color/text_down}"
                 android:textSize="13.8sp"
                 tools:text="이하늘" />
         </LinearLayout>

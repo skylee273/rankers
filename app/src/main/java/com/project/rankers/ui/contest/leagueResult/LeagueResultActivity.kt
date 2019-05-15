@@ -3,6 +3,7 @@ package com.project.rankers.ui.contest.leagueResult
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.Toast
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -34,9 +35,19 @@ class LeagueResultActivity : BaseActivity<ActivityLeagueResultBinding, LeagueRes
             title(text = "점수입력")
             customView(R.layout.dialog_league, scrollable = true)
             positiveButton(text = "확인") { dialog ->
-                val winScore : EditText = dialog.getCustomView().findViewById(R.id.win_score)
-                val loseScore : EditText = dialog.getCustomView().findViewById(R.id.lose_score)
-                leagueResultAdapter!!.modifyPlayer(position, type, winScore.text.toString(), loseScore.text.toString())
+                try {
+                    val winScore : EditText = dialog.getCustomView().findViewById(R.id.win_score)
+                    val loseScore : EditText = dialog.getCustomView().findViewById(R.id.lose_score)
+                    if(winScore.text.toString().toInt() == loseScore.text.toString().toInt()){
+                        Toast.makeText(context, "무승부는 입력될수 없습니다.", Toast.LENGTH_SHORT).show()
+                    }else{
+                        leagueResultAdapter!!.modifyPlayer(position, type, winScore.text.toString(), loseScore.text.toString())
+                    }
+                }catch (e : NumberFormatException){
+                    Toast.makeText(context, "스코어를 모두 입력하세요", Toast.LENGTH_SHORT).show()
+                }catch (e : Exception){
+                    displayLog("Error", e.toString())
+                }
             }
             negativeButton(text = "취소")
         }

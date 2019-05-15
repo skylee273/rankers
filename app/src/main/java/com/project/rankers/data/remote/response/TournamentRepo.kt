@@ -36,6 +36,15 @@ class TournamentRepo {
         @SerializedName("TOURNAMENT_UID")
         val tournamentUID : String? = null
         @Expose
+        @SerializedName("TOURNAMENT_TYPE")
+        val tournamentType: String? = null
+        @Expose
+        @SerializedName("TOURNAMENT_ROUND")
+        val tournamentRound: String? = null
+        @Expose
+        @SerializedName("TOURNAMENT_NUMBER")
+        val tournamentNumber: String? = null
+        @Expose
         @SerializedName("TOURNAMENT_DEPART")
         val tournamentDepart : String? = null
         @Expose
@@ -55,7 +64,10 @@ class TournamentRepo {
 
         override fun hashCode(): Int {
             var result = tournamentID!!.hashCode()
+            result = 31 * result + tournamentNumber!!.hashCode()
             result = 31 * result + tournamentUID!!.hashCode()
+            result = 31 * result + tournamentType!!.hashCode()
+            result = 31 * result + tournamentRound!!.hashCode()
             result = 31 * result + tournamentDepart!!.hashCode()
             result = 31 * result + tournamentPlayerOne!!.hashCode()
             result = 31 * result + tournamentPlayerTwo!!.hashCode()

@@ -144,27 +144,40 @@ class LeagueResultItemViewModel(group: GroupResponse.Group, private val mListene
     }
 
     fun onScore1Click() {
-        mListener.onScore1Click()
+        if(score1.get() == "입력"){
+            mListener.onScore1Click()
+        }
     }
 
     fun onScore2Click() {
-        mListener.onScore2Click()
+        if(score2.get() == "입력"){
+            mListener.onScore2Click()
+        }
     }
 
     fun onScore3Click() {
-        mListener.onScore3Click()
+        if(score3.get() == "입력"){
+            mListener.onScore3Click()
+        }
     }
 
     fun onScore4Click() {
-        mListener.onScore4Click()
+        if(score4.get() == "입력"){
+            mListener.onScore4Click()
+        }
     }
 
     fun onScore5Click() {
-        mListener.onScore5Click()
+        if(score5.get() == "입력"){
+            mListener.onScore5Click()
+        }
+
     }
 
     fun onScore6Click() {
-        mListener.onScore6Click()
+        if(score6.get() == "입력"){
+            mListener.onScore6Click()
+        }
     }
 
     fun onItemClick() {

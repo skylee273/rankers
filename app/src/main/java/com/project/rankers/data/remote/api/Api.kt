@@ -56,11 +56,24 @@ class Api {
                 @Query("depart") depart: String?
         ): Observable<GroupResponse>
 
+        @GET("contest/groupLoadAllByIds.php")
+        fun getGroupAllByIds(
+                @Query("id") id: String?,
+                @Query("depart") depart: String?
+        ): Observable<ServerRepo>
+
+
         @GET("contest/tournamentList.php")
         fun getTournamentList(
                 @Query("id") id: String?,
                 @Query("depart") depart: String?
         ): Observable<TournamentRepo>
+
+        @GET("contest/tournamentLoadAllByIds.php")
+        fun getTournamentAllByIds(
+                @Query("id") id: String?,
+                @Query("depart") depart: String?
+        ): Observable<ServerRepo>
 
         @FormUrlEncoded
         @POST("match/matchCreator.php")
@@ -97,12 +110,31 @@ class Api {
                 @Field("id") id: String?,
                 @Field("uid") uid: String?,
                 @Field("type") type: String?,
+                @Field("round") round: String?,
+                @Field("number") number: Int?,
                 @Field("depart") depart: String?,
                 @Field("player1") player1: String?,
                 @Field("player2") player2: String?,
                 @Field("score1") score1: String?,
                 @Field("score2") score2: String?
         ): Observable<ServerRepo>
+
+        @FormUrlEncoded
+        @POST("contest/tournamentUpdate.php")
+        fun postUpdateTournament(
+                @Field("TOURNAMENT_ID") id: String?,
+                @Field("TOURNAMENT_UID") uid: String?,
+                @Field("TOURNAMENT_TYPE") type: String?,
+                @Field("TOURNAMENT_ROUND") round: String?,
+                @Field("TOURNAMENT_NUMBER") number: Int?,
+                @Field("TOURNAMENT_DEPART") depart: String?,
+                @Field("TOURNAMENT_PLAYER1") player1: String?,
+                @Field("TOURNAMENT_PLAYER2") player2: String?,
+                @Field("TOURNAMENT_SCORE1") score1: String?,
+                @Field("TOURNAMENT_SCORE2") score2: String?
+        ): Observable<ServerRepo>
+
+
 
 
         @FormUrlEncoded
@@ -153,6 +185,10 @@ class Api {
                 @Field("GROUP_SCORE4") groupScore4: String?,
                 @Field("GROUP_SCORE5") groupScore5: String?,
                 @Field("GROUP_SCORE6") groupScore6: String?,
+                @Field("GROUP_GAIN1") groupGain1: String?,
+                @Field("GROUP_GAIN2") groupGain2: String?,
+                @Field("GROUP_GAIN3") groupGain3: String?,
+                @Field("GROUP_GAIN4") groupGain4: String?,
                 @Field("GROUP_TOTAL1") groupTotal1: String?,
                 @Field("GROUP_TOTAL2") groupTotal2: String?,
                 @Field("GROUP_TOTAL3") groupTotal3: String?,
@@ -180,7 +216,9 @@ class Api {
         fun getGroupList(id: String?, depart: String?): Observable<GroupResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getGroupList(id, depart)
         }
-
+        fun getGroupAllByIds(id: String?, depart: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getGroupAllByIds(id, depart)
+        }
         fun getApplyList(id: String?, depart: String?): Observable<ApplyRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getApplyList(id, depart)
         }
@@ -196,6 +234,9 @@ class Api {
         fun getTournamentList(id: String?, depart: String?) : Observable<TournamentRepo>{
             return RetrofitCreator.create(ApiImpl::class.java).getTournamentList(id, depart)
         }
+        fun getTournamentAllByIds(id: String?, depart: String?) : Observable<ServerRepo>{
+            return RetrofitCreator.create(ApiImpl::class.java).getTournamentAllByIds(id, depart)
+        }
         fun getContestList(): Observable<ContestResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getContestList()
         }
@@ -206,8 +247,11 @@ class Api {
             return RetrofitCreator.create(ApiImpl::class.java).postMatchCreator(uid, type, my, partner, other, otherPartner, date, result, win, lose)
         }
 
-        fun postTournamentCreator(id: String?, uid: String?, type: String?, depart: String?, player1: String?, player2: String?, score1: String?, score2: String?): Observable<ServerRepo> {
-            return RetrofitCreator.create(ApiImpl::class.java).postTournamentCreator(id, uid, type, depart, player1, player2, score1, score2)
+        fun postTournamentCreator(id: String?, uid: String?, type: String?, round: String?, number: Int?, depart: String?, player1: String?, player2: String?, score1: String?, score2: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postTournamentCreator(id, uid, type, round, number, depart, player1, player2, score1, score2)
+        }
+        fun postUpdateTournament(id: String?, uid: String?, type: String?, round: String?, number: Int?, depart: String?, player1: String?, player2: String?, score1: String?, score2: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postUpdateTournament(id, uid, type, round, number, depart, player1, player2, score1, score2)
         }
         fun postGroupCreator(id: String?, uid: String?, depart: String?, number: Int?, player1: String?, player2: String?, player3: String?, player4: String?): Observable<ServerRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).postGroupCreator(id, uid, depart, number, player1, player2, player3, player4)
@@ -225,10 +269,11 @@ class Api {
             return RetrofitCreator.create(ApiImpl::class.java).postApplicationCreator(id, uid, depart, type, name, phone, partner, partnerPhone)
         }
 
-        fun postUpdateGroup(groupID: String?, groupDepart: String?, groupNumber: String?, groupScore1: String?, groupScore2: String?, groupScore3: String?, groupScore4: String?, groupScore5: String?, groupScore6: String?, groupTotal1: String?, groupTotal2: String?, groupTotal3: String?, groupTotal4: String?,
+        fun postUpdateGroup(groupID: String?, groupDepart: String?, groupNumber: String?, groupScore1: String?, groupScore2: String?, groupScore3: String?, groupScore4: String?, groupScore5: String?, groupScore6: String?,
+                            groupGain1: String?, groupGain2: String?, groupGain3: String?, groupGain4: String?, groupTotal1: String?, groupTotal2: String?, groupTotal3: String?, groupTotal4: String?,
                             groupRank1: String?, groupRank2: String?, groupRank3: String?, groupRank4: String?): Observable<ServerRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).postUpdateGroup(groupID, groupDepart, groupNumber, groupScore1, groupScore2, groupScore3, groupScore4,
-                    groupScore5, groupScore6, groupTotal1, groupTotal2, groupTotal3, groupTotal4, groupRank1, groupRank2, groupRank3, groupRank4)
+                    groupScore5, groupScore6, groupGain1, groupGain2, groupGain3, groupGain4, groupTotal1, groupTotal2, groupTotal3, groupTotal4, groupRank1, groupRank2, groupRank3, groupRank4)
         }
     }
 }

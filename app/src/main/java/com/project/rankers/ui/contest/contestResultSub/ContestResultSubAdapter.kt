@@ -62,7 +62,8 @@ class ContestResultSubAdapter(val mDepartResponseList: MutableList<String>?) : R
         }
 
         override fun onItemClick() {
-
+            val pos = adapterPosition
+            mListener!!.onItemClick(mDepartResponseList!![pos])
         }
     }
 
@@ -93,7 +94,7 @@ class ContestResultSubAdapter(val mDepartResponseList: MutableList<String>?) : R
     }
 
     interface ContestResultSubAdapterListener {
-
+        fun onItemClick(depart : String)
         fun onRetryClick()
     }
 

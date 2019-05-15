@@ -28,16 +28,16 @@
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="24dp"
                 android:background="#396ab8"
-                android:textSize="15sp"
-                android:textColor="#ffffff"
                 android:letterSpacing="-0.06"
                 android:lineSpacingExtra="22.3sp"
                 android:onClick="@{() -> viewModel.onUploadClick()}"
-                tools:text="경기등록"
-                android:text="경기등록"
+                android:text="결과등록"
+                android:textColor="#ffffff"
+                android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="결과등록" />
 
             <View
                 android:id="@+id/view21"

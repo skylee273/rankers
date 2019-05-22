@@ -35,7 +35,7 @@ class DashBoardViewModel : BaseViewModel<DashBoardNavigator>() {
                     if (response.getSuccess() ) {
                         navigator.showDialog("예선전 대진표", "생성된 대진표가 존재합니다.")
                     } else {
-                        navigator.openTournamentActivity()
+                        navigator.openLeagueActivity()
                     }
                     setIsLoading(false)
                 }) {

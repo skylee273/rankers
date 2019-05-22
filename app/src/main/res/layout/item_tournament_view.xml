@@ -9,144 +9,124 @@
             type="com.project.rankers.ui.contest.tournament.TournamentItemViewModel"/>
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/layout_root"
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical">
-
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:id="@+id/content_layout"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:background="@drawable/custom_tournament_box"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content">
 
-            <RelativeLayout
-                android:id="@+id/title_layout"
+            <LinearLayout
+                android:id="@+id/linearLayout21"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/team_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="40dp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginLeft="8dp"
-                    android:gravity="bottom"
-                    android:paddingBottom="5dp"
-                    android:text="@{viewModel.depart}"
-                    android:textColor="#464646"
-                    android:textSize="12sp" />
-
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/team_one_layout"
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:onClick="@{() -> viewModel.onTeamOneClick()}"
-                android:layout_below="@+id/title_layout"
-                android:background="@drawable/custom_league_result_box"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/team_one_IV"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp" />
-
-                <TextView
-                    android:id="@+id/team_one_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_marginRight="5dp"
-                    android:layout_toLeftOf="@+id/team_one_rank"
-                    android:layout_toRightOf="@+id/team_one_IV"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:singleLine="true"
-                    android:text="@{viewModel.teamOneName}"
-                    android:textColor="#464646"
-                    android:textSize="14sp"
-                    tools:text="조코비치" />
-
-                <TextView
-                    android:id="@+id/team_one_rank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:text="@{viewModel.teamOneRank}"
-                    android:textColor="#396ab8"
-                    android:textSize="14sp"
-                    tools:text="1조 1위" />
-            </RelativeLayout>
-
-            <View
-                android:id="@+id/view"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_below="@+id/team_one_layout" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_below="@+id/view"
-                android:layout_marginTop="1dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/custom_tournament_box"
                 android:onClick="@{() -> viewModel.onTeamTwoClick()}"
-                android:background="@drawable/custom_league_result_box"
-                android:gravity="center">
-
-                <ImageView
-                    android:id="@+id/team_two_IV"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="5dp" />
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout20">
 
                 <TextView
                     android:id="@+id/team_two_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="15dp"
-                    android:layout_toLeftOf="@+id/team_two_rank"
-                    android:layout_toRightOf="@+id/team_two_IV"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:singleLine="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="18dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-1.8sp"
                     android:text="@{viewModel.teamTwoName}"
                     android:textColor="#464646"
-                    android:textSize="14sp"
-                    tools:text="샤라포바" />
+                    android:textSize="13.8sp"
+                    tools:text="이하늘, 박소연" />
 
                 <TextView
-                    android:id="@+id/team_two_rank"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="15dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
+                    android:id="@+id/team_two_score"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-1.8sp"
                     android:text="@{viewModel.teamTwoRank}"
+                    android:textColor="#464646"
+                    android:textSize="13.8sp"
+                    tools:text="3조 2위" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout20"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                android:onClick="@{() -> viewModel.onTeamOneClick()}"
+                android:background="@drawable/custom_tournament_box"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout19">
+
+                <TextView
+                    android:id="@+id/team_one_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="18dp"
+                    android:layout_weight="1"
+                    android:text="@{viewModel.teamOneName}"
+                    android:gravity="center_vertical"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-1.8sp"
+                    android:textColor="#464646"
+                    android:textSize="13.8sp"
+                    tools:text="이하늘, 박소연" />
+
+                <TextView
+                    android:id="@+id/team_one_score"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="10dp"
+                    android:layout_weight="1"
+                    android:gravity="right|center_vertical"
+                    android:text="@{viewModel.teamOneRank}"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-1.8sp"
+                    android:textColor="#464646"
+                    android:textSize="13.8sp"
+                    tools:text="2조 1위" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout19"
+                android:layout_width="0dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:background="@drawable/contest_result_tournament_box2"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/team_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="17dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:letterSpacing="-0.02"
+                    android:lineSpacingExtra="-1.8sp"
+                    android:text="@{viewModel.number}"
                     android:textColor="#555555"
-                    android:textSize="14sp"
-                    tools:text="2조 2위" />
-            </RelativeLayout>
-        </RelativeLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                    android:textSize="13.8sp"
+                    tools:text="4조" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

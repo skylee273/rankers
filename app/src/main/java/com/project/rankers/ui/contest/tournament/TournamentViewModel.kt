@@ -18,7 +18,8 @@ class TournamentViewModel : BaseViewModel<TournamentNavigator>() {
     var departName: String? = null
     var tournamentUserList: ArrayList<TournamentUser>
     var tournamentList: ArrayList<Tournament>
-    var isSuccess  = true
+    var isSuccess = true
+
     init {
         mutableLiveData = MutableLiveData()
         tournamentUserList = ArrayList()
@@ -33,27 +34,28 @@ class TournamentViewModel : BaseViewModel<TournamentNavigator>() {
                 .subscribe({ response: GroupResponse ->
                     for (item in response.items) {
                         departName = item.groupDepart
+
                         if (item.groupRank1!!.toInt() == 1 || item.groupRank1!!.toInt() == 2) {
-                            tournamentUserList.add(TournamentUser(item.groupPlayer1!!, item.groupRank1!!))
+                            tournamentUserList.add(TournamentUser(item.groupPlayer1!!, item.groupRank1!!, item.groupNumber!!))
                         }
                         if (item.groupRank2!!.toInt() == 1 || item.groupRank2!!.toInt() == 2) {
-                            tournamentUserList.add(TournamentUser(item.groupPlayer2!!, item.groupRank2!!))
+                            tournamentUserList.add(TournamentUser(item.groupPlayer2!!, item.groupRank2!!, item.groupNumber!!))
                         }
                         if (item.groupRank3!!.toInt() == 1 || item.groupRank3!!.toInt() == 2) {
-                            tournamentUserList.add(TournamentUser(item.groupPlayer3!!, item.groupRank3!!))
+                            tournamentUserList.add(TournamentUser(item.groupPlayer3!!, item.groupRank3!!, item.groupNumber!!))
                         }
                         if (item.groupRank4!!.toInt() == 1 || item.groupRank4!!.toInt() == 2) {
-                            tournamentUserList.add(TournamentUser(item.groupPlayer4!!, item.groupRank4!!))
+                            tournamentUserList.add(TournamentUser(item.groupPlayer4!!, item.groupRank4!!, item.groupNumber!!))
                         }
                     }
 
-                    for (i in 0 until tournamentUserList.size step 2) {
-                        if((tournamentList.size % 2) != 0 && (tournamentUserList.size-1) == i){
-                            tournamentList.add(Tournament(departName!!, tournamentUserList[i].name, tournamentUserList[i].rank, "", ""))
-                            break
-                        }
-                        else{
-                            tournamentList.add(Tournament(departName!!, tournamentUserList[i].name, tournamentUserList[i].rank, tournamentUserList[i + 1].name, tournamentUserList[i + 1].rank))
+                    var count = 1
+                    val round = nextPowerOf2(tournamentUserList.size)
+                    for( i in 0 until  tournamentUserList.size step 2){
+                        if(tournamentUserList.size % 2 != 0 && i == (tournamentUserList.size-1)){
+                            tournamentList.add(Tournament((count++).toString(), tournamentUserList[i].name, tournamentUserList[i].rank, "-", "-", tournamentUserList[i].number))
+                        }else{
+                            tournamentList.add(Tournament((count++).toString(), tournamentUserList[i].name, tournamentUserList[i].rank, tournamentUserList[i + 1].name, tournamentUserList[i + 1].rank, tournamentUserList[i].number))
                         }
                     }
                     navigator.updateTournament(tournamentList)
@@ -66,42 +68,42 @@ class TournamentViewModel : BaseViewModel<TournamentNavigator>() {
                 })
     }
 
-    fun uploadTournament(tournamentItem: List<Tournament>){
+    fun uploadTournament(tournamentItem: List<Tournament>) {
 
-        val round = nextPowerOf2(tournamentItem.size*2)
+        val round = nextPowerOf2(tournamentItem.size * 2)
         val totalGame = logB(round.toDouble(), 2.0) // 5
 
         var mod = 2
         var index = 1
-        for(i in 0 until totalGame.toInt()){
+        for (i in 0 until totalGame.toInt()) {
             for (j in 0 until (round / mod)) {     // 0 ~ 31
-                if(mod == 2){
-                    if(j < tournamentItem.size){
-                        uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!! ,tournamentItem[j].teamOneName, tournamentItem[j].teamTwoName, "0", "0")
-                    }else{
-                        uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!! ,"-", "-", "0", "0")
+                if (mod == 2) {
+                    if (j < tournamentItem.size) {
+                        uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!!, tournamentItem[j].teamOneName, tournamentItem[j].teamTwoName, "0", "0")
+                    } else {
+                        uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!!, "-", "-", "0", "0")
                     }
-                }else{
-                    uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!! ,"경기전", "경기전", "0", "0")
+                } else {
+                    uploadTournament(contestID!!, User().userID, "1", round.toString(), index, contestDepartName!!, "경기전", "경기전", "0", "0")
                 }
                 index++
             }
             mod *= 2
         }
-        if(isSuccess){
+        if (isSuccess) {
             navigator.showDialog("토너먼트 등록", "토너먼트 대진표를 완성하였습니다.")
             setIsLoading(false)
         }
 
     }
 
-    private fun uploadTournament(contestID: String, userId : String, type : String, round : String, number : Int, deaprtName : String, playerOneName : String, playerTwoName : String, scoreOne : String, scoreTwo : String){
+    private fun uploadTournament(contestID: String, userId: String, type: String, round: String, number: Int, deaprtName: String, playerOneName: String, playerTwoName: String, scoreOne: String, scoreTwo: String) {
         setIsLoading(true)
         compositeDisposable.add(Api.postTournamentCreator(contestID, userId, type, round, number, deaprtName, playerOneName, playerTwoName, scoreOne, scoreTwo)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    if(!it.getSuccess())
+                    if (!it.getSuccess())
                         isSuccess = false
                 }) {
                     isSuccess = false
@@ -109,6 +111,7 @@ class TournamentViewModel : BaseViewModel<TournamentNavigator>() {
                     navigator.handleError(it)
                 })
     }
+
     private fun logB(x: Double, base: Double): Double {
         return Math.log(x) / Math.log(base)
     }

@@ -2,10 +2,7 @@ package com.project.rankers.ui.record.single
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.MaterialDialog
@@ -60,7 +57,13 @@ class SingleFragment : BaseFragment<FragmentSingleBinding, SingleViewModel>(), S
     }
     override fun showSuccessDialog() {
         activity!!.runOnUiThread {
-            Toast.makeText(context, "경기가 등록되었습니다.", Toast.LENGTH_LONG).show()
+            MaterialDialog(context!!).show {
+                title(text = "기록등록")
+                message(text = "단식기록을 등록하였습니다.")
+                positiveButton (text = "확인"){
+                    activity!!.finish()
+                }
+            }
         }
     }
 

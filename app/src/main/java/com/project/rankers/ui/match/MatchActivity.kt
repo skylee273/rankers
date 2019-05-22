@@ -9,6 +9,7 @@ import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
 import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.data.remote.response.MatchRepo
@@ -53,7 +54,13 @@ class MatchActivity : BaseActivity<ActivityMatchBinding, MatchViewModel>(), Matc
     }
 
     override fun failDialog() {
-        //
+        runOnUiThread {
+            MaterialDialog(this).show {
+                title(text = "개인기록")
+                message(text = "개인기록을 불러오는데 실패하였습니다.")
+                positiveButton { R.string.agree }
+            }
+        }
     }
 
     override fun onRetryClick() {

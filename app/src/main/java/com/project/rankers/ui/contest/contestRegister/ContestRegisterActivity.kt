@@ -3,24 +3,21 @@ package com.project.rankers.ui.contest.contestRegister
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.os.Bundle
-import com.project.rankers.R
-import com.project.rankers.databinding.ActivityContestRegisterBinding
-
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.MenuItem
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.callbacks.onDismiss
 import com.afollestad.materialdialogs.files.fileChooser
 import com.afollestad.materialdialogs.input.input
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
+import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
-
-import com.project.rankers.ui.base.BaseActivity
-import com.project.rankers.dialog.LocationDialog
 import com.project.rankers.data.model.db.DepartItem
+import com.project.rankers.databinding.ActivityContestRegisterBinding
+import com.project.rankers.ui.base.BaseActivity
 import java.util.*
 import javax.inject.Inject
 
@@ -34,7 +31,6 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
     internal var factory: ViewModelProviderFactory? = null
     private lateinit var contestRegisterBinding: ActivityContestRegisterBinding
     private var mContestRegisterViewModel: ContestRegisterViewModel? = null
-    private var locationDialog: LocationDialog? = null
     private var mLayoutManager = LinearLayoutManager(this)
 
     override fun showFaildDialog() {
@@ -114,13 +110,6 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
         }
     }
 
-    override fun showLocationDialog(title: String) {
-        locationDialog = LocationDialog(mContext)
-        locationDialog!!.setCancelable(true)
-        locationDialog!!.setTitle("주소검색")
-        locationDialog!!.show()
-        locationDialog!!.setOnDismissListener { mContestRegisterViewModel!!.location.set(locationDialog!!.addressStr) }
-    }
 
     override fun getLayoutId(): Int {
         return R.layout.activity_contest_register

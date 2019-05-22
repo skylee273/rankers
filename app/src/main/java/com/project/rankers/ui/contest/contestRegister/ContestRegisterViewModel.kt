@@ -2,10 +2,10 @@ package com.project.rankers.ui.contest.contestRegister
 
 import android.util.Log
 import androidx.databinding.ObservableField
-import com.project.rankers.ui.base.BaseViewModel
 import com.project.rankers.data.model.db.DepartItem
 import com.project.rankers.data.model.db.User
 import com.project.rankers.data.remote.api.Api
+import com.project.rankers.ui.base.BaseViewModel
 import com.project.rankers.utils.CommonUtils
 import io.reactivex.schedulers.Schedulers
 
@@ -88,10 +88,6 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
 
     fun onFileClick() {
         navigator.showFileDialog()
-    }
-
-    fun onLocationClick() {
-        navigator.showLocationDialog("주소검색")
     }
 
     fun onTypeClick() {

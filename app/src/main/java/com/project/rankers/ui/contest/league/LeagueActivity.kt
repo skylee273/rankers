@@ -8,6 +8,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.WhichButton
+import com.afollestad.materialdialogs.actions.setActionButtonEnabled
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
@@ -96,21 +98,22 @@ class LeagueActivity : BaseActivity<ActivityLeagueBinding, LeagueViewModel>(), L
     }
 
     override fun onShowPeopleDialog(position: Int, type: Int) {
-        if (peopleItems.size > 0) {
             MaterialDialog(this).show {
                 title(text = "선수명단")
                 message(text = "선수를 1명 선택하세요")
-                listItemsSingleChoice(items = peopleItems) { _, index, text ->
-                    if(peopleItems.size == index){
-                        peopleItems.removeAt(peopleItems.size-1)
-                    }else{
-                        peopleItems.removeAt(index)
+                listItemsSingleChoice(items = peopleItems, waitForPositiveButton = false) { dialog, index, text ->
+                    dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
+                    dialog. positiveButton(text = "확인") {
+                        if (peopleItems.size - 1 == index) {
+                            peopleItems = ArrayList()
+                        } else {
+                            peopleItems.removeAt(index)
+                        }
+                        leagueAdapter!!.modifyItem(position, text, type)
                     }
-                    leagueAdapter!!.modifyItem(position, text, type)
                 }
-            }
-        }
 
+            }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

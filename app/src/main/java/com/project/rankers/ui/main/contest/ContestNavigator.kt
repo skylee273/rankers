@@ -9,4 +9,5 @@ interface ContestNavigator {
     fun openContestResult()
     fun openCompetitionInfo()
     fun openOperator()
+    fun openModifyActivity()
 }

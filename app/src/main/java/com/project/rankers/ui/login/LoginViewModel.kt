@@ -2,8 +2,8 @@ package com.project.rankers.ui.login
 
 
 import com.project.rankers.data.model.db.User
-import com.project.rankers.ui.base.BaseViewModel
 import com.project.rankers.data.remote.api.Api
+import com.project.rankers.ui.base.BaseViewModel
 import io.reactivex.schedulers.Schedulers
 
 
@@ -45,6 +45,7 @@ class LoginViewModel: BaseViewModel<LoginNavigator>() {
 
                     val item = it.items[0]
                     if(item.userID!!.isNotEmpty()){
+                        user.userAdmin = item.userAdmin
                         user.userID = item.userID
                         user.userName = item.userName
                         user.userEmail = item.userEmail

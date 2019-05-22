@@ -3,7 +3,6 @@ package com.project.rankers.ui.record.multi
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import com.afollestad.materialdialogs.MaterialDialog
@@ -30,7 +29,7 @@ class MultiFragment : BaseFragment<FragmentMultiBinding, MultiViewModel>(), Mult
     }
 
     override fun getViewModel(): MultiViewModel {
-        multiViewModel = ViewModelProviders.of(this, factory).get(MultiViewModel::class.java!!)
+        multiViewModel = ViewModelProviders.of(this, factory).get(MultiViewModel::class.java)
         return multiViewModel as MultiViewModel
     }
 
@@ -59,7 +58,13 @@ class MultiFragment : BaseFragment<FragmentMultiBinding, MultiViewModel>(), Mult
 
     override fun showSuccessDialog() {
         activity!!.runOnUiThread {
-            Toast.makeText(context, "경기가 등록되었습니다.", Toast.LENGTH_LONG).show()
+            MaterialDialog(context!!).show {
+                title(text = "기록등록")
+                message(text = "복식기록을 등록하였습니다.")
+                positiveButton (text = "확인"){
+                    activity!!.finish()
+                }
+            }
         }
     }
 

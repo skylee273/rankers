@@ -4,25 +4,31 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.project.rankers.data.model.db.DepartItem
+import com.project.rankers.databinding.ItemContestRegisterEmptyViewBinding
 import com.project.rankers.databinding.ItemContestRegisterViewBinding
 import com.project.rankers.ui.base.BaseViewHolder
 import com.project.rankers.ui.contest.competition.CompetitionAdapter
 
-class ContestRegisterAdapter(private val mContestRegisterList: MutableList<DepartItem>?) : RecyclerView.Adapter<BaseViewHolder>()  {
+class ContestRegisterAdapter(private val mContestRegisterList: MutableList<DepartItem>?) : RecyclerView.Adapter<BaseViewHolder>() {
 
 
-    private var mListener : ContestRegisterAdapterListener? = null
+    private var mListener: ContestRegisterAdapterListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         when (viewType) {
-            CompetitionAdapter.VIEW_TYPE_NORMAL -> {
-                val contestRegisterViewBinding = ItemContestRegisterViewBinding.inflate(LayoutInflater.from(parent.context),
+            VIEW_TYPE_NORMAL -> {
+                val competitionViewBinding = ItemContestRegisterViewBinding.inflate(LayoutInflater.from(parent.context),
                         parent, false)
-                return ContestRegisterViewHolder(contestRegisterViewBinding)
+                return ContestRegisterViewHolder(competitionViewBinding)
+            }
+            VIEW_TYPE_EMPTY -> {
+                val emptyViewBinding = ItemContestRegisterEmptyViewBinding.inflate(LayoutInflater.from(parent.context),
+                        parent, false)
+                return EmptyViewHolder(emptyViewBinding)
             }
             else -> {
-                val contestRegisterViewBinding = ItemContestRegisterViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-                return ContestRegisterViewHolder(contestRegisterViewBinding)
+                val emptyViewBinding = ItemContestRegisterEmptyViewBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+                return EmptyViewHolder(emptyViewBinding)
             }
         }
     }
@@ -36,29 +42,43 @@ class ContestRegisterAdapter(private val mContestRegisterList: MutableList<Depar
     }
 
     override fun getItemViewType(position: Int): Int {
-        return ContestRegisterAdapter.VIEW_TYPE_NORMAL
+        return if (mContestRegisterList != null && !mContestRegisterList.isEmpty()) {
+            CompetitionAdapter.VIEW_TYPE_NORMAL
+        } else {
+            CompetitionAdapter.VIEW_TYPE_EMPTY
+        }
     }
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.onBind(position)
     }
+
     inner class ContestRegisterViewHolder(private val mBinding: ItemContestRegisterViewBinding) : BaseViewHolder(mBinding.root), ContestRegisterItemViewModel.ContestRegisterItemViewModelListner {
 
         private var contestRegisterItemViewModel: ContestRegisterItemViewModel? = null
 
         override fun onBind(position: Int) {
-            if(mContestRegisterList!!.size > 0){
-                val departItem = mContestRegisterList!![position]
+            if (mContestRegisterList!!.size > 0) {
+                val departItem = mContestRegisterList[position]
                 contestRegisterItemViewModel = ContestRegisterItemViewModel(departItem, this)
                 mBinding.viewModel = contestRegisterItemViewModel
                 mBinding.executePendingBindings()
             }
-            }
+        }
 
         override fun onItemClick() {
 
         }
     }
+
+    inner class EmptyViewHolder(private val mBinding: ItemContestRegisterEmptyViewBinding) : BaseViewHolder(mBinding.root), ContestRegisterEmptyViewModel.ContestRegisterEmptyItemViewModelListener {
+
+        override fun onBind(position: Int) {
+            val emptyItemViewModel = ContestRegisterEmptyViewModel(this)
+            mBinding.viewModel = emptyItemViewModel
+        }
+    }
+
 
     fun addItems(departItem: DepartItem) {
         mContestRegisterList!!.add(departItem)
@@ -73,6 +93,7 @@ class ContestRegisterAdapter(private val mContestRegisterList: MutableList<Depar
     fun setListener(listener: ContestRegisterAdapter.ContestRegisterAdapterListener) {
         this.mListener = listener
     }
+
     interface ContestRegisterAdapterListener {
 
         fun onRetryClick()

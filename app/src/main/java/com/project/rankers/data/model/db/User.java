@@ -6,6 +6,16 @@ public class User {
     private static String userEmail;
     private static String userPhone;
 
+    public  String getUserAdmin() {
+        return userAdmin;
+    }
+
+    public  void setUserAdmin(String userAdmin) {
+        User.userAdmin = userAdmin;
+    }
+
+    private static String userAdmin;
+
     public  String getUserID() {
         return userID;
     }
@@ -37,6 +47,7 @@ public class User {
     public  void setUserPhone(String userPhone) {
         User.userPhone = userPhone;
     }
+
 
     public  String getUserBirthday() {
         return userBirthday;

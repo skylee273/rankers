@@ -2,6 +2,7 @@ package com.project.rankers.ui.contest.contestResultLeague
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
@@ -62,9 +63,7 @@ class ContestResultLeagueActivity : BaseActivity<ActivityContestResultLeagueBind
         super.onCreate(savedInstanceState)
         activityContestResultLeagueBinding = getViewDataBinding()
         contestResultViewModel!!.navigator = this
-
         setUp()
-
     }
 
     @SuppressLint("WrongConstant")
@@ -87,5 +86,14 @@ class ContestResultLeagueActivity : BaseActivity<ActivityContestResultLeagueBind
         activityContestResultLeagueBinding.recycler.setHasFixedSize(true)
         activityContestResultLeagueBinding.recycler.adapter = contestResultAdapter
         contestResultAdapter!!.setListener(this)
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }

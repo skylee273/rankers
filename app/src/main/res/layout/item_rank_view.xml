@@ -1,0 +1,144 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout2">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.project.rankers.ui.main.rank.RankItemViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:onClick="@{() -> viewModel.onItemClick()}">
+
+        <View
+            android:id="@+id/view25"
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="8dp"
+            android:background="#acacac"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout23" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout22"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/linearLayout23"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_total"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textSize="13.8sp"
+                android:textColor="#464646"
+                android:text="@{viewModel.total}"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="13.8sp"
+                android:gravity="center"
+                tools:text="1234" />
+
+            <TextView
+                android:id="@+id/text_win"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="13.8sp"
+                android:text="@{viewModel.win}"
+                android:textColor="#464646"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="13.8sp"
+                tools:text="1234" />
+
+            <TextView
+                android:id="@+id/text_lose"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textSize="13.8sp"
+                android:textColor="#464646"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="13.8sp"
+                android:text="@{viewModel.lose}"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:text="1234" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout23"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="13.8sp"
+                android:text="@{viewModel.rate}"
+                android:textColor="#464646"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="13.8sp"
+                android:layout_weight="1"
+                android:gravity="center"
+                tools:text="1234" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout18"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/linearLayout23"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/text_rank"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:gravity="center"
+                android:textSize="13.8sp"
+                android:text="@{viewModel.rank}"
+                android:textColor="#464646"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="13.8sp"
+                tools:text="1" />
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:text="@{viewModel.name}"
+                android:gravity="center_vertical"
+                android:textSize="13.8sp"
+                android:textColor="#464646"
+                android:letterSpacing="-0.02"
+                android:lineSpacingExtra="13.8sp"
+                android:maxLines="1"
+                tools:text="이하늘(skylee273@koreatech.ac.kr)" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

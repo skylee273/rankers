@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.project.rankers.ui.board.BoardViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:background="#ffffff"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <EditText
+                        android:id="@+id/edit_text"
+                        android:layout_width="0dp"
+                        android:layout_height="270dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@drawable/custom_tournament_box"
+                        android:ems="10"
+                        android:gravity="top"
+                        android:hint="내용을 입력하세요"
+                        android:inputType="textMultiLine"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="5sp"
+                        android:lines="8"
+                        android:maxLength="1000"
+                        android:maxLines="20"
+                        android:paddingLeft="14dp"
+                        android:paddingTop="14dp"
+                        android:paddingRight="14dp"
+                        android:scrollbars="vertical"
+                        android:textColorHint="#d7d7d7"
+                        android:textSize="15.8sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/notosanscjkkrmedium"
+                        android:lineSpacingExtra="0.3sp"
+                        android:text="내용"
+                        android:textColor="#464646"
+                        android:textSize="11.8sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/view8" />
+
+                    <View
+                        android:id="@+id/view28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0.3dp"
+                        android:background="#a1a1a1"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+                    <View
+                        android:id="@+id/view8"
+                        android:layout_width="0dp"
+                        android:layout_height="0.5dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="#d7d7d7"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_title" />
+
+                    <Button
+                        android:id="@+id/btn_register"
+                        android:layout_width="0dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="140dp"
+                        android:layout_marginEnd="32dp"
+                        android:layout_marginBottom="32dp"
+                        android:background="#396ab8"
+                        android:fontFamily="@font/notosanscjkkrmedium"
+                        android:gravity="center"
+                        android:letterSpacing="-0.06"
+                        android:lineSpacingExtra="22.3sp"
+                        android:onClick="@{() -> viewModel.onFormClick()}"
+                        android:text="등록완료"
+                        android:textColor="#ffffff"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="1.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/edit_text" />
+
+                    <EditText
+                        android:id="@+id/edit_title"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginEnd="32dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:fontFamily="@font/notosanscjkkrregular"
+                        android:gravity="center_vertical"
+                        android:hint="제목을 입력하세요"
+                        android:inputType="textPersonName"
+                        android:letterSpacing="-0.02"
+                        android:lineSpacingExtra="-3.8sp"
+                        android:singleLine="true"
+                        android:text="@={viewModel.title}"
+                        android:textColorHint="#d7d7d7"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/text_my" />
+
+                    <TextView
+                        android:id="@+id/text_my"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_marginTop="20dp"
+                        android:fontFamily="@font/notosanscjkkrmedium"
+                        android:lineSpacingExtra="0.3sp"
+                        android:text="제목"
+                        android:textColor="#464646"
+                        android:textSize="11.8sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/toolbar_color_bg"
+                        android:minHeight="?attr/actionBarSize"
+                        android:theme="@style/ToolbarTheme"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                            android:id="@+id/toolbar_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/notosanscjkkrmedium"
+                            android:text="게시판 작성"
+                            android:textColor="@color/color_toolbar_title"
+                            android:textSize="14sp"
+                            tools:layout_editor_absoluteX="169dp"
+                            tools:layout_editor_absoluteY="14dp" />
+
+                    </androidx.appcompat.widget.Toolbar>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>
+
+

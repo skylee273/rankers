@@ -56,7 +56,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="@font/notosanscjkkrmedium"
-                    android:text="대회운영"
+                    android:text="대회결과"
                     android:textColor="@color/color_toolbar_title"
                     android:textSize="14sp"
                     tools:layout_editor_absoluteX="169dp"

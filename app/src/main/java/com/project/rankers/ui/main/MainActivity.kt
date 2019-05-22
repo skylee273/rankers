@@ -1,20 +1,19 @@
 package com.project.rankers.ui.main
 
-import android.os.Bundle
 import android.os.Build
-import androidx.annotation.RequiresApi
-import androidx.viewpager.widget.ViewPager
+import android.os.Bundle
 import android.view.MenuItem
+import androidx.annotation.RequiresApi
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
-import com.project.rankers.R
-import com.project.rankers.databinding.ActivityMainBinding
-import com.project.rankers.adapter.SectionsPagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
+import com.project.rankers.adapter.SectionsPagerAdapter
 import com.project.rankers.adapter.model.SectionsPagerModel
+import com.project.rankers.databinding.ActivityMainBinding
 import com.project.rankers.ui.base.BaseActivity
-import com.project.rankers.ui.main.contest.ContestFragment
 import java.util.*
 import javax.inject.Inject
 
@@ -63,19 +62,21 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPa
         mainBinding.viewPager.currentItem = 0
         prevBottomNavigation = mainBinding.bottomNavigation.menu.getItem(0)
         mainBinding.viewPager.offscreenPageLimit = 3
-
         mainBinding.bottomNavigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab_contest -> {
                     mainBinding.viewPager.currentItem = 0
+                    mSectionsPagerAdapter!!.notifyDataSetChanged()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.tab_club -> {
                     mainBinding.viewPager.currentItem = 1
+                    mSectionsPagerAdapter!!.notifyDataSetChanged()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.tab_message -> {
                     mainBinding.viewPager.currentItem = 2
+                    mSectionsPagerAdapter!!.notifyDataSetChanged()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.tab_profile -> {
@@ -87,6 +88,12 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPa
         })
         setSectionPagerModel(mSectionsPagerAdapter!!)
         loadSectionPagerItem()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        mSectionsPagerAdapter!!.notifyDataSetChanged()
+
     }
 
     override fun onDestroy() {

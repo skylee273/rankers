@@ -3,6 +3,7 @@ package com.project.rankers
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.project.rankers.ui.board.BoardViewModel
 import com.project.rankers.ui.contest.apply.ApplyViewModel
 import com.project.rankers.ui.contest.competition.CompetitionInfoViewModel
 import com.project.rankers.ui.contest.contestRegister.ContestRegisterViewModel
@@ -18,6 +19,7 @@ import com.project.rankers.ui.contest.operator.OperatorViewModel
 import com.project.rankers.ui.login.LoginViewModel
 import com.project.rankers.ui.main.MainViewModel
 import com.project.rankers.ui.main.contest.ContestViewModel
+import com.project.rankers.ui.main.rank.RankViewModel
 import com.project.rankers.ui.match.MatchViewModel
 import com.project.rankers.ui.record.RecordViewModel
 import com.project.rankers.ui.record.multi.MultiViewModel
@@ -74,6 +76,10 @@ class ViewModelProviderFactory : ViewModelProvider.NewInstanceFactory() {
             return ContestResultTournamentViewModel() as T
         }else if (modelClass.isAssignableFrom(DashBoardViewModel::class.java)) {
             return DashBoardViewModel() as T
+        }else if (modelClass.isAssignableFrom(RankViewModel::class.java)) {
+            return RankViewModel() as T
+        }else if (modelClass.isAssignableFrom(BoardViewModel::class.java)) {
+            return BoardViewModel() as T
         }
 
 

@@ -8,22 +8,19 @@ class TournamentItemViewModel(tournament: Tournament, private val mListener: Tou
     val teamTwoName: ObservableField<String>
     var teamOneRank: ObservableField<String>
     var teamTwoRank: ObservableField<String>
-
-
-    val depart: ObservableField<String>
-
+    val number: ObservableField<String>
 
     init {
         teamOneName = ObservableField(tournament.teamOneName)
         teamTwoName = ObservableField(tournament.teamTwoName)
         teamOneRank = ObservableField(tournament.teamOneRank + "위")
-        if(teamTwoName.toString() == ""){
-            teamTwoRank = ObservableField(tournament.teamTwoRank)
+        teamTwoRank = if(teamTwoName.toString() == ""){
+            ObservableField(tournament.teamTwoRank)
         }else{
-            teamTwoRank = ObservableField(tournament.teamTwoRank + "위")
+            ObservableField(tournament.teamTwoRank + "위")
         }
 
-        depart = ObservableField(tournament.departName)
+        number = ObservableField(tournament.number + "조")
     }
 
 

@@ -1,90 +1,123 @@
 package com.project.rankers.ui.contest.operation.result
 
-import android.content.Context
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.library.baseAdapters.BR
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
 import com.afollestad.materialdialogs.actions.setActionButtonEnabled
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
-import com.project.rankers.adapter.DashBoardAdapter
+import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.databinding.FragmentResultContestBinding
+import com.project.rankers.ui.base.BaseFragment
 import com.project.rankers.ui.contest.leagueResult.LeagueResultActivity
 import com.project.rankers.ui.contest.tournamentResult.TournamentResultActivity
-import io.reactivex.disposables.CompositeDisposable
+import javax.inject.Inject
 
-class ResultContestFragment : Fragment() {
+class ResultContestFragment : BaseFragment<FragmentResultContestBinding, ResultContestViewModel>(), ResultContestNavigator, ResultContestAdapter.ResultContestAdapterListener {
+
+    @Inject
+    internal var factory: ViewModelProviderFactory? = null
+    private var resultContestViewModel: ResultContestViewModel? = null
     private lateinit var resultContestBinding: FragmentResultContestBinding
-    lateinit var mContext: Context
-    lateinit var compositeDisposable: CompositeDisposable
-    private var linearLayoutManager = LinearLayoutManager(activity)
-    private var param1: String = ""
-    private var param2: String = ""
+    private var resultContestAdapter: ResultContestAdapter? = null
+    private var mLayoutManager = LinearLayoutManager(activity)
+    private var contestID: String? = null
+    private var contestDepart: String? = null
     private val myItems = listOf("예선전", "토너먼트")
-    private var dashboardAdapter: DashBoardAdapter? = null
+    private var depart: String? = null
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (arguments != null) {
-            param1 = arguments!!.getString("CONTEST_ID") // 전달한 key 값
-            param2 = arguments!!.getString("CONTEST_DEPART") // 전달한 key 값
-        }
-        mContext = this.activity!!
-        resultContestBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_result_contest, container, false)
-        resultContestBinding.setVariable(BR.fragment, this)
-
-        resultContestBinding.recycler.setHasFixedSize(true)
-        resultContestBinding.recycler.layoutManager = linearLayoutManager
-
-        dashboardAdapter = DashBoardAdapter(this.activity!!, param2.split(","))
-        setClickListner()
-        resultContestBinding.recycler.adapter = dashboardAdapter
-
-        return resultContestBinding.root
+    override fun handleError(throwable: Throwable) {
+        displayLog("ResultContestFragment", throwable.toString())
     }
 
-    private fun setClickListner() {
-        var p0 = 0
-        dashboardAdapter!!.itemClick = object : DashBoardAdapter.ItemClick {
-            override fun onClick(view: View, position: Int) {
-                val depart = dashboardAdapter!!.getDeaprt(position)
-                MaterialDialog(activity!!).show {
-                    title(text = "대진표작성")
-                    listItemsSingleChoice(items = myItems, waitForPositiveButton = false) { dialog, index, text ->
-                        dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
-                        p0 = index
+    override fun showDialog(title: String, message: String) {
+        MaterialDialog(context!!).show {
+            title(text = title)
+            message(text = message)
+            positiveButton(text = "확인")
+        }
+    }
 
+    override fun onRetryClick() {
+        //
+    }
+
+    override fun getLayoutId(): Int {
+        return R.layout.fragment_result_contest
+    }
+
+    override fun getBindingVariable(): Int {
+        return BR.viewModel
+    }
+
+    override fun getViewModel(): ResultContestViewModel {
+        resultContestViewModel = ViewModelProviders.of(this, factory).get(ResultContestViewModel::class.java)
+        return resultContestViewModel as ResultContestViewModel
+    }
+
+    override fun onItemClick(position: Int) {
+        var p0 = 0
+        depart = resultContestAdapter!!.getPositionItem(position)
+        MaterialDialog(activity!!).show {
+            title(text = "대진표작성")
+            listItemsSingleChoice(items = myItems, waitForPositiveButton = false) { dialog, index, text ->
+                dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
+                p0 = index
+            }
+            positiveButton(text = "확인") {
+                when (p0) {
+                    0 -> {
+                        Log.d("대진표 번호", "예선")
+                        val intent = Intent(context, LeagueResultActivity::class.java)
+                        intent.putExtra("CONTEST_DEPART", depart)
+                        intent.putExtra("CONTEST_ID", contestID)
+                        startActivity(intent)
                     }
-                    positiveButton (text = "확인"){
-                        when (p0) {
-                            0 -> {
-                                Log.d("대진표 번호", "예선")
-                                val intent = Intent(mContext, LeagueResultActivity::class.java)
-                                intent.putExtra("CONTEST_DEPART", depart)
-                                intent.putExtra("CONTEST_ID", param1)
-                                startActivity(intent)
-                            }
-                            1 -> {
-                                Log.d("대진표 번호", "본선")
-                                val intent = Intent(mContext, TournamentResultActivity::class.java)
-                                intent.putExtra("CONTEST_DEPART", depart)
-                                intent.putExtra("CONTEST_ID", param1)
-                                startActivity(intent)
-                            }
-                        }
+                    1 -> {
+                        Log.d("대진표 번호", "본선")
+                        val intent = Intent(context, TournamentResultActivity::class.java)
+                        intent.putExtra("CONTEST_DEPART", depart)
+                        intent.putExtra("CONTEST_ID", contestID)
+                        startActivity(intent)
                     }
                 }
             }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        resultContestViewModel!!.navigator = this
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (arguments != null) {
+            contestID = arguments!!.getString("CONTEST_ID")!! // 전달한 key 값
+            contestDepart = arguments!!.getString("CONTEST_DEPART")!! // 전달한 key 값
+        }
+        resultContestBinding = this.viewDataBinding!!
+        setUp()
+    }
+
+    @SuppressLint("WrongConstant")
+    private fun setUp() {
+        resultContestAdapter = ResultContestAdapter(contestDepart!!.split(",") as ArrayList<String>)
+        mLayoutManager.orientation = LinearLayoutManager.VERTICAL
+        resultContestBinding.recycler.layoutManager = mLayoutManager
+        resultContestBinding.recycler.itemAnimator = DefaultItemAnimator()
+        resultContestBinding.recycler.setHasFixedSize(true)
+        resultContestBinding.recycler.adapter = resultContestAdapter
+        resultContestAdapter!!.setListener(this)
+
     }
 
     companion object {
@@ -95,4 +128,6 @@ class ResultContestFragment : Fragment() {
             return fragment
         }
     }
+
+
 }

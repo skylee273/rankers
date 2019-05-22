@@ -12,6 +12,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
+            android:id="@+id/content_layout"
             android:layout_height="wrap_content">
 
             <LinearLayout

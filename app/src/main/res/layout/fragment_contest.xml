@@ -19,6 +19,31 @@
 
 
         <TextView
+            android:id="@+id/textView25"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:gravity="center"
+            android:lineSpacingExtra="30sp"
+            android:text="대회수정"
+            android:textColor="#898989"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="@+id/btn_modify"
+            app:layout_constraintStart_toStartOf="@+id/btn_modify"
+            app:layout_constraintTop_toBottomOf="@+id/btn_modify" />
+
+        <Button
+            android:id="@+id/btn_modify"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="10dp"
+            android:onClick="@{() -> viewModel.onContestModifyClick()}"
+            android:background="@drawable/contest_button_selector"
+            app:layout_constraintStart_toEndOf="@+id/btn_operator"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/text_operator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,12 +97,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:lineSpacingExtra="30sp"
+            android:text="참가신청"
             android:textColor="#898989"
             android:textSize="10sp"
             app:layout_constraintEnd_toEndOf="@+id/btn_application"
             app:layout_constraintStart_toStartOf="@+id/btn_application"
-            app:layout_constraintTop_toBottomOf="@+id/btn_application"
-            android:text="대회신청" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_application" />
 
         <Button
             android:id="@+id/btn_application"

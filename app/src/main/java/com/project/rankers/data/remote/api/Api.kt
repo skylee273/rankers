@@ -8,6 +8,11 @@ import retrofit2.http.*
 class Api {
     interface ApiImpl {
 
+        @GET("board/boardList.php")
+        fun getBoardList(
+        ): Observable<BoardRepo>
+
+
         @GET("match/matchList.php")
         fun getMatchList(
                 @Query("uid") uid: String
@@ -31,6 +36,10 @@ class Api {
 
         @GET("contest/contestList.php")
         fun getContestList(): Observable<ContestResponse>
+
+        @GET("rank/rankList.php")
+        fun getRankList(): Observable<RankRepo>
+
 
         @GET("user/find.php")
         fun getID(
@@ -88,6 +97,14 @@ class Api {
                 @Field("result") result: String?,
                 @Field("win") win: String?,
                 @Field("lose") lose: String?
+        ): Observable<ServerRepo>
+
+
+
+        @FormUrlEncoded
+        @POST("contest/contestDelete.php")
+        fun deleteContest(
+                @Field("contestID") contestID: String?
         ): Observable<ServerRepo>
 
 
@@ -151,6 +168,17 @@ class Api {
         ): Observable<ServerRepo>
 
         @FormUrlEncoded
+        @POST("board/boardCreator.php")
+        fun postBoardCreator(
+                @Field("uid") uid: String?,
+                @Field("name") name: String?,
+                @Field("date") date: String?,
+                @Field("title") title: String?,
+                @Field("text") text: String?
+        ): Observable<ServerRepo>
+
+
+        @FormUrlEncoded
         @POST("contest/application.php")
         fun postApplicationCreator(
                 @Field("id") id: String?,
@@ -202,6 +230,15 @@ class Api {
 
     companion object {
 
+        fun deleteContest(contestID: String) : Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).deleteContest(contestID)
+        }
+
+        fun getBoardList(): Observable<BoardRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getBoardList()
+        }
+
+
         fun getMatchList(uid: String?): Observable<MatchRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getMatchList(uid!!)
         }
@@ -212,7 +249,6 @@ class Api {
         fun getUserAllByIds(email: String?): Observable<UserRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getUserAllByIds(email!!)
         }
-
         fun getGroupList(id: String?, depart: String?): Observable<GroupResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getGroupList(id, depart)
         }
@@ -239,6 +275,9 @@ class Api {
         }
         fun getContestList(): Observable<ContestResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getContestList()
+        }
+        fun getRankList(): Observable<RankRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getRankList()
         }
         fun getContestAllByIds(id : String): Observable<ContestResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getContestAllByIds(id)
@@ -267,6 +306,10 @@ class Api {
 
         fun postApplicationCreator(id: String?, uid: String?, depart: String?, type: Int?, name: String?, phone: String?, partner: String?, partnerPhone: String?): Observable<ServerRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).postApplicationCreator(id, uid, depart, type, name, phone, partner, partnerPhone)
+        }
+
+        fun postBoardCreator(uid: String?, name: String?, date: String?, title: String?, text: String?): Observable<ServerRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).postBoardCreator(uid,name,date,title,text)
         }
 
         fun postUpdateGroup(groupID: String?, groupDepart: String?, groupNumber: String?, groupScore1: String?, groupScore2: String?, groupScore3: String?, groupScore4: String?, groupScore5: String?, groupScore6: String?,

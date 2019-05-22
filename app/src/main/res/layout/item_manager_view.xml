@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.project.rankers.ui.contest.operation.manager.ManagerItemViewModel"/>
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/text_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:letterSpacing="-0.04"
+            android:text="@{viewModel.email}"
+            android:lineSpacingExtra="6.5sp"
+            android:textColor="#707070"
+            android:textSize="12.5sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            tools:text="skylee273@koreatech.ac.kr" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_my_profile" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="0.3dp"
+            android:layout_marginTop="11dp"
+            android:background="#a1a1a1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+
+        <Button
+            android:id="@+id/btn_write"
+            android:layout_width="93dp"
+            android:layout_height="26dp"
+            android:layout_marginEnd="21dp"
+            android:background="@drawable/ic_btn_write"
+            android:drawableLeft="@drawable/ic_icon_check"
+            android:letterSpacing="-0.06"
+            android:lineSpacingExtra="23.5sp"
+            android:onClick="@{() -> viewModel.onItemClick()}"
+            android:paddingLeft="15dp"
+            android:paddingRight="7dp"
+            android:text="등록하기"
+            android:textColor="#396ab8"
+            android:textSize="13.8sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:letterSpacing="-0.03"
+            android:text="@{viewModel.name}"
+            android:lineSpacingExtra="2.8sp"
+            android:textColor="#707070"
+            android:textSize="16.3sp"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toTopOf="@+id/imageView3"
+            tools:text="이하늘" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

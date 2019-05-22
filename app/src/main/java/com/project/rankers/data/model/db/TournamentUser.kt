@@ -1,3 +1,3 @@
 package com.project.rankers.data.model.db
 
-class TournamentUser (var name : String, var rank : String)
+class TournamentUser (var name : String, var rank : String, var number : String)

@@ -51,6 +51,8 @@
         <activity android:name=".ui.contest.contestResultSub.ContestResultSubActivity"/>
         <activity android:name=".ui.contest.contestResultLeague.ContestResultLeagueActivity"/>
         <activity android:name=".ui.contest.contestResultTournament.ContestResultTournamentActivity"/>
+        <activity android:name=".ui.contest.modify.ContestModifyActivity"/>
+        <activity android:name=".ui.board.BoardActivity"/>
     </application>
 
 </manifest>

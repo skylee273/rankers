@@ -8,10 +8,15 @@ import retrofit2.http.*
 class Api {
     interface ApiImpl {
 
+        @GET("board/replyList.php")
+        fun getReplyList(
+                @Query("uid") uid: String
+        ): Observable<ReplyRepo>
+
+
         @GET("board/boardList.php")
         fun getBoardList(
         ): Observable<BoardRepo>
-
 
         @GET("match/matchList.php")
         fun getMatchList(
@@ -85,6 +90,29 @@ class Api {
         ): Observable<ServerRepo>
 
         @FormUrlEncoded
+        @POST("board/boardUpdateReply.php")
+        fun postBoardUpdateReply(
+                @Field("BOARD_ID") BOARD_ID: String?,
+                @Field("BOARD_REPLY_CNT") BOARD_VIEW_CNT: Int?
+        ): Observable<ServerRepo>
+
+
+        @FormUrlEncoded
+        @POST("board/boardUpdateView.php")
+        fun postBoardUpdateView(
+                @Field("BOARD_ID") BOARD_ID: String?,
+                @Field("BOARD_VIEW_CNT") BOARD_VIEW_CNT: Int?
+        ): Observable<ServerRepo>
+
+        @FormUrlEncoded
+        @POST("board/replyCreator.php")
+        fun postReply(
+                @Field("REPLY_UID") REPLY_UID: String?,
+                @Field("REPLY_NAME") REPLY_NAME: String?,
+                @Field("REPLY_TEXT") REPLY_TEXT: String?
+        ): Observable<ServerRepo>
+
+        @FormUrlEncoded
         @POST("match/matchCreator.php")
         fun postMatchCreator(
                 @Field("uid") uid: String?,
@@ -150,8 +178,6 @@ class Api {
                 @Field("TOURNAMENT_SCORE1") score1: String?,
                 @Field("TOURNAMENT_SCORE2") score2: String?
         ): Observable<ServerRepo>
-
-
 
 
         @FormUrlEncoded
@@ -234,10 +260,15 @@ class Api {
             return RetrofitCreator.create(ApiImpl::class.java).deleteContest(contestID)
         }
 
+
+
+        fun getReplyList(uid : String): Observable<ReplyRepo> {
+            return RetrofitCreator.create(ApiImpl::class.java).getReplyList(uid)
+        }
+
         fun getBoardList(): Observable<BoardRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getBoardList()
         }
-
 
         fun getMatchList(uid: String?): Observable<MatchRepo> {
             return RetrofitCreator.create(ApiImpl::class.java).getMatchList(uid!!)
@@ -282,6 +313,17 @@ class Api {
         fun getContestAllByIds(id : String): Observable<ContestResponse> {
             return RetrofitCreator.create(ApiImpl::class.java).getContestAllByIds(id)
         }
+
+        fun postReply(REPLY_UID: String?, REPLY_NAME : String, REPLY_TEXT : String) : Observable<ServerRepo>{
+            return RetrofitCreator.create(ApiImpl::class.java).postReply(REPLY_UID, REPLY_NAME, REPLY_TEXT)
+        }
+        fun postBoardUpdateView(BOARD_ID: String?, BOARD_VIEW_CNT : Int) : Observable<ServerRepo>{
+            return RetrofitCreator.create(ApiImpl::class.java).postBoardUpdateView(BOARD_ID, BOARD_VIEW_CNT)
+        }
+        fun postBoardUpdateReply(BOARD_ID: String?, BOARD_REPLY_CNT : Int) : Observable<ServerRepo>{
+            return RetrofitCreator.create(ApiImpl::class.java).postBoardUpdateReply(BOARD_ID, BOARD_REPLY_CNT)
+        }
+
         fun postMatchCreator(uid: String?, type: String?, my: String?, partner: String?, other: String?, otherPartner: String?, date: String?, result: String?, win: String?, lose: String?) : Observable<ServerRepo>{
             return RetrofitCreator.create(ApiImpl::class.java).postMatchCreator(uid, type, my, partner, other, otherPartner, date, result, win, lose)
         }

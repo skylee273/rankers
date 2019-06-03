@@ -64,56 +64,6 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <LinearLayout
-                            android:id="@+id/linearLayout13"
-                            android:layout_width="203dp"
-                            android:layout_height="34dp"
-                            android:layout_marginStart="42dp"
-                            android:layout_marginTop="15dp"
-                            android:layout_marginEnd="7dp"
-                            android:background="#f3f3f3"
-                            android:orientation="horizontal"
-                            android:weightSum="203.5"
-                            app:layout_constraintEnd_toStartOf="@+id/btn_create"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/text_count">
-
-                            <Button
-                                android:id="@+id/btn_sub"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="47.5"
-                                android:background="@drawable/ic_minus"
-                                android:onClick="@{()->viewModel.subCountClick()}"
-                                tools:layout_editor_absoluteX="42dp"
-                                tools:layout_editor_absoluteY="55dp" />
-
-                            <TextView
-                                android:id="@+id/text_number"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="108.5"
-                                android:gravity="center_horizontal|center_vertical"
-                                android:letterSpacing="-0.04"
-                                android:lineSpacingExtra="0.3sp"
-                                android:text="1"
-                                android:textColor="#707070"
-                                android:textSize="18.8sp"
-                                tools:layout_editor_absoluteX="162dp"
-                                tools:layout_editor_absoluteY="175dp" />
-
-                            <Button
-                                android:id="@+id/btn_plus"
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="47.5"
-                                android:background="@drawable/ic_plus"
-                                android:onClick="@{()->viewModel.plusCountClick()}"
-                                tools:layout_editor_absoluteX="250dp"
-                                tools:layout_editor_absoluteY="175dp" />
-
-                        </LinearLayout>
-
                         <Button
                             android:id="@+id/btn_register"
                             android:layout_width="0dp"
@@ -139,29 +89,10 @@
                             android:id="@+id/recycler"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/linearLayout13"
+                            app:layout_constraintTop_toBottomOf="@+id/text_count"
                             tools:listitem="@layout/item_league_view" />
-
-                        <Button
-                            android:id="@+id/btn_create"
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_marginStart="7dp"
-                            android:layout_marginEnd="42dp"
-                            android:background="#396ab8"
-                            android:letterSpacing="-0.06"
-                            android:lineSpacingExtra="23.5sp"
-                            android:onClick="@{()->viewModel.createOnClick()}"
-                            android:text="생성"
-                            android:textColor="#ffffff"
-                            android:textSize="13.8sp"
-                            app:layout_constraintBottom_toBottomOf="@+id/linearLayout13"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toEndOf="@+id/linearLayout13"
-                            app:layout_constraintTop_toTopOf="@+id/linearLayout13" />
 
                         <TextView
                             android:id="@+id/text_count"

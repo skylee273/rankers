@@ -38,7 +38,7 @@ class ContestModifyViewModel : BaseViewModel<ContestModifyNavigator>() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ response ->
                     if(response.getSuccess()){
-                        fetchCompetitions()
+                        navigator.successDialog("대회삭제","대회가 삭제되었습니다.")
                     }
                     setIsLoading(false)
                 }) {

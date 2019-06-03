@@ -32,7 +32,7 @@ import io.reactivex.schedulers.Schedulers
 class BracketsFragment : Fragment(), ViewPager.OnPageChangeListener {
 
     private var viewPager: WrapContentHeightViewPager? = null
-    private var uploadButton : Button? = null
+    private var uploadButton: Button? = null
     private var sectionAdapter: BracketsSectionAdapter? = null
     private var sectionList: ArrayList<ColomnData>? = null
     private var mNextSelectedScreen: Int = 0
@@ -67,6 +67,7 @@ class BracketsFragment : Fragment(), ViewPager.OnPageChangeListener {
         super.onDestroy()
         compositeDisposable.dispose()
     }
+
     private fun setServer() {
         compositeDisposable.add(Api.getTournamentList(contestID, contestDepartName)
                 .subscribeOn(Schedulers.io())
@@ -75,10 +76,11 @@ class BracketsFragment : Fragment(), ViewPager.OnPageChangeListener {
                     setData(response)
                     intialiseViewPagerAdapter()
                 }) {
-                    Log.e("Error",it.toString())
+                    Log.e("Error", it.toString())
                 })
     }
-    private fun setData(item : TournamentRepo) {
+
+    private fun setData(item: TournamentRepo) {
         sectionList = ArrayList()
 
 
@@ -102,7 +104,7 @@ class BracketsFragment : Fragment(), ViewPager.OnPageChangeListener {
                 index++
             }
             for (k in 0 until ((nextPow / 2) / mod)) {   // 0 ~ 16
-                matchDataList.add(MatchData(rowList[rowIndex], rowList[rowIndex+1])) // 14개 넣음
+                matchDataList.add(MatchData(rowList[rowIndex], rowList[rowIndex + 1])) // 14개 넣음
                 columnDataList[i]!!.add(matchDataList[matchIndex])
                 rowIndex += 2
                 matchIndex++
@@ -123,58 +125,41 @@ class BracketsFragment : Fragment(), ViewPager.OnPageChangeListener {
         viewPager!!.setFadingEdgeLength(50)
 
         viewPager!!.addOnPageChangeListener(this)
+        var position = 0
+        //updateViewhere
+        if (getBracketsFragment(position + 1)!!.currentBracketSize == getBracketsFragment(position + 1)!!.previousBracketSize) {
+            getBracketsFragment(position + 1)!!.shrinkView(TournamentUtility.dpToPx(160))
+            getBracketsFragment(position)!!.shrinkView(TournamentUtility.dpToPx(160))
+        } else {
+            val currentFragmentSize = getBracketsFragment(position + 1)!!.currentBracketSize
+            val previousFragmentSize = getBracketsFragment(position + 1)!!.previousBracketSize
+            if (currentFragmentSize != previousFragmentSize) {
+                getBracketsFragment(position + 1)!!.expandHeight(TournamentUtility.dpToPx(320))
+                getBracketsFragment(position)!!.shrinkView(TournamentUtility.dpToPx(160))
+            }
+        }
+
     }
 
     private fun initViews() {
         viewPager = view!!.findViewById<View>(R.id.container) as WrapContentHeightViewPager
     }
 
+    // 스크롤 효과 나는동안 생기는것
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-        if (mCurrentPagerState != ViewPager.SCROLL_STATE_SETTLING) {
-            // We are moving to next screen on right side
-            if (positionOffset > 0.5) {
-                // Closer to next screen than to current
-                if (position + 1 != mNextSelectedScreen) {
-                    mNextSelectedScreen = position + 1
-                    //update view here
-                    if (getBracketsFragment(position)!!.colomnList!![0].height != TournamentUtility.dpToPx(131))
-                        getBracketsFragment(position)!!.shrinkView(TournamentUtility.dpToPx(131))
-                    if (getBracketsFragment(position + 1)!!.colomnList!![0].height != TournamentUtility.dpToPx(131))
-                        getBracketsFragment(position + 1)!!.shrinkView(TournamentUtility.dpToPx(131))
-                }
+        // Closer to current screen than to next
+        if (position != mNextSelectedScreen) {
+            mNextSelectedScreen = position
+            //updateViewhere
+            if (getBracketsFragment(position + 1)!!.currentBracketSize == getBracketsFragment(position + 1)!!.previousBracketSize) {
+                getBracketsFragment(position + 1)!!.shrinkView(TournamentUtility.dpToPx(160))
+                getBracketsFragment(position)!!.shrinkView(TournamentUtility.dpToPx(160))
             } else {
-                // Closer to current screen than to next
-                if (position != mNextSelectedScreen) {
-                    mNextSelectedScreen = position
-                    //updateViewhere
-
-                    if (getBracketsFragment(position + 1)!!.currentBracketSize == getBracketsFragment(position + 1)!!.previousBracketSize) {
-                        getBracketsFragment(position + 1)!!.shrinkView(TournamentUtility.dpToPx(131))
-                        getBracketsFragment(position)!!.shrinkView(TournamentUtility.dpToPx(131))
-                    } else {
-                        val currentFragmentSize = getBracketsFragment(position + 1)!!.currentBracketSize
-                        val previousFragmentSize = getBracketsFragment(position + 1)!!.previousBracketSize
-                        if (currentFragmentSize != previousFragmentSize) {
-                            getBracketsFragment(position + 1)!!.expandHeight(TournamentUtility.dpToPx(262))
-                            getBracketsFragment(position)!!.shrinkView(TournamentUtility.dpToPx(131))
-                        }
-                    }
-                }
-            }
-        } else {
-            // We are moving to next screen left side
-            if (positionOffset > 0.5) {
-                // Closer to current screen than to next
-                if (position + 1 != mNextSelectedScreen) {
-                    mNextSelectedScreen = position + 1
-                    //update view for screen
-
-                }
-            } else {
-                // Closer to next screen than to current
-                if (position != mNextSelectedScreen) {
-                    mNextSelectedScreen = position
-                    //updateviewfor screem
+                val currentFragmentSize = getBracketsFragment(position + 1)!!.currentBracketSize
+                val previousFragmentSize = getBracketsFragment(position + 1)!!.previousBracketSize
+                if (currentFragmentSize != previousFragmentSize) {
+                    getBracketsFragment(position + 1)!!.expandHeight(TournamentUtility.dpToPx(320))
+                    getBracketsFragment(position)!!.shrinkView(TournamentUtility.dpToPx(160))
                 }
             }
         }
@@ -206,8 +191,8 @@ class BracketsFragment : Fragment(), ViewPager.OnPageChangeListener {
         return Math.log(x) / Math.log(base)
     }
 
-    private fun getUpload(){
-        var isSuccess  = true
+    private fun getUpload() {
+        var isSuccess = true
         var bracktsFrgmnt: BracketsColomnFragment? = null
         val fragments = childFragmentManager.fragments
 
@@ -217,26 +202,26 @@ class BracketsFragment : Fragment(), ViewPager.OnPageChangeListener {
             }
         }
         val totalItem = bracktsFrgmnt!!.getItem()
-        for(item in totalItem!! ){
-            for(matchItem in item.matches){
+        for (item in totalItem!!) {
+            for (matchItem in item.matches) {
                 compositeDisposable.add(Api.postUpdateTournament(contestID, User().userID, "2", matchItem.competitorOne.round, matchItem.competitorOne.number.toInt(), contestDepartName,
                         matchItem.competitorOne.name, matchItem.competitorTwo.name, matchItem.competitorOne.score, matchItem.competitorTwo.score)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({
-                            if(!it.getSuccess())
+                            if (!it.getSuccess())
                                 isSuccess = false
                         }) {
                             isSuccess = false
-                            Log.d("ERROR",it.message)
+                            Log.d("ERROR", it.message)
                         })
             }
         }
-        if(isSuccess){
+        if (isSuccess) {
             MaterialDialog(context!!).show {
                 title(text = "토너먼트 대진표")
                 message(text = "토너먼트 결과가 업데이트 되었습니다.")
-                positiveButton(text = "확인"){
+                positiveButton(text = "확인") {
                     activity!!.finish()
                 }
             }

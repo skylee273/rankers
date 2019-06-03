@@ -11,10 +11,10 @@ class RankItemViewModel(items: RankRepo.Rank, private val mListener: RankItemVie
     val total : ObservableField<String>
     val win : ObservableField<String>
     val lose : ObservableField<String>
-    var count = 1
+
     init {
 
-        rank = ObservableField((count++).toString())
+        rank = ObservableField(items.ranking!!)
         name = ObservableField(items.rankName + "(" + items.rankEmail + ")")
         rate = ObservableField(items.rankRate!!)
         total = ObservableField(items.rankTotal!!)

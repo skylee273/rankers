@@ -4,6 +4,7 @@ interface MultiNavigator {
     fun showDateDialog()
     fun showFaildDialog()
     fun showSuccessDialog()
+    fun showDrawDialog()
 
     fun handleError(throwable: Throwable)
 

@@ -18,17 +18,15 @@ package com.project.rankers
 
 import android.app.Activity
 import android.app.Application
-
 import com.androidnetworking.AndroidNetworking
 import com.androidnetworking.interceptors.HttpLoggingInterceptor
-import com.project.rankers.kakao.GlobalApplication
+import com.kakao.auth.KakaoSDK
+import com.project.rankers.kakao.KakaoSDKAdapter
 import com.project.rankers.utils.AppLogger
-
-import javax.inject.Inject
-
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
+import javax.inject.Inject
 
 /**
  * Created by amitshekhar on 07/07/17.
@@ -53,6 +51,8 @@ class MvvmApp : Application(), HasActivityInjector {
 
         instance = this
 
+        KakaoSDK.init(KakaoSDKAdapter())
+
         AppLogger.init()
 
         AndroidNetworking.initialize(applicationContext)
@@ -61,21 +61,27 @@ class MvvmApp : Application(), HasActivityInjector {
         }
 
         CalligraphyConfig.initDefault(mCalligraphyConfig)
+
+
     }
 
+    override fun onTerminate() {
+        super.onTerminate()
+        instance = null
+    }
     companion object {
         @get:Synchronized
         var instance: MvvmApp? = null
             private set
 
-        private var globalApplication: GlobalApplication? = null
+        private var globalApplication: MvvmApp? = null
 
-        val globalApplicationContext: GlobalApplication
+        val globalApplicationContext: MvvmApp
             get() {
                 if (instance == null) {
                     throw IllegalStateException("This Application does not inherit com.kakao.GlobalApplication")
                 }
-                return instance as GlobalApplication
+                return instance as MvvmApp
             }
     }
 }

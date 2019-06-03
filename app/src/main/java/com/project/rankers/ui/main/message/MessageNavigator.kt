@@ -5,5 +5,6 @@ import com.project.rankers.data.remote.response.BoardRepo
 interface MessageNavigator {
     fun handleError(throwable: Throwable)
     fun updateBoard(boardItem: List<BoardRepo.Board>)
+    fun nextBoardActivity(boardItem: BoardRepo.Board)
     fun openBoardActivity()
 }

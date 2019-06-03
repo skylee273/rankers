@@ -21,14 +21,14 @@ class SectionsPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdap
     override fun getItem(position: Int): Fragment {
         when (position) {
             0 -> {
-                return ContestFragment()
+                return MyFragment()
             }
             1 -> {
                 return RankFragment()
             }
-            2 -> return MessageFragment()
-            3 -> return MyFragment()
-            else -> ContestFragment()
+            2 -> return ContestFragment()
+            3 -> return MessageFragment()
+            else -> MyFragment()
         }
         return null!!
     }

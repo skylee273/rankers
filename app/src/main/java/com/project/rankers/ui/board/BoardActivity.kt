@@ -2,6 +2,8 @@ package com.project.rankers.ui.board
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.MenuItem
 import androidx.databinding.library.baseAdapters.BR
@@ -60,6 +62,24 @@ class BoardActivity : BaseActivity<ActivityBoardBinding, BoardViewModel>(), Boar
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         boardBinding = getViewDataBinding()
+        boardBinding.editText.addTextChangedListener(object : TextWatcher{
+            var prevString = ""
+            override fun afterTextChanged(s: Editable?) {
+                if(boardBinding.editText.lineCount >= 6){
+                    boardBinding.editText.setText(prevString)
+                    boardBinding.editText.setSelection(boardBinding.editText.length())
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                prevString = s.toString()
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                //
+            }
+
+        })
         boardViewModel!!.navigator = this
 
         setUp()

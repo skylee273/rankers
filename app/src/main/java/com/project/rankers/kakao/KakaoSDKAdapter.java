@@ -7,6 +7,7 @@ import com.kakao.auth.AuthType;
 import com.kakao.auth.IApplicationConfig;
 import com.kakao.auth.ISessionConfig;
 import com.kakao.auth.KakaoAdapter;
+import com.project.rankers.MvvmApp;
 
 public class KakaoSDKAdapter extends KakaoAdapter {
 
@@ -61,7 +62,7 @@ public class KakaoSDKAdapter extends KakaoAdapter {
         return new IApplicationConfig() {
             @Override
             public Context getApplicationContext() {
-                return GlobalApplication.Companion.getGlobalApplicationContext();
+                return MvvmApp.Companion.getGlobalApplicationContext();
             }
         };
     }

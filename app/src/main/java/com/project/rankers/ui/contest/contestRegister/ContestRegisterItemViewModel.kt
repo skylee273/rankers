@@ -5,16 +5,16 @@ import com.project.rankers.data.model.db.DepartItem
 
 class ContestRegisterItemViewModel(departItem: DepartItem, val mListener: ContestRegisterItemViewModelListner) {
     val depart : ObservableField<String>
+
     init {
         depart = ObservableField(departItem.depart)
     }
 
-    fun onItemClick() {
-        mListener.onItemClick()
+    fun onRemoveClick(){
+        mListener.onRemoveClick()
     }
-
     interface  ContestRegisterItemViewModelListner{
-        fun onItemClick()
+        fun onRemoveClick()
     }
 
 

@@ -5,38 +5,41 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
 import android.widget.Toast
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
-import com.project.rankers.R
-import com.project.rankers.databinding.ActivityLoginBinding
-import com.project.rankers.kakao.KakaoSignUpActivity
-import com.kakao.auth.AuthType
-import com.kakao.util.exception.KakaoException
-import com.kakao.auth.ISessionCallback
-import com.kakao.auth.Session
-import com.nhn.android.naverlogin.OAuthLogin
-import com.nhn.android.naverlogin.OAuthLoginHandler
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
-import com.google.firebase.auth.*
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.kakao.auth.AuthType
+import com.kakao.auth.ISessionCallback
+import com.kakao.auth.Session
+import com.kakao.util.exception.KakaoException
+import com.nhn.android.naverlogin.OAuthLogin
+import com.nhn.android.naverlogin.OAuthLoginHandler
+import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
+import com.project.rankers.databinding.ActivityLoginBinding
+import com.project.rankers.kakao.KakaoSignUpActivity
 import com.project.rankers.ui.base.BaseActivity
 import com.project.rankers.ui.main.MainActivity
 import com.project.rankers.ui.register.RegisterActivity
+import org.json.JSONObject
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 import javax.inject.Inject
 
 
-class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , LoginNavigator{
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), LoginNavigator {
 
 
     @Inject
@@ -51,9 +54,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
     var fbUser: FirebaseUser? = null
 
     // naver login value
-    private var OAUTH_CLIENT_ID: String? = "Ap10LMIr_R6my9DWFJtk"
-    private var OAUTH_CLIENT_SECRET: String? = "n9TZAfGAVc"
-    private var OAUTH_CLIENT_NAME: String? = "shrinehaneal"
+    private var OAUTH_CLIENT_ID: String? = "UjyxaIsZ3i3GlROD6XPa"
+    private var OAUTH_CLIENT_SECRET: String? = "THUoRkeses"
+    private var OAUTH_CLIENT_NAME: String? = "shrinehaneal@naver.com"
     private var mOAuthLoginModule: OAuthLogin? = null
 
 
@@ -64,6 +67,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
     override fun googleLogin() {
         signIn()
     }
+
     override fun handleError(throwable: Throwable) {
         displayLog("Login", throwable.message!!)
     }
@@ -80,13 +84,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
 
     override fun openRegisterActivity(email: String) {
         val intent = Intent(applicationContext, RegisterActivity::class.java)
-        intent.putExtra("userEmail",email)
+        intent.putExtra("userEmail", email)
         startActivity(intent)
     }
 
 
     override fun getBindingVariable(): Int {
-       return BR.viewModel
+        return BR.viewModel
     }
 
     override fun getViewModel(): LoginViewModel {
@@ -95,13 +99,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
     }
 
     override fun getLayoutId(): Int {
-       return R.layout.activity_login
+        return R.layout.activity_login
     }
 
     override fun onStart() {
         super.onStart()
 
-        if (mAuth!!.getCurrentUser() != null) {
+        if (mAuth!!.currentUser != null) {
             fbUser = mAuth!!.currentUser
         }
     }
@@ -160,7 +164,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
 
     private fun signOut() {
         mAuth!!.signOut()
-        mGoogleSignInClient!!.signOut().addOnCompleteListener(this){
+        mGoogleSignInClient!!.signOut().addOnCompleteListener(this) {
 
         }
     }
@@ -201,11 +205,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
         super.onActivityResult(requestCode, resultCode, data)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-//        Session.getCurrentSession().removeCallback(sessionCallback)
-    }
-
     fun redirectSignupActivity() {
         val intent = Intent(this, KakaoSignUpActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
@@ -239,7 +238,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
                 val refreshToken = mOAuthLoginModule!!.getRefreshToken(mContext)
                 val expiresAt = mOAuthLoginModule!!.getExpiresAt(mContext)
                 val tokenType = mOAuthLoginModule!!.getTokenType(mContext)
-                mLoginViewModel!!.onNaverLogin(accessToken)
+                RequestApiTask().execute()
                 displayLog("Naver Login", accessToken + refreshToken + expiresAt + tokenType)
             } else {
                 val errorCode = mOAuthLoginModule!!.getLastErrorCode(mContext).code
@@ -259,6 +258,28 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() , Log
         } catch (e: ApiException) {
             displayLog("Google Login", e.toString())
         }
+    }
+
+
+    private inner class RequestApiTask : AsyncTask<Void, Void, String>() {
+        override fun onPreExecute() {
+
+        }
+
+        override fun doInBackground(vararg params: Void): String {
+            val url = "https://openapi.naver.com/v1/nid/me"
+            val at = mOAuthLoginModule!!.getAccessToken(mContext)
+            return mOAuthLoginModule!!.requestApi(mContext, at, url)
+        }
+
+        override fun onPostExecute(content: String) {
+            val jsonObject = JSONObject(content).getJSONObject("response")
+
+            val name = jsonObject.getString("name")
+            val email = jsonObject.getString("email")
+            mLoginViewModel!!.isUser(email, name)
+        }
+        //mApiResultText.setText(content)
     }
 
 }

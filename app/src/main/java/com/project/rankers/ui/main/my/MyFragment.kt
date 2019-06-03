@@ -19,19 +19,19 @@ class MyFragment : Fragment() {
     private lateinit var myBinding: FragmentMyBinding
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         myBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_my, container, false)
-        myBinding.setVariable(BR.myActivity,this)
+        myBinding.setVariable(BR.myActivity, this)
 
         myBinding.textName.text = User().userName
         myBinding.textEmail.text = User().userEmail
         return myBinding.root
     }
 
-    fun resultClick(){
+    fun resultClick() {
         val intent = Intent(context, MatchActivity::class.java)
         startActivity(intent)
     }
 
-    fun recordClick(){
+    fun recordClick() {
         val intent = Intent(context, RecordActivity::class.java)
         startActivity(intent)
     }

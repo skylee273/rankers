@@ -30,6 +30,22 @@ class MessageViewModel : BaseViewModel<MessageNavigator>(){
 
     }
 
+    fun updateBoards(item : BoardRepo.Board){
+        var cnt = item.boardViewCnt!!.toInt()
+        setIsLoading(true)
+        compositeDisposable.add(Api.postBoardUpdateView(item.boardID, ++cnt)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ response ->
+                    setIsLoading(false)
+                    if(response.getSuccess())
+                        navigator.nextBoardActivity(item)
+                }) {
+                    setIsLoading(false)
+                    navigator.handleError(it)
+                })
+    }
+
     fun onBoardClick(){
         navigator.openBoardActivity()
     }

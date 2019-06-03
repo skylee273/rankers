@@ -60,7 +60,7 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
                 (s.depart)
         }
 
-        if(isEmptyText()){
+        if(isEmptyText(depart)){
             fetchContest(depart)
         }else{
             navigator.showFaildDialog()
@@ -72,7 +72,6 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
     private fun fetchContest(depart : String){
         compositeDisposable.add(Api.postContestCreator(User().userID, getTitle(), getDate(), getEndDate(), getType(), getHost(), getLocation(), depart)
                 .subscribeOn(Schedulers.newThread())
-                .take(4)
                 .subscribe({
                     if (it.getSuccess())
                         navigator.showDialog("등록성공", "대회등록이 완료되었습니다")
@@ -102,11 +101,11 @@ class ContestRegisterViewModel : BaseViewModel<ContestRegisterNavigator>() {
         navigator.showDateDialog(1)
     }
 
-    private fun isEmptyText(): Boolean {
+    private fun isEmptyText(depart : String): Boolean {
 
         Log.d("EmptyTest", "ID = " + User().userID + " Title = " + getTitle() + " Type = " + getType() + " Date = " + getDate() + " EndDate = " + getEndDate() + " Host = " + getHost() + " Location = " + getLocation())
         return (!CommonUtils.isEmpty(User().userID) && !CommonUtils.isEmpty(getTitle()) && !CommonUtils.isEmpty(getType())
-                && !CommonUtils.isEmpty(getDate()) && !CommonUtils.isEmpty(getEndDate()) && !CommonUtils.isEmpty(getHost()) && !CommonUtils.isEmpty(getLocation()))
+                && !CommonUtils.isEmpty(getDate()) && !CommonUtils.isEmpty(getEndDate()) && !CommonUtils.isEmpty(getHost()) && !CommonUtils.isEmpty(getLocation()) && !CommonUtils.isEmpty(depart))
     }
 
 }

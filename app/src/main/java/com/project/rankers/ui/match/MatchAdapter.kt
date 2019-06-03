@@ -92,8 +92,14 @@ class MatchAdapter(val mMatchResponseList: MutableList<MatchRepo.Match>?) : Recy
         } else {
             for (recent in arrayList!!) {
                 val name = recent.matchOther
-                if (name!!.toLowerCase().contains(charText)) {
-                    mMatchResponseList.add(recent)
+                val partner = recent.matchPartner
+                val otherPartner = recent.matchOtherPartner
+                val date = recent.matchDate
+                when {
+                    name!!.toLowerCase().contains(charText) -> mMatchResponseList.add(recent)
+                    partner!!.toLowerCase().contains(charText) -> mMatchResponseList.add(recent)
+                    otherPartner!!.toLowerCase().contains(charText) -> mMatchResponseList.add(recent)
+                    date!!.toLowerCase().contains(charText) -> mMatchResponseList.add(recent)
                 }
             }
         }
@@ -104,7 +110,7 @@ class MatchAdapter(val mMatchResponseList: MutableList<MatchRepo.Match>?) : Recy
     fun addItems(matchItem: List<MatchRepo.Match>) {
         mMatchResponseList!!.addAll(matchItem)
         arrayList = ArrayList()
-        arrayList!!.addAll(this.mMatchResponseList!!)
+        arrayList!!.addAll(this.mMatchResponseList)
         notifyDataSetChanged()
     }
 

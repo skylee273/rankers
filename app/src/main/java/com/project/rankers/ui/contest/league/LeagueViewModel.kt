@@ -14,7 +14,7 @@ class LeagueViewModel : BaseViewModel<LeagueNavigator>() {
     var mutableLiveData: MutableLiveData<List<ApplyRepo.Apply>>
     var contestID: String? = null
     var contestDepartName: String? = null
-    private var peopleItems = ArrayList<String>()
+    var peopleItems = ArrayList<String>()
     private var groupCount : Int = 0
     private  var leagueArray : ArrayList<LeagueItem>? = null
     init {
@@ -34,8 +34,17 @@ class LeagueViewModel : BaseViewModel<LeagueNavigator>() {
                             1 -> peopleItems.add(people.applyName + "," + people.applyPartner)
                         }
                     }
-                    groupCount = (response.totalCount / 4) + 1
-                    navigator.setGroupCount(response.totalCount, groupCount, peopleItems)
+                    groupCount = if(response.totalCount % 4 == 0){
+                        (response.totalCount / 4)
+                    }else{
+                        (response.totalCount / 4) + 1
+                    }
+                    leagueArray = ArrayList<LeagueItem>()
+                    for (number in 1 .. groupCount ) {
+                        leagueArray!!.add(LeagueItem(number, "", "", "", ""))
+                    }
+                    navigator.showRecyclerView(leagueArray!!)
+                    navigator.setGroupCount(response.totalCount, groupCount)
                     setIsLoading(false)
                 }) {
                     setIsLoading(false)
@@ -64,24 +73,8 @@ class LeagueViewModel : BaseViewModel<LeagueNavigator>() {
                         navigator.handleError(it)
                     })
         }
-
     }
 
-    fun plusCountClick(){
-        navigator.showGroupNumber(++groupCount)
-    }
-
-    fun subCountClick(){
-        navigator.showGroupNumber(--groupCount)
-    }
-
-    fun createOnClick(){
-        leagueArray = ArrayList<LeagueItem>()
-        for (number in 1 .. groupCount ) {
-            leagueArray!!.add(LeagueItem(number, "", "", "", ""))
-        }
-        navigator.showRecyclerView(leagueArray!!)
-    }
     fun setContestInfo(contestID: String, contestDepartName: String) {
         this.contestID = contestID
         this.contestDepartName = contestDepartName

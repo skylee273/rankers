@@ -3,7 +3,6 @@ package com.project.rankers.ui.contest.operation.result
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
@@ -64,29 +63,25 @@ class ResultContestFragment : BaseFragment<FragmentResultContestBinding, ResultC
     }
 
     override fun onItemClick(position: Int) {
-        var p0 = 0
         depart = resultContestAdapter!!.getPositionItem(position)
         MaterialDialog(activity!!).show {
-            title(text = "대진표작성")
+            title(text = "결과 작성")
             listItemsSingleChoice(items = myItems, waitForPositiveButton = false) { dialog, index, text ->
                 dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
-                p0 = index
-            }
-            positiveButton(text = "확인") {
-                when (p0) {
-                    0 -> {
-                        Log.d("대진표 번호", "예선")
-                        val intent = Intent(context, LeagueResultActivity::class.java)
-                        intent.putExtra("CONTEST_DEPART", depart)
-                        intent.putExtra("CONTEST_ID", contestID)
-                        startActivity(intent)
-                    }
-                    1 -> {
-                        Log.d("대진표 번호", "본선")
-                        val intent = Intent(context, TournamentResultActivity::class.java)
-                        intent.putExtra("CONTEST_DEPART", depart)
-                        intent.putExtra("CONTEST_ID", contestID)
-                        startActivity(intent)
+                positiveButton(text = "확인") {
+                    when (index) {
+                        0 -> {
+                            val intent = Intent(context, LeagueResultActivity::class.java)
+                            intent.putExtra("CONTEST_DEPART", depart)
+                            intent.putExtra("CONTEST_ID", contestID)
+                            startActivity(intent)
+                        }
+                        1 -> {
+                            val intent = Intent(context, TournamentResultActivity::class.java)
+                            intent.putExtra("CONTEST_DEPART", depart)
+                            intent.putExtra("CONTEST_ID", contestID)
+                            startActivity(intent)
+                        }
                     }
                 }
             }

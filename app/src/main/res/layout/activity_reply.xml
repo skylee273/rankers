@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="viewModel"
+            type="com.project.rankers.ui.reply.ReplyViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:background="#ffffff"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:layout_height="match_parent">
+
+            <View
+                android:id="@+id/view29"
+                android:layout_width="0dp"
+                android:layout_height="0.3dp"
+                android:background="#a1a1a1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+            <ScrollView
+                android:id="@+id/scrollView4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbar">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <ImageView
+                            android:id="@+id/imageView6"
+                            android:layout_width="32dp"
+                            android:layout_height="0dp"
+                            android:layout_marginEnd="16dp"
+                            android:onClick="@{() -> viewModel.onReplyClick()}"
+                            android:padding="7dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/imageView5"
+                            app:srcCompat="@drawable/ic_btn_iconwrite" />
+
+                        <View
+                            android:id="@+id/view33"
+                            android:layout_width="0dp"
+                            android:layout_height="0.3dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="#a1a1a1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView5" />
+
+                        <EditText
+                            android:id="@+id/editText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:background="@null"
+                            android:ems="10"
+                            android:text="@={viewModel.reply}"
+                            android:hint="댓글을 남겨보세요"
+                            android:inputType="textPersonName"
+                            android:letterSpacing="-0.04"
+                            android:lineSpacingExtra="4sp"
+                            android:textColorHint="#b7b7b7"
+                            android:textSize="15sp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView5"
+                            app:layout_constraintStart_toEndOf="@+id/imageView5"
+                            app:layout_constraintTop_toTopOf="@+id/imageView5" />
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="34dp"
+                            android:layout_height="34dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/linearLayout11"
+                            app:srcCompat="@drawable/ic_my_profile" />
+
+                        <LinearLayout
+                            android:id="@+id/linearLayout11"
+                            android:layout_width="0dp"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="32dp"
+                            android:background="#eeeef4"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_context">
+
+                            <TextView
+                                android:id="@+id/text"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="16dp"
+                                android:gravity="center_vertical"
+                                android:textSize="12.5sp"
+                                android:text="@{viewModel.reply_cnt}"
+                                android:textColor="#4d4d67"
+                                android:letterSpacing="-0.04"
+                                android:lineSpacingExtra="6.5sp"
+                                tools:text="댓글 2" />
+
+                        </LinearLayout>
+
+
+                        <TextView
+                            android:id="@+id/text_context"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="32dp"
+                            android:text="@{viewModel.text}"
+                            android:layout_marginEnd="20dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view31"
+                            tools:text="제목이 곧 내용. 일시 연락주세요\n천안으로 생각 중 입니다. \n 마음이 맞으면 대회도 생각 중 입니다.\n\n 감사합니다." />
+
+                        <View
+                            android:id="@+id/view31"
+                            android:layout_width="0dp"
+                            android:layout_height="0.3dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="16dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="#a1a1a1"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+
+                        <TextView
+                            android:id="@+id/text_view_cnt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:textSize="12.5sp"
+                            android:text="@{viewModel.view_cnt}"
+                            android:textColor="#b7b7b7"
+                            android:letterSpacing="-0.04"
+                            android:lineSpacingExtra="6.5sp"
+                            app:layout_constraintStart_toEndOf="@+id/view30"
+                            app:layout_constraintTop_toTopOf="@+id/text_date"
+                            tools:text="조회 12" />
+
+                        <View
+                            android:id="@+id/view30"
+                            android:layout_width="0.3dp"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="16dp"
+                            android:background="#a1a1a1"
+                            app:layout_constraintBottom_toBottomOf="@+id/text_date"
+                            app:layout_constraintStart_toEndOf="@+id/text_date"
+                            app:layout_constraintTop_toTopOf="@+id/text_date" />
+
+                        <TextView
+                            android:id="@+id/text_date"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="12.5sp"
+                            android:textColor="#b7b7b7"
+                            android:letterSpacing="-0.04"
+                            android:lineSpacingExtra="6.5sp"
+                            android:text="@{viewModel.date}"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginBottom="4dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                            app:layout_constraintStart_toEndOf="@+id/imageView4"
+                            tools:text="19.05.12" />
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/text_title"
+                            app:srcCompat="@drawable/ic_my_profile" />
+
+                        <TextView
+                            android:id="@+id/text_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginTop="4dp"
+                            android:letterSpacing="-0.04"
+                            android:lineSpacingExtra="6.5sp"
+                            android:text="@{viewModel.name}"
+                            android:textColor="#464646"
+                            android:textSize="12.5sp"
+                            app:layout_constraintStart_toEndOf="@+id/imageView4"
+                            app:layout_constraintTop_toTopOf="@+id/imageView4"
+                            tools:text="이하늘" />
+
+                        <TextView
+                            android:id="@+id/text_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:textColor="#464646"
+                            android:letterSpacing="-0.02"
+                            android:text="@{viewModel.title}"
+                            android:lineSpacingExtra="-6sp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="24dp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="같이 게임할 사람 구합니다." />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/recycler"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="1.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/view33"
+                            tools:listitem="@layout/item_reply_view" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+            </ScrollView>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/toolbar_color_bg"
+                android:minHeight="?attr/actionBarSize"
+                android:theme="@style/ToolbarTheme"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/toolbar_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/notosanscjkkrmedium"
+                    android:text="자유게시판"
+                    android:textColor="@color/color_toolbar_title"
+                    android:textSize="14sp"
+                    tools:layout_editor_absoluteX="169dp"
+                    tools:layout_editor_absoluteY="14dp" />
+
+            </androidx.appcompat.widget.Toolbar>
+
+
+            <androidx.core.widget.ContentLoadingProgressBar
+                android:id="@+id/address_looking_up"
+                style="?android:attr/progressBarStyleLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:visibility="@{viewModel.isLoading ? View.VISIBLE : View.GONE}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

@@ -1,5 +1,6 @@
 package com.project.rankers.ui.contest.contestRegister
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -55,6 +56,7 @@ class ContestRegisterAdapter(private val mContestRegisterList: MutableList<Depar
 
     inner class ContestRegisterViewHolder(private val mBinding: ItemContestRegisterViewBinding) : BaseViewHolder(mBinding.root), ContestRegisterItemViewModel.ContestRegisterItemViewModelListner {
 
+
         private var contestRegisterItemViewModel: ContestRegisterItemViewModel? = null
 
         override fun onBind(position: Int) {
@@ -66,8 +68,9 @@ class ContestRegisterAdapter(private val mContestRegisterList: MutableList<Depar
             }
         }
 
-        override fun onItemClick() {
-
+        override fun onRemoveClick() {
+            val pos = adapterPosition
+            mListener!!.removeClick(pos)
         }
     }
 
@@ -79,6 +82,14 @@ class ContestRegisterAdapter(private val mContestRegisterList: MutableList<Depar
         }
     }
 
+    fun removeItems(position: Int){
+        try{
+            mContestRegisterList!!.removeAt(position)
+            notifyItemRemoved(position)
+        }catch(e : IndexOutOfBoundsException){
+            Log.e("Error", e.toString())
+        }
+    }
 
     fun addItems(departItem: DepartItem) {
         mContestRegisterList!!.add(departItem)
@@ -96,6 +107,7 @@ class ContestRegisterAdapter(private val mContestRegisterList: MutableList<Depar
 
     interface ContestRegisterAdapterListener {
 
+        fun removeClick(position: Int)
         fun onRetryClick()
     }
 

@@ -109,6 +109,19 @@ class ContestResultTournamentFragment : Fragment(), ViewPager.OnPageChangeListen
         viewPager!!.setFadingEdgeLength(50)
 
         viewPager!!.addOnPageChangeListener(this)
+        var position = 0
+        //updateViewhere
+        if (getTournamentFragment(position + 1)!!.currentBracketSize == getTournamentFragment(position + 1)!!.previousBracketSize) {
+            getTournamentFragment(position + 1)!!.shrinkView(TournamentUtility.dpToPx(160))
+            getTournamentFragment(position)!!.shrinkView(TournamentUtility.dpToPx(160))
+        } else {
+            val currentFragmentSize = getTournamentFragment(position + 1)!!.currentBracketSize
+            val previousFragmentSize = getTournamentFragment(position + 1)!!.previousBracketSize
+            if (currentFragmentSize != previousFragmentSize) {
+                getTournamentFragment(position + 1)!!.expandHeight(TournamentUtility.dpToPx(320))
+                getTournamentFragment(position)!!.shrinkView(TournamentUtility.dpToPx(160))
+            }
+        }
     }
 
     private fun initViews() {
@@ -116,54 +129,20 @@ class ContestResultTournamentFragment : Fragment(), ViewPager.OnPageChangeListen
     }
 
     override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-        if (mCurrentPagerState != ViewPager.SCROLL_STATE_SETTLING) {
-            // We are moving to next screen on right side
-            if (positionOffset > 0.5) {
-                // Closer to next screen than to current
-                if (position + 1 != mNextSelectedScreen) {
-                    mNextSelectedScreen = position + 1
-                    //update view here
-                    if (getTournamentFragment(position)!!.colomnList!![0].height != TournamentUtility.dpToPx(131))
-                        getTournamentFragment(position)!!.shrinkView(TournamentUtility.dpToPx(131))
-                    if (getTournamentFragment(position + 1)!!.colomnList!![0].height != TournamentUtility.dpToPx(131))
-                        getTournamentFragment(position + 1)!!.shrinkView(TournamentUtility.dpToPx(131))
-                }
-            } else {
-                // Closer to current screen than to next
-                if (position != mNextSelectedScreen) {
-                    mNextSelectedScreen = position
-                    //updateViewhere
-
-                    if (getTournamentFragment(position + 1)!!.currentBracketSize == getTournamentFragment(position + 1)!!.previousBracketSize) {
-                        getTournamentFragment(position + 1)!!.shrinkView(TournamentUtility.dpToPx(131))
-                        getTournamentFragment(position)!!.shrinkView(TournamentUtility.dpToPx(131))
-                    } else {
-                        val currentFragmentSize = getTournamentFragment(position + 1)!!.currentBracketSize
-                        val previousFragmentSize = getTournamentFragment(position + 1)!!.previousBracketSize
-                        if (currentFragmentSize != previousFragmentSize) {
-                            getTournamentFragment(position + 1)!!.expandHeight(TournamentUtility.dpToPx(262))
-                            getTournamentFragment(position)!!.shrinkView(TournamentUtility.dpToPx(131))
-                        }
+            if (position != mNextSelectedScreen) {
+                mNextSelectedScreen = position
+                if (getTournamentFragment(position + 1)!!.currentBracketSize == getTournamentFragment(position + 1)!!.previousBracketSize) {
+                    getTournamentFragment(position + 1)!!.shrinkView(TournamentUtility.dpToPx(160))
+                    getTournamentFragment(position)!!.shrinkView(TournamentUtility.dpToPx(160))
+                } else {
+                    val currentFragmentSize = getTournamentFragment(position + 1)!!.currentBracketSize
+                    val previousFragmentSize = getTournamentFragment(position + 1)!!.previousBracketSize
+                    if (currentFragmentSize != previousFragmentSize) {
+                        getTournamentFragment(position + 1)!!.expandHeight(TournamentUtility.dpToPx(320))
+                        getTournamentFragment(position)!!.shrinkView(TournamentUtility.dpToPx(160))
                     }
                 }
             }
-        } else {
-            // We are moving to next screen left side
-            if (positionOffset > 0.5) {
-                // Closer to current screen than to next
-                if (position + 1 != mNextSelectedScreen) {
-                    mNextSelectedScreen = position + 1
-                    //update view for screen
-
-                }
-            } else {
-                // Closer to next screen than to current
-                if (position != mNextSelectedScreen) {
-                    mNextSelectedScreen = position
-                    //updateviewfor screem
-                }
-            }
-        }
     }
 
     override fun onPageSelected(position: Int) {

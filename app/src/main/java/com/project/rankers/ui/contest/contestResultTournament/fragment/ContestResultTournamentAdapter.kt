@@ -40,7 +40,7 @@ class ContestResultTournamentAdapter(private val fragment: ContestResultTourname
         if (list!![position].competitorOne.round == "2강")
             viewHolder.teamTitle.text = "결승"
         else
-            viewHolder.teamTitle.text = list!![position].competitorOne.round
+            viewHolder.teamTitle.text = list!![position].competitorOne.round + " 조"
         viewHolder.teamOneName.text = list!![position].competitorOne.name
         viewHolder.teamTwoName.text = list!![position].competitorTwo.name
         viewHolder.teamOneScore.text = list!![position].competitorOne.score

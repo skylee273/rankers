@@ -19,13 +19,13 @@
         android:background="#396ab8"
         android:letterSpacing="-0.06"
         android:lineSpacingExtra="22.3sp"
-        android:text="대진 확정"
+        android:text="결과 확정"
         android:textColor="#ffffff"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:text="대진 확정" />
+        tools:text="결과 확정" />
 
     <ScrollView
         android:id="@+id/scroll_view"

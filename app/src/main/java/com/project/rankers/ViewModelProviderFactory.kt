@@ -25,6 +25,7 @@ import com.project.rankers.ui.record.RecordViewModel
 import com.project.rankers.ui.record.multi.MultiViewModel
 import com.project.rankers.ui.record.single.SingleViewModel
 import com.project.rankers.ui.register.RegisterViewModel
+import com.project.rankers.ui.reply.ReplyViewModel
 import com.project.rankers.ui.splash.SplashViewModel
 import javax.inject.Singleton
 
@@ -80,7 +81,11 @@ class ViewModelProviderFactory : ViewModelProvider.NewInstanceFactory() {
             return RankViewModel() as T
         }else if (modelClass.isAssignableFrom(BoardViewModel::class.java)) {
             return BoardViewModel() as T
+        }else if (modelClass.isAssignableFrom(ReplyViewModel::class.java)) {
+            return ReplyViewModel() as T
         }
+
+
 
 
 

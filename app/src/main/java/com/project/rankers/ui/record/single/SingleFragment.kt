@@ -16,6 +16,7 @@ import javax.inject.Inject
 class SingleFragment : BaseFragment<FragmentSingleBinding, SingleViewModel>(), SingleNavigator {
 
 
+
     @Inject
     internal var factory: ViewModelProviderFactory? = null
     private var singleViewModel: SingleViewModel? = null
@@ -42,6 +43,14 @@ class SingleFragment : BaseFragment<FragmentSingleBinding, SingleViewModel>(), S
         }, cal!!.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE))
         dialog.datePicker.maxDate = Date().time
         dialog.show()
+    }
+
+    override fun showDrawDialog() {
+        MaterialDialog(context!!).show {
+            title(text = "무승부")
+            message(text = "스코어를 다시 입력하세요.")
+            positiveButton { R.string.agree }
+        }
     }
 
     override fun showFaildDialog() {

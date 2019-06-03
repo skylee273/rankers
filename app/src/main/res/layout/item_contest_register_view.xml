@@ -11,19 +11,30 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <Button
+        android:id="@+id/btn_remove0"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/ic_icon_close"
+        android:onClick="@{() -> viewModel.onRemoveClick()}"
+        app:layout_constraintBottom_toBottomOf="@+id/text_depart"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/text_depart" />
+
     <TextView
         android:id="@+id/text_depart"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/costom_edit_text_bg"
         android:fontFamily="@font/notosanscjkkrmedium"
         android:gravity="center_vertical"
         android:paddingLeft="30dp"
         android:text="@{viewModel.depart}"
         android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_remove0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="민들레" />

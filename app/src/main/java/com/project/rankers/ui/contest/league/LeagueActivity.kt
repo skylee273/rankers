@@ -2,6 +2,7 @@ package com.project.rankers.ui.contest.league
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.afollestad.materialdialogs.WhichButton
 import com.afollestad.materialdialogs.actions.setActionButtonEnabled
+import com.afollestad.materialdialogs.callbacks.onDismiss
 import com.afollestad.materialdialogs.list.listItemsSingleChoice
 import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
@@ -30,7 +32,6 @@ class LeagueActivity : BaseActivity<ActivityLeagueBinding, LeagueViewModel>(), L
     private lateinit var leagueBinding: ActivityLeagueBinding
     private var mLayoutManager = LinearLayoutManager(this)
     private var leagueViewModel: LeagueViewModel? = null
-    private var peopleItems = ArrayList<String>()
 
     override fun onRetryClick() {
         //
@@ -54,26 +55,21 @@ class LeagueActivity : BaseActivity<ActivityLeagueBinding, LeagueViewModel>(), L
     }
 
     @SuppressLint("SetTextI18n")
-    override fun setGroupCount(count: Int, num: Int, peopleItem: ArrayList<String>) {
-        this.peopleItems = peopleItem
+    override fun setGroupCount(count: Int, num: Int) {
         leagueBinding.textCount.text = "참여인원  총  " + count.toString() + "명"
-        leagueBinding.textNumber.text = "$num"
     }
 
     override fun uploadLeague() {
         leagueViewModel!!.uploadGroup(leagueAdapter!!.getItems())
     }
 
-    override fun showGroupNumber(num: Int) {
-        leagueBinding.textNumber.text = "$num"
-    }
 
     override fun showRecyclerView(items: ArrayList<LeagueItem>) {
         leagueAdapter!!.addItems(items)
     }
 
     override fun onAddPeopleDialog(position: Int, type: Int, playerName: String) {
-        peopleItems.add(playerName)
+        leagueViewModel!!.peopleItems.add(playerName)
         leagueAdapter!!.modifyItem(position, "", type)
     }
 
@@ -98,21 +94,27 @@ class LeagueActivity : BaseActivity<ActivityLeagueBinding, LeagueViewModel>(), L
     }
 
     override fun onShowPeopleDialog(position: Int, type: Int) {
+        val dialogItem = leagueViewModel!!.peopleItems
             MaterialDialog(this).show {
                 title(text = "선수명단")
                 message(text = "선수를 1명 선택하세요")
-                listItemsSingleChoice(items = peopleItems, waitForPositiveButton = false) { dialog, index, text ->
+                listItemsSingleChoice(items =  dialogItem, waitForPositiveButton = false) { dialog, index, text ->
                     dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
                     dialog. positiveButton(text = "확인") {
-                        if (peopleItems.size - 1 == index) {
-                            peopleItems = ArrayList()
-                        } else {
-                            peopleItems.removeAt(index)
+                        dialog.onDismiss {
+                            try{
+                                Log.d("삭제한 인덱스", index.toString())
+                                Log.d("현재 어뎁터 포지션", position.toString())
+                                Log.d("리스트 아이템", leagueViewModel!!.peopleItems.toString())
+                                leagueViewModel!!.peopleItems.removeAt(index)
+                                Log.d("삭제후 리스트 아이템", leagueViewModel!!.peopleItems.toString())
+                            }catch (e : IndexOutOfBoundsException){
+                                displayLog("ERROR", e.toString())
+                            }
+                            leagueAdapter!!.modifyItem(position, text, type)
                         }
-                        leagueAdapter!!.modifyItem(position, text, type)
                     }
                 }
-
             }
     }
 

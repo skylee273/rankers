@@ -7,14 +7,14 @@ import com.project.rankers.ui.base.BaseViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class RankViewModel : BaseViewModel<RankNavigator>(){
-    var mutableLiveData : MutableLiveData<List<RankRepo.Rank>>
+class RankViewModel : BaseViewModel<RankNavigator>() {
+    var mutableLiveData: MutableLiveData<List<RankRepo.Rank>>
 
     init {
         mutableLiveData = MutableLiveData()
     }
 
-    fun fetchCompetitions(){
+    fun fetchCompetitions() {
         setIsLoading(true)
         compositeDisposable.add(Api.getRankList()
                 .subscribeOn(Schedulers.io())
@@ -30,6 +30,9 @@ class RankViewModel : BaseViewModel<RankNavigator>(){
                 })
 
     }
+
+
+
     fun getListLiveData(): MutableLiveData<List<RankRepo.Rank>> {
         return mutableLiveData
     }

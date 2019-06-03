@@ -3,7 +3,6 @@ package com.project.rankers.ui.contest.contestResultSub
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
@@ -68,7 +67,7 @@ class ContestResultSubActivity : BaseActivity<ActivityContestResultSubBinding, C
     override fun onItemClick(depart : String) {
         var p0 = 0
         MaterialDialog(this).show {
-            title(text = "대진표작성")
+            title(text = "대회결과")
             listItemsSingleChoice(items = myItems, waitForPositiveButton = false) { dialog, index, text ->
                 dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
                 p0 = index
@@ -76,14 +75,12 @@ class ContestResultSubActivity : BaseActivity<ActivityContestResultSubBinding, C
             positiveButton(text = "확인"){
                 when (p0) {
                     0 -> {
-                        Log.d("대진표 번호", "예선")
                         val intent = Intent(mContext, ContestResultLeagueActivity::class.java)
                         intent.putExtra("CONTEST_DEPART", depart)
                         intent.putExtra("CONTEST_ID", contestID)
                         startActivity(intent)
                     }
                     1 -> {
-                        Log.d("대진표 번호", "본선")
                         val intent = Intent(mContext, ContestResultTournamentActivity::class.java)
                         intent.putExtra("CONTEST_DEPART", depart)
                         intent.putExtra("CONTEST_ID", contestID)

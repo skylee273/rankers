@@ -65,22 +65,21 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPa
         mainBinding.bottomNavigation.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.tab_contest -> {
-                    mainBinding.viewPager.currentItem = 0
+                    mainBinding.viewPager.currentItem = 2
                     mSectionsPagerAdapter!!.notifyDataSetChanged()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.tab_club -> {
                     mainBinding.viewPager.currentItem = 1
-                    mSectionsPagerAdapter!!.notifyDataSetChanged()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.tab_message -> {
-                    mainBinding.viewPager.currentItem = 2
+                    mainBinding.viewPager.currentItem = 3
                     mSectionsPagerAdapter!!.notifyDataSetChanged()
                     return@OnNavigationItemSelectedListener true
                 }
                 R.id.tab_profile -> {
-                    mainBinding.viewPager.currentItem = 3
+                    mainBinding.viewPager.currentItem = 0
                     return@OnNavigationItemSelectedListener true
                 }
             }

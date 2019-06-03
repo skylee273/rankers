@@ -45,6 +45,9 @@ class RankRepo {
         @Expose
         @SerializedName("RANK_LOSE")
         val rankLose : String? = null
+        @Expose
+        @SerializedName("RANK_RANKING")
+        val ranking : String? = null
 
         override fun hashCode(): Int {
             var result = rankRate!!.hashCode()
@@ -53,6 +56,7 @@ class RankRepo {
             result = 31 * result + rankTotal!!.hashCode()
             result = 31 * result + rankWin!!.hashCode()
             result = 31 * result + rankLose!!.hashCode()
+            result = 31 * result + ranking!!.hashCode()
 
             return result
         }

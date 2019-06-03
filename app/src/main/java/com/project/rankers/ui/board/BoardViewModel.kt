@@ -34,7 +34,6 @@ class BoardViewModel : BaseViewModel<BoardNavigator>() {
 
 
     private fun setType(): Boolean {
-
         if (!CommonUtils.isEmpty(getTitle()) && !CommonUtils.isEmpty(getText())) {
             return true
         }  else {
@@ -45,7 +44,7 @@ class BoardViewModel : BaseViewModel<BoardNavigator>() {
     }
 
     private fun createForm() {
-        compositeDisposable.add(Api.postBoardCreator(User().userID, User().userName,CommonUtils.getDate(),getTitle(),getText())
+        compositeDisposable.add(Api.postBoardCreator(User().userID, User().userName,CommonUtils.date,getTitle(),getText())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({
                     if (it.getSuccess()) {

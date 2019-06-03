@@ -25,6 +25,7 @@ import javax.inject.Inject
 class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, ContestRegisterViewModel>(), ContestRegisterNavigator, ContestRegisterAdapter.ContestRegisterAdapterListener{
 
 
+
     @Inject
     internal var contestRegisterAdapter : ContestRegisterAdapter? = null
     @Inject
@@ -58,6 +59,11 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
         }
     }
 
+    override fun removeClick(position: Int) {
+        mContestRegisterViewModel!!.arrayDepart.removeAt(position)
+        contestRegisterAdapter!!.removeItems(position)
+    }
+
     override fun onRetryClick() {
        //
     }
@@ -79,10 +85,9 @@ class ContestRegisterActivity : BaseActivity<ActivityContestRegisterBinding, Con
         when (type) {
             0 -> {
                 val dialog = DatePickerDialog(mContext, DatePickerDialog.OnDateSetListener { _, year, month, date ->
-                    val time = String.format("%4d.%2d.%2d", year, month + 1, date)
+                    val time = String.format("%04d.%02d.%02d", year, month + 1, date)
                     mContestRegisterViewModel!!.date.set(time)
                 }, cal!!.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE))
-                dialog.datePicker.maxDate = Date().time
                 dialog.show()
             }
             1 -> {

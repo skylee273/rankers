@@ -78,21 +78,20 @@ class DashBoardFragment : BaseFragment<FragmentDashboardBinding, DashBoardViewMo
     }
 
     override fun onItemClick(position: Int) {
-        var p0 = 0
+
         depart = dashboardAdapter!!.getPositionItem(position)
         MaterialDialog(activity!!).show {
             title(text = "대진표작성")
             listItemsSingleChoice(items = myItems, waitForPositiveButton = false) { dialog, index, text ->
                 dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
-                p0 = index
-            }
-            positiveButton(text = "확인") {
-                when (p0) {
-                    0 -> {
-                        dashboardViewModel!!.isLeague(contestID!!, depart!!)
-                    }
-                    1 -> {
-                        dashboardViewModel!!.isTournament(contestID!!, depart!!)
+                positiveButton(text = "확인") {
+                    when (index) {
+                        0 -> {
+                            dashboardViewModel!!.isLeague(contestID!!, depart!!)
+                        }
+                        1 -> {
+                            dashboardViewModel!!.isTournament(contestID!!, depart!!)
+                        }
                     }
                 }
             }

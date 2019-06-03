@@ -31,19 +31,19 @@
         android:layout_width="93dp"
         android:layout_height="26dp"
         android:layout_marginEnd="12dp"
-        android:onClick="@{() -> viewModel.onItemClick()}"
         android:background="@drawable/ic_btn_write"
         android:drawableLeft="@drawable/ic_btn_iconwrite"
         android:letterSpacing="-0.06"
         android:lineSpacingExtra="23.5sp"
+        android:onClick="@{() -> viewModel.onItemClick()}"
         android:paddingLeft="15dp"
         android:paddingRight="7dp"
+        android:text="작성하기"
         android:textColor="#396ab8"
         android:textSize="13.8sp"
         app:layout_constraintBottom_toBottomOf="@+id/text_depart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_depart"
-        android:text="작성하기" />
+        app:layout_constraintTop_toTopOf="@+id/text_depart" />
 
     <TextView
         android:id="@+id/text_depart"

@@ -15,6 +15,7 @@ import javax.inject.Inject
 
 class MultiFragment : BaseFragment<FragmentMultiBinding, MultiViewModel>(), MultiNavigator {
 
+
     @Inject
     internal var factory: ViewModelProviderFactory? = null
     private var multiViewModel: MultiViewModel? = null
@@ -54,6 +55,14 @@ class MultiFragment : BaseFragment<FragmentMultiBinding, MultiViewModel>(), Mult
 
     override fun handleError(throwable: Throwable) {
         displayLog("MultiFragment", throwable.toString())
+    }
+
+    override fun showDrawDialog() {
+        MaterialDialog(context!!).show {
+            title(text = "무승부")
+            message(text = "스코어를 다시 입력하세요.")
+            positiveButton { R.string.agree }
+        }
     }
 
     override fun showSuccessDialog() {

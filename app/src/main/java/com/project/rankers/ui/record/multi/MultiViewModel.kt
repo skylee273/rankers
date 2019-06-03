@@ -1,6 +1,5 @@
 package com.project.rankers.ui.record.multi
 
-import android.util.Log
 import androidx.databinding.ObservableField
 import com.project.rankers.data.model.db.User
 import com.project.rankers.data.remote.api.Api
@@ -42,23 +41,34 @@ class MultiViewModel : BaseViewModel<MultiNavigator>(){
     }
 
     fun onUploadClick(){
-        setIsLoading(true)
-        if(isEmptyText()){
-            compositeDisposable.add(Api.postMatchCreator(User().userID, "1", User().userName, getPartner(), getOther(), getOtherPartner(), getDate(), checkResult(),getMyScore(), getOtherScore())
-                    .subscribeOn(Schedulers.newThread())
-                    .subscribe({
-                        setIsLoading(false)
-                        if (it.getSuccess())
-                            navigator.showSuccessDialog()
-                    }) {
-                        navigator.handleError(it)
-                        setIsLoading(false)
-                    })
+        if(checkDraw()){
+            setIsLoading(true)
+            if(isEmptyText()){
+                compositeDisposable.add(Api.postMatchCreator(User().userID, "1", User().userName, getPartner(), getOther(), getOtherPartner(), getDate(), checkResult(),getMyScore(), getOtherScore())
+                        .subscribeOn(Schedulers.newThread())
+                        .subscribe({
+                            setIsLoading(false)
+                            if (it.getSuccess())
+                                navigator.showSuccessDialog()
+                        }) {
+                            navigator.handleError(it)
+                            setIsLoading(false)
+                        })
+            }else{
+                setIsLoading(false)
+                navigator.showFaildDialog()
+            }
         }else{
-            setIsLoading(false)
-            navigator.showFaildDialog()
+            navigator.showDrawDialog()
         }
     }
+    private fun checkDraw() : Boolean {
+        if(getMyScore()!!.toInt() == getOtherScore()!!.toInt()){
+            return false
+        }
+        return true
+    }
+
     private fun checkResult() : String{
         return if(getMyScore()!!.toInt() >= getOtherScore()!!.toInt())
             "승"

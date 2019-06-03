@@ -22,6 +22,7 @@ import javax.inject.Inject
 class ContestModifyActivity : BaseActivity<ActivityModifyBinding, ContestModifyViewModel>(), ContestModifyNavigator, ContestModifyAdapter.ModifyAdapterListener{
 
 
+
     @Inject
     internal var modifyAdapter: ContestModifyAdapter? = null
     @Inject
@@ -54,26 +55,37 @@ class ContestModifyActivity : BaseActivity<ActivityModifyBinding, ContestModifyV
         modifyViewModel!!.fetchCompetitions()
     }
 
+    override fun successDialog(title: String, text: String) {
+        runOnUiThread {
+            MaterialDialog(this).show {
+                title(text = title)
+                message(text =  text)
+                positiveButton(text = "확인"){
+                    finish()
+                }
+            }
+        }
+    }
+
     override fun onItemClick(item: ContestResponse.Repo) {
-        var p0 = 0
         MaterialDialog(this).show {
             title(text = "대회수정")
             listItemsSingleChoice(items = myItems, waitForPositiveButton = false) { dialog, index, text ->
                 dialog.setActionButtonEnabled(WhichButton.POSITIVE, true)
-                p0 = index
-            }
-            positiveButton(text = "확인"){
-                when (p0) {
-                    0 -> {
-                        //val intent = Intent(mContext, ContestResultLeagueActivity::class.java)
-                        //startActivity(intent)
-                    }
-                    1 -> {
-                        modifyViewModel!!.deleteContest(item.id!!)
+                positiveButton(text = "확인"){
+                    when (index) {
+                        0 -> {
+                            //val intent = Intent(mContext, ContestResultLeagueActivity::class.java)
+                            //startActivity(intent)
+                        }
+                        1 -> {
+                            modifyViewModel!!.deleteContest(item.id!!)
+                        }
                     }
                 }
             }
-        }    }
+        }
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

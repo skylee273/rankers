@@ -9,6 +9,7 @@ import com.project.rankers.databinding.ItemMessageEmptyViewBinding
 import com.project.rankers.databinding.ItemMessageViewBinding
 import com.project.rankers.ui.base.BaseViewHolder
 import java.util.*
+import kotlin.collections.ArrayList
 
 class MessageAdapter(val mMessageResponseList: MutableList<BoardRepo.Board>?) : RecyclerView.Adapter<BaseViewHolder>() {
     private var arrayList: ArrayList<BoardRepo.Board>? = null
@@ -68,6 +69,7 @@ class MessageAdapter(val mMessageResponseList: MutableList<BoardRepo.Board>?) : 
 
         override fun onItemClick() {
             val pos = adapterPosition
+            mListener!!.onItemClick(mMessageResponseList!![pos])
         }
     }
 
@@ -93,9 +95,15 @@ class MessageAdapter(val mMessageResponseList: MutableList<BoardRepo.Board>?) : 
                 mMessageResponseList.addAll(arrayList!!)
             } else {
                 for (recent in arrayList!!) {
-                    val name = recent.boardTitle
-                    if (name!!.toLowerCase().contains(charText)) {
-                        mMessageResponseList.add(recent)
+                    val title = recent.boardTitle
+                    val text = recent.boardText
+                    val date = recent.boardDate
+                    val name = recent.boardName
+                    when {
+                        title!!.toLowerCase().contains(charText) -> mMessageResponseList.add(recent)
+                        text!!.toLowerCase().contains(charText) -> mMessageResponseList.add(recent)
+                        date!!.toLowerCase().contains(charText) -> mMessageResponseList.add(recent)
+                        name!!.toLowerCase().contains(charText) -> mMessageResponseList.add(recent)
                     }
                 }
             }
@@ -121,6 +129,7 @@ class MessageAdapter(val mMessageResponseList: MutableList<BoardRepo.Board>?) : 
 
     interface MessageAdapterListener {
         fun onRetryClick()
+        fun onItemClick( item : BoardRepo.Board)
     }
 
     companion object {

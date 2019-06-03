@@ -16,6 +16,7 @@ import com.project.rankers.data.remote.response.BoardRepo
 import com.project.rankers.databinding.FragmentMsgBinding
 import com.project.rankers.ui.base.BaseFragment
 import com.project.rankers.ui.board.BoardActivity
+import com.project.rankers.ui.reply.ReplyActivity
 import java.util.*
 import javax.inject.Inject
 
@@ -61,6 +62,16 @@ class MessageFragment : BaseFragment<FragmentMsgBinding, MessageViewModel>(), Me
         startActivity(nextIntent)
     }
 
+    override fun nextBoardActivity(item : BoardRepo.Board) {
+        val intent = Intent(context, ReplyActivity::class.java)
+        val array = arrayOf(item.boardTitle,item.boardName, item.boardDate, item.boardViewCnt, item.boardReplyCnt, item.boardText, item.boardID)
+        intent.putExtra("reply", array)
+       startActivity(intent)
+    }
+
+    override fun onItemClick(item: BoardRepo.Board) {
+        messageViewModel!!.updateBoards(item)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

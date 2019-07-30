@@ -15,11 +15,6 @@ class LoginViewModel: BaseViewModel<LoginNavigator>() {
         navigator.googleLogin()
     }
 
-    fun onNaverLogin(token : String){
-        setIsLoading(true)
-        isUser("hnlee@btcore.net","이하늘")
-    }
-
     fun isUser(email: String?, nickName: String?) {
         compositeDisposable.add(Api.getID(email)
                 .subscribeOn(Schedulers.newThread())

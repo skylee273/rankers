@@ -20,7 +20,6 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.kakao.auth.AuthType
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.util.exception.KakaoException
@@ -65,7 +64,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
     override fun googleLogin() {
-        signIn()
+        Toast.makeText(this@LoginActivity, "현재 준비중입니다.", Toast.LENGTH_SHORT).show()
+        //signIn()
     }
 
     override fun handleError(throwable: Throwable) {
@@ -118,6 +118,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
         loginBinding = getViewDataBinding()
         mLoginViewModel!!.navigator = this
 
+        //getHashKey()
+
         // google login
         mAuth = FirebaseAuth.getInstance()
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -137,17 +139,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
 
 
         loginBinding.kakaoButton.setOnClickListener {
+
+            Toast.makeText(this@LoginActivity, "현재 준비중입니다.", Toast.LENGTH_SHORT).show()
+            /**
             sessionCallback = SessionCallback()
             // Session 에 콜백 추가
             Session.getCurrentSession().addCallback(sessionCallback)
             Session.getCurrentSession().checkAndImplicitOpen()
             Session.getCurrentSession().open(AuthType.KAKAO_LOGIN_ALL, this)
+             *
+             */
         }
 
         loginBinding.buttonOAuthLoginImg.setOAuthLoginHandler(mOAuthLoginHandler)
-        loginBinding.naverButton.setOnClickListener {
-            loginBinding.buttonOAuthLoginImg.performClick()
-        }
+
+
 
         loginBinding.buttonOAuthLoginImg.setOnClickListener {
             if (mOAuthLoginModule != null) {

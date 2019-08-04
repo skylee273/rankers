@@ -20,6 +20,7 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPager.OnPageChangeListener, MainNavigator {
 
+    // 2019.08.04
     @Inject
     internal var factory: ViewModelProviderFactory? = null
     private var mMainViewModel : MainViewModel? = null

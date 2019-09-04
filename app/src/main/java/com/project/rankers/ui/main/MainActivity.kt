@@ -46,7 +46,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() , ViewPa
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mainBinding = getViewDataBinding()

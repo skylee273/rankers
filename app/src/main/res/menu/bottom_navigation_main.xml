@@ -12,7 +12,7 @@
     <item
         android:id="@+id/tab_club"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_rank"
+        android:icon="@drawable/ic_contest"
         android:title="" />
 
     <item

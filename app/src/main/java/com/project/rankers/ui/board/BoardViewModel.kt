@@ -44,11 +44,13 @@ class BoardViewModel : BaseViewModel<BoardNavigator>() {
     }
 
     private fun createForm() {
+        setIsLoading(true)
         compositeDisposable.add(Api.postBoardCreator(User().userID, User().userName,CommonUtils.date,getTitle(),getText())
                 .subscribeOn(Schedulers.newThread())
                 .subscribe({
                     if (it.getSuccess()) {
                         navigator.successDialog("게시판 등록", "게시판 등록이 완료되었습니다")
+                        setIsLoading(false)
                     }
                 }) {
                     navigator.showDialog("게시판 등록", "게시판 등록에 실패하였습니다")

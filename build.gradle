@@ -7,7 +7,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.2'
+        classpath 'com.android.tools.build:gradle:3.4.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath 'com.google.gms:google-services:4.2.0'
 
@@ -41,7 +41,7 @@ ext {
 
     // App dependencies
     supportLibraryVersion = '1.0.2'
-    materialVersion = '1.1.0-alpha03'
+    materialVersion = '1.1.0-alpha09'
     vectorDrawableVersion = '1.0.1'
     animatedVectorDrawableVersion = '1.0.0'
     gsonVersion = '2.8.2'

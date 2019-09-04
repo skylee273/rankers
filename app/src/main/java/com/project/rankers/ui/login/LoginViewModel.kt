@@ -10,10 +10,6 @@ import io.reactivex.schedulers.Schedulers
 class LoginViewModel: BaseViewModel<LoginNavigator>() {
 
 
-    fun onGoogleLoginClick() {
-        setIsLoading(true)
-        navigator.googleLogin()
-    }
 
     fun isUser(email: String?, nickName: String?) {
         compositeDisposable.add(Api.getID(email)

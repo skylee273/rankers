@@ -17,65 +17,6 @@
 
 
     <View
-        android:id="@+id/view13"
-        android:layout_width="0dp"
-        android:layout_height="0.3dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="17dp"
-        android:layout_marginEnd="30dp"
-        android:background="#898989"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout10" />
-
-    <LinearLayout
-        android:id="@+id/linearLayout10"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view6">
-
-        <Button
-            android:id="@+id/btn_call"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null"
-            android:drawableTop="@drawable/ic_call"
-            android:drawablePadding="20dp"
-            android:gravity="center_horizontal"
-            android:text="문의하기"
-            android:textColor="#898989"
-            android:textSize="13sp" />
-
-        <Button
-            android:id="@+id/button17"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null" />
-
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null" />
-
-        <Button
-            android:id="@+id/button15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@null" />
-    </LinearLayout>
-
-    <View
         android:id="@+id/view6"
         android:layout_width="0dp"
         android:layout_height="0.3dp"
@@ -132,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@null"
+            android:onClick="@{() -> myActivity.versionClick()}"
             android:drawableTop="@drawable/ic_my_version"
             android:drawablePadding="20dp"
             android:gravity="center_horizontal"

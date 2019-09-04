@@ -6,11 +6,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 interface LoginNavigator {
     fun handleError(throwable: Throwable)
 
-    fun login()
-
     fun openMainActivity()
 
     fun openRegisterActivity(email : String)
 
-    fun googleLogin()
 }

@@ -115,4 +115,8 @@ dependencies {
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
     testImplementation 'junit:junit:4.12'
 
+    //jsoup
+    implementation 'org.jsoup:jsoup:1.11.3'
+
+
 }

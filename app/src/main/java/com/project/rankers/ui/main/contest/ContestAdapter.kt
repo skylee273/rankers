@@ -51,7 +51,6 @@ class ContestAdapter(val mContestResponseList: MutableList<ContestResponse.Repo>
 
     override fun onBindViewHolder(holder: BaseViewHolder, position: Int) {
         holder.onBind(position)
-
     }
 
     inner class ContestViewHolder(private val mBinding: ItemContestViewBinding) : BaseViewHolder(mBinding.root), ContestItemViewModel.ContestItemViewListener {

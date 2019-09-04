@@ -13,6 +13,7 @@ import com.project.rankers.data.model.db.User
 import com.project.rankers.databinding.FragmentMyBinding
 import com.project.rankers.ui.match.MatchActivity
 import com.project.rankers.ui.record.RecordActivity
+import com.project.rankers.ui.version.VersionActivity
 
 class MyFragment : Fragment() {
 
@@ -33,6 +34,11 @@ class MyFragment : Fragment() {
 
     fun recordClick() {
         val intent = Intent(context, RecordActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun versionClick() {
+        val intent = Intent(context, VersionActivity::class.java)
         startActivity(intent)
     }
 

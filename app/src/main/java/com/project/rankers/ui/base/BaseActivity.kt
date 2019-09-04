@@ -45,7 +45,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : BaseViewModel<*>>:  AppComp
         hideLoading()
     }
 
-    fun displayLog(tag : String, msg : String){  
+    fun displayLog(tag : String, msg : String){    
         Log.d(tag, msg)
     }
     fun getViewDataBinding(): T {

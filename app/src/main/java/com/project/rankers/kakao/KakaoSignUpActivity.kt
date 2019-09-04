@@ -47,6 +47,8 @@ open class KakaoSignUpActivity : Activity() {
                 finish()
             }
 
+
+              
             /**
              * 가입이 안된 경우와 세션이 닫힌 경우를 제외한 다른 이유로 요청이 실패한 경우의 콜백
              * @param errorResult

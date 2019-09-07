@@ -22,11 +22,12 @@ android {
 
     buildTypes {
         debug {
+            minifyEnabled true
             buildConfigField("String", "BASE_URL", "\"http://www.mocky.io/v2\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")
         }
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             buildConfigField("String", "BASE_URL", "\"http://www.mocky.io/v2\"")
             buildConfigField("String", "API_KEY", "\"ABCXYZ123TEST\"")

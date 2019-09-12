@@ -1,11 +1,22 @@
 package com.project.rankers.widget;
 
+import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
 import android.appwidget.AppWidgetProvider;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.view.View;
 import android.widget.RemoteViews;
 
 import com.project.rankers.R;
+import com.project.rankers.ui.main.MainActivity;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 /**
  * Implementation of App Widget functionality.
@@ -14,14 +25,9 @@ public class RankersWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-
-//        CharSequence widgetText = context.getString(R.string.appwidget_text);
-        // Construct the RemoteViews object
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.rankers_widget);
-//        views.setTextViewText(R.id.appwidget_text, widgetText);
-
-        // Instruct the widget manager to update the widget
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.fragment_contest);
         appWidgetManager.updateAppWidget(appWidgetId, views);
+
     }
 
     @Override

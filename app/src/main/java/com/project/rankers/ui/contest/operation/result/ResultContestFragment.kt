@@ -17,6 +17,7 @@ import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.databinding.FragmentResultContestBinding
 import com.project.rankers.ui.base.BaseFragment
 import com.project.rankers.ui.contest.leagueResult.LeagueResultActivity
+import com.project.rankers.ui.contest.operation.dashboard.DashBoardAdapter
 import com.project.rankers.ui.contest.tournamentResult.TournamentResultActivity
 import javax.inject.Inject
 
@@ -105,7 +106,14 @@ class ResultContestFragment : BaseFragment<FragmentResultContestBinding, ResultC
 
     @SuppressLint("WrongConstant")
     private fun setUp() {
-        resultContestAdapter = ResultContestAdapter(contestDepart!!.split(",") as ArrayList<String>)
+        if(contestDepart!!.contains(",")){
+            resultContestAdapter = ResultContestAdapter(contestDepart!!.split(",") as ArrayList<String>)
+        }else{
+            var arrayList : ArrayList<String>? = null
+            arrayList = ArrayList()
+            arrayList.add(contestDepart!!)
+            resultContestAdapter = ResultContestAdapter(arrayList)
+        }
         mLayoutManager.orientation = LinearLayoutManager.VERTICAL
         resultContestBinding.recycler.layoutManager = mLayoutManager
         resultContestBinding.recycler.itemAnimator = DefaultItemAnimator()

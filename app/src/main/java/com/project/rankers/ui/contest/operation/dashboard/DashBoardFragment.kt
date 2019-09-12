@@ -115,7 +115,14 @@ class DashBoardFragment : BaseFragment<FragmentDashboardBinding, DashBoardViewMo
 
     @SuppressLint("WrongConstant")
     private fun setUp() {
-        dashboardAdapter = DashBoardAdapter(contestDepart!!.split(",") as ArrayList<String>)
+        if(contestDepart!!.contains(",")){
+            dashboardAdapter = DashBoardAdapter(contestDepart!!.split(",") as ArrayList<String>)
+        }else{
+            var arrayList : ArrayList<String>? = null
+            arrayList = ArrayList()
+            arrayList.add(contestDepart!!)
+            dashboardAdapter = DashBoardAdapter(arrayList)
+        }
         mLayoutManager.orientation = LinearLayoutManager.VERTICAL
         dashboardBinding.recycler.layoutManager = mLayoutManager
         dashboardBinding.recycler.itemAnimator = DefaultItemAnimator()

@@ -118,6 +118,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
         }
 
         loginBinding.buttonOAuthLoginImg.setOAuthLoginHandler(mOAuthLoginHandler)
+        loginBinding.buttonOAuthLoginImg.setBgResourceId(R.drawable.btn_login_naver)
 
 
 

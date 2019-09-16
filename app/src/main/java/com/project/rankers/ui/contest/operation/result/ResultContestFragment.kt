@@ -131,6 +131,4 @@ class ResultContestFragment : BaseFragment<FragmentResultContestBinding, ResultC
             return fragment
         }
     }
-
-
 }

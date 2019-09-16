@@ -2,6 +2,8 @@
     <string name="app_name">rankers</string>
     <string name="kakao_app_key">72d1902fd6b1b70f7fc337039de59cd4</string>
     <string name="naver_oauth_client_id">UjyxaIsZ3i3GlROD6XPa</string>
+    <string name="OAUTH_CLIENT_SECRET">THUoRkeses</string>
+    <string name="OAUTH_CLIENT_NAME">shrinehaneal@naver.com</string>
     <string name="todo">TODO</string>
 
 

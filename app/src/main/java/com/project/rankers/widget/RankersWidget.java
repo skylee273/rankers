@@ -25,10 +25,10 @@ public class RankersWidget extends AppWidgetProvider {
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.fragment_contest);
+        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.rankers_widget);
         appWidgetManager.updateAppWidget(appWidgetId, views);
 
-    }
+}
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {

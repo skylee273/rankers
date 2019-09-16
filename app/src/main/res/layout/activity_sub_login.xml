@@ -64,38 +64,6 @@
 
 
                     <EditText
-                        android:id="@+id/location"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:ems="10"
-                        android:hint="대회장소를 등록해주세요"
-                        android:inputType="textPersonName"
-                        android:letterSpacing="-0.02"
-                        android:lineSpacingExtra="-3.8sp"
-                        android:paddingBottom="14dp"
-                        android:text="@={viewModel.location}"
-                        android:textColorHint="#d7d7d7"
-                        android:textSize="15.8sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView24" />
-
-                    <TextView
-                        android:id="@+id/textView24"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="21dp"
-                        android:lineSpacingExtra="0.3sp"
-                        android:text="대회장소"
-                        android:textColor="#464646"
-                        android:textSize="11.8sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/host" />
-
-                    <EditText
                         android:id="@+id/depart"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -103,15 +71,15 @@
                         android:layout_marginEnd="32dp"
                         android:drawableRight="@drawable/ic_icon_add"
                         android:ems="10"
+                        android:focusable="false"
                         android:hint="부서를 등록해주세요"
                         android:inputType="textPersonName"
                         android:letterSpacing="-0.02"
                         android:lineSpacingExtra="-3.8sp"
-                        android:focusable="false"
-                        android:onClick="@{() -> viewModel.onAddClick()}"
                         android:paddingBottom="14dp"
                         android:textColorHint="#d7d7d7"
                         android:textSize="15.8sp"
+                        android:visibility="invisible"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView23" />
@@ -121,82 +89,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
-                        android:layout_marginTop="21dp"
                         android:text="부서등록"
                         android:textColor="#464646"
                         android:textSize="11.8sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/file" />
+                        tools:layout_editor_absoluteY="599dp" />
 
                     <EditText
-                        android:id="@+id/file"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:drawableRight="@drawable/ic_icon_add"
-                        android:ems="10"
-                        android:hint="파일을 첨부해주세요"
-                        android:inputType="textPersonName"
-                        android:letterSpacing="-0.02"
-                        android:focusable="false"
-                        android:lineSpacingExtra="-3.8sp"
-                        android:onClick="@{() -> viewModel.onFileClick()}"
-                        android:paddingBottom="14dp"
-                        android:text="@={viewModel.file}"
-                        android:textColorHint="#d7d7d7"
-                        android:textSize="15.8sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView22" />
-
-                    <TextView
-                        android:id="@+id/textView22"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="21dp"
-                        android:lineSpacingExtra="0.3sp"
-                        android:text="첨부파일"
-                        android:textColor="#464646"
-                        android:textSize="11.8sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/location" />
-
-                    <EditText
-                        android:id="@+id/host"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginEnd="32dp"
-                        android:ems="10"
-                        android:hint="주관기관을 입력해주세요"
-                        android:inputType="textPersonName"
-                        android:letterSpacing="-0.02"
-                        android:lineSpacingExtra="-3.8sp"
-                        android:paddingBottom="14dp"
-                        android:text="@={viewModel.host}"
-                        android:textColorHint="#d7d7d7"
-                        android:textSize="15.8sp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView21" />
-
-                    <TextView
-                        android:id="@+id/textView21"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="21dp"
-                        android:lineSpacingExtra="0.3sp"
-                        android:text="주관기관"
-                        android:textColor="#464646"
-                        android:textSize="11.8sp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/type" />
-
-                    <EditText
-                        android:id="@+id/type"
+                        android:id="@+id/activity_sub_login_group_eddittext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
@@ -204,13 +104,10 @@
                         android:ems="10"
                         android:focusable="false"
                         android:hint="대회종류를 입력해주세요"
-                        android:drawableRight="@drawable/ic_icon_add"
                         android:inputType="textPersonName"
                         android:letterSpacing="-0.02"
                         android:lineSpacingExtra="-3.8sp"
-                        android:onClick="@{() -> viewModel.onTypeClick()}"
                         android:paddingBottom="14dp"
-                        android:text="@={viewModel.type}"
                         android:textColorHint="#d7d7d7"
                         android:textSize="15.8sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -224,28 +121,25 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="21dp"
                         android:lineSpacingExtra="0.3sp"
-                        android:text="대회종류"
+                        android:text="소속"
                         android:textColor="#464646"
                         android:textSize="11.8sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/endDate" />
+                        app:layout_constraintTop_toBottomOf="@+id/activity_sub_login_place_edittext" />
 
                     <EditText
-                        android:id="@+id/endDate"
+                        android:id="@+id/activity_sub_login_place_edittext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginEnd="32dp"
-                        android:drawableRight="@drawable/ic_icon_calandar"
                         android:ems="10"
                         android:hint="대회종료일을 등록해주세요"
                         android:inputType="date"
                         android:letterSpacing="-0.02"
                         android:focusable="false"
                         android:lineSpacingExtra="-3.8sp"
-                        android:onClick="@{() -> viewModel.onEndDateClick()}"
                         android:paddingBottom="14dp"
-                        android:text="@={viewModel.endDate}"
                         android:textColorHint="#d7d7d7"
                         android:textSize="15.8sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -259,109 +153,92 @@
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="21dp"
                         android:lineSpacingExtra="0.3sp"
-                        android:text="대회종료"
+                        android:text="지역"
                         android:textColor="#464646"
                         android:textSize="11.8sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/date" />
+                        app:layout_constraintTop_toBottomOf="@+id/activity_sub_login_gender_edittext" />
 
                     <EditText
-                        android:id="@+id/date"
+                        android:id="@+id/activity_sub_login_gender_edittext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginEnd="32dp"
-                        android:drawableRight="@drawable/ic_icon_calandar"
                         android:ems="10"
-                        android:hint="대회일시를 등록해주세요"
+                        android:focusable="false"
+                        android:hint="성별을 등록해주세요"
                         android:inputType="date"
                         android:letterSpacing="-0.02"
-                        android:focusable="false"
                         android:lineSpacingExtra="-3.8sp"
-                        android:onClick="@{() -> viewModel.onDateClick()}"
                         android:paddingBottom="14dp"
-                        android:text="@={viewModel.date}"
                         android:textColorHint="#d7d7d7"
                         android:textSize="15.8sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+                        app:layout_constraintTop_toBottomOf="@+id/activity_sub_login_gender_textivew" />
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/activity_sub_login_gender_textivew"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="21dp"
                         android:lineSpacingExtra="0.3sp"
-                        android:text="대회일시"
+                        android:text="성별"
                         android:textColor="#464646"
                         android:textSize="11.8sp"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/title" />
+                        app:layout_constraintTop_toBottomOf="@+id/activity_sub_login_age_eddittext" />
 
                     <EditText
-                        android:id="@+id/title"
+                        android:id="@+id/activity_sub_login_age_eddittext"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginEnd="32dp"
                         android:ems="10"
-                        android:hint="대회이름을 입력해주세요"
+                        android:hint="나이를 입력해주세요"
                         android:inputType="textPersonName"
                         android:letterSpacing="-0.02"
                         android:lineSpacingExtra="-3.8sp"
                         android:paddingBottom="14dp"
-                        android:text="@={viewModel.title}"
                         android:textColorHint="#d7d7d7"
                         android:textSize="15.8sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text1" />
+                        app:layout_constraintTop_toBottomOf="@+id/activity_sub_login_age_textview" />
 
                     <TextView
-                        android:id="@+id/text1"
+                        android:id="@+id/activity_sub_login_age_textview"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="32dp"
                         android:layout_marginTop="28dp"
                         android:lineSpacingExtra="0.3sp"
-                        android:text="대회이름"
+                        android:text="나이"
                         android:textColor="#464646"
                         android:textSize="11.8sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/recycler"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/depart"
-                        tools:listitem="@layout/item_contest_register_view" />
 
                     <Button
                         android:id="@+id/btn_register"
                         android:layout_width="0dp"
                         android:layout_height="40dp"
                         android:layout_marginStart="32dp"
-                        android:layout_marginTop="36dp"
                         android:layout_marginEnd="32dp"
                         android:layout_marginBottom="25dp"
                         android:background="#396ab8"
                         android:letterSpacing="-0.06"
                         android:lineSpacingExtra="22.3sp"
-                        android:onClick="@{() -> viewModel.onRegisterClick()}"
                         android:text="등록완료"
                         android:textColor="#ffffff"
                         android:textSize="15sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/recycler" />
+                        app:layout_constraintStart_toStartOf="parent" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </LinearLayout>

@@ -9,23 +9,34 @@ import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Base64
 import android.util.Log
+import android.view.View
 import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.auth.api.Auth
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.ConnectionResult
+import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.GoogleApiClient
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.kakao.auth.AuthType
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.util.exception.KakaoException
 import com.nhn.android.naverlogin.OAuthLogin
+import com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler
 import com.nhn.android.naverlogin.OAuthLoginHandler
+import com.nhn.android.naverlogin.ui.OAuthLoginActivity
 import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory
 import com.project.rankers.databinding.ActivityLoginBinding
@@ -39,7 +50,7 @@ import java.security.NoSuchAlgorithmException
 import javax.inject.Inject
 
 
-class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), LoginNavigator {
+class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), LoginNavigator, GoogleApiClient.OnConnectionFailedListener {
 
     @Inject
     internal var factory: ViewModelProviderFactory? = null
@@ -52,6 +63,12 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     private var OAUTH_CLIENT_SECRET: String? = "THUoRkeses"
     private var OAUTH_CLIENT_NAME: String? = "shrinehaneal@naver.com"
     private var mOAuthLoginModule: OAuthLogin? = null
+
+    //google login value
+    private var Google_Login: SignInButton? = null
+    private val RC_SIGN_IN = 1000
+    private var mAuth: FirebaseAuth? = null
+    private var mGoogleApiClient: GoogleApiClient? = null
 
 
     fun newIntent(context: Context): Intent {
@@ -89,18 +106,30 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
         return R.layout.activity_login
     }
 
-
-    private var sessionCallback: SessionCallback? = null
-
+    private var callback: SessionCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         loginBinding = getViewDataBinding()
         mLoginViewModel!!.navigator = this
 
-        //getHashKey()
+        //Oauth
+        setKakaoOauth()
+        setGoogleOauth()
+        setNaverOauth()
+    }
 
-        // naver login
+    fun setKakaoOauth() {
+
+        callback = SessionCallback()
+        Session.getCurrentSession().addCallback(callback)
+        Session.getCurrentSession().checkAndImplicitOpen()
+    }
+    /**
+     * getHashKey()
+     *
+     */
+    fun setNaverOauth() {
         mOAuthLoginModule = OAuthLogin.getInstance()
         mOAuthLoginModule!!.init(this
                 , OAUTH_CLIENT_ID
@@ -110,9 +139,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
 
         loginBinding.kakaoButton.setOnClickListener {
 
-            sessionCallback = SessionCallback()
+            callback = SessionCallback()
+
+//            KakaoSDK.init(KakaoSDKAdapter())
             // Session 에 콜백 추가
-            Session.getCurrentSession().addCallback(sessionCallback)
+            Session.getCurrentSession().addCallback(callback)
             Session.getCurrentSession().checkAndImplicitOpen()
             Session.getCurrentSession().open(AuthType.KAKAO_LOGIN_ALL, this)
         }
@@ -127,8 +158,56 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
                 mOAuthLoginModule!!.startOauthLoginActivity(mContext as LoginActivity, mOAuthLoginHandler)
             }
         }
+    }
+
+    fun setGoogleOauth() {
+
+        Google_Login = findViewById(R.id.Google_Login) as SignInButton
+
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build()
+        mGoogleApiClient = GoogleApiClient.Builder(this)
+                .enableAutoManage(this, this)
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build()
+
+        mAuth = FirebaseAuth.getInstance()
+
+        Google_Login!!.setOnClickListener(View.OnClickListener {
+            val signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient)
+            startActivityForResult(signInIntent, RC_SIGN_IN)
+        })
+    }
+
+    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        mAuth!!.signInWithCredential(credential)
+                .addOnCompleteListener(this) { task ->
+                    if (!task.isSuccessful) {
+                        Toast.makeText(this@LoginActivity, "인증 실패", Toast.LENGTH_SHORT).show()
+
+                    } else {
+                        //Toast.makeText(this@LoginActivity, data.getStringExtra("nickName") + "통과" + data.getStringExtra("email"), Toast.LENGTH_SHORT).show()
+                        mLoginViewModel!!.isUser(acct.getEmail(), acct.getDisplayName())
+                        val intent = Intent(applicationContext, MainActivity::class.java)
+                        startActivity(intent)
+                        //findUser(data.getStringExtra("email"), data.getStringExtra("nickName"))
+
+
+//                        Toast.makeText(this@LoginActivity, "구글 로그인 인증 성공", Toast.LENGTH_SHORT).show()
+//                        val intent = Intent(applicationContext, MainActivity::class.java)
+//                        startActivity(intent)
+//                        finish()
+                    }
+                }
+    }
+
+    override fun onConnectionFailed(@NonNull connectionResult: ConnectionResult) {
 
     }
+
 
     @SuppressLint("PackageManagerGetSignatures")
     private fun getHashKey() {
@@ -148,23 +227,30 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == 3000)
-                if (data != null) {
-                    mLoginViewModel!!.isUser(data.getStringExtra("email"), data.getStringExtra("nickName"))
-                    //findUser(data.getStringExtra("email"), data.getStringExtra("nickName"))
-                }
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == RC_SIGN_IN) {
+            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+            val account = result.signInAccount
+//                firebaseAuthWithGoogle(account!!)
+            if (data != null) {
+//                    Toast.makeText(this@LoginActivity, data.getStringExtra("nickName") + "통과" + data.getStringExtra("email"), Toast.LENGTH_SHORT).show()
+                mLoginViewModel!!.isUser(data.getStringExtra("email"), data.getStringExtra("nickName"))
+//                    mLoginViewModel!!.isUser(account?.getEmail(), account?.getDisplayName())
+                val intent = Intent(applicationContext, MainActivity::class.java)
+                startActivity(intent)
+                //findUser(data.getStringExtra("email"), data.getStringExtra("nickName"))
+            }
         }
+
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
             return
         }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
     fun redirectSignupActivity() {
         val intent = Intent(this, KakaoSignUpActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-        startActivityForResult(intent, 3000)
+        startActivityForResult(intent, 1000)
     }
 
     private inner class SessionCallback : ISessionCallback {
@@ -229,5 +315,4 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
 }
-
 

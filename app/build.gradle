@@ -101,8 +101,9 @@ dependencies {
 
     // google
     implementation 'com.google.firebase:firebase-core:16.0.7'
-    implementation 'com.google.firebase:firebase-auth:16.1.0'
-    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
+    implementation 'com.google.firebase:firebase-auth:18.1.0'
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
     // viewpager
     implementation 'androidx.viewpager:viewpager:1.0.0'
     // logger
@@ -119,7 +120,6 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
     annotationProcessor "androidx.lifecycle:lifecycle-compiler:$rootProject.lifecycleVersion"
     testImplementation 'junit:junit:4.12'
-
     //jsoup
     implementation 'org.jsoup:jsoup:1.11.3'
 

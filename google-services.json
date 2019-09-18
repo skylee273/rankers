@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "317767554664",
+    "firebase_url": "https://rank-573c6.firebaseio.com",
+    "project_id": "rank-573c6",
+    "storage_bucket": "rank-573c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:317767554664:android:338e2f8ccd93b6d5078ddd",
+        "android_client_info": {
+          "package_name": "com.project.rankers"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "317767554664-1ojcrrpvoe8nk2l9kg4209baiqsinkcr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCeaHIGAilILms-LM_0WfTWmpJPi4gTm7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "317767554664-1ojcrrpvoe8nk2l9kg4209baiqsinkcr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

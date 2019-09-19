@@ -19,7 +19,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_bg">
 
-        <Button
+        <com.kakao.usermgmt.LoginButton
             android:id="@+id/kakaoButton"
             android:layout_width="300dp"
             android:layout_height="50dp"

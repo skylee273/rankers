@@ -7,6 +7,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.AsyncTask
 import android.os.Bundle
+import android.telephony.PhoneNumberUtils
 import android.util.Base64
 import android.util.Log
 import android.view.View
@@ -33,6 +34,7 @@ import com.kakao.auth.AuthType
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.util.exception.KakaoException
+import com.kakao.util.helper.log.Logger
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLogin.mOAuthLoginHandler
 import com.nhn.android.naverlogin.OAuthLoginHandler
@@ -70,6 +72,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     private var mAuth: FirebaseAuth? = null
     private var mGoogleApiClient: GoogleApiClient? = null
 
+    //kakao oauth value
+    private var callback: SessionCallback? = null
+
 
     fun newIntent(context: Context): Intent {
         return Intent(context, LoginActivity::class.java)
@@ -106,7 +111,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
         return R.layout.activity_login
     }
 
-    private var callback: SessionCallback? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -181,6 +185,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
         })
     }
 
+
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         mAuth!!.signInWithCredential(credential)
@@ -226,31 +231,41 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
     }
 
 
+    /**
+     * kakao login method
+     */
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == RC_SIGN_IN) {
-            val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
-            val account = result.signInAccount
-//                firebaseAuthWithGoogle(account!!)
-            if (data != null) {
-//                    Toast.makeText(this@LoginActivity, data.getStringExtra("nickName") + "통과" + data.getStringExtra("email"), Toast.LENGTH_SHORT).show()
-                mLoginViewModel!!.isUser(data.getStringExtra("email"), data.getStringExtra("nickName"))
-//                    mLoginViewModel!!.isUser(account?.getEmail(), account?.getDisplayName())
-                val intent = Intent(applicationContext, MainActivity::class.java)
-                startActivity(intent)
-                //findUser(data.getStringExtra("email"), data.getStringExtra("nickName"))
-            }
-        }
 
         if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
-            return
+            //google
+            if (requestCode == RC_SIGN_IN) {
+                val result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+                if (result.isSuccess) {
+                    //구글 로그인 성공해서 파베에 인증
+                    val account = result.signInAccount
+                    firebaseAuthWithGoogle(account!!)
+                } else {
+                    //구글 로그인 실패
+                }
+            }
+
+            //kakao
+            if(requestCode == 0){ //인증번호가 0임
+                openMainActivity()
+            }
+
         }
+
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        Session.getCurrentSession().removeCallback(callback)
     }
 
+
     fun redirectSignupActivity() {
-        val intent = Intent(this, KakaoSignUpActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_NO_ANIMATION
-        startActivityForResult(intent, 1000)
+        openMainActivity()
     }
 
     private inner class SessionCallback : ISessionCallback {
@@ -259,16 +274,15 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>(), Logi
          * Access Token을 성공적으로 발급 받아 Valid Access token 을 가지고 있는 상태, 일반적으로
          * 로그인 후 다음 Activity 로 이동
          */
+
         override fun onSessionOpened() {
             redirectSignupActivity()
         }
 
-        // 카카오 로그인에 실패한 경우
         override fun onSessionOpenFailed(exception: KakaoException?) {
             if (exception != null) {
-                Log.d("LoginActivity", exception.toString())
+                Logger.e(exception)
             }
-            //setContentView(R.layout.activity_login)
         }
     }
 

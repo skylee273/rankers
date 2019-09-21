@@ -1,0 +1,32 @@
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:id="@+id/item_contest_widget_number_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="   1   " />
+
+        <TextView
+            android:id="@+id/item_contest_widget_english_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="apple1" />
+
+        <TextView
+            android:id="@+id/item_contest_widget_korean_textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="사과 1" />
+
+
+    </LinearLayout>

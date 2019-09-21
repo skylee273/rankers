@@ -3,8 +3,8 @@
     <string name="kakao_app_key">72d1902fd6b1b70f7fc337039de59cd4</string>
     <string name="naver_oauth_client_id">UjyxaIsZ3i3GlROD6XPa</string>
     <string name="OAUTH_CLIENT_SECRET">THUoRkeses</string>
-<string name="OAUTH_CLIENT_NAME">shrinehaneal@naver.com</string>
-<string name="todo">TODO</string>
+    <string name="OAUTH_CLIENT_NAME">shrinehaneal@naver.com</string>
+    <string name="todo">TODO</string>
 
 
     <!-- 로그인 -->
@@ -111,7 +111,7 @@
 
     <!--play store-->
     <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>
-<string name="app_market_link">"market://details?id="</string>
+    <string name="app_market_link">"market://details?id="</string>
     <string name="appwidget_text">EXAMPLE</string>
     <string name="add_widget">Add widget</string>
 

@@ -9,8 +9,6 @@ import io.reactivex.schedulers.Schedulers
 
 class LoginViewModel: BaseViewModel<LoginNavigator>() {
 
-
-
     fun isUser(email: String?, nickName: String?) {
         compositeDisposable.add(Api.getID(email)
                 .subscribeOn(Schedulers.newThread())

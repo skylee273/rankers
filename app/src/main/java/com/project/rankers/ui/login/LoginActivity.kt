@@ -43,6 +43,7 @@
     import com.project.rankers.ViewModelProviderFactory
     import com.project.rankers.databinding.ActivityLoginBinding
     import com.project.rankers.kakao.KakaoSignUpActivity
+    import com.project.rankers.ui.InfoLoginActivity
     import com.project.rankers.ui.base.BaseActivity
     import com.project.rankers.ui.main.MainActivity
     import com.project.rankers.ui.register.RegisterActivity
@@ -127,12 +128,12 @@
 
             callback = SessionCallback()
             Session.getCurrentSession().addCallback(callback)
+            //세션 상태 변화 콜백을 받고자 할때 콜백을 등록한다.
             Session.getCurrentSession().checkAndImplicitOpen()
+            //Session 의 상태를 체크후 isOpenable() 상태일 때 Login을 시도한다.
+            //요청에 대한 결과는 KakaoAdapter의 ISessionCallback으로 전달이 된다
         }
-        /**
-         * getHashKey()
-         *
-         */
+
         fun setNaverOauth() {
             mOAuthLoginModule = OAuthLogin.getInstance()
             mOAuthLoginModule!!.init(this
@@ -141,16 +142,16 @@
                     , OAUTH_CLIENT_NAME)
 
 
-            loginBinding.kakaoButton.setOnClickListener {
-
-                callback = SessionCallback()
-
-    //            KakaoSDK.init(KakaoSDKAdapter())
-                // Session 에 콜백 추가
-                Session.getCurrentSession().addCallback(callback)
-                Session.getCurrentSession().checkAndImplicitOpen()
-                Session.getCurrentSession().open(AuthType.KAKAO_LOGIN_ALL, this)
-            }
+//            loginBinding.kakaoButton.setOnClickListener {
+//
+//                callback = SessionCallback()
+//
+//    //            KakaoSDK.init(KakaoSDKAdapter())
+//                // Session 에 콜백 추가
+//                Session.getCurrentSession().addCallback(callback)
+//                Session.getCurrentSession().checkAndImplicitOpen()
+//                Session.getCurrentSession().open(AuthType.KAKAO_LOGIN_ALL, this)
+//            }
 
             loginBinding.buttonOAuthLoginImg.setOAuthLoginHandler(mOAuthLoginHandler)
             loginBinding.buttonOAuthLoginImg.setBgResourceId(R.drawable.btn_login_naver)
@@ -163,6 +164,7 @@
                 }
             }
         }
+
 
         fun setGoogleOauth() {
             Google_Login = findViewById(R.id.Google_Login) as SignInButton
@@ -241,10 +243,13 @@
             //kakao
             if (Session.getCurrentSession().handleActivityResult(requestCode, resultCode, data)) {
                 if(requestCode == 0){ //인증번호가 0임
-                    openMainActivity()
+//                    openMainActivity()
+                    val intent = Intent(this, InfoLoginActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 }
-            }
 
+            }
         }
         override fun onDestroy() {
             super.onDestroy()

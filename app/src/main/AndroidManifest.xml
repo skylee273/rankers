@@ -19,6 +19,7 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:targetApi="m">
+        <activity android:name=".ui.InfoLoginActivity"></activity>
 
         <receiver android:name=".widget.RankersWidget">
             <intent-filter>

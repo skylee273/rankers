@@ -11,6 +11,8 @@ import android.graphics.BitmapFactory;
 import android.view.View;
 import android.widget.RemoteViews;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.project.rankers.R;
 import com.project.rankers.ui.main.MainActivity;
 
@@ -27,6 +29,8 @@ public class RankersWidget extends AppWidgetProvider {
                                 int appWidgetId) {
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.rankers_widget);
         appWidgetManager.updateAppWidget(appWidgetId, views);
+        //rankers widget activity부분 다른게 너무 많아서 일단 보류하고 개인 모듈 프로젝트에서 만든 후 돌아올 예정
+
 
 }
 

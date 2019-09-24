@@ -1,113 +1,47 @@
 <resources>
     <string name="app_name">rankers</string>
     <string name="kakao_app_key">72d1902fd6b1b70f7fc337039de59cd4</string>
-    <string name="naver_oauth_client_id">UjyxaIsZ3i3GlROD6XPa</string>
-    <string name="OAUTH_CLIENT_SECRET">THUoRkeses</string>
-    <string name="OAUTH_CLIENT_NAME">shrinehaneal@naver.com</string>
-    <string name="todo">TODO</string>
 
 
     <!-- 로그인 -->
-    <string name="google_login">구글아이디로 로그인</string>
-    <string name="naver_login">네이버아이디로 로그인</string>
-    <string name="kakao_login">카카오계정으로 로그인</string>
     <string name="login_logo">경기 기록을 기록하고,\n나의 전적을 확인해보세요.</string>
 
     <!-- 하단바 아이템 -->
-    <string name="selection_contest">대회</string>
-    <string name="selection_club">클럽</string>
-    <string name="selection_messsage">소식</string>
-    <string name="selection_my">마이페이지</string>
 
     <!-- 매인 엑티비티 -->
-    <string name="contest_register">대회등록</string>
-    <string name="contest_application">대회신청</string>
-    <string name="contest_result">대회결과</string>
-    <string name="contest_setting">대회운영</string>
-    <string name="contest_information">전국 대회 정보</string>
-    <string name="contest_information2">지역 대회 정보</string>
-    <string name="contest_local_title">LOCAL</string>
-    <string name="contest_kta_title">KTA</string>
-    <string name="context_addinfo">+더보기</string>
 
 
     <!-- 대회 등록 -->
-    <string name="register_hint_title">대회이름</string>
-    <string name="register_hint_date">대회일시</string>
-    <string name="register_hint_end">대회종료</string>
-    <string name="register_hint_type">대회종류</string>
-    <string name="register_hint_host">주관기관</string>
-    <string name="register_hint_location">대회장소</string>
-    <string name="register_hint_file">첨부파일</string>
-    <string name="register_hint_depart">부서이름</string>
-    <string name="register_hint_name">부서이름</string>
 
     <!-- 다이얼로그 -->
     <string name="title">부서추가</string>
     <string name="agree">확인</string>
     <string name="disagree">취소</string>
-    <string name="regit_title">대회등록</string>
     <string name="register_title">대회등록 실패</string>
     <string name="register_fail_message">정보를 정확히 기입하세요</string>
-    <string name="regit_context">대회등록을 하시겠습니까?</string>
-    <string name="success_title">대회등록</string>
-    <string name="success_context">대회등록이 완료되었습니다.</string>
     <string name="type_title">대회종류</string>
-    <string name="result_title">경기결과</string>
     <string name="new_folder">New Folder</string>
 
     <!-- 툴바 -->
     <string name="toolbar_title_register">대회등록</string>
     <string name="toolbar_title_operation">대회운영</string>
-    <string name="toolbar_title_record">개인기록</string>
     <string name="toolbar_title_result">경기결과</string>
     <string name="toolbar_title_contest_list">대회신청</string>
     <string name="toolbar_title_apply">대회신청</string>
 
     <!-- 탭 -->
-    <string name="tab_singles_title">단식</string>
-    <string name="tab_multi_title">복식</string>
-    <string name="tab_operation_tournament">대진표작성</string>
-    <string name="tab_operation_result">대회결과표</string>
-    <string name="tab_operation_manager">매니저등록</string>
 
     <!-- 개인단식경기 -->
-    <string name="single_btn_name">경기등록</string>
-    <string name="single_lose">0</string>
-    <string name="single_win">0</string>
-    <string name="single_result">경기결과</string>
-    <string name="single_location">경기장소</string>
-    <string name="single_date">경기일자</string>
-    <string name="single_other">상대이름</string>
 
     <!--개인복식경기 -->
-    <string name="multi_btn_name">경기등록</string>
-    <string name="multi_lose">0</string>
-    <string name="multi_win">0</string>
-    <string name="multi_result">경기결과</string>
-    <string name="multi_location">경기장소</string>
-    <string name="multi_date">경기일자</string>
-    <string name="multi_partner">파트너이름</string>
-    <string name="multi_other">상대이름</string>
-    <string name="multi_other_partner">상대파트너이름</string>
 
     <!-- 대회신청 -->
-    <string name="contest_info">대회정보</string>
-    <string name="context_depart">부서</string>
-    <string name="context_my">본인</string>
-    <string name="contest_partner">파트너</string>
-
-    <string name="contest_hint_name">이름</string>
-    <string name="context_hint_phone">휴대폰</string>
 
     <!-- 대회운영 -->
-    <string name="operation_title">진행중인 대회 정보</string>
 
     <!-- 대진표 -->
-    <string name="tounament_title">부서정보</string>
 
     <!-- 대회결과표 -->
-    <string name="contest_result_title">부서정보</string>
 
     <!--play store-->
     <string name="app_google_play_store_link">"https://play.google.com/store/apps/details?id="</string>

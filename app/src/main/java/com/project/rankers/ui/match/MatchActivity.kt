@@ -1,14 +1,17 @@
 package com.project.rankers.ui.match
 
 import android.annotation.SuppressLint
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.MenuItem
+import android.widget.LinearLayout
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.afollestad.materialdialogs.MaterialDialog
 import com.project.rankers.R
 import com.project.rankers.ViewModelProviderFactory

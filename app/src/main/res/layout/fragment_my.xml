@@ -142,7 +142,7 @@
             android:drawablePadding="20dp"
             android:gravity="center_horizontal"
             android:onClick="@{() -> myActivity.resultClick()}"
-            android:text="개인기록"
+            android:text="대회결과"
             android:textColor="#898989"
             android:textSize="13sp" />
 

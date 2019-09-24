@@ -19,21 +19,26 @@ import com.project.rankers.ui.main.MainActivity;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.Calendar;
 
-/**
- * Implementation of App Widget functionality.
- */
 public class RankersWidget extends AppWidgetProvider {
+
+    private static final String REFRESH = "REFRESH Clicked";
 
     static void updateAppWidget(Context context, AppWidgetManager appWidgetManager,
                                 int appWidgetId) {
-        RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.rankers_widget);
-        appWidgetManager.updateAppWidget(appWidgetId, views);
-        //rankers widget activity부분 다른게 너무 많아서 일단 보류하고 개인 모듈 프로젝트에서 만든 후 돌아올 예정
+        RemoteViews widget = new RemoteViews(context.getPackageName(), R.layout.rankers_widget);
+        Intent serviceIntent = new Intent(context, MyRemoteViewsService.class);
+        widget.setRemoteAdapter(R.id.rankers_widget_listview, serviceIntent);
 
+        Intent intent = new Intent(context, RankersWidget.class).setAction(REFRESH);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context,0, intent, 0);
+        widget.setOnClickPendingIntent(R.id.dining_widget_date_textview, pendingIntent);
 
-}
+        setDate(widget);
 
+        appWidgetManager.updateAppWidget(appWidgetId, widget);
+    }
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
         // There may be multiple widgets active, so update all of them
@@ -43,13 +48,49 @@ public class RankersWidget extends AppWidgetProvider {
     }
 
     @Override
-    public void onEnabled(Context context) {
-        // Enter relevant functionality for when the first widget is created
+    public void onReceive(Context context, Intent intent) {
+        super.onReceive(context, intent);
+        String action = intent.getAction();
+        AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context);
+        RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.rankers_widget);
+        ComponentName componentName = new ComponentName(context, RankersWidget.class);
+
+        if(action.equals(REFRESH)) {
+            AppWidgetManager manager = AppWidgetManager.getInstance(context);
+            manager.updateAppWidget(new ComponentName(context, RankersWidget.class), remoteViews);
+            appWidgetManager.updateAppWidget(componentName, remoteViews);
+        }
     }
 
-    @Override
-    public void onDisabled(Context context) {
-        // Enter relevant functionality for when the last widget is disabled
+    static void setDate(RemoteViews remoteViews){
+        Calendar calendar = Calendar.getInstance();
+        int dayWeek = calendar.get(Calendar.DAY_OF_WEEK);
+        String dayWeekStr = null;
+        switch (dayWeek){
+            case 1:
+                dayWeekStr = "일";
+                break;
+            case 2:
+                dayWeekStr = "월";
+                break;
+            case 3:
+                dayWeekStr = "화";
+                break;
+            case 4:
+                dayWeekStr = "수";
+                break;
+            case 5:
+                dayWeekStr = "목";
+                break;
+            case 6:
+                dayWeekStr = "금";
+                break;
+            case 7:
+                dayWeekStr = "토";
+                break;
+        }
+        remoteViews.setTextViewText(R.id.dining_widget_date_textview, (calendar.get(Calendar.MONTH)+1) + "/"+ calendar.get(Calendar.DAY_OF_MONTH) +" ("+dayWeekStr+")");
     }
+
 }
 

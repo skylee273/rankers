@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="#ffffff">
+
+    <TextView
+        android:id="@+id/item_widget_listview_address_textview"
+        android:layout_width="370dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_widget_listview_period_textview"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:letterSpacing="-0.04"
+        android:lineSpacingExtra="6.5sp"
+        android:maxLines="1"
+        android:textColor="#b7b7b7"
+        android:textSize="12.5sp"
+        tools:text="(31253) 충남 천안시 동남구 병천면 충절로 1600 한국기술교육대학교" />
+
+    <TextView
+        android:id="@+id/item_widget_listview_title_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="2.8sp"
+        android:textColor="#707070"
+        android:textSize="16sp"
+        tools:text="생활체육  전국  테니스  대회" />
+
+    <TextView
+        android:id="@+id/item_widget_listview_period_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/item_widget_listview_title_textview"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1dp"
+        android:gravity="center_vertical"
+        android:letterSpacing="-0.03"
+        android:lineSpacingExtra="7sp"
+        android:textColor="#7d7d7d"
+        android:textSize="12sp"
+        tools:text="19. 02. 03 ~ 19. 02. 31" />
+
+    <TextView
+        android:id="@+id/item_widget_listview_type_textview"
+        android:layout_width="65dp"
+        android:layout_height="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginEnd="124dp"
+        android:layout_toEndOf="@+id/item_widget_listview_title_textview"
+        android:background="#39b896"
+        android:gravity="center"
+        android:lineSpacingExtra="8.5sp"
+        android:textColor="#ffffff"
+        android:textSize="10sp"
+        tools:text="NATIONAL" />
+</RelativeLayout>

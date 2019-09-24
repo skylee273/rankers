@@ -4,33 +4,17 @@
     <color name="colorPrimaryDark">#285193</color>
     <color name="colorAccent">#396AB8</color>
 
-    <color name="light_gray">#dbdbdb</color>
-    <color name="gray">#7e7e7e</color>
-    <color name="semi_gray">#979797</color>
     <color name="dark_gray">#696969</color>
-    <color name="bg_color">#f7f7f7</color>
-    <color name="black">#000000</color>
     <color name="white">#ffffff</color>
     <color name="black_effective">#2a2a2a</color>
-    <color name="shadow">#d0d8dc</color>
-    <color name="transparent">#00000000</color>
-    <color name="translucent_white">#88ffffff</color>
-    <color name="fb">#3b5998</color>
-    <color name="google">#d34836</color>
 
 
     <!-- 로그인 컬러 -->
     <color name="color_bg">#285193</color>
-    <color name="color_login_text">#FFFFFF</color>
     <color name="color_login_logo">#FFFFF2</color>
 
     <!-- 메인액티비티 -->
-    <color name="bottombar_bg">#FFFFFF</color>
-    <color name="color_background">#FBFBFB</color>
-    <color name="color_contest_icon_title">#585858</color>
     <color name="color_divider">#E0E0E0</color>
-    <color name="color_information">#2A2929</color>
-    <color name="color_info_add">#396AB8</color>
 
     <!-- 툴바 -->
     <color name="color_toolbar_title">#396AB8</color>
@@ -38,19 +22,7 @@
     <color name="toolbar_color_bg">#FFFFFF</color>
 
     <!-- 탭 -->
-    <color name="colorTabSelectTextColor">#396AB8</color>
 
-    <color name="color_contest_title">#396AB8</color>
-    <color name="color_card_background">#FFFFFF</color>
-    <color name="color_card_line">#DEDEDE</color>
-    <color name="color_card_title">#363636</color>
-    <color name="color_card_address">#8D8D8D</color>
-
-    <color name="color_black">#000000</color>
-
-    
-    <color name="tab_background_selected">#396ab8</color>
-    <color name="tab_background_unselected">#ffffff</color>
 
     <color name="win_bg">#f8efed</color>
     <color name="lose_bg">#edf1f8</color>
@@ -60,10 +32,6 @@
 
     <color name="win_view">#f8efed</color>
     <color name="lose_view">#edf1f8</color>
-
-    <color name="view_line">#2a5291</color>
-
-    <color name="text_win">#2a5291</color>
 
     <color name="text_up">#f14932</color>
     <color name="text_down">#464646</color>
